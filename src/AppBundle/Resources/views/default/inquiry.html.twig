@@ -1,0 +1,58 @@
+<div class="col-left col-md-6">
+</div>
+<div class="col-right col-md-6">
+    {{ include('AppBundle:flash:messages.html.twig', {'flashes': flashes}) }}
+    <div class="card card-signup">
+        <div class="header header-primary text-center">
+            <h4>Contact Us!</h4>
+        </div>
+        <div class="content">
+            {{ form_start(form) }}
+            <div class="col-md-12">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="material-icons">face</i>
+                    </span>
+                    <div class="form-group is-empty">
+                        {{ form_widget(form.name, {'attr': {'placeholder': form.name.vars.label }}) }}
+                        <span class="material-input"></span>
+                        <span class="material-icons form-control-feedback">clear</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="material-icons">email</i>
+                    </span>
+                    <div class="form-group is-empty">
+                        {{ form_widget(form.email, {'attr': {'placeholder': form.email.vars.label }}) }}
+                        <span class="material-input"></span>
+                        <span class="material-icons form-control-feedback">clear</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="material-icons">create</i>
+                    </span>
+                    <div class="form-group is-empty">
+                        {{ form_widget(form.content, {'attr': {'placeholder': form.content.vars.label }}) }}
+                        <span class="material-input"></span>
+                        <span class="material-icons form-control-feedback">clear</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pull-right">
+                <div class="col-md-6">
+                    {{ form_widget(form.submit) }}
+                </div>
+            </div>
+
+            {{ form_rest(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+
+

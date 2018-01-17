@@ -17,3 +17,7 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+    # Google API key
+    google.api_key: AIzaSyCILLBm5Gie0gN06N3KjxE5RkNf9HacYYs
+    # Wedding date
+    wedding.date: '2018-09-14T19:30:00'

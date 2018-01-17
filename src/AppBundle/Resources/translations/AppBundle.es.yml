@@ -1,0 +1,10 @@
+app:
+    admin:
+        group:
+            administration: 'Administración'
+            settings: 'Configuración'
+        model:
+            guest: 'Guest'
+            guests: 'Guests'
+            location: 'Lugar'
+            locations: 'Lugares'

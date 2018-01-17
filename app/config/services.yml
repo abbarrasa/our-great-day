@@ -22,7 +22,7 @@ services:
         # but if a service is unused, it's removed anyway
         exclude: '../../src/AppBundle/{Entity,Repository,Tests}'
 
-    # controllers are imported separately to make sure they're public
+    # controllers are imported separately to make sure they're public_backup
     # and have a tag that allows actions to type-hint services
     AppBundle\Controller\:
         resource: '../../src/AppBundle/Controller'
@@ -33,3 +33,20 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    AppBundle\Service\MenuBuilderService:
+        class: AppBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory", "@request_stack"]
+        tags:
+            - { name: knp_menu.menu_builder, method: createMainMenu, alias: main } # The alias is what is used to retrieve the menu
+
+#    AppBundle\Service\GuestExistsService:
+#        class: AppBundle\Validator\Constraints\GuestExistsValidator
+#        arguments: ["@doctrine.orm.entity_manager"]
+#        tags:
+#            - { name: validator.constraint_validator }
+#
+#    AppBundle\Service\FlashMessageService:
+#        class: AppBundle\Templating\Helper\FlashMessageHelper
+#        public: true
+#        tags:
+#            - { name: templating.helper }
