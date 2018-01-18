@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="ogd_guestbook")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GuestbookRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Guestbook
 {
@@ -41,10 +42,10 @@ class Guestbook
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="created_at", type="datetime")
      * @Assert\NotNull()
      */
-    private $date;
+    private $createdAt;
 
     /**
      * @var boolean
@@ -63,17 +64,9 @@ class Guestbook
      * @var integer
      *
      * @ORM\Column(name="likes", type="integer")
-     * @Assert\NotNull()
+     * @Assert\NotBlank()
      */
     private $likes;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="unlikes", type="integer")
-     * @Assert\NotNull()
-     */
-    private $unlikes;
 
     /**
      * Guestbook constructor.
@@ -81,7 +74,6 @@ class Guestbook
     public function __construct()
     {
         $this->setLikes(0);
-        $this->setUnlikes(0);
     }
 
     /**
@@ -143,27 +135,27 @@ class Guestbook
     }
 
     /**
-     * Set date.
+     * Set createdAt.
      *
      * @param \DateTime $date
      *
      * @return Guestbook
      */
-    public function setDate($date)
+    public function setCreatedAt($date)
     {
-        $this->date = $date;
+        $this->createdAt = $date;
 
         return $this;
     }
 
     /**
-     * Get date.
+     * Get createdAt.
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getCreatedAt()
     {
-        return $this->date;
+        return $this->createdAt;
     }
 
     /**
@@ -213,4 +205,38 @@ class Guestbook
     {
         return $this->user;
     }
+    
+    /**
+     * Set likes.
+     *
+     * @param integer $likes
+     *
+     * @return Guestbook
+     */
+    public function setLikes($likes)
+    {
+        $this->likes = $likes;
+
+        return $this;
+    }
+
+    /**
+     * Get likes.
+     *
+     * @return integer
+     */
+    public function getLikes()
+    {
+        return $this->likes;
+    }    
+    
+    /**
+     * Set createdAt value before persist 
+     *
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->setCreatedAt(new \DateTime());
+    }    
 }
