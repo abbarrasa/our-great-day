@@ -102,19 +102,4 @@ class GuestController extends Controller
         $em->persist($guestbook);
         $em->flush();
     }
-
-    /**
-     * @Route("/guestbook/unlike/{id}", requirements={"id" = "\d+"}, name="guestbook_unlike")
-     */
-    public function unlikeAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine();
-        if (($guestbook = $em->getRepository(Guestbook::class)->find($id)) === null) {
-            throw $this->createNotFoundException(sprintf('No found any guestbook with ID %d', $id));
-        }
-
-        $guestbook->setUnlikes($guestbook->getUnlikes() + 1);
-        $em->persist($guestbook);
-        $em->flush();
-    }
 }
