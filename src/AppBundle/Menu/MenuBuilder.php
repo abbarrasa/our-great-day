@@ -27,7 +27,8 @@ class MenuBuilder
     public function createMainMenu()
     {
         $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
+        //$menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
+        $menu->setChildrenAttribute('class', 'navbar-nav ml-auto');
 
         $menu
             ->addChild('Home', ['route' => 'homepage'])
