@@ -8,12 +8,12 @@ use AppBundle\Validator\Constraints as AppAsserts;
 
 
 /**
- * Inquiry
+ * Enquiry
  *
- * @ORM\Table(name="inquiry")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\InquiryRepository")
+ * @ORM\Table(name="enquiry")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EnquiryRepository")
  */
-class Inquiry
+class Enquiry
 {
     /**
      * @var integer
@@ -73,7 +73,7 @@ class Inquiry
      *
      * @param string $name
      *
-     * @return Inquiry
+     * @return Enquiry
      */
     public function setName($name)
     {
@@ -97,7 +97,7 @@ class Inquiry
      *
      * @param string|null $email
      *
-     * @return Inquiry
+     * @return Enquiry
      */
     public function setEmail($email = null)
     {
@@ -121,7 +121,7 @@ class Inquiry
      *
      * @param string $content
      *
-     * @return Inquiry
+     * @return Enquiry
      */
     public function setContent($content)
     {
@@ -145,7 +145,7 @@ class Inquiry
      *
      * @param \DateTime $date
      *
-     * @return Inquiry
+     * @return Enquiry
      */
     public function setDate($date)
     {

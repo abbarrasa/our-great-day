@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class InquiryType extends AbstractType
+class EnquiryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -44,7 +44,7 @@ class InquiryType extends AbstractType
     {
         $resolver
             ->setDefaults(array(
-                'data_class' => 'AppBundle\Entity\Inquiry',
+                'data_class' => 'AppBundle\Entity\Enquiry',
             ))
         ;
     }

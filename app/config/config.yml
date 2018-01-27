@@ -8,6 +8,11 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: es
+    mailer:
+        default_sleep: 1
+        email_admin: '%email_admin%'
+        email_no_reply: '%email_no_reply%'
+        from_name: 'Our Great Day'
 
 framework:
     #esi: ~

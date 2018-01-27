@@ -2,8 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Inquiry;
-use AppBundle\Form\Type\InquiryType;
+use AppBundle\Entity\Enquiry;
+use AppBundle\Form\Type\EnquiryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,21 +22,21 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/inquiry", name="inquiry")
+     * @Route("/enquiry", name="enquiry")
      * @Method("POST")
      */
-    public function inquiryAction(Request $request)
+    public function enquiryAction(Request $request)
     {
         if (!$request->isXmlHttpRequest()) {
             return $this->redirectToRoute('homepage');
         }
         $flashes = null;
-        $inquiry = new Inquiry();
-        $form    = $this->createForm(InquiryType::class, $inquiry);
+        $enquiry = new Enquiry();
+        $form    = $this->createForm(EnquiryType::class, $enquiry);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine();
-            $em->persist($inquiry);
+            $em->persist($enquiry);
             $em->flush();
 
             //Enviamos un correo con la consulta
@@ -45,7 +45,7 @@ class DefaultController extends Controller
 //            $flashes[] = $helper->getFlash('success', 'Tu cuestión ha sido enviada');
         }
 
-        return $this->render('AppBundle:default:inquiry.html.twig', [
+        return $this->render('AppBundle:default/partials:enquiry.html.twig', [
             'form' => $form->createView(),
             'flashes' => $flashes
         ]);

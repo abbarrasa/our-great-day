@@ -59,7 +59,7 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="brand-hero">
-                                    <h1><strong>{% block hero_title %}Carlos y Vero{% endblock %}</strong></h1>
+                                    <h1><strong>{% block hero_title %}Vero y Carlos{% endblock %}</strong></h1>
                                     <h3>{% block hero_subtitle %}Nuestro gran día{% endblock %}</h3>
                                 </div>
                             </div>
@@ -154,20 +154,20 @@
 
                     $('html, body').animate({
                        scrollTop: $target.offset().top - 120
-                    }, 600, 'swing');
+                    }, 800, 'swing');
                 });
 
-                {# Load inquiry form #}
+                {# Load enquiry form #}
                 $.ajax({
-                    url: '{{ path('inquiry') }}',
+                    url: '{{ path('enquiry') }}',
                     type: 'POST'
                 }).done(function (html) {
                     $('#contact').children().first().children().first().children().first().html(html);
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                 });
 
-                {# Submit inquiry form #}
-                $('#inquiry').on('submit', function(e) {
+                {# Submit enquiry form #}
+                $('#enquiry').on('submit', function(e) {
                     e.preventDefault();
                     $.ajax({
                         type: $(this).attr('method'),

@@ -1,0 +1,94 @@
+{% block subject %}{% endblock %}
+
+{% block body_text %}{% endblock %}
+
+{% block body_html %}
+    <!doctype html>
+    <html amp lang="es">
+        <head>
+            <meta charset="utf-8">
+            <title>{% block title %}{% endblock %}</title>
+        </head>
+        <body>
+        <table cellpadding="0" cellspacing="0" border="0" bgcolor="#DCDCDC" width="750" align="center">
+            <tbody>
+            <tr>
+                <td>
+                    <table bgcolor="#FFFFFF" cellpadding="4">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <table style="width:740px;margin-left:auto;margin-right:auto;border: 2px solid #cb1c21;" align="center">
+                                    <tbody>
+                                    <tr>
+                                        <td style="text-align:center">
+                                            <a href="{{ base_url }}" target="_blank">
+                                                <img src="{{ base_url_statics }}images/logoEstrategiasDeInversion.gif" />
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <table style="width:740px;margin-left:auto;margin-right:auto" align="center">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            {% block content_html %}{% endblock %}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table><p>&nbsp;</p>
+                    <table border="0" width="600" cellpadding="3" align="center">
+                        <tbody>
+                        <tr>
+                            <td align="center">
+                                <table border="0" width="250" align="center">
+                                    <tbody>
+                                    <tr>
+                                        <td align="center">
+                                            <a href="https://es-es.facebook.com/estrategiasdeinversion" target="_blank" >
+                                                <img src="{{ base_url_statics }}images/ico-sharebar-facebook.png" alt="" width="50" height="50" />
+                                            </a>
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td align="center">
+                                            <a href="https://twitter.com/estrategiastv" target="_blank" >
+                                                <img src="{{ base_url_statics }}images/ico-sharebar-twitter.png" alt="" width="50" height="50" />
+                                            </a>
+                                        </td>
+                                        <td>&nbsp;</td>
+                                        <td align="center">
+                                            <a href="{{ base_url }}" target="_blank" >
+                                                <img src="{{ base_url_statics }}images/site-brand2.png" alt="" width="50" height="50" />
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="9">&nbsp;</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td>
+                                <font size="2" color="#333333" face="tahoma,arial,helvetica,sans-serif">
+                                    Este mensaje ha sido enviado por Estrategias de inversión.
+                                    <br>Si desea ponerse en contacto con nosotros, puede hacerlo aquí: <a class="lnk" target="_blank" href="{{ base_url }}{{ path('corporativo_contacto') }}">contacto</a>.
+                                </font>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p>&nbsp;</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
+{% endblock %}

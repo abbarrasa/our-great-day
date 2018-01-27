@@ -39,14 +39,18 @@ services:
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main } # The alias is what is used to retrieve the menu
 
-#    AppBundle\Service\GuestExistsService:
-#        class: AppBundle\Validator\Constraints\GuestExistsValidator
-#        arguments: ["@doctrine.orm.entity_manager"]
-#        tags:
-#            - { name: validator.constraint_validator }
-#
-#    AppBundle\Service\FlashMessageService:
-#        class: AppBundle\Templating\Helper\FlashMessageHelper
-#        public: true
-#        tags:
-#            - { name: templating.helper }
+    AppBundle\Service\GuestExistsValidator:
+        class: AppBundle\Validator\Constraints\GuestExistsValidator
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: validator.constraint_validator }
+
+    AppBundle\Service\FlashMessageHelper:
+        class: AppBundle\Templating\Helper\FlashMessageHelper
+        public: true
+        tags:
+            - { name: templating.helper }
+
+    AppBundle\Service\Mailer:
+        class: AppBundle\Manager\Mailer
+        arguments: ["@mailer", "@router", "@twig", '%mailer%']
