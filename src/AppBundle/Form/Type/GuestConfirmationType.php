@@ -59,7 +59,7 @@ class GuestConfirmationType extends AbstractType
             ->add('firstname', TextType::class, [
                 'label' => 'First name',
                 'required' => true,
-                'label_attr' => ['class' => 'control-label'],
+                'label_attr' => ['class' => 'bmd-label-floating'],
                 'attr' => ['class' => 'form-control'],
                 'constraints' => [
                     new NotBlank()
@@ -68,7 +68,7 @@ class GuestConfirmationType extends AbstractType
             ->add('lastname', TextType::class, [
                 'label' => 'Last name',
                 'required' => true,
-                'label_attr' => ['class' => 'control-label'],
+                'label_attr' => ['class' => 'bmd-label-floating'],
                 'attr' => ['class' => 'form-control'],
                 'constraints' => [
                     new NotBlank()
@@ -77,14 +77,14 @@ class GuestConfirmationType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'Email (optional)',
                 'required' => false,
-                'label_attr' => ['class' => 'control-label'],
+                'label_attr' => ['class' => 'bmd-label-floating'],
                 'attr' => ['class' => 'form-control'],
                 'constraints' => [
                     new Email()
                 ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Search me',
+                'label' => 'Search me!',
                 'attr' => ['class' => 'btn btn-primary']
             ])
         ;
@@ -120,7 +120,7 @@ class GuestConfirmationType extends AbstractType
                 'label' => 'Number of guests',
                 'choices' => array_combine(range(1, 10), range(1, 10)),
                 'required' => true,
-                'label_attr' => ['class' => 'control-label'],
+                'label_attr' => ['class' => 'bmd-label-floating'],
                 'attr' => [
                     'class' => 'selectpicker',
                     'data-style' => 'select-with-transition',
@@ -131,7 +131,6 @@ class GuestConfirmationType extends AbstractType
                 'label' => 'Number of childs',
                 'choices' => array_combine(range(0, 10), range(0, 10)),
                 'required' => true,
-                'label_attr' => ['class' => 'control-label'],
                 'attr' => [
                     'class' => 'selectpicker',
                     'data-style' => 'select-with-transition',
@@ -142,7 +141,6 @@ class GuestConfirmationType extends AbstractType
                 'label' => 'Number of vegans',
                 'choices' => array_combine(range(0, 10), range(0, 10)),
                 'required' => true,
-                'label_attr' => ['class' => 'control-label'],
                 'attr' => [
                     'class' => 'selectpicker',
                     'data-style' => 'select-with-transition',
@@ -154,8 +152,10 @@ class GuestConfirmationType extends AbstractType
                 'choices' => ['Yes' => true, 'No' => false],
                 'required' => true,
                 'expanded' => true,
-                'label_attr' => ['class' => 'control-label'],
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
+                'choice_attr' => function($val, $key, $index) {
+                    return ['class' => 'form-check-input'];
+                }
             ])
             ->add('submit', SubmitType::class, [
                 'label' => "Confirm",

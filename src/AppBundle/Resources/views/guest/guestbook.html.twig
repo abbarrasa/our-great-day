@@ -2,10 +2,10 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {% stylesheets
-    '@AppBundle/Resources/public/css/hipster-cards.css' filter='cssrewrite' %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endstylesheets %}
+    {#% stylesheets#}
+    {#'@AppBundle/Resources/public/css/hipster-cards.css' filter='cssrewrite' %}#}
+    {#<link rel="stylesheet" href="{{ asset_url }}" />#}
+    {#{% endstylesheets %}#}
 {% endblock %}
 
 {% block title %}Our Great Day! - Guestbook{% endblock %}
@@ -61,8 +61,8 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {% javascripts
-    '@AppBundle/Resources/public/js/hipster-cards.min.js' output='js/compiled/app.js' %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    {#% javascripts#}
+    {#'@AppBundle/Resources/public/js/hipster-cards.min.js' output='js/compiled/app.js' %}#}
+    {#<script src="{{ asset_url }}"></script>#}
+    {#{% endjavascripts %}#}
 {% endblock %}

@@ -27,29 +27,38 @@ class MenuBuilder
     public function createMainMenu()
     {
         $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
+//        $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
+        $menu->setChildrenAttribute('class', 'navbar-nav ml-auto');
 
         $menu
             ->addChild('Home', ['route' => 'homepage'])
             ->setAttribute('icon', 'home')
+            ->setAttribute('class', 'nav-item')
+            ->setLinkAttribute('class', 'nav-link')
             ->setExtra('translation_domain', 'AppBundle')
         ;
 
         $menu
-            ->addChild('Contact us', ['uri' => $this->requestStack->getCurrentRequest()->getBasePath() . '#contact'])
+            ->addChild('Contact us', ['uri' => $this->requestStack->getCurrentRequest()->getBasePath() . '#contact-us'])
             ->setAttribute('icon', 'contact_mail')
+            ->setAttribute('class', 'nav-item')
+            ->setLinkAttribute('class', 'nav-link')
             ->setExtra('translation_domain', 'AppBundle')
         ;
 
         $menu
             ->addChild('Confirm attendance', ['route' => 'guest'])
             ->setAttribute('icon', 'assignment_turned_in')
+            ->setAttribute('class', 'nav-item')
+            ->setLinkAttribute('class', 'nav-link')
             ->setExtra('translation_domain', 'AppBundle')
         ;
 
         $menu
             ->addChild('Guestbook', ['route' => 'guestbook'])
             ->setAttribute('icon', 'import_contacts')
+            ->setAttribute('class', 'nav-item')
+            ->setLinkAttribute('class', 'nav-link')
             ->setExtra('translation_domain', 'AppBundle')
         ;
 

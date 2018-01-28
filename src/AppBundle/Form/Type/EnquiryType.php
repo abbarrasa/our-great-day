@@ -18,19 +18,16 @@ class EnquiryType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => 'Your name',
                 'required' => true,
-                'label_attr' => ['class' => 'control-label'],
                 'attr' => ['class' => 'form-control']
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Your email (optional)',
+                'label' => 'Your email',
                 'required' => true,
-                'label_attr' => ['class' => 'control-label'],
                 'attr' => ['class' => 'form-control']
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'Your message',
                 'required' => true,
-                'label_attr' => ['class' => 'control-label'],
                 'attr' => ['class' => 'form-control']
             ])
             ->add('submit', SubmitType::class, [

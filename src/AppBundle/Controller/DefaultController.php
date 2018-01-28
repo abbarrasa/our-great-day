@@ -30,7 +30,6 @@ class DefaultController extends Controller
         if (!$request->isXmlHttpRequest()) {
             return $this->redirectToRoute('homepage');
         }
-        $flashes = null;
         $enquiry = new Enquiry();
         $form    = $this->createForm(EnquiryType::class, $enquiry);
         $form->handleRequest($request);
@@ -41,13 +40,12 @@ class DefaultController extends Controller
 
             //Enviamos un correo con la consulta
 
-//            $helper = $this->get('AppBundle\Service\FlashMessageService');
-//            $flashes[] = $helper->getFlash('success', 'Tu cuestión ha sido enviada');
+            $helper = $this->get('AppBundle\Service\FlashMessageService');
+            $flashes[] = $helper->getFlash('success', 'Tu cuestión ha sido enviada');
         }
 
         return $this->render('AppBundle:default/partials:enquiry.html.twig', [
-            'form' => $form->createView(),
-            'flashes' => $flashes
+            'form' => $form->createView()
         ]);
     }
 }
