@@ -7,8 +7,8 @@ use AppBundle\Form\Type\EnquiryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 class DefaultController extends Controller
 {
@@ -30,22 +30,31 @@ class DefaultController extends Controller
         if (!$request->isXmlHttpRequest()) {
             return $this->redirectToRoute('homepage');
         }
+
+        $status  = 200;
         $enquiry = new Enquiry();
         $form    = $this->createForm(EnquiryType::class, $enquiry);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine();
-            $em->persist($enquiry);
-            $em->flush();
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($enquiry);
+                $em->flush();
 
-            //Enviamos un correo con la consulta
+                //Enviamos un correo con la consulta
 
-            $helper = $this->get('AppBundle\Service\FlashMessageService');
-            $flashes[] = $helper->getFlash('success', 'Tu cuestión ha sido enviada');
+                return new JsonResponse([
+                    'message' => $this->get('translator')->trans('app.frontend.enquiry.success', [], 'AppBundle')
+                ], $status);
+            } else {
+                $status = 400;
+            }
         }
 
-        return $this->render('AppBundle:default/partials:enquiry.html.twig', [
-            'form' => $form->createView()
-        ]);
+        return new JsonResponse([
+            'view' => $this->renderView('AppBundle:default/partials:enquiry.html.twig', [
+                'form' => $form->createView()
+            ])
+        ], $status);
     }
 }

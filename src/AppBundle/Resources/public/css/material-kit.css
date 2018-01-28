@@ -16730,6 +16730,13 @@ select.selectpicker {
     color: #FFFFFF;
 }
 
+.big-map {
+    height: 65vh;
+    width: 100%;
+    display: block;
+    position: relative;
+}
+
 @media all and (max-width: 991px) {
     [class*="navbar-expand-"]>.container,
     [class*="navbar-expand-"]>.container-fluid {

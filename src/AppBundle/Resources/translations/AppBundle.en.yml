@@ -8,3 +8,7 @@ app:
             guests: 'Guests'
             location: 'Location'
             locations: 'Locations'
+
+    frontend:
+        enquiry:
+            success: 'Your question has been sent successfully. It will be attended as soon as possible.'

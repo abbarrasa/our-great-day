@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+        <title>{% block title %}{% endblock %}</title>
+        {% block stylesheets %}
+            <!--     Fonts and icons     -->
+            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+            <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+
+            {% stylesheets
+            '@AppBundle/Resources/public/css/bootstrap.min.css'
+            '@AppBundle/Resources/public/css/material-kit.css'
+            '@AppBundle/Resources/public/css/ct-navbar.css'
+            '@AppBundle/Resources/public/css/styles.css' filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+    {% block body %}
+        <div class="index-page">
+            <!-- Navbar -->
+            <nav class="navbar navbar-ct-purple navbar-fixed-top navbar-transparent" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand navbar-brand-logo" href="http://www.creative-tim.com">
+                            <div class="logo">
+                                <img src="https://s3.amazonaws.com/creativetim_bucket/new_logo.png">
+                            </div>
+                            <div class="brand"> Creative Tim </div>
+                        </a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">
+                        {% block menu %}
+                            {{ knp_menu_render('main', {'template': 'AppBundle:menu:menu.html.twig'}) }}
+                        {% endblock %}
+                    </div>
+                </div><!-- /.container-fluid -->
+            </nav>
+            <!-- End Navbar -->
+
+            <div class="wrapper">
+                <div class="header header-filter" style="background-image: url('{{ asset('images/main2.jpg') }}');">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="brand-hero">
+                                    <h1><strong>{% block hero_title %}Vero y Carlos{% endblock %}</strong></h1>
+                                    <h3>{% block hero_subtitle %}Nuestro gran día{% endblock %}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main">
+                    {% block main %}{% endblock %}
+
+                    <div id="contact" class="section section-basic bg-yellow sr">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer footer-black">
+            <div class="container">
+                <nav class="pull-left">
+                    <ul>
+                        <li>
+                            <a href="http://www.creative-tim.com">
+                                Creative Tim
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://presentation.creative-tim.com">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://blog.creative-tim.com">
+                                Blog
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.creative-tim.com/license">
+                                Licenses
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright pull-right">
+                    &copy; 2018, made with <i class="material-icons">favorite</i> by Alberto Buitrago for a better web.
+                </div>
+            </div>
+        </footer>
+    {% endblock %}
+
+    <!--   Core JS Files   -->
+    {% block javascripts %}
+        {% javascripts
+        '@AppBundle/Resources/public/js/jquery.min.js'
+        '@AppBundle/Resources/public/js/bootstrap.min.js'
+        '@AppBundle/Resources/public/js/bootstrap-selectpicker.js'
+        '@AppBundle/Resources/public/js/scrollreveal.min.js'
+        '@AppBundle/Resources/public/js/jquery.validate.min.js'
+        '@AppBundle/Resources/public/js/material.min.js'
+        '@AppBundle/Resources/public/js/nouislider.min.js'
+        '@AppBundle/Resources/public/js/material-kit.js'
+        '@AppBundle/Resources/public/js/ct-navbar.js' output='js/compiled/app.js' %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        <script type="text/javascript">
+            $(document).ready(function()
+            {
+                {# the body of this function is in assets/material-kit.js #}
+                {# materialKit.initSliders(); #}
+
+                window_width = $(window).width();
+                if (window_width >= 992) {
+                    big_image = $('.wrapper > .header');
+                    $(window).on('scroll', materialKitDemo.checkScrollForParallax);
+                }
+
+                {# Animation on each section #}
+                window.sr = ScrollReveal();
+                sr.reveal('.sr', {duration: 800, reset: true, viewOffset: { top: 64 }});
+
+                {# Animation on scrolling #}
+                $('a[href^="#"]').on('click', function(e) {
+                    e.preventDefault();
+
+                    var target = this.hash;
+                    var $target = $(target);
+
+                    $('html, body').animate({
+                       scrollTop: $target.offset().top - 120
+                    }, 800, 'swing');
+                });
+
+                {# Load enquiry form #}
+                $.ajax({
+                    url: '{{ path('enquiry') }}',
+                    type: 'POST'
+                }).done(function (html) {
+                    $('#contact').children().first().children().first().children().first().html(html);
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                });
+
+                {# Submit enquiry form #}
+                $('#enquiry').on('submit', function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: $(this).attr('method'),
+                        url: $(this).attr('action'),
+                        data: $(this).serialize()
+                    }).done(function (html) {
+                        $('#contact').find('.col-right').replaceWith(
+                            html.find('.col-right')
+                        );
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                    });
+                });
+            });
+        </script>
+    {% endblock %}
+    </body>
+</html>

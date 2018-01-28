@@ -8,3 +8,7 @@ app:
             guests: 'Guests'
             location: 'Lugar'
             locations: 'Lugares'
+
+    frontend:
+        enquiry:
+            success: 'Tu cuestión ha sido enviada satisfactoriamente. Será atendida lo antes posible.'

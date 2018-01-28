@@ -789,3 +789,10 @@
 div.form-check-inline .form-check-label {
     margin-left: 15px;
 }
+
+
+.title em {
+    color: #e91e63;
+    font-style: normal;
+    font-weight: 900;
+}
