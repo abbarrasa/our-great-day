@@ -177,4 +177,18 @@
          });
 
      }
+  
+     showNotification: function(type, message, icon = null) {
+        $.notify({
+            icon: icon,
+            message: message
+        }, {
+            type: type,
+            timer: 4000,
+            placement: {
+                from: 'top',
+                align: 'center'
+            }
+        });
+    }
 };
