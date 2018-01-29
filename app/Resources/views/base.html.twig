@@ -173,6 +173,12 @@
         <script type="text/javascript">
             $(document).ready(function()
             {
+                {% if app.flashes|length > 0 %}
+                    {% set flashes = messages %}
+                    {% for flash in flashes %}
+                        materialKitDemo.showNotification('{{ flash.type }}', '{{ flash.message|raw }}', '{{ flash.icon }}');
+                    {% endfor %}
+                {% endif %}
 //                materialKitDemo.initFormExtendedDatetimepickers();
 //                // Sliders for demo purpose in refine cards section
 //                var slider = document.getElementById('sliderRegular');
