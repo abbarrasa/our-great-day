@@ -33,7 +33,17 @@ class FlashMessageExtension extends \Twig_Extension
     {
         return 'app_flash_message';
     }
-
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getFilters()
+    {
+        return array(
+            new \Twig_SimpleFilter('messages', [$this, 'getMessages'])
+        );
+    }
+        
     /**
      * {@inheritdoc}
      */
@@ -48,6 +58,28 @@ class FlashMessageExtension extends \Twig_Extension
     }
 
     /**
+     * @param string  $type Message type. If null returns all types messages,
+     * otherwise returns messages with given types.
+     *
+     * @return array
+     */
+    public function getMessages($type = null)
+    {
+        if ($type === null) {
+            $flashBag = $this->session->getFlashBag()->all();
+        } else {
+            $flashBag[$type] = $this->session->getFlashBag()->get($type);
+        }
+
+        $flashes = array();
+        foreach($flashBag as $type => $message) {
+            $flashes[] = $this->helper->getFlash($type, $message);
+        }
+        
+        return $flashes;
+    }    
+    
+    /**
      * @param \Twig_Environment $environment
      * @param string  $type Message type. If null returns all types messages,
      * otherwise returns messages with given types.
@@ -56,16 +88,8 @@ class FlashMessageExtension extends \Twig_Extension
      */
     public function renderMessages(\Twig_Environment $environment, $type = null)
     {
-        if ($type === null) {
-            $flashBag = $this->session->getFlashBag()->all();
-        } else {
-            $flashBag[$type] = $this->session->getFlashBag()->get($type);
-        }
-
-        foreach($flashBag as $type => $message) {
-            $flashes[] = $this->helper->getFlash($type, $message);
-        }
-
+        $flashes = $this->getMessages($type);
+        
         return $environment->render($this->helper->getViewTemplateName(), [
             'flashes' => $flashes
         ]);
