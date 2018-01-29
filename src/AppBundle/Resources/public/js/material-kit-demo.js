@@ -13,7 +13,7 @@
 
  materialKitDemo = {
 
-     checkScrollForParallax:function(){
+     checkScrollForParallax: function(){
          oVal = ($(window).scrollTop() / 3);
          big_image.css({
              'transform':'translate3d(0,' + oVal +'px,0)',
@@ -176,19 +176,23 @@
            revealAnimation();
          });
 
-     }
+     },
   
-     showNotification: function(type, message, icon = null) {
-        $.notify({
-            icon: icon,
-            message: message
-        }, {
-            type: type,
-            timer: 4000,
-            placement: {
-                from: 'top',
-                align: 'center'
-            }
-        });
-    }
+     showNotification: function(type, message, icon){
+         if (typeof(icon) === 'undefined') {
+             icon = null;
+         }
+
+         $.notify({
+             icon: icon,
+             message: message
+         }, {
+             type: type,
+             timer: 4000,
+             placement: {
+                 from: 'top',
+                 align: 'center'
+             }
+         });
+     }
 };

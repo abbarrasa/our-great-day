@@ -248,7 +248,7 @@
                         url: $(this).attr('action'),
                         data: $form.serialize()
                     }).done(function (responseJSON) {
-                        $form.reset();
+                        $form[0].reset();
                         materialKitDemo.showNotification(responseJSON.flash.type, responseJSON.flash.message, responseJSON.flash.icon);
                     }).fail(function (jqXHR, textStatus, errorThrown) {
                         if (jqXHR.responseJSON.hasOwnProperty('form')) {
