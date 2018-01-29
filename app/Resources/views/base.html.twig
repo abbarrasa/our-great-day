@@ -248,7 +248,7 @@
                         data: $form.serialize()
                     }).done(function (responseJSON) {
                         $form.reset();
-                        alert(responseJSON.message);
+                        materialKitDemo.showNotification(responseJSON.flash.type, responseJSON.flash.message, responseJSON.flash.icon);
                     }).fail(function (jqXHR, textStatus, errorThrown) {
                         if (jqXHR.responseJSON.hasOwnProperty('form')) {
                             $('#contact-us').html(jqXHR.responseJSON.view);
