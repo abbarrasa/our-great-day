@@ -43,8 +43,10 @@ class DefaultController extends Controller
 
                 //Enviamos un correo con la consulta
 
+                $helper     = $this->get('AppBundle\Service\FlashMessageHelper');
+                $translator = $this->get('translator');
                 return new JsonResponse([
-                    'message' => $this->get('translator')->trans('app.frontend.enquiry.success', [], 'AppBundle')
+                    'flash' => $helper->getFlash('success', $translator->trans('app.frontend.enquiry.success', [], 'AppBundle'))
                 ], $status);
             } else {
                 $status = 400;
