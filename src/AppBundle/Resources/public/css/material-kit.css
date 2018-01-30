@@ -16587,6 +16587,28 @@ select.selectpicker {
 .section {
     padding: 70px 0;
 }
+.section .parallax,
+.section .static-image {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: block;
+  position: relative;
+}
+.section .parallax > img,
+.section .parallax .filter > img,
+.section .static-image > img,
+.section .static-image .filter > img {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: relative;
+  z-index: 1;
+}
+.section .parallax-small {
+  height: 65vh;
+}
 
 .profile-page .page-header {
     height: 380px;
