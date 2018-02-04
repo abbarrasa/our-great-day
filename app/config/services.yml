@@ -33,3 +33,14 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    AppBundle\Service\FlashMessageHelper:
+        class: AppBundle\Templating\Helper\FlashMessageHelper
+        public: true
+        tags:
+            - { name: templating.helper }
+
+    AppBundle\Service\SocialMenuService:
+        class: AppBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory", "@router"]
+        tags:
+            - { name: knp_menu.menu_builder, method: createSocialMenu, alias: social } # The alias is what is used to retrieve the menu
