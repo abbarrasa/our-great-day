@@ -42,7 +42,9 @@ class MenuBuilder
             ->setLinkAttributes([
                 'onclick' => "javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;",
                 'target' => '_blank',
-                'title' => 'Share on Facebook'
+                'title' => 'Share on Facebook',
+                'data-toggle' => 'tooltip',
+                'data-placement' => 'bottom'
             ])
             ->setExtra('translation_domain', 'AppBundle')
         ;
@@ -54,7 +56,9 @@ class MenuBuilder
             ->setLinkAttributes([
                 'onclick' => "javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;",
                 'target' => '_blank',
-                'title' => 'Share on Twitter'
+                'title' => 'Share on Twitter',
+                'data-toggle' => 'tooltip',
+                'data-placement' => 'bottom'
             ])
             ->setExtra('translation_domain', 'AppBundle')
         ;
@@ -66,7 +70,9 @@ class MenuBuilder
             ->setLinkAttributes([
                 'onclick' => "javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;",
                 'target' => '_blank',
-                'title' => 'Share on Google+'
+                'title' => 'Share on Google+',
+                'data-toggle' => 'tooltip',
+                'data-placement' => 'bottom'
             ])
             ->setExtra('translation_domain', 'AppBundle')
         ;
@@ -74,6 +80,7 @@ class MenuBuilder
         $menu
             ->addChild('Contact us!', ['uri' => '#'])
             ->setAttribute('icon', 'fa fa-envelope-o')
+            ->setLinkAttribute('class', 'contact-us')
             ->setExtra('translation_domain', 'AppBundle')
         ;
 

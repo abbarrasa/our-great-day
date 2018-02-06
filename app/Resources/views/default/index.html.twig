@@ -63,9 +63,10 @@
                     <div class="row">
                         <div class="col-md-4 col-md-offset-4 col-sm6-6 col-sm-offset-3 ">
                             {{ form_start(form, {'attr': {'class': 'form-inline', 'role': 'form'}}) }}
-                            <div class="form-group">
+                            <div class="form-group{% if not form.email.vars.valid %} has-error{% endif %}">
                                 {{ form_label(form.email, form.email, {'label_attr': {'class': 'sr-only'}}) }}
                                 {{ form_widget(form.email, {'attr': {'placeholder': 'Your email here...', 'class': 'form-control transparent'}}) }}
+                                {{ form_errors(form.email) }}
                             </div>
                             {{ form_widget(form.submit, {'attr': {'class': 'btn btn-danger btn-fill'}}) }}
                             {{ form_end(form) }}
@@ -80,6 +81,22 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
 {% block javascripts %}
@@ -91,33 +108,74 @@
     {% endjavascripts %}
 
     <script type="text/javascript">
+        function showNotification(title, message, alert, icon)
+        {
+            $.notify({
+                icon: icon,
+                title: title,
+                message: message
+            },{
+                type: alert,
+                placement: {
+                    from: "top",
+                    align: "center"
+                },
+                template: '<div data-notify="container" class="col-xs-11 col-sm-6 alert alert-{0}" role="alert">' +
+                '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+                '<span data-notify="icon"></span> ' +
+                '<span data-notify="title"><strong>{1}</strong></span> ' +
+                '<span data-notify="message">{2}</span>' +
+                '<div class="progress" data-notify="progressbar">' +
+                '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                '</div>' +
+                '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                '</div>'
+            });
+        }
+
         $(document).ready(function()
         {
+            $('[data-toggle="tooltip"]').tooltip();
+
             {% for flashMessages in app.flashes %}
                 {% for flashMessage in flashMessages %}
-                    $.notify({
-                        icon: '{{ flashMessage.icon }}',
-                        title: '{{ flashMessage.title }}',
-                        message: '{{ flashMessage.message }}'
-                    },{
-                        type: '{{ flashMessage.alert }}',
-                        placement: {
-                            from: "top",
-                            align: "center"
-                        },
-                        template: '<div data-notify="container" class="col-xs-11 col-sm-6 alert alert-{0}" role="alert">' +
-                        '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
-                        '<span data-notify="icon"></span> ' +
-                        '<span data-notify="title"><strong>{1}</strong></span> ' +
-                        '<span data-notify="message">{2}</span>' +
-                        '<div class="progress" data-notify="progressbar">' +
-                        '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-                        '</div>' +
-                        '<a href="{3}" target="{4}" data-notify="url"></a>' +
-                        '</div>'
-                    });
+                    showNotification('{{ flashMessage.title }}', '{{ flashMessage.message }}', '{{ flashMessage.alert }}', '{{ flashMessage.icon }}');
                 {% endfor %}
             {% endfor %}
+
+            {# Load enquiry form #}
+            $('a.contact-us').click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '{{ path('enquiry') }}',
+                    type: 'POST'
+                }).done(function (responseJSON) {
+                    $('#myModal').find('.modal-body').html(responseJSON.view);
+                    $('#myModal').modal('show');
+                });
+            });
+
+            {# Submit enquiry form #}
+            $('body').on('submit', 'form[name="enquiry"]', function(e) {
+                e.preventDefault();
+                var $form = $(this);
+                $.ajax({
+                    type: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: $form.serialize(),
+                    beforeSend: function() {
+                        $('#myModal').modal('hide');
+                    }
+                }).done(function () {
+                    $form[0].reset();
+                    showNotification('Success!', 'Your request has been sent successfully.', 'success', 'fa fa-check-circle');
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.responseJSON.hasOwnProperty('view')) {
+                        $('#myModal').find('.modal-body').html(jqXHR.responseJSON.view);
+                        $('#myModal').modal('show');
+                    }
+                });
+            });
         });
     </script>
 {% endblock %}
