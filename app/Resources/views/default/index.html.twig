@@ -30,7 +30,9 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <a class="navbar-brand" href="{{ path('homepage') }}">Nuestro gran día</a>
+                <ul class="nav navbar-nav">
+                    <a class="navbar-brand" href="{{ path('homepage') }}">Nuestro gran día</a>
+                </ul>
 
                 {# Social bar #}
                 {{ knp_menu_render('social', {'template': 'partials/knp_menu.html.twig'}) }}
@@ -60,13 +62,13 @@
                     <h5 class="info-text">
                         Join the waiting list for the beta. We keep you posted.
                     </h5>
+
                     <div class="row">
                         <div class="col-md-4 col-md-offset-4 col-sm6-6 col-sm-offset-3 ">
                             {{ form_start(form, {'attr': {'class': 'form-inline', 'role': 'form'}}) }}
-                            <div class="form-group{% if not form.email.vars.valid %} has-error has-feedback{% endif %}">
+                            <div class="form-group{% if not form.email.vars.valid %} has-error{% endif %}">
                                 {{ form_label(form.email, form.email, {'label_attr': {'class': 'sr-only'}}) }}
                                 {{ form_widget(form.email, {'attr': {'placeholder': 'Your email here...', 'class': 'form-control transparent'}}) }}
-                                <span class="fa fa-danger form-control-feedback" aria-hidden="true"></span> 
                                 {{ form_errors(form.email) }}
                             </div>
                             {{ form_widget(form.submit, {'attr': {'class': 'btn btn-danger btn-fill'}}) }}
@@ -78,7 +80,7 @@
         </div>
         <div class="footer">
             <div class="container">
-                Made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/abbarrasa/our-great-day">Alberto Buitrago</a> for a better web.
+                Made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/abbarrasa/our-great-day">Alberto Buitrago</a> for a better web. Thanks to <a href="http://www.creative-tim.com">Creative Tim</a>.
             </div>
         </div>
     </div>
