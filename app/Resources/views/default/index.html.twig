@@ -63,9 +63,10 @@
                     <div class="row">
                         <div class="col-md-4 col-md-offset-4 col-sm6-6 col-sm-offset-3 ">
                             {{ form_start(form, {'attr': {'class': 'form-inline', 'role': 'form'}}) }}
-                            <div class="form-group{% if not form.email.vars.valid %} has-error{% endif %}">
+                            <div class="form-group{% if not form.email.vars.valid %} has-error has-feedback{% endif %}">
                                 {{ form_label(form.email, form.email, {'label_attr': {'class': 'sr-only'}}) }}
                                 {{ form_widget(form.email, {'attr': {'placeholder': 'Your email here...', 'class': 'form-control transparent'}}) }}
+                                <span class="fa fa-danger form-control-feedback" aria-hidden="true"></span> 
                                 {{ form_errors(form.email) }}
                             </div>
                             {{ form_widget(form.submit, {'attr': {'class': 'btn btn-danger btn-fill'}}) }}
