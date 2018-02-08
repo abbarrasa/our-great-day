@@ -732,7 +732,7 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
     position: relative;
     text-align: center;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.33);
-    margin-top: 15vh;
+    margin-top: 150px;
     z-index: 3;
 }
 .main .logo.cursive{
@@ -745,7 +745,7 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
     z-index: 4;
 }
 .main .motto{
-    min-height: 55px;
+    min-height: 40px;
 }
 .main .motto, .main .subscribe .info-text{
     font-size: 28px;
@@ -786,9 +786,9 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
 }
 
 .footer{
-    position: fixed;
+    position: relative;
     bottom: 20px;
-    right: 0;
+    right: 0px;
     width: 100%;
     color: #AAAAAA;
     z-index: 4;
