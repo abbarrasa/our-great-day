@@ -342,12 +342,16 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
     color: #FFFFFF;
 }
 .form-control.transparent:focus{
-    border-color: #FFFFFF;
-    
+    border-color: #FFFFFF;    
 }
 .input-lg{
     height: 56px;
     padding: 10px 16px;
+}
+.form-inline .form-group {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 0;
 }
 
 /*           Navigation Bar             */
