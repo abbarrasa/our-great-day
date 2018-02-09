@@ -842,6 +842,24 @@ span.error-block li {
 .footer .heart{
     color: #FF3B30;
 }
+p,
+label,
+span,
+.btn,
+.form-control,
+.title h5,
+.navbar,
+.brand,
+.btn-simple,
+a,
+.td-name,
+td,
+small,
+.media h5,
+.subtitle,
+.motto {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
 @media (min-width:219px){        
     .main .subscribe .form-group{
@@ -970,6 +988,13 @@ span.error-block li {
 
 }
 
+p.description {
+    font-size: 16px;
+    color: #777777;
+}
+.description {
+    margin-bottom: 20px;
+}
 
 /*          Modal style         */
 .modal-header {
