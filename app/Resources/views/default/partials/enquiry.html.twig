@@ -1,7 +1,7 @@
 {% if not form.vars.valid %}
 <div class="alert alert-danger" role="alert"><i class="fa fa-times-circle"></i> <strong>Error!</strong> There is any error in form.</div>
 {% endif %}
-<p class="lead text-center">Si tienes algo que decirnos no dudes en hacerlo</p>
+<p class="lead text-center description">Si tienes algo que decirnos no dudes en hacerlo</p>
 {{ form_start(form, {'action': path('enquiry')}) }}
 <div class="row">
     <div class="col-md-6 form-group{% if not form.name.vars.valid %} has-error has-feedback{% endif %}">
