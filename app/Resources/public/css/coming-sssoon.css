@@ -352,7 +352,16 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
     display: inline-block;
     vertical-align: top;
     margin-top: 0;
+    width: 100%;
 }
+span.error-block li {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #b94a48;
+    padding: 5px;
+    border-radius: 4px;
+}
+
 
 /*           Navigation Bar             */
 .navbar{
@@ -550,6 +559,10 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
 
 
 @media (min-width: 768px){
+    .form-inline .form-control {
+	width: 100%;
+	vertical-align: middle;
+    }
     .navbar-form {
         margin-top: 21px;
         margin-bottom: 21px;
@@ -834,13 +847,7 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
     }   
 }
 
-
-
-
 /*          For demo purpose         */
-
-
-
 .fixed-plugin{
     position: fixed;
     top:0px;
@@ -939,14 +946,8 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
 
 }
 
+
+/*          Modal style         */
 .modal-header {
     border-bottom: 0;
-}
-
-span.error-block li {
-    background-color: #f2dede;
-    border-color: #ebccd1;
-    color: #b94a48;
-    padding: 5px;
-    border-radius: 4px;
 }
