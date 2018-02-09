@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-6 form-group{% if not form.name.vars.valid %} has-error has-feedback{% endif %}">
         {{ form_label(form.name) }}
-        {{ form_widget(form.name, {'attr': {'placeholder': 'Your name here...', 'class': 'form-control'}}) }}
+        {{ form_widget(form.name, {'attr': {'placeholder': 'Your name here...', 'class': 'form-control form-control-plain'}}) }}
         {% if not form.name.vars.valid %}
         <span class="form-control-feedback text-danger" aria-hidden="true">
             <i class="fa fa-times"></i>
@@ -17,7 +17,7 @@
 
     <div class="col-md-6 form-group{% if not form.email.vars.valid %} has-error has-feedback{% endif %}">
         {{ form_label(form.email) }}
-        {{ form_widget(form.email, {'attr': {'placeholder': 'Your email here...', 'class': 'form-control'}}) }}
+        {{ form_widget(form.email, {'attr': {'placeholder': 'Your email here...', 'class': 'form-control form-control-plain'}}) }}
         {% if not form.email.vars.valid %}
             <span class="form-control-feedback text-danger" aria-hidden="true">
             <i class="fa fa-times"></i>
@@ -29,7 +29,7 @@
 <div class="row">
     <div class="col-md-12 form-group{% if not form.content.vars.valid %} has-error has-feedback{% endif %}">
         {{ form_label(form.content) }}
-        {{ form_widget(form.content, {'attr': {'placeholder': 'Your message here...', 'class': 'form-control', 'rows': 3}}) }}
+        {{ form_widget(form.content, {'attr': {'placeholder': 'Your message here...', 'class': 'form-control form-control-plain', 'rows': 5}}) }}
         {% if not form.content.vars.valid %}
             <span class="form-control-feedback text-danger" aria-hidden="true">
             <i class="fa fa-times"></i>
