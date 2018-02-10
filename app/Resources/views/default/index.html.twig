@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nuestro gran día ¦ Muy pronto{% endblock %}
+{% block title %}{{ 'frontend.title'|trans }} | Muy pronto{% endblock %}
 
 {% block stylesheets %}
     <!--     Fonts     -->
@@ -9,7 +9,7 @@
     <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
 
     {% stylesheets
-    '../app/Resources/public/css/bootstrap.css'
+    '../app/Resources/public/css/bootstrap.min.css'
     '../app/Resources/public/css/coming-sssoon.css' filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -32,7 +32,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <a class="navbar-brand" href="{{ path('homepage') }}">Nuestro gran día</a>
+                    <a class="navbar-brand" href="{{ path('homepage') }}">{{ 'frontend.title'|trans }}</a>
                 </ul>
 
                 {# Social bar #}
@@ -61,7 +61,7 @@
                 <h4 class="motto">Estamos trabajando para compartir nuestro gran día con vosotros</h4>
                 <div class="subscribe">
                     <h5 class="info-text">
-                        Únete a la lista de espera. Te avisamos cuando tengamos la web preparada.
+                        Únete a la lista de espera. Danos un email de contacto y te avisamos cuando tengamos la web preparada.
                     </h5>
 
                     <div class="row">
@@ -69,7 +69,7 @@
                             {{ form_start(form, {'attr': {'class': 'form-inline', 'role': 'form'}}) }}
                             <div class="form-group{% if not form.email.vars.valid %} has-error{% endif %}">
                                 {{ form_label(form.email, form.email, {'label_attr': {'class': 'sr-only'}}) }}
-                                {{ form_widget(form.email, {'attr': {'placeholder': 'Your email here...', 'class': 'form-control transparent'}}) }}
+                                {{ form_widget(form.email, {'attr': {'placeholder': 'frontend.form.placeholder_email'|trans, 'class': 'form-control transparent'}}) }}
                                 {{ form_errors(form.email) }}
                             </div>
                             {{ form_widget(form.submit, {'attr': {'class': 'btn btn-danger btn-fill'}}) }}
@@ -105,7 +105,7 @@
 
 {% block javascripts %}
     {% javascripts
-    '../app/Resources/public/js/jquery-1.10.2.js'
+    '../app/Resources/public/js/jquery.min.js'
     '../app/Resources/public/js/bootstrap.min.js'
     '../app/Resources/public/js/bootstrap-notify.min.js' output='js/compiled/app.js' %}
     <script src="{{ asset_url }}"></script>
@@ -162,21 +162,21 @@
             {# Submit enquiry form #}
             $('body').on('submit', 'form[name="enquiry"]', function(e) {
                 e.preventDefault();
-                var $form = $(this);
                 $.ajax({
                     type: $(this).attr('method'),
                     url: $(this).attr('action'),
-                    data: $form.serialize(),
-                    beforeSend: function() {
-                        $('#myModal').modal('hide');
-                    }
+                    data: $(this).serialize(),
                 }).done(function () {
-                    $form[0].reset();
-                    showNotification('Success!', 'Your request has been sent successfully.', 'success', 'fa fa-check-circle');
+                    $('#myModal').modal('hide');
+                    showNotification(
+                        '{{ 'frontend.success'|trans }}',
+                        '{{ 'frontend.enquiry.success'|trans }}',
+                        'success',
+                        'fa fa-check-circle'
+                    );
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                     if (jqXHR.responseJSON.hasOwnProperty('view')) {
                         $('#myModal').find('.modal-body').html(jqXHR.responseJSON.view);
-                        $('#myModal').modal('show');
                     }
                 });
             });

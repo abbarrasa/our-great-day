@@ -1,0 +1,22 @@
+frontend:
+    success: Bien!
+    error: Ooops!
+    title: Nuestro gran día
+    menu:
+        share: Compartir en %site%
+        contact_us: Contáctanos
+    form:
+        error: Existen errores en el formulario.
+        name: Tu nombre
+        placeholder_name: Tu nombre aquí...
+        email: Tu email
+        placeholder_email: Tu email aquí...
+        content: Tu mensaje
+        placeholder_content: Tu mensaje aquí...
+    enquiry:
+        text: Si necesitas saber más información o contarnos algo no dudes en hacerlo.
+        send: Enviar
+        success: Tu mensaje se ha enviado correctamente y será atendido lo antes posible.
+    joined:
+        notify_me: Notifícame
+        success: Te has unido a la lista con éxito. Te avisaremos cuando el sitio web esté listo.
