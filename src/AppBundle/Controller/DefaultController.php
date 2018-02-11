@@ -24,7 +24,6 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-            $translator = $this->get('translator');
             $helper = $this->get('AppBundle\Service\FlashMessageHelper');
 
             if ($form->isValid()) {
@@ -33,11 +32,13 @@ class DefaultController extends Controller
                 $em->flush();
 
                 $this->addFlash('success', $helper->getFlashMessage(
-                    'success', $translator->trans('Success!'), $translator->trans('Your request has been received successfully.')
+                    'success', 'frontend.success', 'frontend.joined.success'
                 ));
+
+                return $this->redirectToRoute('homepage');
             } else {
                 $this->addFlash('error', $helper->getFlashMessage(
-                    'error', $translator->trans('Error!'), $translator->trans('There is any error in form.')
+                    'error', 'frontend.error', 'frontend.form.error'
                 ));
             }
         }
@@ -68,10 +69,6 @@ class DefaultController extends Controller
                 $em->flush();
 
                 //Enviamos un correo con la consulta
-
-//                $helper = $this->get('AppBundle\Service\FlashMessageHelper');
-//                $translator = $this->get('translator');
-                //'flashMessage' => $helper->getFlashMessage('success', $translator->trans('app.frontend.enquiry.success', [], 'AppBundle'))
 
                 return new JsonResponse(null, $status);
             } else {

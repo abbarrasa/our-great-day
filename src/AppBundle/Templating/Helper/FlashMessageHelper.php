@@ -3,6 +3,7 @@
 namespace AppBundle\Templating\Helper;
 
 use Symfony\Component\Templating\Helper\Helper;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class FlashMessageHelper extends Helper
 {
@@ -10,8 +11,16 @@ class FlashMessageHelper extends Helper
     protected $alertClassNames;
     protected $iconClassNames;
 
-    public function __construct($template = null)
+    /** @var TranslatorInterface */
+    protected $translator;
+
+    /**
+     * FlashMessageHelper constructor.
+     * @param TranslatorInterface $translator
+     */
+    public function __construct(TranslatorInterface $translator)
     {
+        $this->translator = $translator;
         $this->allowedTypes = ['notice', 'success', 'alert', 'error'];
         $this->alertClassNames = array_combine(
             $this->allowedTypes, ['info', 'success', 'warning', 'danger']
@@ -47,8 +56,8 @@ class FlashMessageHelper extends Helper
         return [
             'alert'   => $this->getAlertClassName($type),
             'icon'    => $this->getIconClassName($type),
-            'title'   => $title,
-            'message' => $message
+            'title'   => $this->translator->trans($title),
+            'message' => $this->translator->trans($message)
         ];
     }
 

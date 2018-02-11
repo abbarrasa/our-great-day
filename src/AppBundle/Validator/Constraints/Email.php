@@ -12,5 +12,5 @@ use Symfony\Component\Validator\Constraint;
  */
 class Email extends Constraint
 {
-    public $message = 'This value is not a valid email address.';
+    public $message = 'email.error';
 }

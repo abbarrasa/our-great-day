@@ -16,19 +16,19 @@ class EnquiryType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Your name',
+                'label' => 'frontend.form.name',
                 'required' => true
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Your email',
+                'label' => 'frontend.form.email',
                 'required' => true
             ])
             ->add('content', TextareaType::class, [
-                'label' => 'Your message',
+                'label' => 'frontend.form.content',
                 'required' => true
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Send'
+                'label' => 'frontend.enquiry.send'
             ])
         ;
     }

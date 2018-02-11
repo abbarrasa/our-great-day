@@ -14,10 +14,10 @@ class JoinedType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'Email address',
+                'label' => 'frontend.form.email',
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Notify me',
+                'label' => 'frontend.joined.notify_me',
             ])
         ;
     }

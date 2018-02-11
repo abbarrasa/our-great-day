@@ -4,6 +4,7 @@ namespace AppBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class MenuBuilder
 {
@@ -19,18 +20,23 @@ class MenuBuilder
     /** @var UrlGeneratorInterface */
     protected $router;
 
+    /** @var TranslatorInterface */
+    protected $translator;
+
     /**
      * MenuBuilder constructor.
      * @param FactoryInterface $factory
      * @param UrlGeneratorInterface $router
+     * @param TranslatorInterface $translator
      */
-    public function __construct(FactoryInterface $factory, UrlGeneratorInterface $router)
+    public function __construct(FactoryInterface $factory, UrlGeneratorInterface $router, TranslatorInterface $translator)
     {
-        $this->factory = $factory;
-        $this->router  = $router;
+        $this->factory    = $factory;
+        $this->router     = $router;
+        $this->translator = $translator;
     }
 
-    public function createSocialMenu(array $options)
+    public function createSocialMenu()
     {
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-right');
@@ -42,11 +48,10 @@ class MenuBuilder
             ->setLinkAttributes([
                 'onclick' => "javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;",
                 'target' => '_blank',
-                'title' => 'Share on Facebook',
+                'title' => $this->translator->trans('frontend.menu.share', ['%site%' => 'Facebook']),
                 'data-toggle' => 'tooltip',
                 'data-placement' => 'bottom'
             ])
-            ->setExtra('translation_domain', 'AppBundle')
         ;
 
         $menu
@@ -56,11 +61,10 @@ class MenuBuilder
             ->setLinkAttributes([
                 'onclick' => "javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;",
                 'target' => '_blank',
-                'title' => 'Share on Twitter',
+                'title' => $this->translator->trans('frontend.menu.share', ['%site%' => 'Twitter']),
                 'data-toggle' => 'tooltip',
                 'data-placement' => 'bottom'
             ])
-            ->setExtra('translation_domain', 'AppBundle')
         ;
 
         $menu
@@ -70,18 +74,16 @@ class MenuBuilder
             ->setLinkAttributes([
                 'onclick' => "javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;",
                 'target' => '_blank',
-                'title' => 'Share on Google+',
+                'title' => $this->translator->trans('frontend.menu.share', ['%site%' => 'Google+']),
                 'data-toggle' => 'tooltip',
                 'data-placement' => 'bottom'
             ])
-            ->setExtra('translation_domain', 'AppBundle')
         ;
 
         $menu
-            ->addChild('Contact us!', ['uri' => '#'])
+            ->addChild('frontend.menu.contact_us', ['uri' => '#'])
             ->setAttribute('icon', 'fa fa-envelope-o')
             ->setLinkAttribute('class', 'contact-us')
-            ->setExtra('translation_domain', 'AppBundle')
         ;
 
         return $menu;
