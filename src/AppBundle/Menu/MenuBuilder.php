@@ -7,7 +7,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 class MenuBuilder
 {
-    const TEXT			 = 'Nuestro gran día';
+    const TEXT			         = 'Nuestro gran día';
     const HASHTAGS               = ['veroycarlos', 'boda'];
     const URL_PATTERN_FACEBOOK   = 'https://www.facebook.com/sharer.php?u=%url%&t=%text%';
     const URL_PATTERN_TWITTER    = 'https://twitter.com/intent/tweet?url=%url%&text=%text%&hashtags=%hashtags%';
