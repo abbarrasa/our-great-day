@@ -18,7 +18,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('AppBundle:default:index.html.twig');
+        return $this->render('default/index.html.twig');
     }
 
     /**
@@ -30,7 +30,7 @@ class DefaultController extends Controller
         if (!$request->isXmlHttpRequest()) {
             return $this->redirectToRoute('homepage');
         }
-
+        
         $status  = 200;
         $enquiry = new Enquiry();
         $form    = $this->createForm(EnquiryType::class, $enquiry);
@@ -40,21 +40,15 @@ class DefaultController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($enquiry);
                 $em->flush();
-
                 //Enviamos un correo con la consulta
-
-                $helper     = $this->get('AppBundle\Service\FlashMessageHelper');
-                $translator = $this->get('translator');
-                return new JsonResponse([
-                    'flash' => $helper->getFlash('success', $translator->trans('app.frontend.enquiry.success', [], 'AppBundle'))
-                ], $status);
+                return new JsonResponse(null, $status);
             } else {
                 $status = 400;
             }
         }
-
+        
         return new JsonResponse([
-            'view' => $this->renderView('AppBundle:default/partials:enquiry.html.twig', [
+            'view' => $this->renderView('default/partials/enquiry.html.twig', [
                 'form' => $form->createView()
             ])
         ], $status);
