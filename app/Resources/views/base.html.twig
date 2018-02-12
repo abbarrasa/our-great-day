@@ -39,18 +39,18 @@
                     {# Social bar #}
                     <div class="collapse navbar-collapse">                    
                     {{ knp_menu_render('social', {'template': 'partials/knp_menu.html.twig'}) }}                        
-                    </div">
+                    </div>
                     
                     {# Main menu bar #}
                     <div class="collapse navbar-collapse">
-                    {{ knp_menu_render('main', {'template': 'AppBundle:menu:menu.html.twig'}) }}
+                    {{ knp_menu_render('main', {'template': 'partials/knp_menu.html.twig'}) }}
                     </div>
                 </div>
             </nav>
             <!-- End Navbar -->
             
             <!-- Jumbobox -->
-            {% image '../app/Resources/public/images/main.jpg' output='/assets/images/main.jpg' %}
+            {% image '../app/Resources/public/images/main.jpg' output='assets/images/main.jpg' %}
             <div class="page-header header-filter clear-filter rose-filter" data-parallax="true" style="background-image: url('{{ asset_url }}');">
             {% endimage %}
                 <div class="container">
@@ -90,7 +90,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true">&times</span>
                         </button>
                     </div>
                     <div class="modal-body"></div>
@@ -101,8 +101,23 @@
             </div>
         </div>
         <!-- End Modal -->
-        {% endblock %}        
-        {% block javascripts %}{% endblock %}
+        {% endblock %}
+
+        {% block javascripts %}
+            {% javascripts
+            '../app/Resources/public/js/core/jquery.min.js'
+            '../app/Resources/public/js/core/popper.min.js'
+            '../app/Resources/public/js/core/bootstrap-material-design.min.js'
+            '../app/Resources/public/js/plugins/bootstrap-selectpicker.js'
+            '../app/Resources/public/js/plugins/bootstrap-notify.js'
+            '../app/Resources/public/js/plugins/scrollreveal.min.js'
+            '../app/Resources/public/js/plugins/nouislider.min.js'
+            '../app/Resources/public/js/material-kit.js'
+            '../app/Resources/public/js/material-kit-demo.js' output='assets/js/compiled/app.js' %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+
+        {% endblock %}
     </body>
 </html>
 

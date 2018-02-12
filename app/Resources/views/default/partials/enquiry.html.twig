@@ -1,0 +1,46 @@
+{% if not form.vars.valid %}
+<div class="alert alert-danger" role="alert">
+    <i class="fa fa-times-circle"></i> <strong>{{ 'frontend.error'|trans }}</strong> {{ 'frontend.form.error'|trans }}
+</div>
+{% endif %}
+<p class="lead text-center description">{{ 'frontend.enquiry.text'|trans }}</p>
+{{ form_start(form, {'action': path('enquiry')}) }}
+<div class="row">
+    <div class="col-md-6 form-group{% if not form.name.vars.valid %} has-error has-feedback{% endif %}">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name, {'attr': {'placeholder': 'frontend.form.placeholder_name'|trans, 'class': 'form-control form-control-plain'}}) }}
+        {% if not form.name.vars.valid %}
+        <span class="form-control-feedback text-danger" aria-hidden="true">
+            <i class="fa fa-times"></i>
+        </span>
+        {% endif %}
+        {{ form_errors(form.name) }}
+    </div>
+
+    <div class="col-md-6 form-group{% if not form.email.vars.valid %} has-error has-feedback{% endif %}">
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email, {'attr': {'placeholder': 'frontend.form.placeholder_email'|trans, 'class': 'form-control form-control-plain'}}) }}
+        {% if not form.email.vars.valid %}
+            <span class="form-control-feedback text-danger" aria-hidden="true">
+            <i class="fa fa-times"></i>
+        </span>
+        {% endif %}
+        {{ form_errors(form.email) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 form-group{% if not form.content.vars.valid %} has-error has-feedback{% endif %}">
+        {{ form_label(form.content) }}
+        {{ form_widget(form.content, {'attr': {'placeholder': 'frontend.form.placeholder_content'|trans, 'class': 'form-control form-control-plain', 'rows': 5}}) }}
+        {% if not form.content.vars.valid %}
+            <span class="form-control-feedback text-danger" aria-hidden="true">
+            <i class="fa fa-times"></i>
+        </span>
+        {% endif %}
+        {{ form_errors(form.content) }}
+    </div>
+    <div class="col-md-12 form-group">
+        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-danger btn-fill pull-right'}}) }}
+    </div>
+</div>
+{{ form_end(form) }}

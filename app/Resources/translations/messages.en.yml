@@ -1,0 +1,22 @@
+frontend:
+    success: Success!
+    error: Ooops!
+    title: Our great day
+    menu:
+        share: Share on %site%
+        contact_us: Contact us
+    form:
+        error: There are some errors in the form.
+        name: Your name
+        placeholder_name: Your name here...
+        email: Your email
+        placeholder_email: Your email here...
+        content: Your message
+        placeholder_content: Your message here...
+    enquiry:
+        text: If you need to know more information or tell us something, do not hesitate to do so.
+        send: Send
+        success: Your message has been sent successfully and will be taken care as soon as possible.
+    joined:
+        notify_me: Notify me
+        success: You have been joined successfully. We will notify you when the website is ready.

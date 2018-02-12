@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Our Great Day! - Confirm attendence{% endblock %}
+
+{% block main %}
+    <div class="section section-basic sr">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2 class="title text-center">Our Great <em>Guests</em></h2>
+                    <div class="description-page text-center">
+                        <h4>Confirm your attendence!</h4>
+                        <p>
+                            This information will let us know more about youddfa  daf adf adf dsf adfs adf df asf d.
+                            adfasdfsdf adsf adf adf adf adsf  asdf adf adf adaf adf adf adf a fadf adf afa dadfadf
+                            asdfdas adfa asdfasdf dasf adsf adf afd adsfdf asf df.
+                        </p>
+                    </div>
+
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <ul class="nav nav-pills nav-pills-icons nav-pills-primary" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link{% if app.request.attributes.get('_route') == 'guest' %} active{% endif %}" href="{{ path('guest') }}">
+                                            <i class="material-icons">search</i>
+                                            Search you
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link{% if app.request.attributes.get('_route') == 'guest_confirm' %} active{% endif %}" href="{{ app.request.baseUrl }}">
+                                            <i class="material-icons">assignment_turned_in</i>
+                                            Confirm attendance
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content tab-space">
+                                    {#{{ flash_messages() }}#}
+                                    {{ form_start(form) }}
+                                    <div class="col-md-12">
+                                        <div class="form-group{% if not form.firstname.vars.valid %} has-error{% endif %}">
+                                            {{ form_label(form.firstname) }}
+                                            {{ form_widget(form.firstname) }}
+                                            <span class="bmd-help">We'll never share your email with anyone else.</span>
+                                            <span class="material-icons form-control-feedback">clear</span>
+                                        </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group{% if not form.lastname.vars.valid %} has-error{% endif %}">
+                                            {{ form_label(form.lastname) }}
+                                            {{ form_widget(form.lastname) }}
+                                            <span class="bmd-help">We'll never share your email with anyone else.</span>
+                                            <span class="material-icons form-control-feedback">clear</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group{% if not form.email.vars.valid %} has-error{% endif %}">
+                                            {{ form_label(form.email) }}
+                                            {{ form_widget(form.email) }}
+                                            <span class="material-icons form-control-feedback">clear</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            {% if form.guests is defined %}
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        {{ form_label(form.guests) }}
+                                                        {{ form_widget(form.guests) }}
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if form.childs is defined %}
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        {{ form_label(form.childs) }}
+                                                        {{ form_widget(form.childs) }}
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if form.vegans is defined %}
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        {{ form_label(form.vegans) }}
+                                                        {{ form_widget(form.vegans) }}
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                    {% if form.attending is defined %}
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                {{ form_label(form.attending) }}
+                                                <div class="form-check form-check-inline">
+                                                    {% for child in form.attending %}
+                                                        <label class="form-check-label">
+                                                            {{ form_widget(child) }} {{ child.vars.label }}
+                                                            <span class="circle">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="pull-right">
+                                        <div class="col-md-12">
+                                            {{ form_widget(form.submit) }}
+                                        </div>
+                                    </div>
+
+                                    {{ form_rest(form) }}
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
