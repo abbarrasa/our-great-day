@@ -4,6 +4,96 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <meta name="viewport" content="width=device-width" />
+
+        <title>{% block title %}{% endblock %}</title>
+        {% block stylesheets %}
+        <!--     Fonts     -->
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+        {% stylesheets
+            '../app/Resources/public/css/material-kit.css'
+            '../app/Resources/public/css/styles.css' filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+        {% endblock %}
+        
+        <link rel="apple-touch-icon" href="{{ asset('apple-icon.png') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block body %}
+        <div class="index-page">
+            <!-- Navbar -->
+            <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+                <div class="container">
+                    <div class="navbar-translate">
+                        <a class="navbar-brand" href="{{ path('homepage') }}">{{ 'frontend.title'|trans }}</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                            <span class="navbar-toggler-icon"></span>
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+
+                    {# Social bar #}
+                    <div class="collapse navbar-collapse">                    
+                    {{ knp_menu_render('social', {'template': 'partials/knp_menu.html.twig'}) }}                        
+                    </div">
+                    
+                    {# Main menu bar #}
+                    <div class="collapse navbar-collapse">
+                    {{ knp_menu_render('main', {'template': 'AppBundle:menu:menu.html.twig'}) }}
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            
+            <!-- Jumbobox -->
+            {% image '../app/Resources/public/images/main.jpg' output='/assets/images/main.jpg' %}
+            <div class="page-header header-filter clear-filter rose-filter" data-parallax="true" style="background-image: url('{{ asset_url }}');">
+            {% endimage %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 ml-auto mr-auto">
+                            <div class="brand">
+                                <h1>Vero y Carlos</h1>
+                                <h3>{{ 'frontend.title'|trans }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Jumbobox -->
+            
+            <!-- Main -->
+            <div class="main">
+                {% block main %}{% endblock %}
+            </div>
+            <!-- End Main -->                        
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer footer-black">
+            <div class="container">
+                <div class="pull-right">
+                    Made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/abbarrasa/our-great-day">Alberto Buitrago</a> for a better web. Thanks to <a href="http://www.creative-tim.com">Creative Tim</a>.                
+                </div>
+            </div>
+        </footer>
+        <!-- End footer -->
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
         <title>{% block title %}{% endblock %}</title>
         {% block stylesheets %}
@@ -23,7 +113,6 @@
     {% block body %}
         <div class="index-page">
             <!-- Navbar -->
-
             <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
                 <div class="container">
                     <div class="navbar-translate">
@@ -37,13 +126,12 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse">
-                        {% block menu %}
-                            {{ knp_menu_render('main', {'template': 'AppBundle:menu:menu.html.twig'}) }}
-                        {% endblock %}
+                    {{ knp_menu_render('main', {'template': 'AppBundle:menu:menu.html.twig'}) }}
+                    {% endblock %}
                     </div>
                 </div>
             </nav>
-
+            <!-- End Navbar -->
 
 
 
