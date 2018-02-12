@@ -33,9 +33,22 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    AppBundle\Service\FlashMessageHelper:
+        class: AppBundle\Templating\Helper\FlashMessageHelper
+        arguments: ["@translator"]
+        public: true
+        tags:
+            - { name: templating.helper }
+
+    AppBundle\Service\SocialMenuService:
+        class: AppBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory", "@router", "@translator"]
+        tags:
+            - { name: knp_menu.menu_builder, method: createSocialMenu, alias: social } # The alias is what is used to retrieve the menu    
+        
     AppBundle\Service\MenuBuilderService:
         class: AppBundle\Menu\MenuBuilder
-        arguments: ["@knp_menu.factory", "@request_stack"]
+        arguments: ["@knp_menu.factory", "@router", "@translator"]
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main } # The alias is what is used to retrieve the menu
 
@@ -44,12 +57,6 @@ services:
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: validator.constraint_validator }
-
-    AppBundle\Service\FlashMessageHelper:
-        class: AppBundle\Templating\Helper\FlashMessageHelper
-        public: true
-        tags:
-            - { name: templating.helper }
 
     AppBundle\Service\Mailer:
         class: AppBundle\Manager\Mailer
