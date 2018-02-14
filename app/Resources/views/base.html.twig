@@ -9,7 +9,7 @@
         <title>{% block title %}{% endblock %}</title>
         {% block stylesheets %}
         <!--     Fonts     -->
-        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         {% stylesheets
             '../app/Resources/public/css/material-kit.css'
@@ -49,7 +49,7 @@
             </nav>
             <!-- End Navbar -->
             
-            <!-- Jumbobox -->
+            <!-- Jumbotron -->
             {% image '../app/Resources/public/images/main.jpg' output='assets/images/main.jpg' %}
             <div class="page-header header-filter clear-filter rose-filter" data-parallax="true" style="background-image: url('{{ asset_url }}');">
             {% endimage %}
@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <!-- End Jumbobox -->
+            <!-- End Jumbotron -->
             
             <!-- Main -->
             <div class="main">
