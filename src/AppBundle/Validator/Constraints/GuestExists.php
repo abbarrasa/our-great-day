@@ -9,6 +9,6 @@ use Symfony\Component\Validator\Constraint;
  */
 class GuestExists extends Constraint
 {
-    public $incorrectNameMessage = 'Did you mean "{{ string }}"?';
-    public $notFoundMessage      = 'No guests were found';
+    public $notFoundMessage        = 'not_found';
+    public $multipleMatchesMessage = 'multiple_matches';
 }
