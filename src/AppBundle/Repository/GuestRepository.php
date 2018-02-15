@@ -14,11 +14,13 @@ class GuestRepository extends \Doctrine\ORM\EntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('g')
         foreach($criteria as $field => $value) {
-            if (!in_array($field, array('firstname', 'lastname', 'email')) {
-                throw new \Exception();
-            }
+            if (!empty($value)) {
+                if (!in_array($field, array('firstname', 'lastname', 'email')) {
+                    throw new \Exception();
+                }
                 
-            $queryBuilder->andWhere($queryBuilder->expr()->like($field, $value))           
+                $queryBuilder->andWhere($queryBuilder->expr()->like($field, $value));
+            }
         }
         
         return $queryBuilder->getQuery()->getResult();
