@@ -12,17 +12,24 @@ class GuestRepository extends \Doctrine\ORM\EntityRepository
 {
     public function findByCriteria(array $criteria)
     {
-        $queryBuilder = $this->createQueryBuilder('g')
-        foreach($criteria as $field => $value) {
+        $qb = $this->createQueryBuilder('g')
+        foreach($criteria as $fieldname => $value) {
             if (!empty($value)) {
-                if (!in_array($field, array('firstname', 'lastname', 'email')) {
+                if (!in_array($fieldname, array('firstname', 'lastname', 'email')) {
                     throw new \Exception();
                 }
-                
-                $queryBuilder->andWhere($queryBuilder->expr()->like($field, $value));
+             
+                if ($fieldname === 'firstname' || $fieldname === 'lastname') {
+                    $qb->andWhere($qb->expr()->like('g'.$fieldname, $value));                    
+                } else {
+                    $qb
+                        ->andWhere('g'.$fieldname, ':value')
+                        ->setParameter('value', $value)
+                    ;
+                }
             }
         }
         
-        return $queryBuilder->getQuery()->getResult();
+        return $qb->getQuery()->getResult();
     }
 }
