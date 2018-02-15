@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\ORM\ORMInvalidArgumentException;
+
 /**
  * GuestRepository
  *
@@ -16,7 +18,7 @@ class GuestRepository extends \Doctrine\ORM\EntityRepository
         foreach($criteria as $fieldname => $value) {
             if (!empty($value)) {
                 if (!in_array($fieldname, array('firstname', 'lastname', 'email')) {
-                    throw new \Exception();
+                    throw new ORMInvalidArgumentException();
                 }
              
                 if ($fieldname === 'firstname' || $fieldname === 'lastname') {
