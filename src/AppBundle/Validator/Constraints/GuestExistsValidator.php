@@ -40,7 +40,7 @@ class GuestExistsValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\GuestExists');
         }
         
-        $guests = $repository->findByCriteria($value);
+        $guests = $this->em->getRepository(Guest::class)->findByCriteria($value);
         if (count($guests) !== 1) {
             if (count($guest) > 1) {
                 $this
