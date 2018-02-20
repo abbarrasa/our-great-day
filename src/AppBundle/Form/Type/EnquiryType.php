@@ -17,22 +17,18 @@ class EnquiryType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Your name',
-                'required' => true,
-                'attr' => ['class' => 'form-control']
+                'required' => true
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Your email',
-                'required' => true,
-                'attr' => ['class' => 'form-control']
+                'required' => true
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'Your message',
-                'required' => true,
-                'attr' => ['class' => 'form-control']
+                'required' => true
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Send',
-                'attr' => ['class' => 'btn btn-primary']
+                'label' => 'Send'
             ])
         ;
     }

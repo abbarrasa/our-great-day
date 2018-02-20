@@ -5,8 +5,12 @@ frontend:
     menu:
         share: Compartir en %site%
         contact_us: Contáctanos
+        home: Inicio
+        confirm_attendance: Confirmar asistencia
+        guestbook: Libro de invitados
     form:
         error: Existen errores en el formulario.
+        close: Cerrar
         name: Tu nombre
         placeholder_name: Tu nombre aquí...
         email: Tu email

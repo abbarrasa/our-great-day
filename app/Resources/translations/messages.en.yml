@@ -5,8 +5,12 @@ frontend:
     menu:
         share: Share on %site%
         contact_us: Contact us
+        home: Home
+        confirm_attendance: Confirm attencance
+        guestbook: Guestbook
     form:
         error: There are some errors in the form.
+        close: Close
         name: Your name
         placeholder_name: Your name here...
         email: Your email

@@ -36,24 +36,30 @@ class MenuBuilder
     public function createMainMenu()
     {
         $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'navbar-nav ml-auto');
+        $menu->setChildrenAttribute('class', 'navbar-nav');
 
         $menu
-            ->addChild('Home', ['route' => 'homepage'])
+            ->addChild('frontend.menu.home', ['route' => 'homepage'])
             ->setAttributes(['icon' => 'home', 'class' => 'nav-item'])
             ->setLinkAttribute('class', 'nav-link')
         ;
 
         $menu
-            ->addChild('Confirm attendance', ['route' => 'guest'])
+            ->addChild('frontend.menu.confirm_attendance', ['route' => 'guest'])
             ->setAttributes(['icon' => 'assignment_turned_in', 'class' => 'nav-item'])
             ->setLinkAttribute('class', 'nav-link')
         ;
 
         $menu
-            ->addChild('Guestbook', ['route' => 'guestbook'])
-            ->setAttributes(['icon' => 'import_contacts', 'class' => 'nav-item')
+            ->addChild('frontend.menu.guestbook', ['route' => 'guestbook'])
+            ->setAttributes(['icon' => 'import_contacts', 'class' => 'nav-item'])
             ->setLinkAttribute('class', 'nav-link')
+        ;
+
+        $menu
+            ->addChild('frontend.menu.contact_us', ['uri' => '#'])
+            ->setAttributes(['icon' => 'email', 'class' => 'nav-item'])
+            ->setLinkAttribute('class', 'nav-link contact-us')
         ;
 
 //        if ($this->authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
@@ -94,49 +100,44 @@ class MenuBuilder
     public function createSocialMenu()
     {
         $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
+        $menu->setChildrenAttribute('class', 'navbar-nav');
         $menu
             ->addChild('facebook', ['uri' => $this->generateSocialUrl(self::URL_PATTERN_FACEBOOK)])
             ->setLabel('')
-            ->setAttribute('icon', 'fa fa-facebook-square')
+            ->setAttributes(['icon' => 'fa fa-facebook-square', 'class' => 'nav-item'])
             ->setLinkAttributes([
+                'class' => 'nav-link',
                 'onclick' => "javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;",
                 'target' => '_blank',
                 'title' => $this->translator->trans('frontend.menu.share', ['%site%' => 'Facebook']),
-                'data-toggle' => 'tooltip',
-                'data-placement' => 'bottom'
+                'data-toggle' => 'tooltip'
             ])
         ;
         $menu
             ->addChild('twitter', ['uri' => $this->generateSocialUrl(self::URL_PATTERN_TWITTER)])
             ->setLabel('')
-            ->setAttribute('icon', 'fa fa-twitter')
+            ->setAttributes(['icon' => 'fa fa-twitter', 'class' => 'nav-item'])
             ->setLinkAttributes([
+                'class' => 'nav-link',
                 'onclick' => "javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;",
                 'target' => '_blank',
                 'title' => $this->translator->trans('frontend.menu.share', ['%site%' => 'Twitter']),
-                'data-toggle' => 'tooltip',
-                'data-placement' => 'bottom'
+                'data-toggle' => 'tooltip'
             ])
         ;
         $menu
             ->addChild('googleplus', ['uri' => $this->generateSocialUrl(self::URL_PATTERN_GOOGLEPLUS)])
             ->setLabel('')
-            ->setAttribute('icon', 'fa fa-google-plus-square')
+            ->setAttributes(['icon' => 'fa fa-google-plus-square', 'class' => 'nav-item'])
             ->setLinkAttributes([
+                'class' => 'nav-link',
                 'onclick' => "javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;",
                 'target' => '_blank',
                 'title' => $this->translator->trans('frontend.menu.share', ['%site%' => 'Google+']),
-                'data-toggle' => 'tooltip',
-                'data-placement' => 'bottom'
+                'data-toggle' => 'tooltip'
             ])
         ;
-        $menu
-            ->addChild('frontend.menu.contact_us', ['uri' => '#'])
-            ->setAttribute('icon', 'fa fa-envelope-o')
-            ->setLinkAttribute('class', 'contact-us')
-        ;
-	    
+
         return $menu;
     }
 
