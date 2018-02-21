@@ -76,22 +76,22 @@
                                         <div class="row">
                                             {% if form.guests is defined %}                                        
                                             <div class="col form-group bmd-form-group">
-                                                {{ form_label(form.guests) }}
-                                                {{ form_widget(form.guests) }}
+                                                {{ form_label(form.guests, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                                {{ form_widget(form.guests, {'attr': {'class': 'selectpicker', 'data-style': 'select-with-transition', 'data-size': '7'}}) }}
                                             </div>
                                             {% endif %}
                                             
                                             {% if form.childs is defined %}                                        
                                             <div class="col form-group bmd-form-group">
-                                                {{ form_label(form.childs) }}
-                                                {{ form_widget(form.childs) }}
+                                                {{ form_label(form.childs, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                                {{ form_widget(form.childs, {'attr': {'class': 'selectpicker', 'data-style': 'select-with-transition', 'data-size': '7'}}) }}
                                             </div>
                                             {% endif %}
                                             
                                             {% if form.vegans is defined %}                                        
                                             <div class="col form-group bmd-form-group">
-                                                {{ form_label(form.vegans) }}
-                                                {{ form_widget(form.vegans) }}
+                                                {{ form_label(form.vegans, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                                {{ form_widget(form.vegans, {'attr': {'class': 'selectpicker', 'data-style': 'select-with-transition', 'data-size': '7'}}) }}
                                             </div>
                                             {% endif %}                                            
                                         </div>
@@ -103,7 +103,7 @@
                                                 <div class="form-check form-check-inline">
                                                     {% for child in form.attending %}
                                                         <label class="form-check-label">
-                                                            {{ form_widget(child) }} {{ child.vars.label }}
+                                                            {{ form_widget(child, {'attr': {'class': 'form-check-input'}}) }} {{ child.vars.label }}
                                                             <span class="circle">
                                                                 <span class="check"></span>
                                                             </span>
