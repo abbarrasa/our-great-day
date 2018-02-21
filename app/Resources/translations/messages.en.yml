@@ -24,7 +24,7 @@ frontend:
         firstname: Firstname
         lastname: Lastname
     enquiry:
-        text: If you need to know more information or tell us something, do not hesitate to do so.
+        description: If you need to know more information or tell us something, do not hesitate to do so.
         send: Send
         success: Your message has been sent successfully and will be taken care as soon as possible.
     joined:
@@ -41,4 +41,9 @@ frontend:
         confirm: Confirm
         confirm_attendence: Confirm your attendence
         search_you: Search you
-        success: You have confirmed successfully. If you need change your confirmation, you can do it at any time.        
+        success: You have confirmed successfully. If you need change your confirmation, you can do it at any time.
+    guestbook:
+        title: Our Great <em>Guestbook</em>
+        description:
+        send: Send
+        success: 
