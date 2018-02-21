@@ -42,4 +42,8 @@ frontend:
         confirm_attendence: Confirma tu asistencia
         search_you: Búscate
         success: Has realizado tu confirmación con éxito. Si necesitas cambiarla puedes realizarla en cualquier momento.
-        
+    guestbook:
+        title: Nuestro Gran <em>Libro de invitados</em>
+        description: No seas tímido/a. Mándanos un original mensajito que nos alegre si cabe un poco más nuestro gran día. De antemano, muchísimas gracias.
+        send: Send
+        success: Tu mensaje se ha enviado correctamente y queda pendiente de moderación. Después de ser revisado será publicado. 
