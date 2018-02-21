@@ -2,6 +2,9 @@ frontend:
     success: Success!
     error: Ooops!
     title: Our great day
+    choice:
+        yes: Yes
+        no: No  
     menu:
         share: Share on %site%
         contact_us: Contact us
