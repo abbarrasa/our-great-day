@@ -14,8 +14,11 @@ class GuestbookType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('comment', TextareaType::class, ['label' => 'Mensaje'])
-            ->add('save', SubmitType::class, array('label' => 'Enviar'))
+            ->add('comment', TextareaType::class, [
+                'label' => 'frontend.guestbook.comment',
+                'required' => true
+            ])
+            ->add('submit', SubmitType::class, ['label' => 'frontend.guestbook.submit'])
             ->addEventSubscriber(new AddUserNameSubscriber())
         ;
     }
