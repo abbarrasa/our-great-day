@@ -57,35 +57,28 @@ class GuestConfirmationType extends AbstractType
     {
         $builder
             ->add('firstname', TextType::class, [
-                'label' => 'First name',
+                'label' => 'frontend.form.firstname',
                 'required' => true,
-                'label_attr' => ['class' => 'bmd-label-floating'],
-                'attr' => ['class' => 'form-control'],
                 'constraints' => [
                     new NotBlank()
                 ]
             ])
             ->add('lastname', TextType::class, [
-                'label' => 'Last name',
+                'label' => 'frontend.form.lastname',
                 'required' => true,
-                'label_attr' => ['class' => 'bmd-label-floating'],
-                'attr' => ['class' => 'form-control'],
                 'constraints' => [
                     new NotBlank()
                 ]
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Email (optional)',
+                'label' => 'frontend.form.email',
                 'required' => false,
-                'label_attr' => ['class' => 'bmd-label-floating'],
-                'attr' => ['class' => 'form-control'],
                 'constraints' => [
                     new Email()
                 ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Search me!',
-                'attr' => ['class' => 'btn btn-primary']
+                'label' => 'frontend.guest.search_me'
             ])
         ;
 
@@ -119,47 +112,29 @@ class GuestConfirmationType extends AbstractType
             ->add('guests', ChoiceType::class, [
                 'label' => 'Number of guests',
                 'choices' => array_combine(range(1, 10), range(1, 10)),
-                'required' => true,
-                'label_attr' => ['class' => 'bmd-label-floating'],
-                'attr' => [
-                    'class' => 'selectpicker',
-                    'data-style' => 'select-with-transition',
-                    'data-size' => '7'
-                ]
+                'required' => true
             ])
             ->add('childs', ChoiceType::class, [
                 'label' => 'Number of childs',
                 'choices' => array_combine(range(0, 10), range(0, 10)),
-                'required' => true,
-                'attr' => [
-                    'class' => 'selectpicker',
-                    'data-style' => 'select-with-transition',
-                    'data-size' => '7'
-                ]
+                'required' => true
             ])
             ->add('vegans', ChoiceType::class, [
                 'label' => 'Number of vegans',
                 'choices' => array_combine(range(0, 10), range(0, 10)),
-                'required' => true,
-                'attr' => [
-                    'class' => 'selectpicker',
-                    'data-style' => 'select-with-transition',
-                    'data-size' => '7'
-                ]
+                'required' => true
             ])
             ->add('attending', ChoiceType::class, [
                 'label' => "I'm attending",
-                'choices' => ['Yes' => true, 'No' => false],
+                'choices' => ['yes' => true, 'no' => false],
                 'required' => true,
                 'expanded' => true,
-                'attr' => ['class' => 'form-control'],
-                'choice_attr' => function($val, $key, $index) {
-                    return ['class' => 'form-check-input'];
-                }
+                'choice_label' => function ($value, $key, $index) {
+                    return 'frontend.choice.'.$key;
+                },                
             ])
             ->add('submit', SubmitType::class, [
-                'label' => "Confirm",
-                'attr' => ['class' => 'btn btn-primary']
+                'label' => "Confirm"
             ])
         ;
     }
