@@ -24,7 +24,7 @@ class AddUserNameSubscriber implements EventSubscriberInterface
 
         $form
             ->add('name', TextType::class, [
-                'label' => 'Nombre',
+                'label' => 'frontent.form.name',
                 'required' => true,
                 'data' => $data->getUser() !== null ? $data->getUser()->getFullname() : null
             ])
