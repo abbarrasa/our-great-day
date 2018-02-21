@@ -2,8 +2,9 @@ frontend:
     success: Bien!
     error: Ooops!
     title: Nuestro gran día
-    yes: Sí
-    no: No
+    choice:
+        yes: Sí
+        no: No
     menu:
         share: Compartir en %site%
         contact_us: Contáctanos
