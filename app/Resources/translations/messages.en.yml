@@ -11,12 +11,15 @@ frontend:
     form:
         error: There are some errors in the form.
         close: Close
+        optional: (optional)
         name: Your name
         placeholder_name: Your name here...
         email: Your email
         placeholder_email: Your email here...
         content: Your message
         placeholder_content: Your message here...
+        firstname: Firstname
+        lastname: Lastname
     enquiry:
         text: If you need to know more information or tell us something, do not hesitate to do so.
         send: Send
@@ -24,3 +27,15 @@ frontend:
     joined:
         notify_me: Notify me
         success: You have been joined successfully. We will notify you when the website is ready.
+    guest:
+        title: Our Great <em>Guests</em>
+        description: On this page you can confirm your attendance or reject our invitation (in which case we will be very sorry). To do this, you must first search yourself in the guest list and then send your confirmation. If you can not find yourself and you think you should be or have some other problem, you can contact us here. Do not think about it much and attend... without you, it will not be the same.
+        guests: Number of guests
+        childs: Number of childs
+        vegans: Number of vegans
+        attending: I\'m attending
+        search_me: Search me
+        confirm: Confirm
+        confirm_attendence: Confirm your attendence
+        search_you: Search you
+        success: You have confirmed successfully. If you need change your confirmation, you can do it at any time.        
