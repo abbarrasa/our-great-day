@@ -38,6 +38,7 @@
                                 <div class="tab-content tab-space">
                                     {#{{ flash_messages() }}#}
                                     {{ form_start(form) }}
+                                    {{ form_errors(form) }}                                    
                                     <div class="row">
                                         <div class="col form-group bmd-form-group{% if not form.firstname.vars.valid %} has-danger{% endif %}">
                                         {{ form_label(form.firstname, {'label_attr': {'class': 'bmd-label-floating'}}) }}
