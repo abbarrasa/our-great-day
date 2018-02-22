@@ -22,12 +22,11 @@ class GuestController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $guest = $em->getRepository(Guest::class)->findOneBy($form->getData());
-            if ($guest) {
-                return $this->redirectToRoute('guest_confirm', ['id' => $guest->getId()]);
-            }
+                
+            return $this->redirectToRoute('guest_confirm', ['id' => $guest->getId()]);
         }
 
-        return $this->render('AppBundle:guest:confirmation.html.twig', [
+        return $this->render('guest/confirmation.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -44,14 +43,19 @@ class GuestController extends Controller
 
         $form = $this->createForm(GuestConfirmationType::class, $guest);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) && $form->isValid()) {
             $em->persist($guest);
             $em->flush();
+            
+            $helper = $this->get('AppBundle\Service\FlashMessageHelper');
+            $this->addFlash('success', $helper->getFlashMessage(
+                'success', 'frontend.success', 'frontend.guest.success'
+            ));            
 
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->render('AppBundle:guest:confirmation.html.twig', [
+        return $this->render('guest/confirmation.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -70,10 +74,10 @@ class GuestController extends Controller
             $em->persist($guestbook);
             $em->flush();
 
-            $this->addFlash(
-                'success',
-                $this->get('translator')->trans('Se ha actualizado correctamente el registro')
-            );
+            $helper = $this->get('AppBundle\Service\FlashMessageHelper');
+            $this->addFlash('success', $helper->getFlashMessage(
+                'success', 'frontend.success', 'frontend.guestbook.success'
+            )); 
         }
 
         $query      = $em->getRepository(Guestbook::class)->getQueryAllModerate();
@@ -85,7 +89,7 @@ class GuestController extends Controller
         );
 
         // parameters to template
-        return $this->render('AcmeMainBundle:Article:list.html.twig', array('pagination' => $pagination));
+        return $this->render('guest/guestbook.html.twig', array('pagination' => $pagination));
     }
 
     /**
