@@ -11,7 +11,7 @@
 {% block title %}Our Great Day! - Guestbook{% endblock %}
 
 {% block main %}
-<div class="section section-basic">
+<div class="section section-basic sr">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -22,35 +22,34 @@
                 {{ include('AppBundle:guest/partials:card-list.html.twig', {'pagination': pagination}) }}
             </div>
             
-            {#{{ flash_messages() }}#}
-            <div class="col-md-8 col-md-offset-2">
-                <div class="card card-raised">
-                    <div class="content">
-                        {{ form_start(form) }}
-                        <div class="col-md-12">
-                            <div class="form-group label-floating">
-                                {{ form_label(form.name) }}
+            
+            <div class="col-md-8 col-xs-12 mr-auto ml-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col form-group bmd-form-group{% if not form.name.vars.valid %} has-danger{% endif %}">
+                                {{ form_label(form.name, {'label_attr': {'class': 'bmd-label-floating'}}) }}
                                 {{ form_widget(form.name) }}
-                                <span class="material-icons form-control-feedback">clear</span>
+                                {{ form_errors(form.name) }}
+                                {% if not form.name.vars.valid %}
+                                    <span class="material-icons form-control-feedback">clear</span>
+                                {% endif %}
                             </div>
                         </div>
-
-                        <div class="col-md-12">
-                            <div class="form-group label-floating">
-                                {{ form_label(form.comment) }}
-                                {{ form_widget(form.comment) }}
-                                <span class="material-icons form-control-feedback">clear</span>
+                        <div class="row">
+                            <div class="col form-group bmd-form-group{% if not form.comment.vars.valid %} has-danger{% endif %}">
+                                {{ form_label(form.comment, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.comment, {'attr': {'rows': 5}}) }}
+                                {{ form_errors(form.comment) }}
+                                {% if not form.comment.vars.valid %}
+                                    <span class="material-icons form-control-feedback">clear</span>
+                                {% endif %}
                             </div>
                         </div>
-                        
-                        <div class="pull-right">
-                            <div class="col-md-12">
-                                {{ form_widget(form.submit) }}
-                            </div>
-                        </div>
-
-                        {{ form_rest(form) }}
-                        {{ form_end(form) }}
+                        <div class="col-md-12 form-group">
+                            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
+                        </div>                        
+                        {{ form_end(form) }}                        
                     </div>
                 </div>
             </div>                        
