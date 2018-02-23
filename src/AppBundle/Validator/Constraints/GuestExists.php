@@ -9,6 +9,6 @@ use Symfony\Component\Validator\Constraint;
  */
 class GuestExists extends Constraint
 {
-    public $notFoundMessage        = 'not_found';
-    public $multipleMatchesMessage = 'multiple_matches';
+    public $notFoundMessage        = 'guest.not_found';
+    public $multipleMatchesMessage = 'guest.multiple_matches';
 }

@@ -24,4 +24,3 @@ parameters:
     # Emails
     email_admin: admin@ovh.com
     email_no_reply: no_reply@ovh.com
-

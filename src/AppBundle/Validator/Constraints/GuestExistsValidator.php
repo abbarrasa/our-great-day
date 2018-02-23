@@ -41,18 +41,18 @@ class GuestExistsValidator extends ConstraintValidator
         }
         
         $guests = $this->em->getRepository(Guest::class)->findByCriteria($value);
-        if (count($guests) !== 1) {
-            if (count($guest) > 1) {
-                $this
-                    ->context
-                    ->buildViolation($constraint->notFoundMessage)
-                    ->addViolation();		
-            } else {
-                $this
-                    ->context
-                    ->buildViolation($constraint->multipleMatchesMessage)
-                    ->addViolation();
-            }
+        if (count($guests) > 1) {
+            $this
+                ->context
+                ->buildViolation($constraint->multipleMatchesMessage)
+                ->addViolation()
+            ;
+        } else if (count($guests) == 0) {
+            $this
+                ->context
+                ->buildViolation($constraint->notFoundMessage)
+                ->addViolation()
+            ;
         }
     }
 }

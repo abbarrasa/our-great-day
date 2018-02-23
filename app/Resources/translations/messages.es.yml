@@ -1,6 +1,7 @@
 frontend:
     success: Bien!
     error: Ooops!
+    close: Cerrar
     title: Nuestro gran día
     choice:
         yes: Sí
@@ -13,26 +14,27 @@ frontend:
         guestbook: Libro de invitados
     form:
         error: Existen errores en el formulario.
-        optional: (opcional)
-        close: Cerrar
+    enquiry:
         name: Tu nombre
         placeholder_name: Tu nombre aquí...
         email: Tu email
         placeholder_email: Tu email aquí...
         content: Tu mensaje
         placeholder_content: Tu mensaje aquí...
-        firstname: Nombre
-        lastname: Apellidos
-    enquiry:
-        text: Si necesitas saber más información o contarnos algo no dudes en hacerlo.
+        description: Si necesitas saber más información o contarnos algo no dudes en hacerlo.
         send: Enviar
         success: Tu mensaje se ha enviado correctamente y será atendido lo antes posible.
     joined:
+        email: Tu email
+        placeholder_email: Tu email aquí...
         notify_me: Notifícame
         success: Te has unido a la lista con éxito. Te avisaremos cuando el sitio web esté listo.
     guest:
         title: Nuestros Grandiosos <em>Invitados</em>
         description: Desde esta página puedes confirmar tu asistencia o rechazar nuestra invitación (en cuyo caso lo lamentaremos mucho). Para ello deberás buscarte primero en la lista de invitados y después enviar la confirmación. Si no consigues encontrarte y piensas que deberías estar o tienes cualquer otro problema puedes dirigirte a nosotros por aquí. No lo pienses mucho y asiste... sin tí seguro que no será igual.
+        firstname: Tu nombre
+        lastname: Tus apellidos
+        email: Tu email (optional)
         guests: Número de invitados
         childs: Número de niños
         vegans: Número de veganos

@@ -57,21 +57,21 @@ class GuestConfirmationType extends AbstractType
     {
         $builder
             ->add('firstname', TextType::class, [
-                'label' => 'frontend.form.firstname',
+                'label' => 'frontend.guest.firstname',
                 'required' => true,
                 'constraints' => [
                     new NotBlank()
                 ]
             ])
             ->add('lastname', TextType::class, [
-                'label' => 'frontend.form.lastname',
+                'label' => 'frontend.guest.lastname',
                 'required' => true,
                 'constraints' => [
                     new NotBlank()
                 ]
             ])
             ->add('email', EmailType::class, [
-                'label' => 'frontend.form.email',
+                'label' => 'frontend.guest.email',
                 'required' => false,
                 'constraints' => [
                     new Email()
@@ -110,22 +110,22 @@ class GuestConfirmationType extends AbstractType
         $this->buildGuestForm($builder, $options);
         $builder
             ->add('guests', ChoiceType::class, [
-                'label' => 'Number of guests',
+                'label' => 'frontend.guest.guests',
                 'choices' => array_combine(range(1, 10), range(1, 10)),
                 'required' => true
             ])
             ->add('childs', ChoiceType::class, [
-                'label' => 'Number of childs',
+                'label' => 'frontend.guest.childs',
                 'choices' => array_combine(range(0, 10), range(0, 10)),
                 'required' => true
             ])
             ->add('vegans', ChoiceType::class, [
-                'label' => 'Number of vegans',
+                'label' => 'frontend.guest.vegans',
                 'choices' => array_combine(range(0, 10), range(0, 10)),
                 'required' => true
             ])
             ->add('attending', ChoiceType::class, [
-                'label' => "I'm attending",
+                'label' => "frontend.guest.attending",
                 'choices' => ['yes' => true, 'no' => false],
                 'required' => true,
                 'expanded' => true,
@@ -134,7 +134,7 @@ class GuestConfirmationType extends AbstractType
                 },                
             ])
             ->add('submit', SubmitType::class, [
-                'label' => "Confirm"
+                'label' => "frontend.guest.confirm"
             ])
         ;
     }

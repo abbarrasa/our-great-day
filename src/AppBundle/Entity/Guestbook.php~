@@ -14,6 +14,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Guestbook
 {
+    const STATUS_PENDING  = 0;
+    const STATUS_APPROVED = 1;
+    const STATUS_REJECTED = 2;
+    
     /**
      * @var int
      *
@@ -48,11 +52,11 @@ class Guestbook
     private $createdAt;
 
     /**
-     * @var boolean
+     * @var integer
      *
-     * @ORM\Column(name="moderated", type="boolean", nullable=true)
+     * @ORM\Column(name="status", type="integer", nullable=true)
      */
-    private $moderated;
+    private $status;
 
     /**
      * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User", inversedBy="guestbook")
@@ -63,7 +67,7 @@ class Guestbook
     /**
      * @var integer
      *
-     * @ORM\Column(name="likes", type="integer")
+     * @ORM\Column(name="likes", type="integer", nullable=true)
      * @Assert\NotBlank()
      */
     private $likes;
@@ -73,6 +77,7 @@ class Guestbook
      */
     public function __construct()
     {
+        $this->setStatus(self::STATUS_PENDING);
         $this->setLikes(0);
     }
 
@@ -157,31 +162,7 @@ class Guestbook
     {
         return $this->createdAt;
     }
-
-    /**
-     * Set moderated.
-     *
-     * @param bool|null $moderated
-     *
-     * @return Guestbook
-     */
-    public function setModerated($moderated = null)
-    {
-        $this->moderated = $moderated;
-
-        return $this;
-    }
-
-    /**
-     * Get moderated.
-     *
-     * @return bool|null
-     */
-    public function getModerated()
-    {
-        return $this->moderated;
-    }
-
+    
     /**
      * Set user.
      *
@@ -239,4 +220,28 @@ class Guestbook
     {
         $this->setCreatedAt(new \DateTime());
     }    
+
+    /**
+     * Set status.
+     *
+     * @param int|null $status
+     *
+     * @return Guestbook
+     */
+    public function setStatus($status = null)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status.
+     *
+     * @return int|null
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 }

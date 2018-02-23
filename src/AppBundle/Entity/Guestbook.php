@@ -220,4 +220,28 @@ class Guestbook
     {
         $this->setCreatedAt(new \DateTime());
     }    
+
+    /**
+     * Set status.
+     *
+     * @param int|null $status
+     *
+     * @return Guestbook
+     */
+    public function setStatus($status = null)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status.
+     *
+     * @return int|null
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 }

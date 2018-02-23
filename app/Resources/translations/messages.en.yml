@@ -1,6 +1,7 @@
 frontend:
     success: Success!
     error: Ooops!
+    close: Close
     title: Our great day
     choice:
         yes: Yes
@@ -13,26 +14,27 @@ frontend:
         guestbook: Guestbook
     form:
         error: There are some errors in the form.
-        close: Close
-        optional: (optional)
+    enquiry:
         name: Your name
         placeholder_name: Your name here...
         email: Your email
         placeholder_email: Your email here...
         content: Your message
         placeholder_content: Your message here...
-        firstname: Firstname
-        lastname: Lastname
-    enquiry:
         description: If you need to know more information or tell us something, do not hesitate to do so.
         send: Send
         success: Your message has been sent successfully and will be taken care as soon as possible.
     joined:
+        email: Your email
+        placeholder_email: Your email here...
         notify_me: Notify me
         success: You have been joined successfully. We will notify you when the website is ready.
     guest:
         title: Our Great <em>Guests</em>
         description: On this page you can confirm your attendance or reject our invitation (in which case we will be very sorry). To do this, you must first search yourself in the guest list and then send your confirmation. If you can not find yourself and you think you should be or have some other problem, you can contact us here. Do not think about it much and attend... without you, it will not be the same.
+        firstname: Your Firstname
+        lastname: Your Lastname
+        email: Your email (optional)
         guests: Number of guests
         childs: Number of childs
         vegans: Number of vegans

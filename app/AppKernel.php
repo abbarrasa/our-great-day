@@ -19,21 +19,21 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
 
             // These are the other bundles the SonataAdminBundle relies on
-//            new Sonata\CoreBundle\SonataCoreBundle(),
-//            new Sonata\BlockBundle\SonataBlockBundle(),
-//            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 
             // The storage and SonataAdminBundle
-//            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
-//            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
 
             // SonataUserBundle extends the ``FOSUserBundle``
-//            new FOS\UserBundle\FOSUserBundle(),
-//            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            new FOS\UserBundle\FOSUserBundle(),
+            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
 
             // And finally, the application bundles
-//            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
             new AppBundle\AppBundle(),
         ];
 

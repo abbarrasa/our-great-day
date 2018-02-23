@@ -9,7 +9,7 @@
     </div>
 {% endif %}
 
-<p class="lead text-center description">{{ 'frontend.enquiry.text'|trans }}</p>
+<p class="lead text-center description">{{ 'frontend.enquiry.description'|trans }}</p>
 {{ form_start(form, {'action': path('enquiry')}) }}
 <div class="col-md-12 form-group bmd-form-group{% if not form.name.vars.valid %} has-danger{% endif %}">
     <div class="input-group">
@@ -18,7 +18,7 @@
                 <i class="material-icons">face</i>
             </span>
         </div>
-        {{ form_widget(form.name, {'attr': {'placeholder': 'frontend.form.placeholder_name'|trans }}) }}
+        {{ form_widget(form.name, {'attr': {'placeholder': 'frontend.enquiry.placeholder_name'|trans }}) }}
         {{ form_errors(form.name) }}
         {% if not form.name.vars.valid %}
             <span class="material-icons form-control-feedback">clear</span>
@@ -33,7 +33,7 @@
                 <i class="material-icons">email</i>
             </span>
         </div>
-        {{ form_widget(form.email, {'attr': {'placeholder': 'frontend.form.placeholder_email'|trans }}) }}
+        {{ form_widget(form.email, {'attr': {'placeholder': 'frontend.enquiry.placeholder_email'|trans }}) }}
         {{ form_errors(form.email) }}
         {% if not form.email.vars.valid %}
             <span class="material-icons form-control-feedback">clear</span>
@@ -48,7 +48,7 @@
                 <i class="material-icons">create</i>
             </span>
         </div>
-        {{ form_widget(form.content, {'attr': {'placeholder': 'frontend.form.placeholder_content'|trans, 'rows': 5 }}) }}
+        {{ form_widget(form.content, {'attr': {'placeholder': 'frontend.enquiry.placeholder_content'|trans, 'rows': 5 }}) }}
         {{ form_errors(form.content) }}
         {% if not form.content.vars.valid %}
             <span class="material-icons form-control-feedback">clear</span>
@@ -58,6 +58,6 @@
 
 <div class="col-md-12 form-group">
     {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
-    <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">{{ 'frontend.form.close'|trans }}</button>
+    <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">{{ 'frontend.close'|trans }}</button>
 </div>
 {{ form_end(form) }}

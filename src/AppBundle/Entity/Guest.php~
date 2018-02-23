@@ -5,12 +5,14 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Validator\Constraints as AppAsserts;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Guest
  *
  * @ORM\Table(name="ogd_guest")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GuestRepository")
+ * @UniqueEntity("email") 
  */
 class Guest
 {
@@ -44,7 +46,7 @@ class Guest
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true, unique=true)
      * @Assert\Length(max=255)
      * @AppAsserts\Email()
      */

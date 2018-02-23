@@ -20,10 +20,10 @@ class GuestController extends Controller
         $form = $this->createForm(GuestConfirmationType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $guest = $em->getRepository(Guest::class)->findOneBy($form->getData());
+            $em     = $this->getDoctrine()->getManager();
+            $guests = $em->getRepository(Guest::class)->findByCriteria($form->getData());
                 
-            return $this->redirectToRoute('guest_confirm', ['id' => $guest->getId()]);
+            return $this->redirectToRoute('guest_confirm', ['id' => $guests[0]->getId()]);
         }
 
         return $this->render('guest/confirmation.html.twig', [
@@ -43,7 +43,7 @@ class GuestController extends Controller
 
         $form = $this->createForm(GuestConfirmationType::class, $guest);
         $form->handleRequest($request);
-        if ($form->isSubmitted()) && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($guest);
             $em->flush();
             

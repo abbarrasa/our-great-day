@@ -1,4 +1,4 @@
-<div class="col-lg-12 col-md-12 col-xs-12">
+<div class="col-12">
     <div class="timeline">
         <div class="timeline-item">
             <div class="timeline-point timeline-point-primary">
@@ -58,9 +58,11 @@
                 </div>
                 <div class="timeline-body">
                     <p>Llega a casa y al mundo nuestra mayor alegría.</p>
-                    <div class="col-sm-1 ml-auto">
-                        <img src="assets/img/kit/pro/faces/avatar.jpg" alt="Nuestra gran alegría" class="img-raised rounded-circle img-fluid">
-                    </div>                    
+                    <div class="col-3">
+                        {% image '../app/Resources/public/images/albertusko.png' output='assets/images/albertusko.png' %}
+                        <img alt="Nuestra gran alegría" class="img-raised rounded-circle img-fluid" src="{{ asset_url }}">
+                        {% endimage %}
+                    </div>
                 </div>
                 <div class="timeline-footer">
                     <p class="text-right">05-Jun-2017</p>
@@ -71,6 +73,6 @@
             <div class="timeline-point timeline-point-primary">
                 <i class="fa fa-flag-checkered"></i>
             </div>
-        </div>                
+        </div>
     </div>
 </div>
