@@ -6,7 +6,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class Mailer
 {
-    const TEMPLATE_GUESTBOOK_NOTIFICATION = 'AppBundle:email:guestbook-notification.txt.twig';
+    const TEMPLATE_GUESTBOOK_NOTIFICATION = 'email/guestbook-notification.txt.twig';
 
     /** @var \Swift_Mailer */
     protected $mailer;
