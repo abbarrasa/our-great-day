@@ -107,10 +107,10 @@
             '../app/Resources/public/js/core/popper.min.js'
             '../app/Resources/public/js/core/bootstrap-material-design.min.js'
             '../app/Resources/public/js/plugins/bootstrap-selectpicker.js'
-            '../app/Resources/public/js/plugins/bootstrap-notify.min.js'
+            '../app/Resources/public/js/plugins/bootstrap-notify.js'
             '../app/Resources/public/js/plugins/scrollreveal.min.js'
             '../app/Resources/public/js/plugins/nouislider.min.js'
-            '../app/Resources/public/js/material-kit.js'
+            '../app/Resources/public/js/material-kit.min.js'
             '../app/Resources/public/js/material-kit-demo.js' output='assets/js/compiled/app.js' %}
             <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
@@ -158,7 +158,7 @@
                                 '{{ 'frontend.success'|trans }}',
                                 '{{ 'frontend.enquiry.success'|trans }}',
                                 'success',
-                                'fa fa-check-circle'
+                                'check'
                             );
                         }).fail(function (jqXHR, textStatus, errorThrown) {
                             if (jqXHR.responseJSON.hasOwnProperty('view')) {
