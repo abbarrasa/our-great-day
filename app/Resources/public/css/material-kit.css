@@ -10829,8 +10829,7 @@ form {
     font-size: .8rem;
     font-weight: 400;
     color: #f44336;
-    top: 37px;
-    right: 0;
+    right: 15px;
     z-index: 2;
     display: block;
 }
@@ -10841,6 +10840,11 @@ form {
 
 .bmd-error .material-icons {
     font-size: .8rem !important
+}
+
+.input-group .bmd-error {
+    top: 37px;
+    right: 0;
 }
 
 .checkbox-inline,
@@ -12803,7 +12807,7 @@ select.form-control {
 .form-control-feedback {
     position: absolute;
     top: 33px;
-    right: 0;
+    right: 15px;
     z-index: 2;
     display: block;
     width: 34px;
@@ -12812,6 +12816,10 @@ select.form-control {
     text-align: center;
     pointer-events: none;
     opacity: 0
+}
+
+.input-group .form-control-feedback {
+    top: 0;
 }
 
 .input-group .form-control-feedback {

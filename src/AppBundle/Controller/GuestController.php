@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Guest;
 use AppBundle\Entity\Guestbook;
@@ -19,11 +20,20 @@ class GuestController extends Controller
     {
         $form = $this->createForm(GuestConfirmationType::class);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em     = $this->getDoctrine()->getManager();
-            $guests = $em->getRepository(Guest::class)->findByCriteria($form->getData());
-                
-            return $this->redirectToRoute('guest_confirm', ['id' => $guests[0]->getId()]);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $guests = $em->getRepository(Guest::class)->findByCriteria($form->getData());
+                if (count($guests) > 1) {
+                    $form->addError(new FormError('frontend.guest.multiple_matches'));
+                } else if (count($guests) == 0) {
+                    $form->addError(new FormError('frontend.guest.not_found'));
+                } else {
+                    return $this->redirectToRoute('guest_confirm', ['id' => $guests[0]->getId()]);
+                }
+            } else {
+                $form->addError(new FormError('frontend.form.error'));
+            }
         }
 
         return $this->render('guest/confirmation.html.twig', [
@@ -36,7 +46,7 @@ class GuestController extends Controller
      */
     public function confirmAction(Request $request, $id)
     {
-        $em = $this->getDoctrine();
+        $em = $this->getDoctrine()->getManager();
         if (($guest = $em->getRepository(Guest::class)->find($id)) === null) {
             throw $this->createNotFoundException(sprintf('No found any guest with ID %d', $id));
         }
@@ -67,9 +77,8 @@ class GuestController extends Controller
     {
         $em        = $this->getDoctrine()->getManager();
         $guestbook = new Guestbook();
-        $form = $this->createForm(GuestbookType::class, $guestbook);
+        $form      = $this->createForm(GuestbookType::class, $guestbook);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($guestbook);
             $em->flush();
@@ -80,7 +89,7 @@ class GuestController extends Controller
             )); 
         }
 
-        $query      = $em->getRepository(Guestbook::class)->getQueryAllModerate();
+        $query      = $em->getRepository(Guestbook::class)->getQueryAllApproved();
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
@@ -89,7 +98,10 @@ class GuestController extends Controller
         );
 
         // parameters to template
-        return $this->render('guest/guestbook.html.twig', array('pagination' => $pagination));
+        return $this->render('guest/guestbook.html.twig', array(
+            'pagination' => $pagination,
+            'form'       => $form->createView()
+        ));
     }
 
     /**

@@ -36,14 +36,14 @@ class GuestConfirmationType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        if ('guest' === $this->requestStack->getCurrentRequest()->get('_route')) {
-            $resolver->setDefaults([
-                'constraints' => [
-                    new GuestExists()
-                ],
-            ]);
-        }
-
+//        if ('guest' === $this->requestStack->getCurrentRequest()->get('_route')) {
+//            $resolver->setDefaults([
+//                'constraints' => [
+//                    new GuestExists()
+//                ],
+//            ]);
+//        }
+//
         if ('guest_confirm' === $this->requestStack->getCurrentRequest()->get('_route')) {
             $resolver
                 ->setDefaults(array(

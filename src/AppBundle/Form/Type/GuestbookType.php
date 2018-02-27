@@ -18,7 +18,7 @@ class GuestbookType extends AbstractType
                 'label' => 'frontend.guestbook.comment',
                 'required' => true
             ])
-            ->add('submit', SubmitType::class, ['label' => 'frontend.guestbook.submit'])
+            ->add('submit', SubmitType::class, ['label' => 'frontend.guestbook.send'])
             ->addEventSubscriber(new AddUserNameSubscriber())
         ;
     }
@@ -27,7 +27,7 @@ class GuestbookType extends AbstractType
     {
         $resolver
             ->setDefaults(array(
-                'data_class' => 'Backend\NewsBundle\Entity\Guestbook'
+                'data_class' => 'AppBundle\Entity\Guestbook'
             ))
         ;
     }

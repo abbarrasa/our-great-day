@@ -14,7 +14,7 @@
 <div class="section section-basic sr">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-8 mr-auto ml-auto">
                 <h2 class="title text-center">Our Great <em>Guestbook</em></h2>
             </div>
             
@@ -23,13 +23,13 @@
             </div>
             
             
-            <div class="col-md-8 col-xs-12 mr-auto ml-auto">
+            <div class="col-6 mr-auto ml-auto">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
                             <div class="col form-group bmd-form-group{% if not form.name.vars.valid %} has-danger{% endif %}">
-                                {{ form_label(form.name, {'label_attr': {'class': 'bmd-label-floating'}}) }}
-                                {{ form_widget(form.name) }}
+                                {{ form_label(form.name, form.name, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
                                 {{ form_errors(form.name) }}
                                 {% if not form.name.vars.valid %}
                                     <span class="material-icons form-control-feedback">clear</span>
@@ -38,15 +38,15 @@
                         </div>
                         <div class="row">
                             <div class="col form-group bmd-form-group{% if not form.comment.vars.valid %} has-danger{% endif %}">
-                                {{ form_label(form.comment, {'label_attr': {'class': 'bmd-label-floating'}}) }}
-                                {{ form_widget(form.comment, {'attr': {'rows': 5}}) }}
+                                {{ form_label(form.comment, form.comment, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.comment, {'attr': {'class': 'form-control', 'rows': 5}}) }}
                                 {{ form_errors(form.comment) }}
                                 {% if not form.comment.vars.valid %}
                                     <span class="material-icons form-control-feedback">clear</span>
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="col-md-12 form-group">
+                        <div class="col-12 form-group">
                             {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
                         </div>                        
                         {{ form_end(form) }}                        

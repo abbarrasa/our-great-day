@@ -44,8 +44,12 @@ frontend:
         confirm_attendence: Confirm your attendence
         search_you: Search you
         success: You have confirmed successfully. If you need change your confirmation, you can do it at any time.
+        not_found: No matches found. Try to specify your search again.
+        multiple_matches: There are several coincidences. Try to specify your search again.
     guestbook:
         title: Our Great <em>Guestbook</em>
         description:
         send: Send
+        name: Your name
+        comment: Your message
         success: 

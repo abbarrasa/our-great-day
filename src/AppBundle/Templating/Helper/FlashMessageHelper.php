@@ -3,20 +3,31 @@
 namespace AppBundle\Templating\Helper;
 
 use Symfony\Component\Templating\Helper\Helper;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class FlashMessageHelper extends Helper
 {
     protected $allowedTypes;
     protected $alertClassNames;
     protected $iconClassNames;
-    protected $viewTemplateName;
 
-    public function __construct()
+    /** @var TranslatorInterface */
+    protected $translator;
+
+    /**
+     * FlashMessageHelper constructor.
+     * @param TranslatorInterface $translator
+     */
+    public function __construct(TranslatorInterface $translator)
     {
+        $this->translator = $translator;
         $this->allowedTypes = ['notice', 'success', 'alert', 'error'];
-        $this->alertClassNames = array_combine($this->allowedTypes, ['info', 'success', 'warning', 'danger']);
-        $this->iconClassNames = array_combine($this->allowedTypes, ['info_outline', 'check', 'warning', 'error_outline']);
-        $this->viewTemplateName = 'AppBundle:flash:messages.html.twig';
+        $this->alertClassNames = array_combine(
+            $this->allowedTypes, ['info', 'success', 'warning', 'danger']
+        );
+        $this->iconClassNames = array_combine(
+            $this->allowedTypes, ['info_outline', 'check', 'warning', 'error_outline']
+        );
     }
 
     public function getName()
@@ -42,18 +53,13 @@ class FlashMessageHelper extends Helper
         return $this->iconClassNames[$type];
     }
 
-    public function getViewTemplateName()
-    {
-        return $this->viewTemplateName;
-    }
-
-    public function getFlash($type, $message)
+    public function getFlashMessage($type, $title, $message)
     {
         return [
-            'type'    => $type,
-            'class'   => $this->getAlertClassName($type),
+            'alert'   => $this->getAlertClassName($type),
             'icon'    => $this->getIconClassName($type),
-            'message' => $message
+            'title'   => $this->translator->trans($title),
+            'message' => $this->translator->trans($message)
         ];
     }
 
