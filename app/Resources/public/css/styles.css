@@ -1082,3 +1082,7 @@ div.form-check-inline .form-check-label {
     display: block;
     position: relative;
 }
+
+.footer .heart{
+    color: #FF3B30;
+}
