@@ -48,8 +48,17 @@ frontend:
         multiple_matches: There are several coincidences. Try to specify your search again.
     guestbook:
         title: Our Great <em>Guestbook</em>
-        description:
+        description: Do not be shy!. Send us an original message that would make us happy in our great day. Beforehand, thank you very much to all.
         send: Send
         name: Your name
         comment: Your message
-        success: 
+        success: Your message has been sent successfully and is pending moderation. After being reviewed it will be published.
+    welcome:
+        title: Welcome y'all to <em>Our Great Day</em>
+        description:
+    profiles:
+        title: Our Great <em>Lifes</em>
+    timeline:
+        title: Our Great <em>Story</em>
+    location:
+        title: Our Great <em>Wedding Location</em>
