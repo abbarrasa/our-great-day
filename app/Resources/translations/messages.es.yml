@@ -53,3 +53,12 @@ frontend:
         name: Tu nombre
         comment: Tu mensaje
         success: Tu mensaje se ha enviado correctamente y queda pendiente de moderación. Después de ser revisado será publicado. 
+    welcome:
+        title: Bienvenidos a todos a <em>Nuestro Gran Día</em>Welcome y'all to <em>Our Great Day</em>
+        description:
+    profiles:
+        title: Nuestras Grandes <em>Biografas</em>Our Great <em>Lifes</em>
+    timeline:
+        title: Nuestra Gran <em>Historia</em>Our Great <em>Story</em>
+    location:
+        title: Nuestro Gran <em>Lugar de la Boda</em>Our Great <em>Wedding Location</em
