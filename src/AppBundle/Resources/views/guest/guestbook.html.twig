@@ -14,16 +14,12 @@
 <div class="section section-basic">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-12">
                 <h2 class="title text-center">Our Great <em>Guestbook</em></h2>
-            </div>
-            
-            <div class="col-md-12">
                 {{ include('AppBundle:guest/partials:card-list.html.twig', {'pagination': pagination}) }}
             </div>
             
-            {#{{ flash_messages() }}#}
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-8">
                 <div class="card card-raised">
                     <div class="content">
                         {{ form_start(form) }}
@@ -48,8 +44,6 @@
                                 {{ form_widget(form.submit) }}
                             </div>
                         </div>
-
-                        {{ form_rest(form) }}
                         {{ form_end(form) }}
                     </div>
                 </div>

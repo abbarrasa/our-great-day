@@ -10,6 +10,8 @@
             <generator strategy="AUTO" />
         </id>
 
+        <one-to-many field="guestbook" target-entity="AppBundle\Entity\Guestbook" mapped-by="user" />
+
     </entity>
 
 </doctrine-mapping>

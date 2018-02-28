@@ -12748,6 +12748,7 @@ label {
 .is-focused .bmd-label-floating {
     top: 1rem;
     left: 0;
+    padding-left: 15px;
     font-size: .6875rem
 }
 

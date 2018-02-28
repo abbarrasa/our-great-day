@@ -54,14 +54,14 @@ frontend:
         comment: Tu mensaje
         success: Tu mensaje se ha enviado correctamente y queda pendiente de moderación. Después de ser revisado será publicado.
         like:
-            likes: {0} %likes% me gusta|{1} %likes% me gusta|]1,Inf[ %likes% me gusta
+            likes: '{0} %likes% me gusta|{1} %likes% me gusta|]1,Inf[ %likes% me gusta'
             success: Has dado a Me gusta al mensaje de %author%.
     welcome:
-        title: Bienvenidos a todos a <em>Nuestro Gran Día</em>Welcome y'all to <em>Our Great Day</em>
+        title: Bienvenidos a todos a <em>Nuestro Gran Día</em>
         description:
     profiles:
-        title: Nuestras Grandes <em>Biografas</em>Our Great <em>Lifes</em>
+        title: Nuestras Grandes <em>Biografías</em>
     timeline:
-        title: Nuestra Gran <em>Historia</em>Our Great <em>Story</em>
+        title: Nuestra Gran <em>Historia</em>
     location:
-        title: Nuestro Gran <em>Lugar de la Boda</em>Our Great <em>Wedding Location</em
+        title: Nuestro Gran <em>Lugar de la Boda</em>

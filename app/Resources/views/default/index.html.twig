@@ -17,7 +17,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-8 mr-auto ml-auto">
-                    <h2 class="title">{{ frontend.welcome.title|trans|raw }}</em></h2>
+                    <h2 class="title">{{ 'frontend.welcome.title'|trans|raw }}</em></h2>
                     <div class="description-page">
                         <p>
                             We hope Everyone had safe travel and are ready to celebrate with us. In your bag you’ll find some
@@ -25,9 +25,7 @@
                             We hope you enjoy your stay!
                         </p>
                     </div>
-                    <div class="col-8 mr-auto ml-auto">
-                        <div id="clock"></div>
-                    </div>
+                    <div id="clock"></div>
                 </div>
             </div>
         </div>
@@ -39,7 +37,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-8 mr-auto ml-auto">
-                    <h2 class="title">{{ frontend.profiles.title|trans|raw }}</h2>                
+                    <h2 class="title">{{ 'frontend.profiles.title'|trans|raw }}</h2>
                     {{ include('default/partials/profiles.html.twig') }}
                 </div>            
             </div>
@@ -52,7 +50,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 mr-auto ml-auto">            
-                    <h2 class="title">{{ frontend.timeline.title|trans|raw }}</h2>
+                    <h2 class="title">{{ 'frontend.timeline.title'|trans|raw }}</h2>
                     {{ include('default/partials/timeline.html.twig') }}
                 </div>
             </div>
@@ -65,11 +63,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 mr-auto ml-auto">
-                    <h2 class="title">{{ frontend.location.title|trans|raw }}</h2>
-                    <div id="map" class="big-map"></div>                    
+                    <h2 class="title">{{ 'frontend.location.title'|trans|raw }}</h2>
                 </div>
             </div>
         </div>
+        <div id="map" class="big-map"></div>
     </div>
     <!-- End Maps -->
 
