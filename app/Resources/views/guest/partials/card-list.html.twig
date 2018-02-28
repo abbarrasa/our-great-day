@@ -19,9 +19,9 @@
                                     <span>{{ entry.author }}</span>
                                 </div>
                                 <div class="stats ml-auto">
-                                    <a href="{{ path('guestbook_like', {'id': entry.id}) }}">
-                                        <i class="material-icons">favorite</i> {{ entry.likes }}
-                                    </a>                                
+                                    <a href="{{ path('guestbook_like', {'id': entry.id, 'page': page}) }}" class="badge badge-danger">
+                                        <i class="fa fa-heart"></i> {{ entry.likes }}
+                                    </a>
                                 </div>
                            </div>                            
                         </div>                    
