@@ -16,8 +16,8 @@
     <div class="section section-basic sr">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 text-center">
-                    <h2 class="title">Welcome y'all to <em>Our Great Day</em></h2>
+                <div class="col-8 mr-auto ml-auto">
+                    <h2 class="title">{{ frontend.welcome.title|trans|raw }}</em></h2>
                     <div class="description-page">
                         <p>
                             We hope Everyone had safe travel and are ready to celebrate with us. In your bag you’ll find some
@@ -38,10 +38,10 @@
     <div class="section section-basic section-white-to-gray sr">
         <div class="container">
             <div class="row">
-                <h2 class="title text-center">Our Great <em>Lifes</em></h2>
-                <div class="col-md-8 col-xs-12 mr-auto ml-auto">
+                <div class="col-8 mr-auto ml-auto">
+                    <h2 class="title">{{ frontend.profiles.title|trans|raw }}</h2>                
                     {{ include('default/partials/profiles.html.twig') }}
-                </div>
+                </div>            
             </div>
         </div>
     </div>
@@ -51,8 +51,10 @@
     <div class="section section-basic section-gray sr">
         <div class="container">
             <div class="row">
-                <h2 class="title text-center">Our Great <em>Story</em></h2>
-                {{ include('default/partials/timeline.html.twig') }}
+                <div class="col-12 mr-auto ml-auto">            
+                    <h2 class="title">{{ frontend.timeline.title|trans|raw }}</h2>
+                    {{ include('default/partials/timeline.html.twig') }}
+                </div>
             </div>
         </div>
     </div>
@@ -62,12 +64,12 @@
     <div class="section section-basic sr">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 text-center">
-                    <h2 class="title">Our Great <em>Wedding Location</em></h2>
+                <div class="col-12 mr-auto ml-auto">
+                    <h2 class="title">{{ frontend.location.title|trans|raw }}</h2>
+                    <div id="map" class="big-map"></div>                    
                 </div>
             </div>
         </div>
-        <div id="map" class="big-map"></div>
     </div>
     <!-- End Maps -->
 
