@@ -52,7 +52,10 @@ frontend:
         send: Enviar
         name: Tu nombre
         comment: Tu mensaje
-        success: Tu mensaje se ha enviado correctamente y queda pendiente de moderación. Después de ser revisado será publicado. 
+        success: Tu mensaje se ha enviado correctamente y queda pendiente de moderación. Después de ser revisado será publicado.
+        like:
+            likes: {0} %likes% me gusta|{1} %likes% me gusta|]1,Inf[ %likes% me gusta
+            success: Has dado a Me gusta al mensaje de %author%.
     welcome:
         title: Bienvenidos a todos a <em>Nuestro Gran Día</em>Welcome y'all to <em>Our Great Day</em>
         description:
