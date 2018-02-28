@@ -1,27 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    {#% stylesheets#}
-    {#'@AppBundle/Resources/public/css/hipster-cards.css' filter='cssrewrite' %}#}
-    {#<link rel="stylesheet" href="{{ asset_url }}" />#}
-    {#{% endstylesheets %}#}
-{% endblock %}
-
-{% block title %}Our Great Day! - Guestbook{% endblock %}
+{% block title %}{{ 'frontend.title'|trans }} - {{ 'frontend.guest.confirm_attendence'|trans }}{% endblock %}
 
 {% block main %}
 <div class="section section-basic sr">
     <div class="container">
         <div class="row">
-            <div class="col-8 mr-auto ml-auto">
-                <h2 class="title text-center">Our Great <em>Guestbook</em></h2>
+            <div class="col-12 mr-auto ml-auto">
+                <h2 class="title">{{ 'frontend.guestbook.title'|trans|raw }}</h2>
+                {{ include('AppBundle:guest/partials:card-list.html.twig', {'pagination': pagination}) }}                
             </div>
-            
-            <div class="col-md-12">
-                {{ include('AppBundle:guest/partials:card-list.html.twig', {'pagination': pagination}) }}
-            </div>
-            
             
             <div class="col-6 mr-auto ml-auto">
                 <div class="card">
@@ -46,22 +34,16 @@
                                 {% endif %}
                             </div>
                         </div>
+                    </div>
+                    <div class="card-footer">
                         <div class="col-12 form-group">
                             {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
                         </div>                        
-                        {{ form_end(form) }}                        
                     </div>
+                    {{ form_end(form) }}                    
                 </div>
             </div>                        
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    {#% javascripts#}
-    {#'@AppBundle/Resources/public/js/hipster-cards.min.js' output='js/compiled/app.js' %}#}
-    {#<script src="{{ asset_url }}"></script>#}
-    {#{% endjavascripts %}#}
 {% endblock %}
