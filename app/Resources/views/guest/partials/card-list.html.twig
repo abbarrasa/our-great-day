@@ -1,28 +1,31 @@
 {% if pagination|length > 0 %}
-    <div class="col-md-12">
+    <div class="col-12">
         {% set colors = ['blue', 'azure', 'black', 'orange', 'red', 'green', 'rose'] %}
         {% for row in pagination|batch(3) %}
             <div class="row">
                 {% for entry in row %}
                     {% set color = colors[(entry.createdAt|date('U')) % 7] %}
-                    
+                    <div class="col-4">
                         <div class="card bg-success">
                             <div class="card-body ">
-                                <h5 class="card-category card-category-social">
-                                    <i class="fa fa-newspaper-o"></i> TechCrunch
-                                </h5>
-                                <h4 class="card-title">
-                                    <a href="#pablo">"Focus on Your Employees"</a>
-                                </h4>
-                                <p class="card-description">
-                                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                                </p>
-                                <div class="card-stats justify-content-center">
-                                    <a href="#pablo" class="btn btn-white btn-round">Read Article</a>
+                                <div class="card-category pull-right">
+                                    <i class="material-icons">schedule</i> {{ entry.createdAt|elapsed_time }}
                                 </div>
+                                <h4 class="card-title justify-content-center">{{ entry.content }}</h4>
                             </div>
+                            <div class="card-footer">
+                                <div class="author">
+                                    <img src="assets/img/kit/pro/faces/avatar.jpg" alt="..." class="avatar img-raised">
+                                    <span>{{ entry.author }}</span>
+                                </div>
+                                <div class="stats ml-auto">
+                                    <a href="{{ path('guestbook_like', {'id': entry.id}) }}">
+                                        <i class="material-icons">favorite</i> {{ entry.likes }}
+                                    </a>                                
+                                </div>
+                           </div>                            
                         </div>                    
-                    
+                    </div>
                     
                     
                     <div class="card-box col-md-4 col-sm-6">
@@ -55,7 +58,7 @@
         {% endfor %}
     </div>
 
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-8 ml-auto">
         {#{{ knp_pagination_render(pagination, 'AppBundle:pagination:pagination.html.twig') }}#}
     </div>
 {% endif %}
