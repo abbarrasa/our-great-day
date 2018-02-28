@@ -105,9 +105,9 @@ class GuestController extends Controller
     }
 
     /**
-     * @Route("/guestbook/like/{id}", requirements={"id" = "\d+"}, name="guestbook_like")
+     * @Route("/guestbook/like/{id}/{page}", requirements={"id" = "\d+", "page" = "\d+"}, name="guestbook_like")
      */
-    public function likeAction(Request $request, $id)
+    public function likeAction(Request $request, $id, $page = 1)
     {
         $em = $this->getDoctrine();
         if (($guestbook = $em->getRepository(Guestbook::class)->find($id)) === null) {
@@ -117,5 +117,12 @@ class GuestController extends Controller
         $guestbook->setLikes($guestbook->getLikes() + 1);
         $em->persist($guestbook);
         $em->flush();
+        
+        $helper = $this->get('AppBundle\Service\FlashMessageHelper');
+        $this->addFlash('success', $helper->getFlashMessage(
+            'success', 'frontend.success', 'frontend.guestbook.like.success'
+        ));
+        
+        return $this->redirectToRoute('guestbook', ['page' => $page]);
     }
 }
