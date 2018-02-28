@@ -109,13 +109,14 @@
                                         {% endif %}
                                         </div>
                                     {% endif %}
-
-                                    <div class="col-md-12 form-group">
-                                        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
-                                    </div>
-                                    {{ form_end(form) }}
                                 </div>
                             </div>
+                            <div class="card-footer">
+                                <div class="col-12 form-group">
+                                    {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
+                                </div>
+                            </div>
+                            {{ form_end(form) }}                            
                         </div>
                     </div>
                 </div>
