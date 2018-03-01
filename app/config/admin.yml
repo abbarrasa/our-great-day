@@ -11,6 +11,18 @@ services:
             - [ setTranslationDomain, [AppBundle]]
         public: true
 
+    app.admin.guestbook:
+        class: AppBundle\Admin\GuestbookAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: app.admin.group.administration, label: app.admin.model.guestbooks }
+        arguments:
+            - ~
+            - AppBundle\Entity\Guestbook
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppBundle]]
+        public: true
+
     app.admin.location:
         class: AppBundle\Admin\LocationAdmin
         tags:

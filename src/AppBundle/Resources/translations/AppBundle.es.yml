@@ -4,11 +4,9 @@ app:
             administration: 'Administración'
             settings: 'Configuración'
         model:
-            guest: 'Guest'
-            guests: 'Guests'
+            guest: 'Invitado'
+            guests: 'Invitados'
+            guestbook: 'Libro de invitados'
+            guestbooks: 'Felicitaciones'
             location: 'Lugar'
             locations: 'Lugares'
-
-    frontend:
-        enquiry:
-            success: 'Tu cuestión ha sido enviada satisfactoriamente. Será atendida lo antes posible.'

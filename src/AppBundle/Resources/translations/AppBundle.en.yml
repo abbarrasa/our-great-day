@@ -6,9 +6,7 @@ app:
         model:
             guest: 'Guest'
             guests: 'Guests'
+            guestbook: 'Guestbook'
+            guestbooks: 'Guestbooks'
             location: 'Location'
             locations: 'Locations'
-
-    frontend:
-        enquiry:
-            success: 'Your question has been sent successfully. It will be attended as soon as possible.'

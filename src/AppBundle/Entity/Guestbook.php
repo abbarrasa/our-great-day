@@ -52,6 +52,13 @@ class Guestbook
     private $createdAt;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="published_at", type="datetime", nullable=true)
+     */
+    private $publishedAt;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="status", type="integer", nullable=true)
@@ -77,6 +84,7 @@ class Guestbook
      */
     public function __construct()
     {
+        $this->setCreatedAt(new \DateTime());
         $this->setStatus(self::STATUS_PENDING);
         $this->setLikes(0);
     }
@@ -210,16 +218,6 @@ class Guestbook
     {
         return $this->likes;
     }    
-    
-    /**
-     * Set createdAt value before persist 
-     *
-     * @ORM\PrePersist
-     */
-    public function setCreatedAtValue()
-    {
-        $this->setCreatedAt(new \DateTime());
-    }    
 
     /**
      * Set status.
@@ -243,5 +241,39 @@ class Guestbook
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set publishedAt.
+     *
+     * @param \DateTime|null $publishedAt
+     *
+     * @return Guestbook
+     */
+    public function setPublishedAt($publishedAt = null)
+    {
+        $this->publishedAt = $publishedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get publishedAt.
+     *
+     * @return \DateTime|null
+     */
+    public function getPublishedAt()
+    {
+        return $this->publishedAt;
+    }
+
+    /**
+     * Set createdAt value before persist
+     *
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->setCreatedAt(new \DateTime());
     }
 }

@@ -86,7 +86,9 @@ class GuestController extends Controller
             $helper = $this->get('AppBundle\Service\FlashMessageHelper');
             $this->addFlash('success', $helper->getFlashMessage(
                 'success', 'frontend.success', 'frontend.guestbook.success'
-            )); 
+            ));
+
+            return $this->redirectToRoute('guestbook', ['page' => $page]);
         }
 
         $query      = $em->getRepository(Guestbook::class)->getQueryAllApproved();
@@ -94,7 +96,7 @@ class GuestController extends Controller
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
             $page /*page number*/,
-            15 /*limit per page*/
+            9 /*limit per page*/
         );
 
         // parameters to template
@@ -109,7 +111,7 @@ class GuestController extends Controller
      */
     public function likeAction(Request $request, $id, $page = 1)
     {
-        $em = $this->getDoctrine();
+        $em = $this->getDoctrine()->getManager();
         if (($guestbook = $em->getRepository(Guestbook::class)->find($id)) === null) {
             throw $this->createNotFoundException(sprintf('No found any guestbook with ID %d', $id));
         }
@@ -120,7 +122,7 @@ class GuestController extends Controller
         
         $helper = $this->get('AppBundle\Service\FlashMessageHelper');
         $this->addFlash('success', $helper->getFlashMessage(
-            'success', 'frontend.success', 'frontend.guestbook.like.success'
+            'success', 'frontend.success', 'frontend.guestbook.like.success', ['%author%' => $guestbook->getName()]
         ));
         
         return $this->redirectToRoute('guestbook', ['page' => $page]);

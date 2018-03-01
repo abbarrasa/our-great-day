@@ -53,13 +53,13 @@ class FlashMessageHelper extends Helper
         return $this->iconClassNames[$type];
     }
 
-    public function getFlashMessage($type, $title, $message)
+    public function getFlashMessage($type, $title, $message, $parameters = array())
     {
         return [
             'alert'   => $this->getAlertClassName($type),
             'icon'    => $this->getIconClassName($type),
             'title'   => $this->translator->trans($title),
-            'message' => $this->translator->trans($message)
+            'message' => $this->translator->trans($message, $parameters)
         ];
     }
 
