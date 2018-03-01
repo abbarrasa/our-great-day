@@ -13,8 +13,9 @@
             
             <div class="col-6 mr-auto ml-auto">
                 <div class="card">
-                    {{ form_start(form) }}
+                    {{ form_start(form) }}                    
                     <div class="card-body">
+                        {{ form_errors(form) }}                         
                         <div class="row">
                             <div class="col form-group bmd-form-group{% if not form.name.vars.valid %} has-danger{% endif %}">
                                 {{ form_label(form.name, form.name, {'label_attr': {'class': 'bmd-label-floating'}}) }}
