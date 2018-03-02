@@ -36,7 +36,7 @@ class GuestRepository extends EntityRepository
                 }
             }
         }
-        
+
         return $qb->getQuery()->getResult();
     }
 }

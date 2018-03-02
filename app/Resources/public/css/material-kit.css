@@ -19403,6 +19403,30 @@ select.selectpicker {
     background: linear-gradient(60deg, rgba(248, 187, 208, .56), rgba(240, 98, 146, .95))
 }
 
+.header-filter[filter-color=black]:after,
+.header-filter[filter-color=dark]:after {
+    /*background: rgba(248, 187, 208, .56);*/
+    /*background: linear-gradient(60deg, rgba(248, 187, 208, .56), rgba(240, 98, 146, .95))*/
+
+    background: #1f1c2c;
+    /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #1f1c2c 0%, #928dab 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #1f1c2c), color-stop(100%, #928dab));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg, #1f1c2c 0%, #928dab 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg, #1f1c2c 0%, #928dab 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg, #1f1c2c 0%, #928dab 100%);
+    /* IE10+ */
+    background: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f1c2c', endColorstr='#928dab',GradientType=1 );
+    /* IE6-9 fallback on horizontal gradient */
+
+}
+
 .clear-filter:before {
     display: none
 }

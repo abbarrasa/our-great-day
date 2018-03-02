@@ -122,7 +122,7 @@ class GuestController extends Controller
         
         $helper = $this->get('AppBundle\Service\FlashMessageHelper');
         $this->addFlash('success', $helper->getFlashMessage(
-            'success', 'frontend.success', 'frontend.guestbook.like.success', ['%author%' => $guestbook->getName()]
+            'success', 'frontend.success', 'frontend.guestbook.likes.success', ['%author%' => $guestbook->getName()]
         ));
         
         return $this->redirectToRoute('guestbook', ['page' => $page]);

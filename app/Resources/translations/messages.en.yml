@@ -54,7 +54,7 @@ frontend:
         comment: Your message
         success: Your message has been sent successfully and is pending moderation. After being reviewed it will be published.
         likes:
-            tooltip: '{0} %likes% likes|{1} %likes% like|]1,Inf[ %likes% likes'
+            tooltip: Click here to "Like" the message
             success: You have clicked "Like" on %author%\'s message.
     welcome:
         title: Welcome y'all to <em>Our Great Day</em>

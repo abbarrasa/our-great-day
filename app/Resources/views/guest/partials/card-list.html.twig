@@ -1,12 +1,12 @@
 {% if pagination|length > 0 %}
     <div class="col-12">
-        {% set colors = ['primary', 'info', 'success', 'warning', 'danger', 'rose'] %}
+        {% set styles = ['primary', 'info', 'success', 'warning', 'danger', 'rose'] %}
         {% for row in pagination|batch(3) %}
             <div class="row">
                 {% for entry in row %}
-                    {% set color = colors[(entry.createdAt|date('U')) % (colors|length)] %}
+                    {% set style = styles[(entry.createdAt|date('U')) % (styles|length)] %}
                     <div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
-                        <div class="card bg-danger">
+                        <div class="card bg-{{ style }}">
                             <div class="card-body">
                                 <div class="card-category text-right">
                                     <i class="material-icons">schedule</i> {{ entry.publishedAt|elapsed_time }}
@@ -21,7 +21,7 @@
                                     <span>{{ entry.name }}</span>
                                 </div>
                                 <div class="stats ml-auto">
-                                    <a href="{{ path('guestbook_like', {'id': entry.id}) }}" class="badge badge-danger" title="{{'guestbook.likes.tooltip'|trans({'%likes%': entry.likes})}}" data-toggle="tooltip">
+                                    <a href="{{ path('guestbook_like', {'id': entry.id}) }}" class="badge badge-danger" title="{{'frontend.guestbook.likes.tooltip'|trans}}" data-toggle="tooltip">
                                         <i class="fa fa-heart"></i>  {{ entry.likes }}
                                     </a>
                                 </div>

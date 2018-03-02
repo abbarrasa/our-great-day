@@ -54,7 +54,7 @@ frontend:
         comment: Tu mensaje
         success: Tu mensaje se ha enviado correctamente y queda pendiente de moderación. Después de ser revisado será publicado.
         likes:
-            tooltip: '{0} %likes% me gusta|{1} %likes% me gusta|]1,Inf[ %likes% me gusta'
+            tooltip: Pulsa para dar un "Me gusta" al mensaje
             success: Has dado a "Me gusta" al mensaje de %author%.
     welcome:
         title: Bienvenidos a todos a <em>Nuestro Gran Día</em>
