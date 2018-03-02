@@ -1,10 +1,10 @@
 {% if pagination|length > 0 %}
     <div class="col-12">
-        {% set colors = ['blue', 'azure', 'black', 'orange', 'red', 'green', 'rose'] %}
+        {% set colors = ['primary', 'info', 'success', 'warning', 'danger', 'rose'] %}
         {% for row in pagination|batch(3) %}
             <div class="row">
                 {% for entry in row %}
-                    {% set color = colors[(entry.createdAt|date('U')) % 7] %}
+                    {% set color = colors[(entry.createdAt|date('U')) % (colors|length)] %}
                     <div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
                         <div class="card bg-danger">
                             <div class="card-body">
@@ -21,40 +21,13 @@
                                     <span>{{ entry.name }}</span>
                                 </div>
                                 <div class="stats ml-auto">
-                                    <a href="{{ path('guestbook_like', {'id': entry.id}) }}" class="badge badge-danger">
+                                    <a href="{{ path('guestbook_like', {'id': entry.id}) }}" class="badge badge-danger" title="{{'guestbook.likes.tooltip'|trans({'%likes%': entry.likes})}}" data-toggle="tooltip">
                                         <i class="fa fa-heart"></i>  {{ entry.likes }}
                                     </a>
                                 </div>
                            </div>                            
                         </div>                    
                     </div>
-                    
-                    
-                    {#<div class="card-box col-md-4 col-sm-6">#}
-                        {#<div class="card card-with-border" data-background="color" data-color="{{ color }}">#}
-                            {#<div class="header">#}
-                                {#<div class="category pull-right">#}
-                                    {#<i class="material-icons">schedule</i> {{ entry.createdAt|elapsed_time }}#}
-                                {#</div>#}
-                            {#</div>#}
-                            {#<div class="content text-center">#}
-                                {#<p class="description">Your friend <b>Michael Osborn</b> has sent you a hipster gift card.</p><br>#}
-                            {#</div>#}
-                            {#<div class="footer">#}
-                                {#<div class="author">#}
-                                    {#<a href="#pablo">#}
-                                        {#<img src="assets/img/faces/avatar.jpg" alt="..." class="avatar img-raised">#}
-                                        {#<span>{{ entry.author }}</span>#}
-                                    {#</a>#}
-                                    {#<div class="stats">#}
-                                        {#<a href="{{ path('guestbook_like', {'id': entry.id}) }}">#}
-                                            {#<i class="material-icons">favorite</i> {{ entry.likes }}#}
-                                        {#</a>#}
-                                    {#</div>#}
-                                {#</div>#}
-                            {#</div>#}
-                        {#</div> <!-- end card -->#}
-                    {#</div>#}
                 {% endfor %}
             </div>
         {% endfor %}
