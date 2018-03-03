@@ -13,8 +13,8 @@
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         {% stylesheets
-            '../app/Resources/public/css/material-kit.css'
-            '../app/Resources/public/css/styles.css' filter='cssrewrite' %}
+            '../app/Resources/public/css/material-kit.min.css'
+            '../app/Resources/public/css/styles.css' filter='cssrewrite' output='assets/css/compiled/app.css' %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
         {% endblock %}
@@ -52,7 +52,7 @@
             
             <!-- Jumbotron -->
             {% image '../app/Resources/public/images/main.jpg' output='assets/images/main.jpg' %}
-            <div class="page-header header-filter clear-filter orange-filter" data-parallax="true" style="background-image: url('{{ asset_url }}');">
+            <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('{{ asset_url }}');">
             {% endimage %}
                 <div class="container">
                     <div class="row">

@@ -6,6 +6,19 @@ frontend:
     choice:
         yes: Sí
         no: No
+    elapsed_time:
+        just_now: Justo ahora
+        minutes_ago: hace %number% minutos
+        a_hour_ago: hace una hora
+        hours_ago: hace %number% horas
+        a_day_ago: hace un día
+        days_ago: hace '%number% días
+        a_week_ago: hace una semana
+        weeks_ago: hace %number% semanas
+        a_month_ago: hace un mes
+        months_ago: hace %number% meses
+        a_year_ago: hace un año
+        years_ago: hace %number% años
     menu:
         share: Compartir en %site%
         contact_us: Contáctanos

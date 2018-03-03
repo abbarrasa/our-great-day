@@ -1,36 +1,52 @@
 {% if pagination|length > 0 %}
     <div class="col-12">
-        {% set styles = ['primary', 'info', 'success', 'warning', 'danger', 'rose'] %}
+        {% set column0 = [] %}
+        {% set column1 = [] %}
+        {% set column2 = [] %}
         {% for row in pagination|batch(3) %}
-            <div class="row">
-                {% for entry in row %}
+            {% for position, entry in row %}
+                {% set key = position % 3 %}
+                {% if key == 0 %}
+                    {% set column0 = column0|merge([entry]) %}
+                {% elseif key == 1 %}
+                    {% set column1 = column1|merge([entry]) %}
+                {% elseif key == 2 %}
+                    {% set column2 = column2|merge([entry]) %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        {% set columns = [column0, column1, column2] %}
+        {% set styles = ['primary', 'info', 'success', 'warning', 'danger', 'rose'] %}
+        <div class="row">
+            {% for column in columns %}
+                <div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
+                {% for entry in column %}
                     {% set style = styles[(entry.createdAt|date('U')) % (styles|length)] %}
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
-                        <div class="card bg-{{ style }}">
-                            <div class="card-body">
-                                <div class="card-category text-right">
-                                    <i class="material-icons">schedule</i> {{ entry.publishedAt|elapsed_time }}
-                                </div>
-                                <h4 class="card-title justify-content-center">{{ entry.comment }}</h4>
+                    <div class="card bg-{{ style }}">
+                        <div class="card-body">
+                            <div class="card-category text-right">
+                                <i class="material-icons">schedule</i> {{ entry.publishedAt|elapsed_time }}
                             </div>
-                            <div class="card-footer">
-                                <div class="author">
-                                    {% image '../app/Resources/public/images/albertusko.png' output='assets/images/albertusko.png' %}
-                                    <img src="{{ asset_url }}" alt="{{ entry.name }}" class="avatar img-raised">
-                                    {% endimage %}
-                                    <span>{{ entry.name }}</span>
-                                </div>
-                                <div class="stats ml-auto">
-                                    <a href="{{ path('guestbook_like', {'id': entry.id}) }}" class="badge badge-danger" title="{{'frontend.guestbook.likes.tooltip'|trans}}" data-toggle="tooltip">
-                                        <i class="fa fa-heart"></i>  {{ entry.likes }}
-                                    </a>
-                                </div>
-                           </div>                            
-                        </div>                    
+                            <h4 class="card-title justify-content-center">{{ entry.comment }}</h4>
+                        </div>
+                        <div class="card-footer">
+                            <div class="author">
+                                {% image '../app/Resources/public/images/albertusko.png' output='assets/images/albertusko.png' %}
+                                <img src="{{ asset_url }}" alt="{{ entry.name }}" class="avatar img-raised">
+                                {% endimage %}
+                                <span>{{ entry.name }}</span>
+                            </div>
+                            <div class="stats ml-auto">
+                                <a href="{{ path('guestbook_like', {'id': entry.id}) }}" class="badge badge-danger" title="{{'frontend.guestbook.likes.tooltip'|trans}}" data-toggle="tooltip">
+                                    <i class="fa fa-heart"></i>  {{ entry.likes }}
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 {% endfor %}
-            </div>
-        {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
 
     <div class="col-8 ml-auto">

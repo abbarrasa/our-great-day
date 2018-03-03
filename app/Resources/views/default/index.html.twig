@@ -4,7 +4,7 @@
     {{ parent() }}
     {% stylesheets
     '../app/Resources/public/css/timeline.css'
-    '../app/Resources/public/css/flipclock.css' filter='cssrewrite' %}
+    '../app/Resources/public/css/flipclock.css' filter='cssrewrite' output='assets/css/compiled/app.css' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}

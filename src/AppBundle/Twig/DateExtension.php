@@ -62,35 +62,35 @@ class DateExtension extends \Twig_Extension
         //minutes, hours, or days
         $parameters = [];
         if ($timeDiff < 2) {
-            $message    = "Just now";
+            $message    = 'frontend.elapsed_time.just_now';
         } elseif ($timeDiff >= 2 && $timeDiff < 60) {
             $parameters = ['%number%' => floor(abs($timeDiff))];
-            $message    = '%number% minutes ago';
+            $message    = 'frontend.elapsed_time.minutes_ago';
         } elseif ($timeDiff >= 60 && $timeDiff < 120) {
-            $message    = 'a hour ago';
+            $message    = 'frontend.elapsed_time.a_hour_ago';
         } elseif ($timeDiff < 1440) {
             $parameters = ['%number%' => floor(abs($timeDiff / 60))];
-            $message    = '%number% hours ago';
+            $message    = 'frontend.elapsed_time.hours_ago';
         } elseif ($timeDiff >= 1440 && $timeDiff < 2880) {
-            $message = 'a day ago';
+            $message    = 'frontend.elapsed_time.a_day_ago';
         } elseif ($timeDiff < 10080) {
             $parameters = ['%number%' => floor(abs($timeDiff / 1440))];
-            $message    = '%number% days ago';
+            $message    = 'frontend.elapsed_time.days_ago';
         } elseif ($timeDiff >= 10080 && $timeDiff < 20160) {
-            $message    = 'a week ago';
+            $message    = 'frontend.elapsed_time.a_week_ago';
         } elseif ($timeDiff < 40320) {
             $parameters = ['%number%' => floor(abs($timeDiff / 10080))];
-            $message    = '%number% weeks ago';
+            $message    = 'frontend.elapsed_time.weeks_ago';
         } elseif ($timeDiff >= 40320 && $timeDiff < 80640) {
-            $message    = 'a month ago';
+            $message    = 'frontend.elapsed_time.a_month_ago';
         } elseif ($timeDiff < 2096640) {
             $parameters = ['%number%' => floor(abs($timeDiff / 40320))];
-            $message    = '%number% months ago';
+            $message    = 'frontend.elapsed_time.months_ago';
         } elseif ($timeDiff >= 2096640 && $timeDiff < 4193280) {
-            $message    = 'a year ago';
+            $message    = 'frontend.elapsed_time.a_year_ago';
         } elseif ($timeDiff >= 4193280) {
             $parameters = ['%number%' => floor(abs($timeDiff / 2096640))];
-            $message    = '%number% years ago';
+            $message    = 'frontend.elapsed_time.years_ago';
         }
 
         return $this->translator->trans($message, $parameters);

@@ -5,7 +5,20 @@ frontend:
     title: Our great day
     choice:
         yes: Yes
-        no: No  
+        no: No
+    elapsed_time:
+        just_now: Just now
+        minutes_ago: %number% minutes ago
+        a_hour_ago: a hour ago
+        hours_ago: %number% hours ago
+        a_day_ago: a day ago
+        days_ago: %number% days ago
+        a_week_ago: a week ago
+        weeks_ago: %number% weeks ago
+        a_month_ago: a month ago
+        months_ago: %number% months ago
+        a_year_ago: a year ago
+        years_ago: %number% years ago
     menu:
         share: Share on %site%
         contact_us: Contact us
