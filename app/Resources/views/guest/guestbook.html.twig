@@ -6,12 +6,15 @@
 <div class="section section-basic sr">
     <div class="container">
         <div class="row">
-            <div class="col-12 mr-auto ml-auto">
-                <h2 class="title">{{ 'frontend.guestbook.title'|trans|raw }}</h2>
+            <div class="col-md-12 ml-auto mr-auto">
+                <div class="section-description text-center">
+                    <h2 class="title">{{ 'frontend.guestbook.title'|trans|raw }}</h2>
+                </div>
                 {{ include('guest/partials/card-list.html.twig', {'pagination': pagination}) }}
             </div>
-            
-            <div class="col-6 mr-auto ml-auto">
+        </div>
+        <div class="row">
+            <div class="col-md-6 mr-auto ml-auto">
                 <div class="card">
                     {{ form_start(form) }}                    
                     <div class="card-body">

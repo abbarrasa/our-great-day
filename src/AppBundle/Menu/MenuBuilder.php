@@ -7,7 +7,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 class MenuBuilder
 {
-    const TEXT			         = 'Nuestro gran día';
+    const TEXT                   = 'Nuestro gran día';
     const HASHTAGS               = ['veroycarlos', 'boda'];
     const URL_PATTERN_FACEBOOK   = 'https://www.facebook.com/sharer.php?u=%url%&t=%text%';
     const URL_PATTERN_TWITTER    = 'https://twitter.com/intent/tweet?url=%url%&text=%text%&hashtags=%hashtags%';
@@ -103,7 +103,8 @@ class MenuBuilder
         $menu->setChildrenAttribute('class', 'navbar-nav');
         $menu
             ->addChild('facebook', ['uri' => $this->generateSocialUrl(self::URL_PATTERN_FACEBOOK)])
-            ->setLabel('')
+            ->setLabel('Facebook')
+            ->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setAttributes(['icon' => 'fa fa-facebook-square', 'class' => 'nav-item'])
             ->setLinkAttributes([
                 'class' => 'nav-link',
@@ -115,7 +116,8 @@ class MenuBuilder
         ;
         $menu
             ->addChild('twitter', ['uri' => $this->generateSocialUrl(self::URL_PATTERN_TWITTER)])
-            ->setLabel('')
+            ->setLabel('Twitter')
+            ->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setAttributes(['icon' => 'fa fa-twitter', 'class' => 'nav-item'])
             ->setLinkAttributes([
                 'class' => 'nav-link',
@@ -127,7 +129,8 @@ class MenuBuilder
         ;
         $menu
             ->addChild('googleplus', ['uri' => $this->generateSocialUrl(self::URL_PATTERN_GOOGLEPLUS)])
-            ->setLabel('')
+            ->setLabel('Google+')
+            ->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setAttributes(['icon' => 'fa fa-google-plus-square', 'class' => 'nav-item'])
             ->setLinkAttributes([
                 'class' => 'nav-link',

@@ -82,6 +82,22 @@
                 </div>
                 <!-- End Main -->
 
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal -->
+
                 <footer class="footer" data-background-color="black">
                     <div class="container">
                         <div class="copyright">
@@ -154,21 +170,6 @@
         {#</footer>#}
         {#<!-- End footer -->#}
         {##}
-        {#<!-- Modal -->#}
-        {#<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
-            {#<div class="modal-dialog" role="document">#}
-                {#<div class="modal-content">#}
-                    {#<div class="modal-header">#}
-                        {#<h5 class="modal-title" id="exampleModalLabel"></h5>#}
-                        {#<button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
-                            {#<span aria-hidden="true">&times;</span>#}
-                        {#</button>#}
-                    {#</div>#}
-                    {#<div class="modal-body"></div>#}
-                {#</div>#}
-            {#</div>#}
-        {#</div>#}
-        <!-- End Modal -->
         {% endblock %}
 
         {% block javascripts %}
@@ -195,6 +196,51 @@
             {% endjavascripts %}
             <script type="text/javascript">
                 $(document).ready(function() {
+                    {# Flash messages #}
+                    {% for flashMessages in app.flashes %}
+                        {% for flashMessage in flashMessages %}
+                            materialKitDemo.showNotification(
+                                '{{ flashMessage.title }}',
+                                '{{ flashMessage.message }}',
+                                '{{ flashMessage.alert }}',
+                                '{{ flashMessage.icon }}'
+                            );
+                        {% endfor %}
+                    {% endfor %}
+
+                    {# Load enquiry form #}
+                    $('a.contact-us').click(function(e) {
+                        e.preventDefault();
+                        $.ajax({
+                            url: '{{ path('enquiry') }}',
+                            type: 'POST'
+                        }).done(function (responseJSON) {
+                            $('#myModal').find('.modal-body').html(responseJSON.view);
+                            $('#myModal').modal('show');
+                        });
+                    });
+
+                    {# Submit enquiry form #}
+                    $('body').on('submit', 'form[name="enquiry"]', function(e) {
+                        e.preventDefault();
+                        $.ajax({
+                            type: $(this).attr('method'),
+                            url: $(this).attr('action'),
+                            data: $(this).serialize(),
+                        }).done(function () {
+                            $('#myModal').modal('hide');
+                            materialKitDemo.showNotification(
+                                '{{ 'frontend.success'|trans }}',
+                                '{{ 'frontend.enquiry.success'|trans }}',
+                                'success',
+                                'check'
+                            );
+                        }).fail(function (jqXHR, textStatus, errorThrown) {
+                            if (jqXHR.responseJSON.hasOwnProperty('view')) {
+                                $('#myModal').find('.modal-body').html(jqXHR.responseJSON.view);
+                            }
+                        });
+                    });
                 });
 
                 function scrollToDownload() {
