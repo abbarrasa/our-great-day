@@ -12,7 +12,7 @@ frontend:
         a_hour_ago: hace una hora
         hours_ago: hace %number% horas
         a_day_ago: hace un día
-        days_ago: hace '%number% días
+        days_ago: hace %number% días
         a_week_ago: hace una semana
         weeks_ago: hace %number% semanas
         a_month_ago: hace un mes

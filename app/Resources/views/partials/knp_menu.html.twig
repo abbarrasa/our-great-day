@@ -112,4 +112,7 @@
     {% endif %}
 {% endblock %}
 
-{% block label %}{{ item.label|trans }}{% endblock %}
+{% block label %}
+    {% import "knp_menu.html.twig" as macros %}
+    {%- set attributes = item.labelAttributes %}
+    <p{{ macros.attributes(attributes) }}>{{ item.label|trans }}</p>{% endblock %}

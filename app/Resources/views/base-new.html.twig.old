@@ -10,12 +10,11 @@
         {% block stylesheets %}
         <!--     Fonts     -->
         <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         {% stylesheets
-            '../app/Resources/public/css/bootstrap.min.css'
-            '../app/Resources/public/css/material-kit.css'
-            '../app/Resources/public/css/demo.css' filter='cssrewrite' %}
+            '../app/Resources/public/css/material-kit.min.css'
+            '../app/Resources/public/css/styles.css' filter='cssrewrite' output='assets/css/compiled/app.css' %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
         {% endblock %}
@@ -23,151 +22,82 @@
         <link rel="apple-touch-icon" href="{{ asset('apple-icon.png') }}">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-
     <body>
         {% block body %}
-        <div class="index-page sidebar-collapse">
+        <div class="index-page">
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " color-on-scroll="100">
+            <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
                 <div class="container">
                     <div class="navbar-translate">
-                        <a class="navbar-brand" href="{{ path('homepage') }}">
-                            {{ 'frontend.title'|trans }}
-                        </a>
-                        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-bar bar1"></span>
-                            <span class="navbar-toggler-bar bar2"></span>
-                            <span class="navbar-toggler-bar bar3"></span>
+                        <a class="navbar-brand" href="{{ path('homepage') }}">{{ 'frontend.title'|trans }}</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                            <span class="navbar-toggler-icon"></span>
+                            <span class="navbar-toggler-icon"></span>
                         </button>
                     </div>
-                    {% image '../app/Resources/public/images/blurred-image-1.jpg' %}
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{ asset_url }}">
-                        {{ knp_menu_render('main', {'template': 'partials/knp_menu.html.twig'}) }}
-                        {{ knp_menu_render('social', {'template': 'partials/knp_menu.html.twig'}) }}
+
+                    {# Social bar #}
+                    <div class="collapse navbar-collapse">                    
+                    {{ knp_menu_render('social', {'template': 'partials/knp_menu.html.twig'}) }}                        
                     </div>
-                    {% endimage %}
+                    
+                    {# Main menu bar #}
+                    <div class="collapse navbar-collapse">
+                    {{ knp_menu_render('main', {'template': 'partials/knp_menu.html.twig'}) }}
+                    </div>
                 </div>
             </nav>
             <!-- End Navbar -->
-
-            <div class="wrapper">
-                <div class="page-header clear-filter" filter-color="purple">
-                {% image '../app/Resources/public/images/header.jpg' %}
-                    <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset_url }}');"></div>
-                {% endimage %}
-
-                    <div class="container">
-                        <div class="content-center brand">
-                            {#<img class="n-logo" src="./assets/img/now-logo.png" alt="">#}
-                            <h1 class="h1-seo">Vero y Carlos</h1>
-                            <h3>{{ 'frontend.title'|trans }}</h3>
-                        </div>
-                        <a href="" data-scroll="true" data-id="#whoWeAre" class="scroll-arrow hidden-xs hidden-sm">
-                            <i class="fa fa-angle-down"></i>
-                        </a>
-
-                        {#<h6 class="category category-absolute">Designed by#}
-                            {#<a href="http://invisionapp.com/" target="_blank">#}
-                                {#<img src="./assets/img/invision-white-slim.png" class="invision-logo" />#}
-                            {#</a>. Coded by#}
-                            {#<a href="https://www.creative-tim.com" target="_blank">#}
-                                {#<img src="./assets/img/creative-tim-white-slim2.png" class="creative-tim-logo" />#}
-                            {#</a>.</h6>#}
-                    </div>
-                </div>
-
-                <!-- Main -->
-                <div class="main">
-                    {% block main %}{% endblock %}
-                </div>
-                <!-- End Main -->
-
-                <footer class="footer" data-background-color="black">
-                    <div class="container">
-                        <div class="copyright">
-                            <p>Made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/abbarrasa/our-great-day">Alberto Buitrago</a> for a better web. Thanks to <a href="http://www.creative-tim.com">Creative Tim</a>.</p>
+            
+            <!-- Jumbotron -->
+            {% image '../app/Resources/public/images/main.jpg' output='assets/images/main.jpg' %}
+            <div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('{{ asset_url }}');">
+            {% endimage %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 ml-auto mr-auto">
+                            <div class="brand">
+                                <h1>Vero y Carlos</h1>
+                                <h3>{{ 'frontend.title'|trans }}</h3>
+                            </div>
                         </div>
                     </div>
-                </footer>
-
+                </div>
+            </div>
+            <!-- End Jumbotron -->
+            
+            <!-- Main -->
+            <div class="main">
+                {% block main %}{% endblock %}
+            </div>
+            <!-- End Main -->                        
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer footer-black footer-big">
+            <div class="container">
+                <div class="copyright float-right">
+                    <p>Made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/abbarrasa/our-great-day">Alberto Buitrago</a> for a better web. Thanks to <a href="http://www.creative-tim.com">Creative Tim</a>.</p>
+                </div>
+            </div>
+        </footer>
+        <!-- End footer -->
+        
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"></div>
+                </div>
             </div>
         </div>
-
-
-        {#<div class="index-page">#}
-            {#<!-- Navbar -->#}
-            {#<nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">#}
-                {#<div class="container">#}
-                    {#<div class="navbar-translate">#}
-                        {#<a class="navbar-brand" href="{{ path('homepage') }}">{{ 'frontend.title'|trans }}</a>#}
-                        {#<button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">#}
-                            {#<span class="navbar-toggler-icon"></span>#}
-                            {#<span class="navbar-toggler-icon"></span>#}
-                            {#<span class="navbar-toggler-icon"></span>#}
-                        {#</button>#}
-                    {#</div>#}
-
-                    {# Social bar #}
-                    {#<div class="collapse navbar-collapse">                    #}
-                    {#{{ knp_menu_render('social', {'template': 'partials/knp_menu.html.twig'}) }}                        #}
-                    {#</div>#}
-                    {##}
-                    {# Main menu bar #}
-                    {#<div class="collapse navbar-collapse">#}
-                    {#{{ knp_menu_render('main', {'template': 'partials/knp_menu.html.twig'}) }}#}
-                    {#</div>#}
-                {#</div>#}
-            {#</nav>#}
-            {#<!-- End Navbar -->#}
-            {##}
-            {#<!-- Jumbotron -->#}
-            {#{% image '../app/Resources/public/images/main.jpg' output='assets/images/main.jpg' %}#}
-            {#<div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('{{ asset_url }}');">#}
-            {#{% endimage %}#}
-                {#<div class="container">#}
-                    {#<div class="row">#}
-                        {#<div class="col-md-8 ml-auto mr-auto">#}
-                            {#<div class="brand">#}
-                                {#<h1>Vero y Carlos</h1>#}
-                                {#<h3>{{ 'frontend.title'|trans }}</h3>#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-            {#<!-- End Jumbotron -->#}
-            {##}
-            {#<!-- Main -->#}
-            {#<div class="main">#}
-                {#{% block main %}{% endblock %}#}
-            {#</div>#}
-            {#<!-- End Main -->                        #}
-        {#</div>#}
-        {##}
-        {#<!-- Footer -->#}
-        {#<footer class="footer footer-black footer-big">#}
-            {#<div class="container">#}
-                {#<div class="copyright float-right">#}
-                    {#<p>Made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/abbarrasa/our-great-day">Alberto Buitrago</a> for a better web. Thanks to <a href="http://www.creative-tim.com">Creative Tim</a>.</p>#}
-                {#</div>#}
-            {#</div>#}
-        {#</footer>#}
-        {#<!-- End footer -->#}
-        {##}
-        {#<!-- Modal -->#}
-        {#<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
-            {#<div class="modal-dialog" role="document">#}
-                {#<div class="modal-content">#}
-                    {#<div class="modal-header">#}
-                        {#<h5 class="modal-title" id="exampleModalLabel"></h5>#}
-                        {#<button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
-                            {#<span aria-hidden="true">&times;</span>#}
-                        {#</button>#}
-                    {#</div>#}
-                    {#<div class="modal-body"></div>#}
-                {#</div>#}
-            {#</div>#}
-        {#</div>#}
         <!-- End Modal -->
         {% endblock %}
 
@@ -175,97 +105,69 @@
             {% javascripts
             '../app/Resources/public/js/core/jquery.min.js'
             '../app/Resources/public/js/core/popper.min.js'
-            '../app/Resources/public/js/core/bootstrap.min.js'
             '../app/Resources/public/js/core/bootstrap-material-design.min.js'
             '../app/Resources/public/js/plugins/bootstrap-selectpicker.js'
             '../app/Resources/public/js/plugins/bootstrap-notify.js'
             '../app/Resources/public/js/plugins/scrollreveal.min.js'
             '../app/Resources/public/js/plugins/nouislider.min.js'
             '../app/Resources/public/js/material-kit.min.js'
-            '../app/Resources/public/js/now-ui-kit.js'
-            '../app/Resources/public/js/material-kit-demo.js' %}
-            {#'../app/Resources/public/js/core/jquery.3.2.1.min.js'#}
-            {#'../app/Resources/public/js/core/popper.min.js'#}
-            {#'../app/Resources/public/js/core/bootstrap-material-design.min.js'#}
-            {#'../app/Resources/public/js/plugins/bootstrap-switch.js'#}
-            {#'../app/Resources/public/js/plugins/nouislider.min.js'#}
-            {#'../app/Resources/public/js/plugins/bootstrap-datepicker.js'#}
-            {#'../app/Resources/public/js/now-ui-kit.js' %}#}
+            '../app/Resources/public/js/material-kit-demo.js' output='assets/js/compiled/app.js' %}
             <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
+
             <script type="text/javascript">
-                $(document).ready(function() {
-                });
-
-                function scrollToDownload() {
-
-                    if ($('.section-download').length != 0) {
-                        $("html, body").animate({
-                            scrollTop: $('.section-download').offset().top
-                        }, 1000);
-                    }
-                }
-            </script>
-
-            {##}
-            {##}
-            {##}
-            {#<script type="text/javascript">#}
-                {#$(document).ready(function()#}
-                {#{#}
-                    {#// the body of this function is in assets/js/now-ui-kit.js#}
-                    {#nowuiKit.initSliders();#}
-                    {##}
+                $(document).ready(function()
+                {
                     {# Animation on each section #}
-                    {#window.sr = ScrollReveal();#}
-                    {#sr.reveal('.sr', {duration: 800, reset: true, viewOffset: { top: 64 }});#}
+                    window.sr = ScrollReveal();
+                    sr.reveal('.sr', {duration: 800, reset: true, viewOffset: { top: 64 }});
 
                     {# Flash messages #}
-                    {#{% for flashMessages in app.flashes %}#}
-                        {#{% for flashMessage in flashMessages %}#}
-                            {#materialKitDemo.showNotification(#}
-                                {#'{{ flashMessage.title }}',#}
-                                {#'{{ flashMessage.message }}',#}
-                                {#'{{ flashMessage.alert }}','{{ flashMessage.icon }}'#}
-                            {#);#}
-                        {#{% endfor %}#}
-                    {#{% endfor %}#}
+                    {% for flashMessages in app.flashes %}
+                        {% for flashMessage in flashMessages %}
+                            materialKitDemo.showNotification(
+                                '{{ flashMessage.title }}',
+                                '{{ flashMessage.message }}',
+                                '{{ flashMessage.alert }}','{{ flashMessage.icon }}'
+                            );
+                        {% endfor %}
+                    {% endfor %}
 
                     {# Load enquiry form #}
-                    {#$('a.contact-us').click(function(e) {#}
-                        {#e.preventDefault();#}
-                        {#$.ajax({#}
-                            {#url: '{{ path('enquiry') }}',#}
-                            {#type: 'POST'#}
-                        {#}).done(function (responseJSON) {#}
-                            {#$('#myModal').find('.modal-body').html(responseJSON.view);#}
-                            {#$('#myModal').modal('show');#}
-                        {#});#}
-                    {#});#}
+                    $('a.contact-us').click(function(e) {
+                        e.preventDefault();
+                        $.ajax({
+                            url: '{{ path('enquiry') }}',
+                            type: 'POST'
+                        }).done(function (responseJSON) {
+                            $('#myModal').find('.modal-body').html(responseJSON.view);
+                            $('#myModal').modal('show');
+                        });
+                    });
 
                     {# Submit enquiry form #}
-                    {#$('body').on('submit', 'form[name="enquiry"]', function(e) {#}
-                        {#e.preventDefault();#}
-                        {#$.ajax({#}
-                            {#type: $(this).attr('method'),#}
-                            {#url: $(this).attr('action'),#}
-                            {#data: $(this).serialize(),#}
-                        {#}).done(function () {#}
-                            {#$('#myModal').modal('hide');#}
-                            {#materialKitDemo.showNotification(#}
-                                {#'{{ 'frontend.success'|trans }}',#}
-                                {#'{{ 'frontend.enquiry.success'|trans }}',#}
-                                {#'success',#}
-                                {#'check'#}
-                            {#);#}
-                        {#}).fail(function (jqXHR, textStatus, errorThrown) {#}
-                            {#if (jqXHR.responseJSON.hasOwnProperty('view')) {#}
-                                {#$('#myModal').find('.modal-body').html(jqXHR.responseJSON.view);#}
-                            {#}#}
-                        {#});#}
-                    {#});#}
-                {#});#}
-            {#</script>#}
+                    $('body').on('submit', 'form[name="enquiry"]', function(e) {
+                        e.preventDefault();
+                        $.ajax({
+                            type: $(this).attr('method'),
+                            url: $(this).attr('action'),
+                            data: $(this).serialize(),
+                        }).done(function () {
+                            $('#myModal').modal('hide');
+                            materialKitDemo.showNotification(
+                                '{{ 'frontend.success'|trans }}',
+                                '{{ 'frontend.enquiry.success'|trans }}',
+                                'success',
+                                'check'
+                            );
+                        }).fail(function (jqXHR, textStatus, errorThrown) {
+                            if (jqXHR.responseJSON.hasOwnProperty('view')) {
+                                $('#myModal').find('.modal-body').html(jqXHR.responseJSON.view);
+                            }
+                        });
+                    });
+                });
+            </script>
         {% endblock %}
     </body>
 </html>
