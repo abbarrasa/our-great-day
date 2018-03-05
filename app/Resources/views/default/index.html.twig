@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 mr-auto ml-auto">
                     <div id="countdown"></div>
                 </div>
             </div>
@@ -32,6 +32,22 @@
     <!-- End Countdown -->
 
     <!-- Bio cards -->
+    <div class="section section-basic sr">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 text-center ml-auto mr-auto">
+                    <div class="section-description">
+                        <h2 class="title">{{ 'frontend.profiles.title'|trans|raw }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mr-auto ml-auto">
+                    {{ include('default/partials/profiles.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>    
     {#<div class="section section-basic section-white-to-gray sr">#}
         {#<div class="container">#}
             {#<div class="row">#}
@@ -45,6 +61,22 @@
     <!-- End Bio cards -->
 
     <!-- Timeline -->
+    <div class="section section-basic sr">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 text-center ml-auto mr-auto">
+                    <div class="section-description">
+                        <h2 class="title">{{ 'frontend.timeline.title'|trans|raw |trans|raw }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mr-auto ml-auto">
+                    {{ include('default/partials/timeline.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>       
     {#<div class="section section-basic section-gray sr">#}
         {#<div class="container">#}
             {#<div class="row">#}
@@ -58,6 +90,18 @@
     <!-- End Timeline -->
 
     <!-- Maps -->
+    <div class="section section-basic sr">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 text-center ml-auto mr-auto">
+                    <div class="section-description">
+                        <h2 class="title">{{ 'frontend.location.title'|trans|raw |trans|raw }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="map" class="big-map"></div>
+    </div>     
     {#<div class="section section-basic sr">#}
         {#<div class="container">#}
             {#<div class="row">#}
