@@ -2,7 +2,8 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {% stylesheets %}
+    {% stylesheets
+    '../app/Resources/public/css/timeline.css'
     '../app/Resources/public/css/flipclock.css' filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
@@ -12,7 +13,7 @@
 
 {% block main %}
     <!-- Countdown -->
-    <div class="section section-basic sr">
+    <div id="first-section" class="section section-basic sr">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-center ml-auto mr-auto">

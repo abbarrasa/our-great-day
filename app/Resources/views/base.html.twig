@@ -62,7 +62,7 @@
                             <h1 class="h1-seo">Vero y Carlos</h1>
                             <h3>{{ 'frontend.title'|trans }}</h3>
                         </div>
-                        <a href="" data-scroll="true" data-id="#whoWeAre" class="scroll-arrow hidden-xs hidden-sm">
+                        <a href="" data-scroll="true" data-id="#first-section" class="scroll-arrow hidden-xs hidden-sm">
                             <i class="fa fa-angle-down"></i>
                         </a>
 
@@ -208,6 +208,25 @@
                         {% endfor %}
                     {% endfor %}
 
+                    {# Animation on each section #}
+                    window.sr = ScrollReveal();
+                    sr.reveal('.sr', {duration: 800, reset: true, viewOffset: { top: 64 }});
+
+                    {# Data scroll #}
+                    $('a[data-scroll="true"]').click(function(e){
+                        var scroll_target = $(this).data('id');
+                        var scroll_trigger = $(this).data('scroll');
+
+                        if(scroll_trigger == true && scroll_target !== undefined){
+                            e.preventDefault();
+
+                            $('html, body').animate({
+                                scrollTop: $(scroll_target).offset().top - 50
+                            }, 1000);
+                        }
+
+                    });
+
                     {# Load enquiry form #}
                     $('a.contact-us').click(function(e) {
                         e.preventDefault();
@@ -242,15 +261,6 @@
                         });
                     });
                 });
-
-                function scrollToDownload() {
-
-                    if ($('.section-download').length != 0) {
-                        $("html, body").animate({
-                            scrollTop: $('.section-download').offset().top
-                        }, 1000);
-                    }
-                }
             </script>
 
             {##}
