@@ -40,7 +40,10 @@ class DefaultController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($enquiry);
                 $em->flush();
-                //Enviamos un correo con la consulta
+
+                //Send notification
+                $this->get('AppBundle\Service\Mailer')->sendEnquiryNotificationMessage($enquiry);
+
                 return new JsonResponse(null, $status);
             } else {
                 $status = 400;

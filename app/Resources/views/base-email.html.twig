@@ -1,94 +1,101 @@
-{% block subject %}{% endblock %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width"/>
 
-{% block body_text %}{% endblock %}
+        <style type="text/css">
+            * { margin: 0; padding: 0; font-size: 100%; font-family: 'Avenir Next', "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; line-height: 1.65; }
+            img { max-width: 100%; margin: 0 auto; display: block; }
+            body, .body-wrap { width: 100% !important; height: 100%; background: #f8f8f8; }
+            a { color: #e91e63; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+            .text-center { text-align: center; }
+            .text-right { text-align: right; }
+            .text-left { text-align: left; }
+            h1, h2, h3, h4, h5, h6 { margin-bottom: 20px; line-height: 1.25; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 28px; }
+            h3 { font-size: 24px; }
+            h4 { font-size: 20px; }
+            h5 { font-size: 16px; }
+            p, ul, ol { font-size: 16px; font-weight: normal; margin-bottom: 20px; }
+            .container { display: block !important; clear: both !important; margin: 0 auto !important; max-width: 580px !important; }
+            .container table { width: 100% !important; border-collapse: collapse; }
+            .container .masthead { padding: 80px 0; background-image: url("main_head.jpg"); color: #ea2c6d; border-style: solid; border-color: #f8f8f8; border-width: 1px 1px 0 1px; }
+            .container .masthead h1 { margin: 0 auto !important; max-width: 90%; text-transform: uppercase; }
+            .container .content { background: white; padding: 30px 35px; border-style: solid; border-color: #ec407a; border-width: 22px 1px 1px 1px; }
+            .container .content.footer { background: none; border: 0; }
+            .container .content.footer p { margin-bottom: 0; color: #888; text-align: center; font-size: 14px; }
+            .container .content.footer a { color: #888; text-decoration: none; font-weight: bold; }
+            .container .content.footer a:hover { text-decoration: underline; }
+            .btn { display: inline-block; text-align: center; white-space: nowrap; vertical-align: middle; user-select: none; border: 1px solid transparent; padding: .46875rem 1rem; font-size: 1rem; line-height: 1.5; border-radius: .25rem; transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out; }
+            .btn:focus, .btn:hover { text-decoration: none; }
+            .btn:focus { outline: 0; box-shadow: 0 0 0 .2rem rgba(33, 150, 243, .25); }
+            .btn.disabled, .btn:disabled { opacity: .65; box-shadow: none; }
+            .btn:not(:disabled):not(.disabled) { cursor: pointer; }
+            .btn:not(:disabled):not(.disabled).active, .btn:not(:disabled):not(.disabled):active { background-image: none; box-shadow: none; }
+            .btn:not(:disabled):not(.disabled).active:focus, .btn:not(:disabled):not(.disabled):active:focus { box-shadow: 0 0 0 .2rem rgba(33, 150, 243, .25), none; }
+            a.btn.disabled { pointer-events: none; }
+            .btn.btn-rose { color: #fff; background-color: #e91e63; border-color: #e91e63; box-shadow: 0 2px 2px 0 rgba(233, 30, 99, .14), 0 3px 1px -2px rgba(233, 30, 99, .2), 0 1px 5px 0 rgba(233, 30, 99, .12); }
+            .btn.btn-rose.focus, .btn.btn-rose:focus, .btn.btn-rose:hover { color: #fff; background-color: #ea2c6d; border-color: #b8124a; }
+            .btn.btn-rose.active, .btn.btn-rose:active { color: #fff; background-color: #ea2c6d; border-color: #b8124a; box-shadow: 0 2px 2px 0 rgba(233, 30, 99, .14), 0 3px 1px -2px rgba(233, 30, 99, .2), 0 1px 5px 0 rgba(233, 30, 99, .12); }
+            .btn.btn-rose.active.focus, .btn.btn-rose.active:focus, .btn.btn-rose.active:hover, .btn.btn-rose:active.focus, .btn.btn-rose:active:focus, .btn.btn-rose:active:hover { color: #fff; background-color: #ea2c6d; border-color: #7b0c32; }
+            .btn.btn-rose.disabled.focus, .btn.btn-rose.disabled:focus, .btn.btn-rose.disabled:hover, .btn.btn-rose:disabled.focus, .btn.btn-rose:disabled:focus, .btn.btn-rose:disabled:hover { background-color: #e91e63; border-color: #e91e63; }
+            .btn.btn-rose:active, .btn.btn-rose:focus, .btn.btn-rose:hover { box-shadow: 0 14px 26px -12px rgba(233, 30, 99, .42), 0 4px 23px 0 rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(233, 30, 99, .2); }
+            .btn.btn-rose.btn-link { box-shadow: none; }
+            .btn.btn-rose.btn-link, .btn.btn-rose.btn-link:active, .btn.btn-rose.btn-link:focus, .btn.btn-rose.btn-link:hover { background-color: transparent; color: #e91e63; }
+        </style>
 
-{% block body_html %}
-    <!doctype html>
-    <html amp lang="es">
-        <head>
-            <meta charset="utf-8">
-            <title>{% block title %}{% endblock %}</title>
-        </head>
-        <body>
-        <table cellpadding="0" cellspacing="0" border="0" bgcolor="#DCDCDC" width="750" align="center">
-            <tbody>
+    </head>
+    <body>
+        <table class="body-wrap">
             <tr>
-                <td>
-                    <table bgcolor="#FFFFFF" cellpadding="4">
-                        <tbody>
+                <td class="container">
+                    <!-- Message start -->
+                    <table>
                         <tr>
-                            <td>
-                                <table style="width:740px;margin-left:auto;margin-right:auto;border: 2px solid #cb1c21;" align="center">
-                                    <tbody>
-                                    <tr>
-                                        <td style="text-align:center">
-                                            <a href="{{ base_url }}" target="_blank">
-                                                <img src="{{ base_url_statics }}images/logoEstrategiasDeInversion.gif" />
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <table style="width:740px;margin-left:auto;margin-right:auto" align="center">
-                                    <tbody>
-                                    <tr>
-                                        <td>
-                                            {% block content_html %}{% endblock %}
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <td align="center" class="masthead">
+                                <h1>Something Big...</h1>
                             </td>
                         </tr>
-                        </tbody>
-                    </table><p>&nbsp;</p>
-                    <table border="0" width="600" cellpadding="3" align="center">
-                        <tbody>
                         <tr>
-                            <td align="center">
-                                <table border="0" width="250" align="center">
-                                    <tbody>
+                            <td class="content">
+                                <h2>Hi Stranger,</h2>
+
+                                <p>Kielbasa venison ball tip shankle. Boudin prosciutto landjaeger, pancetta jowl turkey tri-tip porchetta beef pork loin drumstick. Frankfurter short ribs kevin pig ribeye drumstick bacon kielbasa. Pork loin brisket biltong, pork belly filet mignon ribeye pig ground round porchetta turducken turkey. Pork belly beef ribs sausage ham hock, ham doner frankfurter pork chop tail meatball beef pig meatloaf short ribs shoulder. Filet mignon ham hock kielbasa beef ribs shank. Venison swine beef ribs sausage pastrami shoulder.</p>
+                                <table>
                                     <tr>
                                         <td align="center">
-                                            <a href="https://es-es.facebook.com/estrategiasdeinversion" target="_blank" >
-                                                <img src="{{ base_url_statics }}images/ico-sharebar-facebook.png" alt="" width="50" height="50" />
-                                            </a>
-                                        </td>
-                                        <td>&nbsp;</td>
-                                        <td align="center">
-                                            <a href="https://twitter.com/estrategiastv" target="_blank" >
-                                                <img src="{{ base_url_statics }}images/ico-sharebar-twitter.png" alt="" width="50" height="50" />
-                                            </a>
-                                        </td>
-                                        <td>&nbsp;</td>
-                                        <td align="center">
-                                            <a href="{{ base_url }}" target="_blank" >
-                                                <img src="{{ base_url_statics }}images/site-brand2.png" alt="" width="50" height="50" />
-                                            </a>
+                                            <p>
+                                                <a href="#" class="btn btn-rose">Share the Awesomeness</a>
+                                            </p>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="9">&nbsp;</td>
-                                    </tr>
-                                    </tbody>
                                 </table>
+
+                                <p>By the way, if you're wondering where you can find more of this fine meaty filler, visit <a href="http://baconipsum.com">Bacon Ipsum</a>.</p>
+
+                                <p><em>– Mr. Pen</em></p>
+
                             </td>
                         </tr>
-                        <tr align="center">
-                            <td>
-                                <font size="2" color="#333333" face="tahoma,arial,helvetica,sans-serif">
-                                    Este mensaje ha sido enviado por Estrategias de inversión.
-                                    <br>Si desea ponerse en contacto con nosotros, puede hacerlo aquí: <a class="lnk" target="_blank" href="{{ base_url }}{{ path('corporativo_contacto') }}">contacto</a>.
-                                </font>
-                            </td>
-                        </tr>
-                        </tbody>
                     </table>
-                    <p>&nbsp;</p>
                 </td>
             </tr>
-            </tbody>
+            <tr>
+                <td class="container">
+                    <!-- Message start -->
+                    <table>
+                        <tr>
+                            <td class="content footer" align="center">
+                                <p>Sent by <a href="#">Company Name</a>, 1234 Yellow Brick Road, OZ, 99999</p>
+                                <p><a href="mailto:">hello@company.com</a> | <a href="#">Unsubscribe</a></p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
         </table>
     </body>
 </html>
-{% endblock %}

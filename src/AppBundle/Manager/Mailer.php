@@ -2,10 +2,12 @@
 
 namespace AppBundle\Manager;
 
+use AppBundle\Entity\Enquiry;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class Mailer
 {
+    const TEMPLATE_ENQUIRY_NOTIFICATION   = 'email/enquiry-notification.txt.twig';
     const TEMPLATE_GUESTBOOK_NOTIFICATION = 'email/guestbook-notification.txt.twig';
 
     /** @var \Swift_Mailer */
@@ -79,6 +81,18 @@ class Mailer
     public function sendGuestbookNotificationMessage(Guessbook $guestbook)
     {
         $message = $this->getMessage(self::TEMPLATE_GUESTBOOK_NOTIFICATION, ['guestbook' => $guestbook]);
+
+        return $this->sendEmailMessage($this->config['email_admin'], $this->config['email_no_reply'], $message);
+    }
+
+    /**
+     * Sends a notification email order to resolve a enquiry.
+     * @param Enquiry $enquiry
+     * @return int
+     */
+    public function sendEnquiryNotificationMessage(Enquiry $enquiry)
+    {
+        $message = $this->getMessage(self::TEMPLATE_ENQUIRY_NOTIFICATION, ['enquiry' => $enquiry]);
 
         return $this->sendEmailMessage($this->config['email_admin'], $this->config['email_no_reply'], $message);
     }

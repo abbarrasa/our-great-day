@@ -83,6 +83,10 @@ class GuestController extends Controller
             $em->persist($guestbook);
             $em->flush();
 
+            //Send notification
+            $this->get('AppBundle\Service\Mailer')->sendGuestbookNotificationMessage($guestbook);
+
+            //Flash success message
             $helper = $this->get('AppBundle\Service\FlashMessageHelper');
             $this->addFlash('success', $helper->getFlashMessage(
                 'success', 'frontend.success', 'frontend.guestbook.success'
