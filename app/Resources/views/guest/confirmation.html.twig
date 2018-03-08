@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-md-8 mr-auto ml-auto">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body col-md-10 mr-auto ml-auto">
                             <ul class="nav nav-pills nav-pills-icons nav-pills-primary justify-content-center" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link{% if app.request.attributes.get('_route') == 'guest' %} active{% endif %}" href="{{ path('guest') }}">
@@ -32,7 +32,7 @@
                                 </li>
                             </ul>
 
-                            <div class="col-md-10 mr-auto ml-auto tab-content tab-space">
+                            <div class="tab-content tab-space">
                                 {{ form_start(form) }}
                                 {{ form_errors(form) }}
                                 <div class="row">
@@ -113,8 +113,8 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <div class="col-12 form-group">
+                        <div class="card-footer col-md-10 mr-auto ml-auto">
+                            <div class="col form-group">
                                 {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
                             </div>
                         </div>

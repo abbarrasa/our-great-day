@@ -1009,15 +1009,15 @@ body {
     }
 
     .sidebar-collapse .navbar-collapse:before {
-        background: #f96332;
+        background: #e91e63;
         /* For browsers that do not support gradients */
-        background: -webkit-linear-gradient(#f96332 0%, #000 80%);
+        background: -webkit-linear-gradient(#e91e63 0%, #000 80%);
         /* For Safari 5.1 to 6.0 */
-        background: -o-linear-gradient(#f96332 0%, #000 80%);
+        background: -o-linear-gradient(#e91e63 0%, #000 80%);
         /* For Opera 11.1 to 12.0 */
-        background: -moz-linear-gradient(#f96332 0%, #000 80%);
+        background: -moz-linear-gradient(#e91e63 0%, #000 80%);
         /* For Firefox 3.6 to 15 */
-        background: linear-gradient(#f96332 0%, #000 80%);
+        background: linear-gradient(#e91e63 0%, #000 80%);
         /* Standard syntax (must be last) */
         opacity: 0.76;
         filter: alpha(opacity=76);
@@ -1917,15 +1917,15 @@ body {
         transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
     }
     .burger-menu .navbar-collapse:before {
-        background: #f96332;
+        background: #e91e63;
         /* For browsers that do not support gradients */
-        background: -webkit-linear-gradient(#f96332 0%, #000 80%);
+        background: -webkit-linear-gradient(#e91e63 0%, #000 80%);
         /* For Safari 5.1 to 6.0 */
-        background: -o-linear-gradient(#f96332 0%, #000 80%);
+        background: -o-linear-gradient(#e91e63 0%, #000 80%);
         /* For Opera 11.1 to 12.0 */
-        background: -moz-linear-gradient(#f96332 0%, #000 80%);
+        background: -moz-linear-gradient(#e91e63 0%, #000 80%);
         /* For Firefox 3.6 to 15 */
-        background: linear-gradient(#f96332 0%, #000 80%);
+        background: linear-gradient(#e91e63 0%, #000 80%);
         /* Standard syntax (must be last) */
         opacity: 0.76;
         filter: alpha(opacity=76);
@@ -2500,5 +2500,17 @@ a.scroll-arrow:hover {
 }
 
 #bio-cards {
-    margin-top: 20px;
+    margin-top: 30px;
+}
+
+.title em {
+    color: #e91e63 !important;
+    font-style: normal;
+}
+
+.big-map {
+    height: 70vh;
+    width: 100%;
+    display: block;
+    position: relative;
 }

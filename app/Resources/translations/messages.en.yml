@@ -72,8 +72,10 @@ frontend:
     welcome:
         title: Welcome y'all to <em>Our Great Day</em>
         description:
-    profiles:
+    bio:
         title: Our Great <em>Lifes</em>
+        bride: Bride
+        groom: Groom
     timeline:
         title: Our Great <em>Story</em>
     location:

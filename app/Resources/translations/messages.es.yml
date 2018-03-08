@@ -72,8 +72,10 @@ frontend:
     welcome:
         title: Bienvenidos a todos a <em>Nuestro Gran Día</em>
         description:
-    profiles:
+    bio:
         title: Nuestras Grandes <em>Biografías</em>
+        bride: Ella
+        groom: Él
     timeline:
         title: Nuestra Gran <em>Historia</em>
     location:
