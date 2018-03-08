@@ -2498,3 +2498,7 @@ a.scroll-arrow:hover {
 [data-background-color] a:not(.btn):not(.dropdown-item) {
     color: #FFFFFF;
 }
+
+#bio-cards {
+    margin-top: 20px;
+}
