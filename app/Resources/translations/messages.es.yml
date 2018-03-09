@@ -64,7 +64,7 @@ frontend:
         description: No seas tímido/a. Mándanos un original mensajito que nos alegre si cabe un poco más nuestro gran día. De antemano, muchísimas gracias.
         send: Enviar
         name: Tu nombre
-        comment: Tu mensaje
+        comment: Tu gran mensaje
         success: Tu mensaje se ha enviado correctamente y queda pendiente de moderación. Después de ser revisado será publicado.
         likes:
             tooltip: Pulsa para dar un "Me gusta" al mensaje
