@@ -847,6 +847,10 @@ body {
     background: transparent linear-gradient(0deg, #f487ac, #fff) repeat scroll 0 0 !important;
 }
 
+.section-dark h2.title {
+    color: #fff !important;
+}
+
 .page-header {
     height: 100vh;
     max-height: 1050px;
