@@ -4,7 +4,7 @@
     {{ parent() }}
     {% stylesheets
     '../app/Resources/public/css/timeline.css'
-    '../app/Resources/public/css/flipclock.css' filter='cssrewrite' %}
+    '../app/Resources/public/css/flipclock.css' filter='cssrewrite' output='assets/css/app.css' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12 mr-auto ml-auto">
+                <div class="col-md-8 col-md-offset-2 mr-auto ml-auto">
                     <div id="countdown"></div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
     <!-- End Countdown -->
 
     <!-- Bio cards -->
-    <div class="section section-basic sr">
+    <div class="section section-basic section-white-to-gray sr">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-center ml-auto mr-auto">
@@ -62,7 +62,7 @@
     <!-- End Bio cards -->
 
     <!-- Timeline -->
-    <div class="section section-basic sr">
+    <div class="section section-basic section-gray sr">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-center ml-auto mr-auto">
@@ -91,7 +91,7 @@
     <!-- End Timeline -->
 
     <!-- Maps -->
-    <div class="section section-basic sr">
+    <div class="section section-basic section-rose-gradient sr">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-center ml-auto mr-auto">
@@ -120,7 +120,7 @@
 {% block javascripts %}
     {{ parent() }}
     {% javascripts
-    '../app/Resources/public/js/plugins/flipclock.min.js' %}
+    '../app/Resources/public/js/plugins/flipclock.min.js' output='assets/js/app.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 

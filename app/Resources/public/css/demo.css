@@ -61,26 +61,6 @@
     font-size: 30px;
 }
 
-.space {
-    height: 130px;
-    display: block;
-}
-
-.space-110 {
-    height: 110px;
-    display: block;
-}
-
-.space-50 {
-    height: 50px;
-    display: block;
-}
-
-.space-70 {
-    height: 70px;
-    display: block;
-}
-
 .navigation-example .img-src {
     background-attachment: scroll;
 }
@@ -749,11 +729,6 @@ body {
     content: " ";
 }
 
-
-
-
-
-
 .navbar .navbar-nav .nav-item .nav-link .material-icons {
     font-size: 1.25rem;
     max-width: 24px;
@@ -861,6 +836,17 @@ body {
     height: 100vh;
 }
 
+.section-purple-gradient,
+.section-primary-gradient {
+    background-color: #fff !important;
+    background: transparent linear-gradient(0deg, #ca8cd5, #fff) repeat scroll 0 0 !important;
+}
+
+.section-rose-gradient {
+    background-color: #fff !important;
+    background: transparent linear-gradient(0deg, #f487ac, #fff) repeat scroll 0 0 !important;
+}
+
 .page-header {
     height: 100vh;
     max-height: 1050px;
@@ -956,6 +942,31 @@ body {
     background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(108, 58, 173, 0.7));
     /* For Firefox 3.6 to 15 */
     background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(108, 58, 173, 0.7));
+    /* Standard syntax */
+}
+
+.page-header[filter-color="blue"] {
+    /*background: rgba(44, 44, 44, 0.2);*/
+    /*!* For browsers that do not support gradients *!*/
+    /*background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.3), rgba(233, 30, 99, 0.26));*/
+    /*!* For Safari 5.1 to 6.0 *!*/
+    /*background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.3), rgba(233, 30, 99, 0.26));*/
+    /*!* For Opera 11.1 to 12.0 *!*/
+    /*background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.3), rgba(233, 30, 99, 0.26));*/
+    /*!* For Firefox 3.6 to 15 *!*/
+    /*background: linear-gradient(0deg, rgba(44, 44, 44, 0.3), rgba(233, 30, 99, 0.26));*/
+    /*!* Standard syntax *!*/
+
+
+    background: rgba(44, 44, 44, 0.2);
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(8, 80, 120, 0.7));
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(8, 80, 120, 0.7));
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(8, 80, 120, 0.7));
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(8, 80, 120, 0.7));
     /* Standard syntax */
 }
 
@@ -2500,10 +2511,19 @@ a.scroll-arrow:hover {
     color: #FFFFFF;
 }
 
+#countdown,
 #bio-cards {
     margin-top: 30px;
 }
 
+.big-map,
+.timeline {
+    margin-top: 10px;
+}
+
+.title {
+    color: #2c2c2c !important;
+}
 .title em {
     color: #e91e63 !important;
     font-style: normal;

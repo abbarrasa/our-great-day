@@ -62,6 +62,7 @@ frontend:
     guestbook:
         title: Our Great <em>Guestbook</em>
         description: Do not be shy!. Send us an original message that would make us happy in our great day. Beforehand, thank you very much to all.
+        send_message: Send your message
         send: Send
         name: Your name
         comment: Your nice message

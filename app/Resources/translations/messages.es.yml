@@ -62,6 +62,7 @@ frontend:
     guestbook:
         title: Nuestro Gran <em>Libro de invitados</em>
         description: No seas tímido/a. Mándanos un original mensajito que nos alegre si cabe un poco más nuestro gran día. De antemano, muchísimas gracias.
+        send_message: Envíanos tu mensaje
         send: Enviar
         name: Tu nombre
         comment: Tu gran mensaje

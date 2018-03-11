@@ -22,7 +22,7 @@
                 <div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
                 {% for entry in column %}
                     {% set style = styles[(entry.createdAt|date('U')) % (styles|length)] %}
-                    <div class="card bg-{{ style }}">
+                    <div class="card bg-{{ style }} sr">
                         <div class="card-body">
                             <div class="card-category text-right">
                                 <i class="material-icons">schedule</i> {{ entry.publishedAt|elapsed_time }}
@@ -31,13 +31,13 @@
                         </div>
                         <div class="card-footer">
                             <div class="author">
-                                {% image '../app/Resources/public/images/albertusko.png' output='assets/images/albertusko.png' %}
+                                {% image '../app/Resources/public/images/user-default.jpg' output='assets/images/user-default.jpg' %}
                                 <img src="{{ asset_url }}" alt="{{ entry.name }}" class="avatar img-raised">
                                 {% endimage %}
                                 <span>{{ entry.name }}</span>
                             </div>
                             <div class="stats ml-auto">
-                                <a href="{{ path('guestbook_like', {'id': entry.id}) }}" class="badge badge-danger" title="{{'frontend.guestbook.likes.tooltip'|trans}}" data-toggle="tooltip">
+                                <a href="{{ path('guestbook_like', {'id': entry.id, 'page': app.request.attributes.get('page')}) }}" class="badge badge-danger" title="{{'frontend.guestbook.likes.tooltip'|trans}}" data-toggle="tooltip">
                                     <i class="fa fa-heart"></i>  {{ entry.likes }}
                                 </a>
                             </div>

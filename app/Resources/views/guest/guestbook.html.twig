@@ -3,14 +3,26 @@
 {% block title %}{{ 'frontend.title'|trans }} - {{ 'frontend.guest.confirm_attendence'|trans }}{% endblock %}
 
 {% block main %}
-<div id="first-section" class="section section-basic sr">
+<div id="first-section" class="section section-basic">
     <div class="container">
         <div class="row">
             <div class="col-md-12 ml-auto mr-auto">
-                <div class="section-description text-center">
+                <div class="section-description text-center sr">
                     <h2 class="title">{{ 'frontend.guestbook.title'|trans|raw }}</h2>
                 </div>
                 {{ include('guest/partials/card-list.html.twig', {'pagination': pagination}) }}
+            </div>
+        </div>
+    </div>
+</div>
+<div id="first-section" class="section section-basic section-purple-gradient sr">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto">
+                <div class="section-description text-center sr">
+                    <h2>{{ 'frontend.guestbook.send_message'|trans }}</h2>
+                    <p class="description">{{ 'frontend.guestbook.description'|trans }}</p>
+                </div>
             </div>
         </div>
         <div class="row">

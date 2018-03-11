@@ -15,7 +15,7 @@
         {% stylesheets
             '../app/Resources/public/css/bootstrap.min.css'
             '../app/Resources/public/css/material-kit.css'
-            '../app/Resources/public/css/demo.css' filter='cssrewrite' %}
+            '../app/Resources/public/css/demo.css' filter='cssrewrite' output='assets/css/app.css' %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
         {% endblock %}
@@ -51,7 +51,7 @@
             <!-- End Navbar -->
 
             <div class="wrapper">
-                <div class="page-header clear-filter" filter-color="purple">
+                <div class="page-header clear-filter" filter-color="black">
                 {% image '../app/Resources/public/images/header.jpg' %}
                     <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset_url }}');"></div>
                 {% endimage %}
@@ -184,7 +184,7 @@
             '../app/Resources/public/js/plugins/nouislider.min.js'
             '../app/Resources/public/js/material-kit.min.js'
             '../app/Resources/public/js/now-ui-kit.js'
-            '../app/Resources/public/js/material-kit-demo.js' %}
+            '../app/Resources/public/js/material-kit-demo.js' output='assets/js/app.js' %}
             {#'../app/Resources/public/js/core/jquery.3.2.1.min.js'#}
             {#'../app/Resources/public/js/core/popper.min.js'#}
             {#'../app/Resources/public/js/core/bootstrap-material-design.min.js'#}

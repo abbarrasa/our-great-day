@@ -17199,46 +17199,46 @@ screen and (-ms-high-contrast:active) {
 }
 
 .section-white-to-gray {
-    background-color: #fff;
-    background: transparent linear-gradient(0deg, #e5e5e5, #fff) repeat scroll 0 0
+    background-color: #fff !important;
+    background: transparent linear-gradient(0deg, #e5e5e5, #fff) repeat scroll 0 0 !important;
 }
 
 .section-gray {
-    background: #e5e5e5
+    background: #e5e5e5 !important;
 }
 
 .section-light-gray {
-    background: #eee
+    background: #eee !important;
 }
 
 .section-primary {
-    background: #e1bee7;
-    background: linear-gradient(60deg, #e1bee7, #ba68c8)
+    background: #e1bee7 !important;
+    background: linear-gradient(60deg, #e1bee7, #ba68c8) !important;
 }
 
 .section-info {
-    background: #b2ebf2;
-    background: linear-gradient(60deg, #b2ebf2, #4dd0e1)
+    background: #b2ebf2 !important;
+    background: linear-gradient(60deg, #b2ebf2, #4dd0e1) !important;
 }
 
 .section-success {
-    background: #c8e6c9;
-    background: linear-gradient(60deg, #c8e6c9, #81c784)
+    background: #c8e6c9 !important;
+    background: linear-gradient(60deg, #c8e6c9, #81c784) !important;
 }
 
 .section-warning {
-    background: #ffe0b2;
-    background: linear-gradient(60deg, #ffe0b2, #ffb74d)
+    background: #ffe0b2 !important;
+    background: linear-gradient(60deg, #ffe0b2, #ffb74d) !important;
 }
 
 .section-danger {
-    background: #ffcdd2;
-    background: linear-gradient(60deg, #ffcdd2, #e57373)
+    background: #ffcdd2 !important;
+    background: linear-gradient(60deg, #ffcdd2, #e57373) !important;
 }
 
 .section-rose {
-    background: #f8bbd0;
-    background: linear-gradient(60deg, #f8bbd0, #f06292)
+    background: #f8bbd0 !important;
+    background: linear-gradient(60deg, #f8bbd0, #f06292) !important;
 }
 
 .section-space {
@@ -17264,10 +17264,10 @@ screen and (-ms-high-contrast:active) {
 
 .section-dark,
 .section-image {
-    background-color: #343434;
+    background-color: #343434 !important;
     background-size: 200% 240%;
-    background: #232323;
-    background: radial-gradient(ellipse at center, #585858 0, #232323 100%);
+    background: #232323 !important;
+    background: radial-gradient(ellipse at center, #585858 0, #232323 100%) !important;
     background-size: 550% 450%
 }
 
@@ -17286,19 +17286,19 @@ screen and (-ms-high-contrast:active) {
 .section-image .card-plain .card-description,
 .section-image .card-plain .icon,
 .section-image .description {
-    color: hsla(0, 0%, 100%, .76)
+    color: hsla(0, 0%, 100%, .76) !important;
 }
 
 .section-dark .card-plain [class*=text-],
 .section-dark .card-plain ul li b,
 .section-image .card-plain [class*=text-],
 .section-image .card-plain ul li b {
-    color: #fff
+    color: #fff !important;
 }
 
 .section-dark .card-plain .card-category,
 .section-image .card-plain .card-category {
-    color: hsla(0, 0%, 100%, .5)
+    color: hsla(0, 0%, 100%, .5) !important;
 }
 
 .section-dark .card .card-image .colored-shadow,
