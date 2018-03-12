@@ -9,6 +9,7 @@ class Mailer
 {
     const TEMPLATE_ENQUIRY_NOTIFICATION   = 'email/enquiry-notification.txt.twig';
     const TEMPLATE_GUESTBOOK_NOTIFICATION = 'email/guestbook-notification.txt.twig';
+    const TEMPLATE_OPENING_NOTIFICATION   = 'email/opening-notification.txt.twig';
 
     /** @var \Swift_Mailer */
     protected $mailer;
@@ -96,6 +97,18 @@ class Mailer
 
         return $this->sendEmailMessage($this->config['email_admin'], $this->config['email_no_reply'], $message);
     }
+    
+    /**
+     * Sends a notification email order to announce the opening of website.
+     * @param Joined $joined
+     * @return int
+     */
+    public function sendOpenningNotificationMessage(Joined $joined)
+    {
+        $message = $this->getMessage(self::TEMPLATE_OPENING_NOTIFICATION, ['joined' => $joined]);
+
+        return $this->sendEmailMessage($this->config['email_admin'], $this->config['email_no_reply'], $message);
+    }    
 
     /**
      * Sends a email.
