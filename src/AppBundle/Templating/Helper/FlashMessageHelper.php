@@ -32,7 +32,7 @@ class FlashMessageHelper extends Helper
 
     public function getName()
     {
-        return 'app_flash_message';
+        return 'app_flash_message_helper';
     }
 
     public function getAlertClassName($type)
