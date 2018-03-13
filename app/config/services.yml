@@ -39,16 +39,23 @@ services:
         public: true
         tags:
             - { name: templating.helper }
+            
+    AppBundle\Service\SocialUrlHelper:
+        class: AppBundle\Templating\Helper\SocialUrlHelper
+        arguments: ["@router"]
+        public: true
+        tags:
+            - { name: templating.helper }            
 
     AppBundle\Service\SocialMenuService:
         class: AppBundle\Menu\MenuBuilder
-        arguments: ["@knp_menu.factory", "@router", "@translator"]
+        arguments: ["@knp_menu.factory", "@AppBundle\Service\SocialUrlHelper", "@translator"]
         tags:
             - { name: knp_menu.menu_builder, method: createSocialMenu, alias: social } # The alias is what is used to retrieve the menu    
         
     AppBundle\Service\MenuBuilderService:
         class: AppBundle\Menu\MenuBuilder
-        arguments: ["@knp_menu.factory", "@router", "@translator"]
+        arguments: ["@knp_menu.factory", "@AppBundle\Service\SocialUrlHelper", "@translator"]
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main } # The alias is what is used to retrieve the menu
 
