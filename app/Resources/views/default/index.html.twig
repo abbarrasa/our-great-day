@@ -4,7 +4,7 @@
     {{ parent() }}
     {% stylesheets
     '../app/Resources/public/css/timeline.css'
-    '../app/Resources/public/css/flipclock.css' filter='cssrewrite' output='assets/css/app.css' %}
+    '../app/Resources/public/css/flipclock.css' filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock %}
@@ -120,11 +120,11 @@
 {% block javascripts %}
     {{ parent() }}
     {% javascripts
-    '../app/Resources/public/js/plugins/flipclock.min.js' output='assets/js/app.js' %}
+    '../app/Resources/public/js/plugins/flipclock.min.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
-    {#<!--  Google Maps Plugin    -->#}
+    <!--  Google Maps Plugin    -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap"></script>
     <script type="text/javascript">
         function initMap()

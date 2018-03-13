@@ -15,7 +15,7 @@
         {% stylesheets
             '../app/Resources/public/css/bootstrap.min.css'
             '../app/Resources/public/css/material-kit.css'
-            '../app/Resources/public/css/demo.css' filter='cssrewrite' output='assets/css/app.css' %}
+            '../app/Resources/public/css/demo.css' filter='cssrewrite' %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
         {% endblock %}
@@ -34,7 +34,7 @@
                         <a class="navbar-brand" href="{{ path('homepage') }}">
                             {{ 'frontend.title'|trans }}
                         </a>
-                        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <button id="burger-button" class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-bar bar1"></span>
                             <span class="navbar-toggler-bar bar2"></span>
                             <span class="navbar-toggler-bar bar3"></span>
@@ -52,7 +52,7 @@
 
             <div class="wrapper">
                 <div class="page-header clear-filter" filter-color="black">
-                {% image '../app/Resources/public/images/header.jpg' output='assets/images/header.jpg' %}
+                {% image '../app/Resources/public/images/header.jpg' %}
                     <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset_url }}');"></div>
                 {% endimage %}
 
@@ -185,7 +185,7 @@
             '../app/Resources/public/js/plugins/nouislider.min.js'
             '../app/Resources/public/js/material-kit.min.js'
             '../app/Resources/public/js/now-ui-kit.js'
-            '../app/Resources/public/js/material-kit-demo.js' output='assets/js/app.js' %}
+            '../app/Resources/public/js/material-kit-demo.js' %}
             {#'../app/Resources/public/js/core/jquery.3.2.1.min.js'#}
             {#'../app/Resources/public/js/core/popper.min.js'#}
             {#'../app/Resources/public/js/core/bootstrap-material-design.min.js'#}
@@ -235,6 +235,7 @@
                             url: '{{ path('enquiry') }}',
                             type: 'POST'
                         }).done(function (responseJSON) {
+                            $('#burger-button').trigger('click');
                             $('#myModal').find('.modal-body').html(responseJSON.view);
                             $('#myModal').modal('show');
                         });
