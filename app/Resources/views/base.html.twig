@@ -34,7 +34,7 @@
                         <a class="navbar-brand" href="{{ path('homepage') }}">
                             {{ 'frontend.title'|trans }}
                         </a>
-                        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <button id="burger-button" class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-bar bar1"></span>
                             <span class="navbar-toggler-bar bar2"></span>
                             <span class="navbar-toggler-bar bar3"></span>
@@ -235,6 +235,7 @@
                             url: '{{ path('enquiry') }}',
                             type: 'POST'
                         }).done(function (responseJSON) {
+                            $('#burger-button').trigger('click');
                             $('#myModal').find('.modal-body').html(responseJSON.view);
                             $('#myModal').modal('show');
                         });
