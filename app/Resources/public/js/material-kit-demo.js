@@ -108,7 +108,7 @@
                  from: "top",
                  align: "center"
              },
-             template: '<div data-notify="container" class="col-8 mr-auto ml-auto alert alert-{0}" role="alert">' +
+             template: '<div data-notify="container" class="col-lg-8 col-md-8 col-xs-12 mr-auto ml-auto alert alert-{0}" role="alert">' +
              '<div class="container-fluid">' +
              '<div class="alert-icon"><i data-notify="icon" class="material-icons"></i></div>' +
              '<button type="button" aria-hidden="true" class="close" data-notify="dismiss"><i class="material-icons">clear</i></button>' +

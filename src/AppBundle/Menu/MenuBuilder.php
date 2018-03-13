@@ -2,35 +2,30 @@
 namespace AppBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use AppBundle\Templating\Helper\SocialUrlHelper;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class MenuBuilder
 {
-    const TEXT                   = 'Nuestro gran día';
-    const HASHTAGS               = ['veroycarlos', 'boda'];
-    const URL_PATTERN_FACEBOOK   = 'https://www.facebook.com/sharer.php?u=%url%&t=%text%';
-    const URL_PATTERN_TWITTER    = 'https://twitter.com/intent/tweet?url=%url%&text=%text%&hashtags=%hashtags%';
-    const URL_PATTERN_GOOGLEPLUS = 'https://plus.google.com/share?url=%url%';
-	
     /** @var FactoryInterface */
     private $factory;
-    /** @var UrlGeneratorInterface */
-    protected $router;
+    /** @var SocialUrlHelper */
+    private $socialUrlHelper;
     /** @var TranslatorInterface */
-    protected $translator;
+    private $translator;	
 
     /**
      * MenuBuilder constructor.
+     *
      * @param FactoryInterface $factory
-     * @param UrlGeneratorInterface $router
-     * @param TranslatorInterface $translator
+     * @param SocialUrlHelper $socialUrlHelper
+     * @param TranslatorInterface $translator     
      */
-    public function __construct(FactoryInterface $factory, UrlGeneratorInterface $router, TranslatorInterface $translator)
+    public function __construct(FactoryInterface $factory, SocialUrlHelper $socialUrlHelper, TranslatorInterface $translator)
     {
-        $this->factory    = $factory;
-        $this->router     = $router;
-        $this->translator = $translator;
+        $this->factory    	= $factory;
+        $this->socialUrlHelper 	= $socialUrlHelper;
+        $this->translator 	= $translator;	    
     }
 
     public function createMainMenu()
@@ -102,7 +97,7 @@ class MenuBuilder
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'navbar-nav');
         $menu
-            ->addChild('facebook', ['uri' => $this->generateSocialUrl(self::URL_PATTERN_FACEBOOK)])
+            ->addChild('facebook', ['uri' => $this->socialUrlHelper->generateFacebookUrl()])
             ->setLabel('Facebook')
             ->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setAttributes(['icon' => 'fa fa-facebook-square', 'class' => 'nav-item'])
@@ -115,7 +110,7 @@ class MenuBuilder
             ])
         ;
         $menu
-            ->addChild('twitter', ['uri' => $this->generateSocialUrl(self::URL_PATTERN_TWITTER)])
+            ->addChild('twitter', ['uri' => $this->socialUrlHelper->generateTwitterUrl()])
             ->setLabel('Twitter')
             ->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setAttributes(['icon' => 'fa fa-twitter', 'class' => 'nav-item'])
@@ -128,7 +123,7 @@ class MenuBuilder
             ])
         ;
         $menu
-            ->addChild('googleplus', ['uri' => $this->generateSocialUrl(self::URL_PATTERN_GOOGLEPLUS)])
+            ->addChild('googleplus', ['uri' => $this->socialUrlHelper->generateGoogleplusUrl()])
             ->setLabel('Google+')
             ->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setAttributes(['icon' => 'fa fa-google-plus-square', 'class' => 'nav-item'])
@@ -142,15 +137,6 @@ class MenuBuilder
         ;
 
         return $menu;
-    }
-
-    private function generateSocialUrl($pattern)
-    {
-        return strtr($pattern, [
-            '%url%' => $this->router->generate('homepage', [], UrlGeneratorInterface::ABSOLUTE_URL),
-            '%text%' => urlencode(self::TEXT),
-            '%hashtags%' => urlencode(implode(',', self::HASHTAGS))
-        ]);
     }
 }
 
