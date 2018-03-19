@@ -68,3 +68,9 @@ services:
     AppBundle\Service\Mailer:
         class: AppBundle\Manager\Mailer
         arguments: ["@mailer", "@router", "@twig", '%mailer%']
+        
+    AppBundle\Service\MaintenanceListener:
+        class: AppBundle\Event\Listener\MaintenanceListener
+        arguments: ["@service_container"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }        
