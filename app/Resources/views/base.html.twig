@@ -4,6 +4,10 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        {% block meta_description %}
+        <meta name="description" content="Estrategias de Inversión es el portal lider de análisis y recomendaciones para invertir en bolsa.">
+        <link rel="canonical" href="{{ absolute_url(path('homepage')) }}" />
+        {% endblock %}
         <meta name="viewport" content="width=device-width" />
 
         <title>{% block title %}{% endblock %}</title>
