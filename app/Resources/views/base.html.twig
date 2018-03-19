@@ -87,13 +87,14 @@
                 <!-- End Main -->
 
                 <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="ogd-modal" tabindex="-1" role="dialog" aria-labelledby="ogd-modal-label" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                <h5 class="modal-title" id="ogd-modal-label"></h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                                    <!--<span aria-hidden="true">&times;</span>-->
+                                    <span aria-hidden="true" class="material-icons">clear</span>
                                 </button>
                             </div>
                             <div class="modal-body"></div>
@@ -240,8 +241,8 @@
                             type: 'POST'
                         }).done(function (responseJSON) {
                             $('#burger-button').trigger('click');
-                            $('#myModal').find('.modal-body').html(responseJSON.view);
-                            $('#myModal').modal('show');
+                            $('#ogd-modal').find('.modal-body').html(responseJSON.view);
+                            $('#ogd-modal').modal('show');
                         });
                     });
 
@@ -253,7 +254,7 @@
                             url: $(this).attr('action'),
                             data: $(this).serialize(),
                         }).done(function () {
-                            $('#myModal').modal('hide');
+                            $('#ogd-modal-label').modal('hide');
                             materialKitDemo.showNotification(
                                 '{{ 'frontend.success'|trans }}',
                                 '{{ 'frontend.enquiry.success'|trans }}',
@@ -262,7 +263,7 @@
                             );
                         }).fail(function (jqXHR, textStatus, errorThrown) {
                             if (jqXHR.responseJSON.hasOwnProperty('view')) {
-                                $('#myModal').find('.modal-body').html(jqXHR.responseJSON.view);
+                                $('#ogd-modal-label').find('.modal-body').html(jqXHR.responseJSON.view);
                             }
                         });
                     });
