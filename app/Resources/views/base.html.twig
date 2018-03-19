@@ -46,24 +46,21 @@
                     </div>
                     {% image '../app/Resources/public/images/blurred-image-1.jpg' %}
                     <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{ asset_url }}">
-                    {% block navigation %}
                         {{ knp_menu_render('main', {'template': 'partials/knp_menu.html.twig'}) }}
                         {{ knp_menu_render('social', {'template': 'partials/knp_menu.html.twig'}) }}
-                    {% endblock %}
                     </div>
                     {% endimage %}
                 </div>
             </nav>
             <!-- End Navbar -->
 
-            <div class="wrapper">
+            <div class="wrapper">          
+                <!-- Header -->
                 <div class="page-header clear-filter" filter-color="black">
                 {% image '../app/Resources/public/images/header.jpg' %}
                     <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset_url }}');"></div>
                 {% endimage %}
-
                     <div class="container">
-                    {% block header_container %}
                         <div class="content-center brand">
                             {#<img class="n-logo" src="./assets/img/now-logo.png" alt="">#}
                             <h1 class="h1-seo">Vero y Carlos</h1>
@@ -81,9 +78,9 @@
                                 {#<img src="./assets/img/creative-tim-white-slim2.png" class="creative-tim-logo" />#}
                             {#</a>.</h6>#}
                     </div>
-                    {% endblock %}
                 </div>
-
+                <!-- End Header -->
+                
                 <!-- Main -->
                 <div class="main">
                     {% block main %}{% endblock %}
