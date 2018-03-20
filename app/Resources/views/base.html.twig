@@ -217,7 +217,8 @@
 
                     {# Animation on each section #}
                     window.sr = ScrollReveal();
-                    sr.reveal('.sr', {duration: 800, reset: true, viewOffset: { top: 64 }});
+                    sr.reveal('.sr', {duration: 800, reset: false, viewOffset: { top: 64 }});
+                    sr.reveal('.card-sr', {duration: 800, reset: true, viewOffset: { top: 64 }});
 
                     {# Data scroll #}
                     $('a[data-scroll="true"]').click(function(e){

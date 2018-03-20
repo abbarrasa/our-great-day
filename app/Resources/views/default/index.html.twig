@@ -33,12 +33,12 @@
     <!-- End Countdown -->
 
     <!-- Bio cards -->
-    <div class="section section-basic section-dark sr">
+    <div class="section section-basic section-dark">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-center ml-auto mr-auto">
                     <div class="section-description">
-                        <h2 class="title">{{ 'frontend.bio.title'|trans|raw }}</h2>
+                        <h2 class="title sr">{{ 'frontend.bio.title'|trans|raw }}</h2>
                     </div>
                 </div>
             </div>
@@ -62,11 +62,11 @@
     <!-- End Bio cards -->
 
     <!-- Timeline -->
-    <div class="section section-basic section-white-to-gray sr">
+    <div class="section section-basic section-white-to-gray">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-center ml-auto mr-auto">
-                    <div class="section-description">
+                    <div class="section-description sr">
                         <h2 class="title">{{ 'frontend.timeline.title'|trans|raw |trans|raw }}</h2>
                     </div>
                 </div>
@@ -91,18 +91,20 @@
     <!-- End Timeline -->
 
     <!-- Maps -->
-    <div class="section section-basic section-gray sr">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 text-center ml-auto mr-auto">
-                    <div class="section-description">
-                        <h2 class="title">{{ 'frontend.location.title'|trans|raw }}</h2>
+    <div class="section section-basic section-gray">
+        <div class="sr">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 text-center ml-auto mr-auto">
+                        <div class="section-description">
+                            <h2 class="title">{{ 'frontend.location.title'|trans|raw }}</h2>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div id="map" class="big-map"></div>
         </div>
-        <div id="map" class="big-map"></div>
-    </div>     
+    </div>
     {#<div class="section section-basic sr">#}
         {#<div class="container">#}
             {#<div class="row">#}

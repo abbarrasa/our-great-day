@@ -719,13 +719,13 @@
 .timeline .timeline-label .label-danger {
   background-color: #d25a4b;
 }
-.timeline-point-space-50 {
+.timeline-space-50 {
+  margin-top: 50px !important;
+}
+.timeline-space-70 {
   margin-top: 70px !important;
 }
-.timeline-point-space-70 {
-  margin-top: 70px !important;
-}
-.timeline-point-space-90 {
+.timeline-space-90 {
   margin-top: 90px !important;
 }
 .timeline .timeline-body .media {
