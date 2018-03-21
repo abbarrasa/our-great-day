@@ -12,7 +12,9 @@ parameters:
         default_sleep: 1
         email_admin: '%email_admin%'
         email_no_reply: '%email_no_reply%'
-        from_name: 'Our Great Day'
+        from_name: 'Our Great Day'       
+        # Maintenance mode
+        maintenance: false     
 
 framework:
     #esi: ~
