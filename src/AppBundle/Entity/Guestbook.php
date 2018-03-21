@@ -10,7 +10,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="ogd_guestbook")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GuestbookRepository")
- * @ORM\HasLifecycleCallbacks()
  */
 class Guestbook
 {
