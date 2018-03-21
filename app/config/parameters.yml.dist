@@ -25,5 +25,5 @@ parameters:
     wedding.date: '2018-09-14T19:30:00'
     
     # Emails
-    email_admin: admin@ovh.com
-    email_no_reply: no_reply@ovh.com
+    email_admin: admin@domain.com
+    email_no_reply: no_reply@domain.com
