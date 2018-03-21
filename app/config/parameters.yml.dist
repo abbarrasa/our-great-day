@@ -19,10 +19,10 @@ parameters:
     secret: ~
     
     # Google API key
-    google.api_key: AIzaSyCILLBm5Gie0gN06N3KjxE5RkNf9HacYYs
+    google.api_key: ~
     
     # Wedding date
-    wedding.date: '2018-09-14T19:30:00'
+    wedding.date: '2018-09-14T19:00:00'
     
     # Emails
     email_admin: admin@domain.com

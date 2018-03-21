@@ -847,7 +847,7 @@ body {
     background: transparent linear-gradient(0deg, #f487ac, #fff) repeat scroll 0 0 !important;
 }
 
-.section-dark h2.title {
+.section-dark .title {
     color: #fff !important;
 }
 
@@ -2537,5 +2537,32 @@ a.scroll-arrow:hover {
     height: 70vh;
     width: 100%;
     display: block;
+    position: relative;
+}
+
+.section-line-image {
+    position: relative;
+    background-position: center center;
+    background-size: cover;
+}
+.section-line-image .description {
+    color: rgba(255, 255, 255, 0.8);
+}
+.section-line-image .title {
+    color: #FFFFFF !important;
+}
+.section-line-image:after {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    left: 0;
+    top: 0;
+    content: "";
+    background-color: rgba(0, 0, 0, 0.66);
+}
+.section-line-image .container {
+    z-index: 2;
     position: relative;
 }

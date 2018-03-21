@@ -6,6 +6,7 @@
     '../app/Resources/public/css/timeline.css'
     '../app/Resources/public/css/flipclock.css' filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet" type='text/css'>
     {% endstylesheets %}
 {% endblock %}
 
@@ -33,7 +34,8 @@
     <!-- End Countdown -->
 
     <!-- Bio cards -->
-    <div class="section section-basic section-dark">
+    {% image '../app/Resources/public/images/wedding-rings.jpg' %}
+    <div class="section section-line-image" style="background-image: url('{{ asset_url }}');">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-center ml-auto mr-auto">
@@ -42,13 +44,35 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-8 mr-auto ml-auto">
                     {{ include('default/partials/profiles.html.twig') }}
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
+    {% endimage %}
+
+
+    {#<div class="section section-basic section-dark">#}
+        {#<div class="container">#}
+            {#<div class="row">#}
+                {#<div class="col-md-8 text-center ml-auto mr-auto">#}
+                    {#<div class="section-description">#}
+                        {#<h2 class="title sr">{{ 'frontend.bio.title'|trans|raw }}</h2>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+            {#<div class="row">#}
+                {#<div class="col-md-8 mr-auto ml-auto">#}
+                    {#{{ include('default/partials/profiles.html.twig') }}#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+
+
     {#<div class="section section-basic section-white-to-gray sr">#}
         {#<div class="container">#}
             {#<div class="row">#}
