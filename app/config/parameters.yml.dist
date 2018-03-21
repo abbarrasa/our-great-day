@@ -15,14 +15,15 @@ parameters:
     mailer_user: ~
     mailer_password: ~
     
-    # Maintenance mode
-    maintenance: false
     # A secret key that's used to generate certain security-related tokens
     secret: ~
+    
     # Google API key
     google.api_key: AIzaSyCILLBm5Gie0gN06N3KjxE5RkNf9HacYYs
+    
     # Wedding date
     wedding.date: '2018-09-14T19:30:00'
+    
     # Emails
     email_admin: admin@ovh.com
     email_no_reply: no_reply@ovh.com
