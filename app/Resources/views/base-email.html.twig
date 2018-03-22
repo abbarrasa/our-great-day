@@ -1,3 +1,8 @@
+{% block subject %}{% endblock %}
+
+{% block body_text %}{% endblock %}
+
+{% block body_html %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -88,6 +93,7 @@
                         </tr>
                         <tr>
                             <td class="content">
+                            {% block content_html %}{% endblock %}
                                 <h2>Hi Stranger,</h2>
 
                                 <p>Kielbasa venison ball tip shankle. Boudin prosciutto landjaeger, pancetta jowl turkey tri-tip porchetta beef pork loin drumstick. Frankfurter short ribs kevin pig ribeye drumstick bacon kielbasa. Pork loin brisket biltong, pork belly filet mignon ribeye pig ground round porchetta turducken turkey. Pork belly beef ribs sausage ham hock, ham doner frankfurter pork chop tail meatball beef pig meatloaf short ribs shoulder. Filet mignon ham hock kielbasa beef ribs shank. Venison swine beef ribs sausage pastrami shoulder.</p>
@@ -130,3 +136,4 @@
         </table>
     </body>
 </html>
+{% endblock %}
