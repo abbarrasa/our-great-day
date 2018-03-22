@@ -144,18 +144,18 @@ class Mailer
      */
     protected function getMessage($name, array $parameters = array())
     {
-        $template = $this->environment->loadTemplate($name);
-        $context  = $this->environment->mergeGlobals($parameters);
-        $subject  = $template->renderBlock('subject', $context);
-        $bodyHtml = $template->renderBlock('body_html', $context);
-        $bodyHtml = preg_replace('/[\n|\r|\n\r|\t|\0|\x0B]/', '', $bodyHtml);
-        $bodyText = $template->renderBlock('body_text', $context);
+        $template  = $this->environment->loadTemplate($name);
+        $context   = $this->environment->mergeGlobals($parameters);
+        $subject   = $template->renderBlock('subject', $context);
+        $bodyHtml  = $template->renderBlock('body_html', $context);
+        $bodyHtml  = preg_replace('/[\n|\r|\n\r|\t|\0|\x0B]/', '', $bodyHtml);
+        $bodyPlain = $template->renderBlock('body_plain', $context);
 
         $message  = \Swift_Message::newInstance()
             ->setContentType("text/html")
             ->setSubject($subject)
             ->setBody($bodyHtml, 'text/html')
-            ->addPart($bodyText, 'text/plain');
+            ->addPart($bodyPlain, 'text/plain');
 
         return $message;
     }
