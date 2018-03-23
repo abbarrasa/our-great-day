@@ -44,7 +44,7 @@ frontend:
         success: You have been joined successfully. We will notify you when the website is ready.
     guest:
         title: Our Great <em>Guests</em>
-        description: On this page you can confirm your attendance or reject our invitation (in which case we will be very sorry). To do this, you must first search yourself in the guest list and then send your confirmation. If you can not find yourself and you think you should be or have some other problem, you can contact us here. Do not think about it much and attend... without you, it will not be the same.
+        description: On this page you can confirm your attendance or reject our invitation (in which case we will be very sorry). To do this, you must first search yourself in the guest list and then send your confirmation. If you can not find yourself and you think you should be or have some other problem, you can contact us <a href="#">here</a>. Do not think about it much and attend... without you, it will not be the same.
         firstname: Your Firstname
         lastname: Your Lastname
         email: Your email (optional)
