@@ -2,35 +2,35 @@ services:
     app.admin.guest:
         class: AppBundle\Admin\GuestAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: app.admin.group.administration, label: app.admin.model.guests }
+            - { name: sonata.admin, manager_type: orm, group: admin.group.administration, label: admin.model.guests }
         arguments:
             - ~
             - AppBundle\Entity\Guest
             - ~
         calls:
-            - [ setTranslationDomain, [AppBundle]]
+            - [ setTranslationDomain, [admin]]
         public: true
 
-    app.admin.guestbook:
-        class: AppBundle\Admin\GuestbookAdmin
+    app.admin.greetings:
+        class: AppBundle\Admin\GreetingAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: app.admin.group.administration, label: app.admin.model.guestbooks }
+            - { name: sonata.admin, manager_type: orm, group: admin.group.administration, label: admin.model.greetings }
         arguments:
             - ~
-            - AppBundle\Entity\Guestbook
+            - AppBundle\Entity\Greeting
             - ~
         calls:
-            - [ setTranslationDomain, [AppBundle]]
+            - [ setTranslationDomain, [admin]]
         public: true
 
     app.admin.location:
         class: AppBundle\Admin\LocationAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: app.admin.group.settings, label: app.admin.model.locations }
+            - { name: sonata.admin, manager_type: orm, group: admin.group.settings, label: admin.model.locations }
         arguments:
             - ~
             - AppBundle\Entity\Location
             - ~
         calls:
-            - [ setTranslationDomain, [AppBundle]]
+            - [ setTranslationDomain, [admin]]
         public: true

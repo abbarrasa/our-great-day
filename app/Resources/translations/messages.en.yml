@@ -1,6 +1,7 @@
 frontend:
     success: Success!
     error: Ooops!
+    info: Info
     close: Close
     title: Our great day
     choice:
@@ -65,8 +66,9 @@ frontend:
         send_message: Send your message
         send: Send
         name: Your name
-        comment: Your nice message
+        message: Your nice message
         success: Your message has been sent successfully and is pending moderation. After being reviewed it will be published.
+        no_greetings: Be the first to send us a greeting!
         likes:
             tooltip: Click here to "Like" the message
             success: You have clicked "Like" on %author%\'s message.

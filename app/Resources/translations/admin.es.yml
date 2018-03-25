@@ -1,0 +1,8 @@
+admin:
+    group:
+        administration: Administración
+        settings: Ajustes
+    model:
+        guests: Invitados
+        greetings: Felicitaciones
+        locations: Localizaciones

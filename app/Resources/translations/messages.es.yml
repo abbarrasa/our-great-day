@@ -1,6 +1,7 @@
 frontend:
     success: Bien!
     error: Ooops!
+    info: Info
     close: Cerrar
     title: Nuestro gran día
     choice:
@@ -65,8 +66,9 @@ frontend:
         send_message: Envíanos tu mensaje
         send: Enviar
         name: Tu nombre
-        comment: Tu gran mensaje
+        message: Tu gran mensaje
         success: Tu mensaje se ha enviado correctamente y queda pendiente de moderación. Después de ser revisado será publicado.
+        no_greetings: Se el/la primero/a en mandarnos un saludo!
         likes:
             tooltip: Pulsa para dar un "Me gusta" al mensaje
             success: Has dado a "Me gusta" al mensaje de %author%.
