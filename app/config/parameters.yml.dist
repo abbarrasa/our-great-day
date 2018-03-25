@@ -27,3 +27,4 @@ parameters:
     # Emails
     email_admin: admin@domain.com
     email_no_reply: no_reply@domain.com
+    embedded_images: []

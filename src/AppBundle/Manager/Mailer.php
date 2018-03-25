@@ -3,39 +3,37 @@
 namespace AppBundle\Manager;
 
 use AppBundle\Entity\Enquiry;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use AppBundle\Entity\Joined;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class Mailer
 {
     const TEMPLATE_ENQUIRY_NOTIFICATION   = 'email/enquiry-notification.txt.twig';
     const TEMPLATE_GUESTBOOK_NOTIFICATION = 'email/guestbook-notification.txt.twig';
-    const TEMPLATE_OPENING_NOTIFICATION   = 'email/opening-notification.txt.twig';
+    const TEMPLATE_WEBSITE_ANNOUNCEMENT   = 'email/website-announcement.txt.twig';
 
     /** @var \Swift_Mailer */
     protected $mailer;
 
-    /** @var UrlGeneratorInterface  */
-    protected $router;
-
     /** @var \Twig_Environment */
     protected $environment;
+
+    /** @var ContainerInterface */
+    protected $container;
 
     /** @var array */
     protected $config;
 
     /**
      * Mailer constructor.
-     * @param \Swift_Mailer $mailer
-     * @param UrlGeneratorInterface $router
-     * @param \Twig_Environment $environment
-     * @param $config
+     * @param ContainerInterface $container
      */
-    public function __construct(\Swift_Mailer $mailer, UrlGeneratorInterface  $router, \Twig_Environment $environment, $config)
+    public function __construct(ContainerInterface $container)
     {
-        $this->mailer       = $mailer;
-        $this->router       = $router;
-        $this->environment  = $environment;
-        $this->config       = $config;
+        $this->container   = $container;
+        $this->mailer      = $container->get('mailer');
+        $this->environment = $container->get('twig');
+        $this->config      = $container->getParameter('mailer');
     }
 
     /**
@@ -103,11 +101,11 @@ class Mailer
      * @param Joined $joined
      * @return int
      */
-    public function sendOpenningNotificationMessage(Joined $joined)
+    public function sendAnnouncementMessage(Joined $joined)
     {
-        $message = $this->getMessage(self::TEMPLATE_OPENING_NOTIFICATION, ['joined' => $joined]);
+        $message = $this->getMessage(self::TEMPLATE_WEBSITE_ANNOUNCEMENT, ['joined' => $joined]);
 
-        return $this->sendEmailMessage($this->config['email_admin'], $this->config['email_no_reply'], $message);
+        return $this->sendEmailMessage($this->config['email_admin'], $joined->getEmail(), $message);
     }    
 
     /**
@@ -144,19 +142,52 @@ class Mailer
      */
     protected function getMessage($name, array $parameters = array())
     {
+        $message   = \Swift_Message::newInstance();
+        $images    = $this->embedImages($message);
         $template  = $this->environment->loadTemplate($name);
         $context   = $this->environment->mergeGlobals($parameters);
         $subject   = $template->renderBlock('subject', $context);
+        $bodyPlain = $template->renderBlock('body_plain', $context);
         $bodyHtml  = $template->renderBlock('body_html', $context);
         $bodyHtml  = preg_replace('/[\n|\r|\n\r|\t|\0|\x0B]/', '', $bodyHtml);
-        $bodyPlain = $template->renderBlock('body_plain', $context);
 
-        $message  = \Swift_Message::newInstance()
-            ->setContentType("text/html")
+        // Replace placeholder urls with embedded image reference
+        // eg <img src="image1.jpg"> => <img src="cid:XXXXX">
+        if (count($images) > 0) {
+            $bodyHtml  = strtr($bodyHtml, $images);
+        }
+
+        $message->setContentType("text/html")
             ->setSubject($subject)
             ->setBody($bodyHtml, 'text/html')
             ->addPart($bodyPlain, 'text/plain');
 
         return $message;
+    }
+
+    /**
+     * Embeds defined images in a message. Returns a list of embedded image references.
+     * @param \Swift_Message $message
+     * @return array
+     */
+    protected function embedImages(\Swift_Message &$message)
+    {
+        if (!array_key_exists('embedded_images', $this->config)) {
+            return array();
+        }
+
+        $images = array();
+        foreach($this->config['embedded_images'] as $filename) {
+            if (0 === strpos($filename, '@')) {
+                $path      = $this->container->get('kernel')->locateResource($filename);
+            } else {
+                $path = $this->container->get('kernel')->getRootDir() . "/Resources/public/images/{$filename}";
+            }
+
+            // Embed images into message and collect references
+            $images[basename($path)] = $message->embed(\Swift_Image::fromPath($path)->setDisposition('inline'));
+        }
+
+        return $images;
     }
 }

@@ -67,8 +67,9 @@ services:
 
     AppBundle\Service\Mailer:
         class: AppBundle\Manager\Mailer
-        arguments: ["@mailer", "@router", "@twig", '%mailer%']
-        
+        arguments: ["@service_container"]
+        public: true
+
     AppBundle\Service\MaintenanceListener:
         class: AppBundle\Event\Listener\MaintenanceListener
         arguments: ["@service_container"]

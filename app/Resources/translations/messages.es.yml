@@ -1,15 +1,3 @@
-email:
-    opening_notification:
-        subject: \'Nuestro gran día\' disponible
-        body_plain:
-        Hola
-
-        Como ya sabrás nos casamos
-
-        body_html:
-        <h2>Hola,</h2>
-        <p>Como ya sabrás, nos casamos. Kielbasa venison ball tip shankle. Boudin prosciutto landjaeger, pancetta jowl turkey tri-tip porchetta beef pork loin drumstick. Frankfurter short ribs kevin pig ribeye drumstick bacon kielbasa. Pork loin brisket biltong, pork belly filet mignon ribeye pig ground round porchetta turducken turkey. Pork belly beef ribs sausage ham hock, ham doner frankfurter pork chop tail meatball beef pig meatloaf short ribs shoulder. Filet mignon ham hock kielbasa beef ribs shank. Venison swine beef ribs sausage pastrami shoulder.</p>
-
 frontend:
     success: Bien!
     error: Ooops!

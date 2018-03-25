@@ -45,9 +45,9 @@ class SocialExtension extends \Twig_Extension
         return [
             new \Twig_SimpleFunction('facebook_social_link', array($this, 'facebookLinkFunction'),
                 array('needs_environment' => false, 'pre_escape' => 'html', 'is_safe' => array('html'))),
-            new \Twig_SimpleFunction('twitter_social_link', array($this, 'generateVideoCutLink'),
+            new \Twig_SimpleFunction('twitter_social_link', array($this, 'twitterLinkFunction'),
                 array('needs_environment' => false, 'pre_escape' => 'html', 'is_safe' => array('html'))),
-            new \Twig_SimpleFunction('googleplus_social_link', array($this, 'generateVideoCutLink'),
+            new \Twig_SimpleFunction('googleplus_social_link', array($this, 'googleplusLinkFunction'),
                 array('needs_environment' => false, 'pre_escape' => 'html', 'is_safe' => array('html'))),
         ];
     }

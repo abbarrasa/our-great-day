@@ -27,7 +27,7 @@ class MaintenanceListener
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        $maintenance = $this->container->hasParameter('maintenance') ? $this->container->get('maintenance') : false;
+        $maintenance = $this->container->hasParameter('maintenance') ? $this->container->getParameter('maintenance') : false;
         $environment  = $this->container->get('kernel')->getEnvironment();
 
         if ($maintenance && $environment === 'prod') {

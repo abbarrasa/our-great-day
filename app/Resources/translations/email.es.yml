@@ -1,0 +1,17 @@
+email:
+    website_announcement:
+        subject: "'Nuestro gran día' está disponible"
+        body_plain: |
+                    Hola,
+
+                    Como ya sabrás nos vamos a casar. Te mandamos este correo para anunciarte que tenemos disponible una web donde vamos informándote de todas las novedades referentes al evento y a nosotros.
+
+                    Puedes visitarla en %url%.
+
+                    Un enorme saludo de Vero y Carlos. ¡Te esperamos!
+
+        body_html: |
+                    <h2>Hola,</h2>
+                    <p>Como ya sabrás nos vamos a casar. Te mandamos este correo para anunciarte que tenemos disponible una web donde vamos informándote de todas las novedades referentes al evento y a nosotros.</p>
+                    <p>Puedes visitarla en <a href="%url%">%url%</a>.
+                    <p>Un enorme saludo de Vero y Carlos. ¡Te esperamos!</p>
