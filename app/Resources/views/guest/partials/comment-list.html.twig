@@ -1,0 +1,26 @@
+{% if greeting.comments|length > 0 %}
+    {% for comment in greeting.comments %}
+    <div class="media">
+        <div class="pull-left">
+            <div class="avatar">
+                {% image '../app/Resources/public/images/user-default.jpg' %}
+                <img src="{{ asset_url }}" alt=".." class="media-object img-raised">
+                {% endimage %}
+            </div>
+        </div>
+        <div class="media-body">
+            <h5 class="media-heading">Tina Andrew <small class="text-muted">· {{ comment.publishedAt|elapsed_time }}</small></h5>
+            <p>{{ comment.content }}</p>
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <div class="alert alert-info">
+        <div class="container">
+            <div class="alert-icon">
+                <i class="material-icons">info_outline</i>
+            </div>
+            <b>{{ 'frontend.info'|trans }}</b>: {{ 'frontend.guestbook.no_comments'|trans }}
+        </div>
+    </div>
+{% endif %}

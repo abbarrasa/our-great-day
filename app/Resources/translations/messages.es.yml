@@ -69,6 +69,9 @@ frontend:
         message: Tu gran mensaje
         success: Tu mensaje se ha enviado correctamente y queda pendiente de moderación. Después de ser revisado será publicado.
         no_greetings: Se el/la primero/a en mandarnos un saludo!
+        no_comments: Se el/la primero/a en comentar!
+        comments:
+            tooltip: Pulsa para ver los comentarios
         likes:
             tooltip: Pulsa para dar un "Me gusta" al mensaje
             success: Has dado a "Me gusta" al mensaje de %author%.

@@ -69,6 +69,9 @@ frontend:
         message: Your nice message
         success: Your message has been sent successfully and is pending moderation. After being reviewed it will be published.
         no_greetings: Be the first to send us a greeting!
+        no_comments: Be the first to comment!
+        comments:
+            tooltip: Click here to see all comments
         likes:
             tooltip: Click here to "Like" the message
             success: You have clicked "Like" on %author%\'s message.

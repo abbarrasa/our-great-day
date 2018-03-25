@@ -20,25 +20,28 @@
         <div class="row">
             {% for column in columns %}
                 <div class="col-xl-4 col-lg-4 col-md-4 col-xs-12">
-                {% for entry in column %}
-                    {% set style = styles[(entry.createdAt|date('U')) % (styles|length)] %}
+                {% for greeting in column %}
+                    {% set style = styles[(greeting.createdAt|date('U')) % (styles|length)] %}
                     <div class="card card-sr bg-{{ style }}">
                         <div class="card-body">
                             <div class="card-category text-right">
-                                <i class="material-icons">schedule</i> {{ entry.publishedAt|elapsed_time }}
+                                <i class="material-icons">schedule</i> {{ greeting.publishedAt|elapsed_time }}
                             </div>
-                            <h4 class="card-title justify-content-center">{{ entry.message }}</h4>
+                            <h4 class="card-title justify-content-center">{{ greeting.message }}</h4>
                         </div>
                         <div class="card-footer">
                             <div class="author">
                                 {% image '../app/Resources/public/images/user-default.jpg' %}
-                                <img src="{{ asset_url }}" alt="{{ entry.name }}" class="avatar img-raised">
+                                <img src="{{ asset_url }}" alt="{{ greeting.name }}" class="avatar img-raised">
                                 {% endimage %}
-                                <span>{{ entry.name }}</span>
+                                <span>{{ greeting.name }}</span>
                             </div>
                             <div class="stats ml-auto">
-                                <a href="{{ path('greeting_like', {'id': entry.id, 'page': app.request.attributes.get('page')}) }}" class="badge badge-danger" title="{{'frontend.guestbook.likes.tooltip'|trans}}" data-toggle="tooltip">
-                                    <i class="fa fa-heart"></i>  {{ entry.likes }}
+                                <a href="{{ path('greeting_like', {'id': greeting.id, 'page': app.request.attributes.get('page')}) }}" class="badge badge-danger" title="{{'frontend.guestbook.likes.tooltip'|trans}}" data-toggle="tooltip">
+                                    <i class="fa fa-heart"></i>  {{ greeting.likes }}
+                                </a>
+                                <a href="{{ path('greeting_comments', {'id': greeting.id}) }}" class="badge badge-secondary badge-comment" title="{{'frontend.guestbook.comments.tooltip'|trans}}" data-toggle="tooltip">
+                                    <i class="fa fa-comment"></i>  {{ greeting.comments|length }}
                                 </a>
                             </div>
                         </div>

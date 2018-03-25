@@ -21,6 +21,8 @@ class User extends BaseUser
 
     protected $greetings;
 
+    protected $greetingComments;
+
     /**
      * Get id.
      *
@@ -50,4 +52,25 @@ class User extends BaseUser
     {
         return $this->greetings;
     }
+
+    /**
+     * Set greetingComments.
+     *
+     * @param $greetingComments
+     */
+    public function setGreetingComments($greetingComments)
+    {
+        $this->greetingComments = $greetingComments;
+    }
+
+    /**
+     * Get greetingComments.
+     *
+     * @return mixed
+     */
+    public function getGreetingComments()
+    {
+        return $this->greetingComments;
+    }
+
 }
