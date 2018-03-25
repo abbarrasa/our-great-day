@@ -7,8 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Guest;
-use AppBundle\Entity\Guestbook;
-use AppBundle\Form\Type\GuestbookType;
+use AppBundle\Entity\Greeting;
+use AppBundle\Form\Type\GreetingType;
 use AppBundle\Form\Type\GuestConfirmationType;
 
 class GuestController extends Controller
@@ -76,11 +76,11 @@ class GuestController extends Controller
     public function guestbookAction(Request $request, $page = 1)
     {
         $em        = $this->getDoctrine()->getManager();
-        $guestbook = new Guestbook();
-        $form      = $this->createForm(GuestbookType::class, $guestbook);
+        $greeting  = new Greeting();
+        $form      = $this->createForm(GreetingType::class, $greeting);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($guestbook);
+            $em->persist($greeting);
             $em->flush();
 
             //Send notification
@@ -95,7 +95,7 @@ class GuestController extends Controller
             return $this->redirectToRoute('guestbook', ['page' => $page]);
         }
 
-        $query      = $em->getRepository(Guestbook::class)->getQueryAllApproved();
+        $query      = $em->getRepository(Greeting::class)->getQueryAllApproved();
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
@@ -111,22 +111,22 @@ class GuestController extends Controller
     }
 
     /**
-     * @Route("/guestbook/like/{id}/{page}", requirements={"id" = "\d+", "page" = "\d+"}, name="guestbook_like")
+     * @Route("/guestbook/greeting/like/{id}/{page}", requirements={"id" = "\d+", "page" = "\d+"}, name="greeting_like")
      */
     public function likeAction(Request $request, $id, $page = 1)
     {
         $em = $this->getDoctrine()->getManager();
-        if (($guestbook = $em->getRepository(Guestbook::class)->find($id)) === null) {
+        if (($greeting = $em->getRepository(Greeting::class)->find($id)) === null) {
             throw $this->createNotFoundException(sprintf('No found any guestbook with ID %d', $id));
         }
 
-        $guestbook->setLikes($guestbook->getLikes() + 1);
-        $em->persist($guestbook);
+        $greeting->setLikes($greeting->getLikes() + 1);
+        $em->persist($greeting);
         $em->flush();
         
         $helper = $this->get('AppBundle\Service\FlashMessageHelper');
         $this->addFlash('success', $helper->getFlashMessage(
-            'success', 'frontend.success', 'frontend.guestbook.likes.success', ['%author%' => $guestbook->getName()]
+            'success', 'frontend.success', 'frontend.guestbook.likes.success', ['%author%' => $greeting->getName()]
         ));
         
         return $this->redirectToRoute('guestbook', ['page' => $page]);

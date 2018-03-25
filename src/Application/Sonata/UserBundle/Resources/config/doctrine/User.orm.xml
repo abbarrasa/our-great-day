@@ -10,7 +10,7 @@
             <generator strategy="AUTO" />
         </id>
 
-        <one-to-many field="guestbook" target-entity="AppBundle\Entity\Guestbook" mapped-by="user" />
+        <one-to-many field="greetings" target-entity="AppBundle\Entity\Greeting" mapped-by="user" />
 
     </entity>
 

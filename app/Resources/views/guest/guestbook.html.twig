@@ -42,11 +42,11 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col form-group bmd-form-group{% if not form.comment.vars.valid %} has-danger{% endif %}">
-                                {{ form_label(form.comment, form.comment, {'label_attr': {'class': 'bmd-label-floating'}}) }}
-                                {{ form_widget(form.comment, {'attr': {'class': 'form-control', 'rows': 5}}) }}
-                                {{ form_errors(form.comment) }}
-                                {% if not form.comment.vars.valid %}
+                            <div class="col form-group bmd-form-group{% if not form.message.vars.valid %} has-danger{% endif %}">
+                                {{ form_label(form.message, form.message, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                {{ form_widget(form.message, {'attr': {'class': 'form-control', 'rows': 5}}) }}
+                                {{ form_errors(form.message) }}
+                                {% if not form.message.vars.valid %}
                                     <span class="material-icons form-control-feedback">clear</span>
                                 {% endif %}
                             </div>

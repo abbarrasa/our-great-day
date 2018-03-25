@@ -9,13 +9,13 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class GuestbookType extends AbstractType
+class GreetingType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('comment', TextareaType::class, [
-                'label' => 'frontend.guestbook.comment',
+            ->add('message', TextareaType::class, [
+                'label' => 'frontend.guestbook.message',
                 'required' => true
             ])
             ->add('submit', SubmitType::class, ['label' => 'frontend.guestbook.send'])
@@ -27,7 +27,7 @@ class GuestbookType extends AbstractType
     {
         $resolver
             ->setDefaults(array(
-                'data_class' => 'AppBundle\Entity\Guestbook'
+                'data_class' => 'AppBundle\Entity\Greeting'
             ))
         ;
     }

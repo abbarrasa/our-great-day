@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Guestbook
+ * Greeting
  *
- * @ORM\Table(name="ogd_guestbook")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\GuestbookRepository")
+ * @ORM\Table(name="ogd_greeting")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\GreetingRepository")
  */
-class Guestbook
+class Greeting
 {
     const STATUS_PENDING  = 0;
     const STATUS_APPROVED = 1;
@@ -37,10 +37,10 @@ class Guestbook
     /**
      * @var text
      *
-     * @ORM\Column(name="comment", type="string", length=1024)
+     * @ORM\Column(name="message", type="string", length=1024)
      * @Assert\NotBlank()
      */
-    private $comment;
+    private $message;
 
     /**
      * @var \DateTime
@@ -65,7 +65,7 @@ class Guestbook
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User", inversedBy="guestbook")
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User", inversedBy="greetings")
      * @ORM\JoinColumn(name="id_user", referencedColumnName="id", nullable=true)
      */
     private $user;
@@ -79,7 +79,7 @@ class Guestbook
     private $likes;
 
     /**
-     * Guestbook constructor.
+     * Greeting constructor.
      */
     public function __construct()
     {
@@ -103,7 +103,7 @@ class Guestbook
      *
      * @param string $name
      *
-     * @return Guestbook
+     * @return Greeting
      */
     public function setName($name)
     {
@@ -123,27 +123,27 @@ class Guestbook
     }
 
     /**
-     * Set comment.
+     * Set message.
      *
-     * @param string $comment
+     * @param string $message
      *
-     * @return Guestbook
+     * @return Greeting
      */
-    public function setComment($comment)
+    public function setMessage($message)
     {
-        $this->comment = $comment;
+        $this->message = $message;
 
         return $this;
     }
 
     /**
-     * Get comment.
+     * Get message.
      *
      * @return string
      */
-    public function getComment()
+    public function getMessage()
     {
-        return $this->comment;
+        return $this->message;
     }
 
     /**
@@ -151,7 +151,7 @@ class Guestbook
      *
      * @param \DateTime $date
      *
-     * @return Guestbook
+     * @return Greeting
      */
     public function setCreatedAt($date)
     {
@@ -175,7 +175,7 @@ class Guestbook
      *
      * @param \Application\Sonata\UserBundle\Entity\User|null $user
      *
-     * @return Guestbook
+     * @return Greeting
      */
     public function setUser(\Application\Sonata\UserBundle\Entity\User $user = null)
     {
@@ -199,7 +199,7 @@ class Guestbook
      *
      * @param integer $likes
      *
-     * @return Guestbook
+     * @return Greeting
      */
     public function setLikes($likes)
     {
@@ -223,7 +223,7 @@ class Guestbook
      *
      * @param int|null $status
      *
-     * @return Guestbook
+     * @return Greeting
      */
     public function setStatus($status = null)
     {
@@ -247,7 +247,7 @@ class Guestbook
      *
      * @param \DateTime|null $publishedAt
      *
-     * @return Guestbook
+     * @return Greeting
      */
     public function setPublishedAt($publishedAt = null)
     {
@@ -264,15 +264,5 @@ class Guestbook
     public function getPublishedAt()
     {
         return $this->publishedAt;
-    }
-
-    /**
-     * Set createdAt value before persist
-     *
-     * @ORM\PrePersist
-     */
-    public function setCreatedAtValue()
-    {
-        $this->setCreatedAt(new \DateTime());
     }
 }

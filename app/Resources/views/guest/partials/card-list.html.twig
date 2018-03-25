@@ -27,7 +27,7 @@
                             <div class="card-category text-right">
                                 <i class="material-icons">schedule</i> {{ entry.publishedAt|elapsed_time }}
                             </div>
-                            <h4 class="card-title justify-content-center">{{ entry.comment }}</h4>
+                            <h4 class="card-title justify-content-center">{{ entry.message }}</h4>
                         </div>
                         <div class="card-footer">
                             <div class="author">
@@ -37,7 +37,7 @@
                                 <span>{{ entry.name }}</span>
                             </div>
                             <div class="stats ml-auto">
-                                <a href="{{ path('guestbook_like', {'id': entry.id, 'page': app.request.attributes.get('page')}) }}" class="badge badge-danger" title="{{'frontend.guestbook.likes.tooltip'|trans}}" data-toggle="tooltip">
+                                <a href="{{ path('greeting_like', {'id': entry.id, 'page': app.request.attributes.get('page')}) }}" class="badge badge-danger" title="{{'frontend.guestbook.likes.tooltip'|trans}}" data-toggle="tooltip">
                                     <i class="fa fa-heart"></i>  {{ entry.likes }}
                                 </a>
                             </div>
@@ -58,7 +58,7 @@
             <div class="alert-icon">
                 <i class="material-icons">info_outline</i>
             </div>
-            <b>Info:</b> Se el/la primero/a en mandarnos un saludo!
+            <b>{{ 'frontend.info'|trans }}</b>: {{ 'frontend.guestbook.no_greetings'|trans }}
         </div>
     </div>
 {% endif %}

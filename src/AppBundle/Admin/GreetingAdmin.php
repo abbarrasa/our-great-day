@@ -3,14 +3,14 @@
 namespace AppBundle\Admin;
 
 use AppBundle\Entity\Guest;
-use AppBundle\Entity\Guestbook;
+use AppBundle\Entity\Greeting;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\UserBundle\Model\User;
 
-class GuestbookAdmin extends Admin
+class GreetingAdmin extends Admin
 {
     // Fields to be shown on filter forms
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -33,22 +33,22 @@ class GuestbookAdmin extends Admin
             ->add('status', 'choice', [
                 'editable' => true,
                 'choices' => [
-                    Guestbook::STATUS_PENDING => 'Pending',
-                    Guestbook::STATUS_APPROVED => 'Approved',
-                    Guestbook::STATUS_REJECTED => 'Rejected',
+                    Greeting::STATUS_PENDING => 'Pending',
+                    Greeting::STATUS_APPROVED => 'Approved',
+                    Greeting::STATUS_REJECTED => 'Rejected',
                 ],
             ])
         ;
     }
 
-    public function preUpdate($guestbook)
+    public function preUpdate($greeting)
     {
-        if ($guestbook->getStatus() == Guestbook::STATUS_APPROVED) {
-            if ($guestbook->getPublishedAt() === null) {
-                $guestbook->setPublishedAt(new \DateTime());
+        if ($greeting->getStatus() == Greeting::STATUS_APPROVED) {
+            if ($greeting->getPublishedAt() === null) {
+                $greeting->setPublishedAt(new \DateTime());
             }
         } else {
-            $guestbook->setPublishedAt(null);
+            $greeting->setPublishedAt(null);
         }
     }
 }

@@ -19,7 +19,7 @@ class User extends BaseUser
      */
     protected $id;
 
-    protected $guestbook;
+    protected $greetings;
 
     /**
      * Get id.
@@ -32,22 +32,22 @@ class User extends BaseUser
     }
 
     /**
-     * Set guestbook.
+     * Set greetings.
      *
-     * @param $guestbook
+     * @param $greetings
      */
-    public function setGuestbook($guestbook)
+    public function setGreetings($greetings)
     {
-        $this->guestbook = $guestbook;
+        $this->greetings = $greetings;
     }
 
     /**
-     * Get guestbook.
+     * Get greetings.
      *
      * @return mixed
      */
-    public function getGuestbook()
+    public function getGreetings()
     {
-        return $this->guestbook;
+        return $this->greetings;
     }
 }
