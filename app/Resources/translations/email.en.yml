@@ -1,0 +1,17 @@
+email:
+    website_announcement:
+        subject: "'Our great day' is available"
+        body_plain: |
+                    Hello,
+
+                    As you know, we're getting married. We send you this email to announce that we have available a website where we will inform you of all the news related to the event and to us.
+
+                    You can visit it in %url%.
+
+                    A huge greeting from Vero and Carlos. We are waiting you!
+
+        body_html: |
+                    <h2>Hola,</h2>
+                    <p>As you know, we're getting married. We send you this email to announce that we have available a website where we will inform you of all the news related to the event and to us.</p>
+                    <p>You can visit it in <a href="%url%">%url%</a>.
+                    <p>A huge greeting from Vero and Carlos. We are waiting you!</p>

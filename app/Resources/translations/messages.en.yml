@@ -1,22 +1,83 @@
 frontend:
     success: Success!
     error: Ooops!
+    close: Close
     title: Our great day
+    choice:
+        yes: Yes
+        no: No
+    elapsed_time:
+        just_now: Just now
+        minutes_ago: %number% minutes ago
+        a_hour_ago: a hour ago
+        hours_ago: %number% hours ago
+        a_day_ago: a day ago
+        days_ago: %number% days ago
+        a_week_ago: a week ago
+        weeks_ago: %number% weeks ago
+        a_month_ago: a month ago
+        months_ago: %number% months ago
+        a_year_ago: a year ago
+        years_ago: %number% years ago
     menu:
         share: Share on %site%
         contact_us: Contact us
+        home: Home
+        confirm_attendance: Confirm attencance
+        guestbook: Guestbook
     form:
         error: There are some errors in the form.
+    enquiry:
         name: Your name
         placeholder_name: Your name here...
         email: Your email
         placeholder_email: Your email here...
         content: Your message
         placeholder_content: Your message here...
-    enquiry:
-        text: If you need to know more information or tell us something, do not hesitate to do so.
+        description: If you need to know more information or tell us something, do not hesitate to do so.
         send: Send
         success: Your message has been sent successfully and will be taken care as soon as possible.
     joined:
+        email: Your email
+        placeholder_email: Your email here...
         notify_me: Notify me
         success: You have been joined successfully. We will notify you when the website is ready.
+    guest:
+        title: Our Great <em>Guests</em>
+        description: On this page you can confirm your attendance or reject our invitation (in which case we will be very sorry). To do this, you must first search yourself in the guest list and then send your confirmation. If you can not find yourself and you think you should be or have some other problem, you can contact us <a class="contact-us" href="#">here</a>. Do not think about it much and attend... without you, it will not be the same.
+        firstname: Your Firstname
+        lastname: Your Lastname
+        email: Your email (optional)
+        guests: Number of guests
+        childs: Number of childs
+        vegans: Number of vegans
+        attending: I\'m attending
+        search_me: Search me
+        confirm: Confirm
+        confirm_attendence: Confirm your attendence
+        search_you: Search you
+        success: You have confirmed successfully. If you need change your confirmation, you can do it at any time.
+        not_found: No matches found. Try to specify your search again.
+        multiple_matches: There are several coincidences. Try to specify your search again.
+    guestbook:
+        title: Our Great <em>Guestbook</em>
+        description: Do not be shy!. Send us an original message that would make us happy in our great day. Beforehand, thank you very much to all.
+        send_message: Send your message
+        send: Send
+        name: Your name
+        comment: Your nice message
+        success: Your message has been sent successfully and is pending moderation. After being reviewed it will be published.
+        likes:
+            tooltip: Click here to "Like" the message
+            success: You have clicked "Like" on %author%\'s message.
+    welcome:
+        title: Welcome y'all to <em>Our Great Day</em>
+        description:
+    bio:
+        title: Our Great <em>Lifes</em>
+        bride: Bride
+        groom: Groom
+    timeline:
+        title: Our Great <em>Story</em>
+    location:
+        title: Our Great <em>Wedding Location</em>

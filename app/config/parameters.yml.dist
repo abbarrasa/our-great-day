@@ -14,6 +14,17 @@ parameters:
     mailer_host: 127.0.0.1
     mailer_user: ~
     mailer_password: ~
-
+    
     # A secret key that's used to generate certain security-related tokens
     secret: ~
+    
+    # Google API key
+    google.api_key: ~
+    
+    # Wedding date
+    wedding.date: '2018-09-14T19:00:00'
+    
+    # Emails
+    email_admin: admin@domain.com
+    email_no_reply: no_reply@domain.com
+    embedded_images: []

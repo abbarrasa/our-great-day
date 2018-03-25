@@ -1,184 +1,271 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'frontend.title'|trans }} | Muy pronto{% endblock %}
-
 {% block stylesheets %}
-    <!--     Fonts     -->
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
-
+    {{ parent() }}
     {% stylesheets
-    '../app/Resources/public/css/bootstrap.min.css'
-    '../app/Resources/public/css/coming-sssoon.css' filter='cssrewrite' %}
+    '../app/Resources/public/css/timeline.css'
+    '../app/Resources/public/css/flipclock.css' filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet" type='text/css'>
     {% endstylesheets %}
 {% endblock %}
 
+{% block title %}{{ 'frontend.title'|trans }}{% endblock %}
 
-{% block body %}
-    <nav class="navbar navbar-transparent navbar-fixed-top" role="navigation">
+{% block main %}
+    <!-- Countdown -->
+    <div id="first-section" class="section section-basic sr">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+            <div class="row">
+                <div class="col-md-8 text-center ml-auto mr-auto">
+                    <div class="section-description">
+                        <h2 class="title">{{ 'frontend.welcome.title'|trans|raw }}</h2>
+                        <p class="description">Han sido muchos años para crearlo, regarlo, mimarlo y hacerlo crecer fuerte y con firmeza. Ha sido un poco menos de tiempo decidir dar el paso. Hablamos de nuestro amor y de nuestra futura boda. Y ahora nos vemos aquí, presentando e informando de todos los datos importantes del evento y en busca de invitados, porque... ¿Pueden existir personas más especiales y maravillosas que vosotr@s para acompañarnos en ese momento? Así que no lo pienses más, ten planeado qué ponerte, el Bodorriol siempre a mano y prepárate para que Nuestro Gran Día sea un día especial también para ti. Confirma tu asistencia rápidamente o te llamaremos sin falta . ¡Y date prisa que cada vez queda menos!.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 mr-auto ml-auto">
+                    <div id="countdown"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Countdown -->
+
+    <!-- Bio cards -->
+    {% image '../app/Resources/public/images/wedding-rings.jpg' %}
+    <div class="section section-line-image" style="background-image: url('{{ asset_url }}');">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 text-center ml-auto mr-auto">
+                    <div class="section-description">
+                        <h2 class="title sr">{{ 'frontend.bio.title'|trans|raw }}</h2>
+                    </div>
+                </div>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <a class="navbar-brand" href="{{ path('homepage') }}">{{ 'frontend.title'|trans }}</a>
-                </ul>
-
-                {# Social bar #}
-                {{ knp_menu_render('social', {'template': 'partials/knp_menu.html.twig'}) }}
-
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container -->
-    </nav>
-
-    {% image '../app/Resources/public/images/main2.jpg' output='/images/main2.jpg' %}
-    <div class="main" style="background-image: url('{{ asset_url }}')">
-        <!--    Change the image source '/images/default.jpg' with your favourite image.     -->
+            <div class="row">
+                <div class="col-md-8 mr-auto ml-auto">
+                    {{ include('default/partials/profiles.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
     {% endimage %}
 
-        <div class="cover black" data-color="black"></div>
 
-        <!--   You can change the black color for the filter with those colors: blue, green, red, orange       -->
+    {#<div class="section section-basic section-dark">#}
+        {#<div class="container">#}
+            {#<div class="row">#}
+                {#<div class="col-md-8 text-center ml-auto mr-auto">#}
+                    {#<div class="section-description">#}
+                        {#<h2 class="title sr">{{ 'frontend.bio.title'|trans|raw }}</h2>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+            {#<div class="row">#}
+                {#<div class="col-md-8 mr-auto ml-auto">#}
+                    {#{{ include('default/partials/profiles.html.twig') }}#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
 
+
+    {#<div class="section section-basic section-white-to-gray sr">#}
+        {#<div class="container">#}
+            {#<div class="row">#}
+                {#<div class="col-8 mr-auto ml-auto">#}
+                    {#<h2 class="title">{{ 'frontend.profiles.title'|trans|raw }}</h2>#}
+                    {#{{ include('default/partials/profiles.html.twig') }}#}
+                {#</div>            #}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+    <!-- End Bio cards -->
+
+    <!-- Timeline -->
+    <div class="section section-basic section-white-to-gray">
         <div class="container">
-            <h1 class="logo cursive">
-                Muy pronto
-            </h1>
-            <!--  H1 can have 2 designs: "logo" and "logo cursive"           -->
+            <div class="row">
+                <div class="col-md-8 text-center ml-auto mr-auto">
+                    <div class="section-description sr">
+                        <h2 class="title">{{ 'frontend.timeline.title'|trans|raw |trans|raw }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mr-auto ml-auto">
+                    {{ include('default/partials/timeline.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {#<div class="section section-basic section-gray sr">#}
+        {#<div class="container">#}
+            {#<div class="row">#}
+                {#<div class="col-12 mr-auto ml-auto">            #}
+                    {#<h2 class="title">{{ 'frontend.timeline.title'|trans|raw }}</h2>#}
+                    {#{{ include('default/partials/timeline.html.twig') }}#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+    <!-- End Timeline -->
 
-            <div class="content">
-                <h4 class="motto">Estamos trabajando para compartir nuestro gran día con vosotros</h4>
-                <div class="subscribe">
-                    <h5 class="info-text">
-                        Únete a la lista de espera. Danos un email de contacto y te avisamos cuando tengamos la web preparada.
-                    </h5>
-
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-4 col-sm6-6 col-sm-offset-3 ">
-                            {{ form_start(form, {'attr': {'class': 'form-inline', 'role': 'form'}}) }}
-                            <div class="form-group{% if not form.email.vars.valid %} has-error{% endif %}">
-                                {{ form_label(form.email, form.email, {'label_attr': {'class': 'sr-only'}}) }}
-                                {{ form_widget(form.email, {'attr': {'placeholder': 'frontend.form.placeholder_email'|trans, 'class': 'form-control transparent'}}) }}
-                                {{ form_errors(form.email) }}
-                            </div>
-                            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-danger btn-fill'}}) }}
-                            {{ form_end(form) }}
+    <!-- Maps -->
+    <div class="section section-basic section-gray">
+        <div class="sr">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 text-center ml-auto mr-auto">
+                        <div class="section-description">
+                            <h2 class="title">{{ 'frontend.location.title'|trans|raw }}</h2>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="footer">
-            <div class="container">
-                Made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/abbarrasa/our-great-day">Alberto Buitrago</a> for a better web. Thanks to <a href="http://www.creative-tim.com">Creative Tim</a>.
-            </div>
+            <div id="map" class="big-map"></div>
         </div>
     </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                </div>
-            </div>
-        </div>
-    </div>
+    {#<div class="section section-basic sr">#}
+        {#<div class="container">#}
+            {#<div class="row">#}
+                {#<div class="col-12 mr-auto ml-auto">#}
+                    {#<h2 class="title">{{ 'frontend.location.title'|trans|raw }}</h2>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+        {#<div id="map" class="big-map"></div>#}
+    {#</div>#}
+    <!-- End Maps -->
 
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     {% javascripts
-    '../app/Resources/public/js/jquery.min.js'
-    '../app/Resources/public/js/bootstrap.min.js'
-    '../app/Resources/public/js/bootstrap-notify.min.js' output='js/compiled/app.js' %}
+    '../app/Resources/public/js/plugins/flipclock.min.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
+    <!--  Google Maps Plugin    -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap"></script>
     <script type="text/javascript">
-        function showNotification(title, message, alert, icon)
+        function initMap()
         {
-            $.notify({
-                icon: icon,
-                title: title,
-                message: message
-            },{
-                type: alert,
-                placement: {
-                    from: "top",
-                    align: "center"
-                },
-                template: '<div data-notify="container" class="col-xs-11 col-sm-6 alert alert-{0}" role="alert">' +
-                '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
-                '<span data-notify="icon"></span> ' +
-                '<span data-notify="title"><strong>{1}</strong></span> ' +
-                '<span data-notify="message">{2}</span>' +
-                '<div class="progress" data-notify="progressbar">' +
-                '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-                '</div>' +
-                '<a href="{3}" target="{4}" data-notify="url"></a>' +
-                '</div>'
+            var myLatlng = new google.maps.LatLng(40.3488876, -3.7242733);
+            var mapOptions = {
+                zoom: 16,
+                center: myLatlng,
+                scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
+                styles: [{
+                    "featureType": "water",
+                    "stylers": [{
+                        "saturation": 43
+                    }, {
+                        "lightness": -11
+                    }, {
+                        "hue": "#0088ff"
+                    }]
+                }, {
+                    "featureType": "road",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                        "hue": "#ff0000"
+                    }, {
+                        "saturation": -100
+                    }, {
+                        "lightness": 99
+                    }]
+                }, {
+                    "featureType": "road",
+                    "elementType": "geometry.stroke",
+                    "stylers": [{
+                        "color": "#808080"
+                    }, {
+                        "lightness": 54
+                    }]
+                }, {
+                    "featureType": "landscape.man_made",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                        "color": "#ece2d9"
+                    }]
+                }, {
+                    "featureType": "poi.park",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                        "color": "#ccdca1"
+                    }]
+                }, {
+                    "featureType": "road",
+                    "elementType": "labels.text.fill",
+                    "stylers": [{
+                        "color": "#767676"
+                    }]
+                }, {
+                    "featureType": "road",
+                    "elementType": "labels.text.stroke",
+                    "stylers": [{
+                        "color": "#ffffff"
+                    }]
+                }, {
+                    "featureType": "poi",
+                    "stylers": [{
+                        "visibility": "off"
+                    }]
+                }, {
+                    "featureType": "landscape.natural",
+                    "elementType": "geometry.fill",
+                    "stylers": [{
+                        "visibility": "on"
+                    }, {
+                        "color": "#b8cb93"
+                    }]
+                }, {
+                    "featureType": "poi.park",
+                    "stylers": [{
+                        "visibility": "on"
+                    }]
+                }, {
+                    "featureType": "poi.sports_complex",
+                    "stylers": [{
+                        "visibility": "on"
+                    }]
+                }, {
+                    "featureType": "poi.medical",
+                    "stylers": [{
+                        "visibility": "on"
+                    }]
+                }, {
+                    "featureType": "poi.business",
+                    "stylers": [{
+                        "visibility": "simplified"
+                    }]
+                }]
+
+            };
+
+            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                title: "{{ 'frontend.location.title'|trans|striptags }}"
             });
+
+            // To add the marker to the map, call setMap();
+            marker.setMap(map);
         }
 
-        $(document).ready(function()
-        {
-            $('[data-toggle="tooltip"]').tooltip();
-
-            {% for flashMessages in app.flashes %}
-                {% for flashMessage in flashMessages %}
-                    showNotification('{{ flashMessage.title }}', '{{ flashMessage.message }}', '{{ flashMessage.alert }}', '{{ flashMessage.icon }}');
-                {% endfor %}
-            {% endfor %}
-
-            {# Load enquiry form #}
-            $('a.contact-us').click(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    url: '{{ path('enquiry') }}',
-                    type: 'POST'
-                }).done(function (responseJSON) {
-                    $('#myModal').find('.modal-body').html(responseJSON.view);
-                    $('#myModal').modal('show');
-                });
-            });
-
-            {# Submit enquiry form #}
-            $('body').on('submit', 'form[name="enquiry"]', function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: $(this).attr('method'),
-                    url: $(this).attr('action'),
-                    data: $(this).serialize(),
-                }).done(function () {
-                    $('#myModal').modal('hide');
-                    showNotification(
-                        '{{ 'frontend.success'|trans }}',
-                        '{{ 'frontend.enquiry.success'|trans }}',
-                        'success',
-                        'fa fa-check-circle'
-                    );
-                }).fail(function (jqXHR, textStatus, errorThrown) {
-                    if (jqXHR.responseJSON.hasOwnProperty('view')) {
-                        $('#myModal').find('.modal-body').html(jqXHR.responseJSON.view);
-                    }
-                });
+        $(document).ready(function() {
+            // Initialize countdown clock
+            var time = Date.parse('{{ wedding_date }}') - Date.parse(new Date());
+            var deadline = Math.round(time / 1000);
+            $('#countdown').FlipClock(deadline, {
+                clockFace: 'DailyCounter',
+                language: '{{ app.request.locale }}',
+                countdown: true
             });
         });
     </script>

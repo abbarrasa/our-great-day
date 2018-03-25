@@ -39,9 +39,39 @@ services:
         public: true
         tags:
             - { name: templating.helper }
+            
+    AppBundle\Service\SocialUrlHelper:
+        class: AppBundle\Templating\Helper\SocialUrlHelper
+        arguments: ["@router"]
+        public: true
+        tags:
+            - { name: templating.helper }
 
     AppBundle\Service\SocialMenuService:
         class: AppBundle\Menu\MenuBuilder
-        arguments: ["@knp_menu.factory", "@router", "@translator"]
+        arguments: ["@knp_menu.factory", "@AppBundle\\Service\\SocialUrlHelper", "@translator"]
         tags:
-            - { name: knp_menu.menu_builder, method: createSocialMenu, alias: social } # The alias is what is used to retrieve the menu
+            - { name: knp_menu.menu_builder, method: createSocialMenu, alias: social } # The alias is what is used to retrieve the menu    
+        
+    AppBundle\Service\MenuBuilderService:
+        class: AppBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory", "@AppBundle\\Service\\SocialUrlHelper", "@translator"]
+        tags:
+            - { name: knp_menu.menu_builder, method: createMainMenu, alias: main } # The alias is what is used to retrieve the menu
+
+    AppBundle\Service\GuestExistsValidator:
+        class: AppBundle\Validator\Constraints\GuestExistsValidator
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: validator.constraint_validator }
+
+    AppBundle\Service\Mailer:
+        class: AppBundle\Manager\Mailer
+        arguments: ["@service_container"]
+        public: true
+
+    AppBundle\Service\MaintenanceListener:
+        class: AppBundle\Event\Listener\MaintenanceListener
+        arguments: ["@service_container"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }        

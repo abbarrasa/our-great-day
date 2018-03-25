@@ -25,12 +25,14 @@ class FlashMessageHelper extends Helper
         $this->alertClassNames = array_combine(
             $this->allowedTypes, ['info', 'success', 'warning', 'danger']
         );
-        $this->iconClassNames = array_combine($this->allowedTypes, ['fa fa-exclamation-circle', 'fa fa-check-circle', 'fa fa-exlamation-triangle', 'fa fa-times-circle']);
+        $this->iconClassNames = array_combine(
+            $this->allowedTypes, ['info_outline', 'check', 'warning', 'error_outline']
+        );
     }
 
     public function getName()
     {
-        return 'app_flash_message';
+        return 'app_flash_message_helper';
     }
 
     public function getAlertClassName($type)
@@ -51,13 +53,13 @@ class FlashMessageHelper extends Helper
         return $this->iconClassNames[$type];
     }
 
-    public function getFlashMessage($type, $title, $message)
+    public function getFlashMessage($type, $title, $message, $parameters = array())
     {
         return [
             'alert'   => $this->getAlertClassName($type),
             'icon'    => $this->getIconClassName($type),
             'title'   => $this->translator->trans($title),
-            'message' => $this->translator->trans($message)
+            'message' => $this->translator->trans($message, $parameters)
         ];
     }
 

@@ -106,10 +106,13 @@
     {% if item.attribute('icon') is not empty  %}
         {% if item.attribute('icon') starts with 'fa' %}
     	    <i class="{{ item.attribute('icon') }}"></i>
-	{% else %}
-	    <i class="material-icons">{{ item.attribute('icon') }}</i>
-	{% endif %}
+	    {% else %}
+            <i class="material-icons">{{ item.attribute('icon') }}</i>
+	    {% endif %}
     {% endif %}
 {% endblock %}
 
-{% block label %}{{ item.label|trans }}{% endblock %}
+{% block label %}
+    {% import "knp_menu.html.twig" as macros %}
+    {%- set attributes = item.labelAttributes %}
+    <p{{ macros.attributes(attributes) }}>{{ item.label|trans }}</p>{% endblock %}

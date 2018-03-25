@@ -1,22 +1,83 @@
 frontend:
     success: Bien!
     error: Ooops!
+    close: Cerrar
     title: Nuestro gran día
+    choice:
+        yes: Sí
+        no: No
+    elapsed_time:
+        just_now: Justo ahora
+        minutes_ago: hace %number% minutos
+        a_hour_ago: hace una hora
+        hours_ago: hace %number% horas
+        a_day_ago: hace un día
+        days_ago: hace %number% días
+        a_week_ago: hace una semana
+        weeks_ago: hace %number% semanas
+        a_month_ago: hace un mes
+        months_ago: hace %number% meses
+        a_year_ago: hace un año
+        years_ago: hace %number% años
     menu:
         share: Compartir en %site%
         contact_us: Contáctanos
+        home: Inicio
+        confirm_attendance: Confirmar asistencia
+        guestbook: Libro de invitados
     form:
         error: Existen errores en el formulario.
+    enquiry:
         name: Tu nombre
         placeholder_name: Tu nombre aquí...
         email: Tu email
         placeholder_email: Tu email aquí...
         content: Tu mensaje
         placeholder_content: Tu mensaje aquí...
-    enquiry:
-        text: Si necesitas saber más información o contarnos algo no dudes en hacerlo.
+        description: Si necesitas saber más información o contarnos algo no dudes en hacerlo.
         send: Enviar
         success: Tu mensaje se ha enviado correctamente y será atendido lo antes posible.
     joined:
+        email: Tu email
+        placeholder_email: Tu email aquí...
         notify_me: Notifícame
         success: Te has unido a la lista con éxito. Te avisaremos cuando el sitio web esté listo.
+    guest:
+        title: Nuestros Grandiosos <em>Invitados</em>
+        description: Desde esta página puedes confirmar tu asistencia o rechazar nuestra invitación (en cuyo caso lo lamentaremos mucho). Para ello deberás buscarte primero en la lista de invitados y después enviar la confirmación. Si no consigues encontrarte y piensas que deberías estar o tienes cualquer otro problema puedes dirigirte a nosotros por <a class="contact-us" href="#">aquí</a>. No lo pienses mucho y asiste... sin tí seguro que no será igual.
+        firstname: Tu nombre
+        lastname: Tus apellidos
+        email: Tu email (optional)
+        guests: Número de invitados
+        childs: Número de niños
+        vegans: Número de veganos
+        attending: Voy a asistir
+        search_me: Búscame
+        confirm: Confirmar
+        confirm_attendence: Confirma tu asistencia
+        search_you: Búscate
+        success: Has realizado tu confirmación con éxito. Si necesitas cambiarla puedes realizarla en cualquier momento.
+        not_found: No se encontraron coincidencias. Inténtalo de nuevo concretando tu búsqueda un poco más.
+        multiple_matches: Se encontraron varias coincidencias. Inténtalo de nuevo concretando tu búsqueda un poco más.
+    guestbook:
+        title: Nuestro Gran <em>Libro de invitados</em>
+        description: No seas tímido/a. Mándanos un original mensajito que nos alegre si cabe un poco más nuestro gran día. De antemano, muchísimas gracias.
+        send_message: Envíanos tu mensaje
+        send: Enviar
+        name: Tu nombre
+        comment: Tu gran mensaje
+        success: Tu mensaje se ha enviado correctamente y queda pendiente de moderación. Después de ser revisado será publicado.
+        likes:
+            tooltip: Pulsa para dar un "Me gusta" al mensaje
+            success: Has dado a "Me gusta" al mensaje de %author%.
+    welcome:
+        title: Bienvenidos a todos a <em>Nuestro Gran Día</em>
+        description:
+    bio:
+        title: Nuestras Grandes <em>Biografías</em>
+        bride: Ella
+        groom: Él
+    timeline:
+        title: Nuestra Gran <em>Historia</em>
+    location:
+        title: Nuestro Gran <em>Lugar de la Celebración</em>
