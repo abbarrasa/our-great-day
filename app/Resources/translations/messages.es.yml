@@ -71,6 +71,7 @@ frontend:
         no_greetings: Se el/la primero/a en mandarnos un saludo!
         no_comments: Se el/la primero/a en comentar!
         comments:
+            placeholder_content: Tu comentario aquí...
             tooltip: Pulsa para ver los comentarios
         likes:
             tooltip: Pulsa para dar un "Me gusta" al mensaje
