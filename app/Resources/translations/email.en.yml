@@ -9,9 +9,31 @@ email:
                     You can visit it in %url%.
 
                     A huge greeting from Vero and Carlos. We are waiting you!
-
         body_html: |
                     <h2>Hola,</h2>
                     <p>As you know, we're getting married. We send you this email to announce that we have available a website where we will inform you of all the news related to the event and to us.</p>
                     <p>You can visit it in <a href="%url%">%url%</a>.
                     <p>A huge greeting from Vero and Carlos. We are waiting you!</p>
+    enquiry_notification:
+        subject: A enquiry has been received from %name%
+        body_plain: |
+                    Hello,
+
+                    %name% has sent the follow enquiry:
+
+                    "%enquiry%"
+
+                    You can resolve the enquiry by writing to email mailto:%email%
+
+                    Sincerely,
+                    the technical team of Our great day.
+        body_html: |
+                    <p>Hello,</p>
+
+                    <p><b>%name%</b> has sent the follow enquiry:</p>
+
+                    <p><b>"%enquiry%"</b></p>
+
+                    <p>You can resolve the enquiry by writing to email <a href="mailto:%email%">%email%</a>.
+
+                    <p>Sincerely,<br />the technical team of Our great day.</p>

@@ -11,7 +11,7 @@ parameters:
     mailer:
         default_sleep: 1
         email_admin: '%email_admin%'
-        email_no_reply: '%email_no_reply%'
+        email_manager: '%email_manager%'
         from_name: 'Nuestro gran día'
         embedded_images: '%embedded_images%'
     # Maintenance mode

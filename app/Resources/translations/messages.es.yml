@@ -4,6 +4,7 @@ frontend:
     info: Info
     close: Cerrar
     title: Nuestro gran día
+    anonymous: Anónimo
     choice:
         yes: Sí
         no: No
@@ -37,7 +38,7 @@ frontend:
         placeholder_content: Tu mensaje aquí...
         description: Si necesitas saber más información o contarnos algo no dudes en hacerlo.
         send: Enviar
-        success: Tu mensaje se ha enviado correctamente y será atendido lo antes posible.
+        success: Tu consulta se ha enviado correctamente y será atendida lo antes posible.
     joined:
         email: Tu email
         placeholder_email: Tu email aquí...
@@ -71,8 +72,12 @@ frontend:
         no_greetings: Se el/la primero/a en mandarnos un saludo!
         no_comments: Se el/la primero/a en comentar!
         comments:
+            content: Tu comentario
             placeholder_content: Tu comentario aquí...
-            tooltip: Pulsa para ver los comentarios
+            post: Enviar
+            title: '{1} 1 Comentario|]1,Inf[ %count% Comentarios'
+            post_your_comment: Envía tu comentario
+            tooltip: Pulsa para enviar y ver los comentarios
         likes:
             tooltip: Pulsa para dar un "Me gusta" al mensaje
             success: Has dado a "Me gusta" al mensaje de %author%.

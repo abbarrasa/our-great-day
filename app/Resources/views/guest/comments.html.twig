@@ -1,5 +1,4 @@
-<div id="comment-list">
-    {% if not form.vars.valid %}
+{% if not form.vars.valid %}
     <div class="alert alert-danger">
         <div class="container">
             <div class="alert-icon">
@@ -8,13 +7,12 @@
             <b>{{ 'frontend.error'|trans }}</b> {{ 'frontend.form.error'|trans }}
         </div>
     </div>
-    {% endif %}
+{% endif %}
 
-    {{ include('guest/partials/comment-list.html.twig', {'comments': greeting.comments}) }}
-</div>
+{{ include('guest/partials/comment-list.html.twig', {'comments': greeting.comments}) }}
 
-<div id="comment-form">
-    {{ form_start(form, {'action': path('greeting_comments', {'id': greeting.id})}) }}
+<h3 class="title text-center">{{ 'frontend.guestbook.comments.post_your_comment'|trans }}</h3>
+{{ form_start(form, {'action': path('greeting_comments', {'id': greeting.id})}) }}
     <div class="col-md-12 form-group bmd-form-group{% if not form.content.vars.valid %} has-error{% endif %}">
         <div class="input-group">
             <div class="input-group-prepend">
@@ -22,7 +20,7 @@
                     <i class="material-icons">create</i>
                 </span>
             </div>
-            {{ form_widget(form.content, {'attr': {'class': 'form-control', 'placeholder': 'frontend.enquiry.placeholder_content'|trans, 'rows': 3 }}) }}
+            {{ form_widget(form.content, {'attr': {'class': 'form-control', 'placeholder': 'frontend.guestbook.comments.placeholder_content'|trans, 'rows': 3 }}) }}
             {{ form_errors(form.content) }}
             {% if not form.content.vars.valid %}
                 <span class="material-icons form-control-feedback">clear</span>
@@ -34,5 +32,4 @@
         {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
         <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">{{ 'frontend.close'|trans }}</button>
     </div>
-    {{ form_end(form) }}
-</div>
+{{ form_end(form) }}

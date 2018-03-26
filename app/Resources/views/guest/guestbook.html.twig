@@ -81,9 +81,9 @@
                     $('#ogd-modal').modal('show');
                 });
             });
-            
+
             {# Submit enquiry form #}
-            $('body').on('submit', 'form[name="greetingComment"]', function(e) {
+            $('body').on('submit', 'form[name="greeting_comment"]', function(e) {
                 e.preventDefault();
                 $.ajax({
                     type: $(this).attr('method'),
@@ -92,18 +92,18 @@
                 }).done(function () {
                     $('#ogd-modal').find('.modal-body').html(responseJSON.view);
                     $('#ogd-modal').modal('show');
-                   /* materialKitDemo.showNotification(
-                        '{{ 'frontend.success'|trans }}',
-                        '{{ 'frontend.enquiry.success'|trans }}',
-                        'success',
-                        'check'
-                    );*/
+                    {#materialKitDemo.showNotification(#}
+                        {#'{{ 'frontend.success'|trans }}',#}
+                        {#'{{ 'frontend.enquiry.success'|trans }}',#}
+                        {#'success',#}
+                        {#'check'#}
+                    {#);#}
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                     if (jqXHR.responseJSON.hasOwnProperty('view')) {
-                        $('#ogd-modal-label').find('.modal-body').html(jqXHR.responseJSON.view);
+                        $('#ogd-modal').find('.modal-body').html(jqXHR.responseJSON.view);
                     }
                 });
-            });            
+            });
         });
     </script>
 {% endblock %}

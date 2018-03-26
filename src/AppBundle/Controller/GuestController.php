@@ -172,12 +172,12 @@ class GuestController extends Controller
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                $em->persist($greetingComment);
                 $greeting->addComment($greetingComment);
+                $em->persist($greetingComment);
                 $em->persist($greeting);
                 $em->flush();
 
-                //return $this->redirectToRoute('greeting_comments', ['id' => $greeting->getId()]);
+//                return $this->redirectToRoute('greeting_comments', ['id' => $greeting->getId()]);
             } else {
                 $status = 400;
             }
@@ -185,7 +185,7 @@ class GuestController extends Controller
 
         return new JsonResponse([
             'view' => $this->renderView('guest/comments.html.twig', [
-                'greeting' => $greeting,                
+                'greeting' => $greeting,
                 'form'     => $form->createView()
             ])
         ], $status);

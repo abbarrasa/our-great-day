@@ -81,7 +81,7 @@ class Mailer
     {
         $message = $this->getMessage(self::TEMPLATE_GUESTBOOK_NOTIFICATION, ['guestbook' => $guestbook]);
 
-        return $this->sendEmailMessage($this->config['email_admin'], $this->config['email_no_reply'], $message);
+        return $this->sendEmailMessage($this->config['email_admin'], $this->config['email_manager'], $message);
     }
 
     /**
@@ -93,7 +93,7 @@ class Mailer
     {
         $message = $this->getMessage(self::TEMPLATE_ENQUIRY_NOTIFICATION, ['enquiry' => $enquiry]);
 
-        return $this->sendEmailMessage($this->config['email_admin'], $this->config['email_no_reply'], $message);
+        return $this->sendEmailMessage($this->config['email_admin'], $this->config['email_manager'], $message);
     }
     
     /**

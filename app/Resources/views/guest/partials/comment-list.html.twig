@@ -1,4 +1,5 @@
 {% if comments|length > 0 %}
+    <h3 class="title text-center">{{ 'frontend.guestbook.comments.title'|transchoice(comments|length) }}</h3>
     {% for comment in comments %}
     <div class="media">
         <div class="pull-left">
@@ -9,7 +10,7 @@
             </div>
         </div>
         <div class="media-body">
-            <h5 class="media-heading">Tina Andrew <small class="text-muted">· {{ comment.publishedAt|elapsed_time }}</small></h5>
+            <h5 class="media-heading">{{ comment.user.name|default('frontend.anonymous'|trans) }} <small class="text-muted">· {{ comment.createdAt|elapsed_time }}</small></h5>
             <p>{{ comment.content }}</p>
         </div>
     </div>

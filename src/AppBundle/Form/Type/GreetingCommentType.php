@@ -14,10 +14,10 @@ class GreetingCommentType extends AbstractType
     {
         $builder
             ->add('content', TextareaType::class, [
-                'label' => 'frontend.guestbook.comment',
+                'label' => 'frontend.guestbook.comments.content',
                 'required' => true
             ])
-            ->add('submit', SubmitType::class, ['label' => 'frontend.guestbook.comment.send'])
+            ->add('submit', SubmitType::class, ['label' => 'frontend.guestbook.comments.post'])
         ;
     }
 
