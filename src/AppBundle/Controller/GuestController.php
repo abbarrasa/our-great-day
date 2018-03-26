@@ -7,6 +7,7 @@ use AppBundle\Form\Type\GreetingCommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Guest;
 use AppBundle\Entity\Greeting;
@@ -154,28 +155,39 @@ class GuestController extends Controller
      */
     public function commentsAction(Request $request, $id)
     {
+        if (!$request->isXmlHttpRequest()) {
+            return $this->redirectToRoute('guestbook');
+        }
+        
         $em = $this->getDoctrine()->getManager();
         if (($greeting = $em->getRepository(Greeting::class)->find($id)) === null) {
             throw $this->createNotFoundException(sprintf('No found any greeting with ID %d', $id));
         }
 
+        $status          = 200;
         $greetingComment = new GreetingComment();
         $greetingComment->setGreeting($greeting);
         $form = $this->createForm(GreetingCommentType::class, $greetingComment);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($greetingComment);
-            $greeting->addComment($greetingComment);
-            $em->persist($greeting);
-            $em->flush();
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $em->persist($greetingComment);
+                $greeting->addComment($greetingComment);
+                $em->persist($greeting);
+                $em->flush();
 
-            return $this->redirectToRoute('greeting_comments', ['id' => $greeting->getId()]);
+                //return $this->redirectToRoute('greeting_comments', ['id' => $greeting->getId()]);
+            } else {
+                $status = 400;
+            }
         }
 
-        return $this->renderView('guest/comments.html.twig', [
-            'greeting' => $greeting,
-            'form'     => $form->createView()
-        ]);
+        return new JsonResponse([
+            'view' => $this->renderView('guest/comments.html.twig', [
+                'greeting' => $greeting,                
+                'form'     => $form->createView()
+            ])
+        ], $status);
     }
 }
