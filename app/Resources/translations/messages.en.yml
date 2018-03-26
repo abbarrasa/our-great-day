@@ -71,6 +71,7 @@ frontend:
         no_greetings: Be the first to send us a greeting!
         no_comments: Be the first to comment!
         comments:
+            placeholder_content: Your comment here...        
             tooltip: Click here to see all comments
         likes:
             tooltip: Click here to "Like" the message
