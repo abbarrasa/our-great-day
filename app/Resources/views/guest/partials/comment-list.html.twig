@@ -1,5 +1,5 @@
 {% if comments|length > 0 %}
-    <h3 class="title text-center">{{ 'frontend.guestbook.comments.title'|transchoice(comments|length) }}</h3>
+    <h4 class="title text-center">{{ 'frontend.guestbook.comments.title'|transchoice(comments|length) }}</h4>
     {% for comment in comments|reverse %}
     <div class="media">
         <div class="pull-left">
