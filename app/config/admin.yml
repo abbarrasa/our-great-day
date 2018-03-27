@@ -6,7 +6,7 @@ services:
         arguments:
             - ~
             - AppBundle\Entity\Guest
-            - ~
+            - AppBundle\Controller\GuestAdminController
         calls:
             - [ setTranslationDomain, [admin]]
         public: true
