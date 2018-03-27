@@ -174,9 +174,18 @@ class GuestController extends Controller
             if ($form->isValid()) {
                 $greeting->addComment($greetingComment);
                 $em->persist($greetingComment);
+                //$em->merge($greeting);
                 $em->persist($greeting);
                 $em->flush();
 
+                return new JsonResponse([
+                    'view' => $this->renderView('guest/comments.html.twig', [
+                        'greeting' => $greeting,
+                        'form'     => $form->createView()
+                    ]),
+                    'data-comments' => $greeting->getId(),
+                    'comments'      => $greeting->getComments()->count()
+                ], $status);                
 //                return $this->redirectToRoute('greeting_comments', ['id' => $greeting->getId()]);
             } else {
                 $status = 400;
