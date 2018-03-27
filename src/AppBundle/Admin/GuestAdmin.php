@@ -3,14 +3,20 @@
 namespace AppBundle\Admin;
 
 use AppBundle\Entity\Guest;
-use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\UserBundle\Model\User;
 
-class GuestAdmin extends Admin
+class GuestAdmin extends AbstractAdmin
 {
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('import');
+    }
+        
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -96,4 +102,13 @@ class GuestAdmin extends Admin
             ])
         ;
     }
+    
+    public function configureActionButtons($action, $object = null)
+    {
+        $list = parent::configureActionButtons($action, $object);
+
+        $list['import']['template'] = 'import_button.html.twig';
+
+        return $list;
+    }        
 }
