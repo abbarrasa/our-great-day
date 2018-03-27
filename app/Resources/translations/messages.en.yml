@@ -73,7 +73,7 @@ frontend:
         no_comments: Be the first to comment!
         comments:
             content: Your comment
-            placeholder_content: Your comment here...
+            placeholder_content: Write some nice stuff here...
             post: Post
             title: '{1} 1 Comment|]1,Inf[ %count% Comments'
             post_your_comment: Post your comment
