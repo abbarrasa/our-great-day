@@ -13,5 +13,5 @@
 {% endblock %}
 
 {% block content_html %}
-{{ 'email.website_announcement.body_html'|trans({'%url%': absolute_url(path('homepage'))}, 'email') }}
+{{ 'email.website_announcement.body_html'|trans({'%url%': absolute_url(path('homepage'))}, 'email')|raw }}
 {% endblock %}

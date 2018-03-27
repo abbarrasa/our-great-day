@@ -2,9 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\GreetingComment;
+use AppBundle\Form\Type\GreetingCommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Guest;
 use AppBundle\Entity\Greeting;
@@ -15,6 +18,8 @@ class GuestController extends Controller
 {
     /**
      * @Route("/guest", name="guest")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function guestAction(Request $request)
     {
@@ -43,6 +48,9 @@ class GuestController extends Controller
 
     /**
      * @Route("/guest/confirm/{id}", requirements={"id" = "\d+"}, name="guest_confirm")
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function confirmAction(Request $request, $id)
     {
@@ -72,6 +80,9 @@ class GuestController extends Controller
 
     /**
      * @Route("/guestbook/{page}", requirements={"page" = "\d+"}, name="guestbook")
+     * @param Request $request
+     * @param int $page
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function guestbookAction(Request $request, $page = 1)
     {
@@ -111,13 +122,17 @@ class GuestController extends Controller
     }
 
     /**
-     * @Route("/guestbook/greeting/like/{id}/{page}", requirements={"id" = "\d+", "page" = "\d+"}, name="greeting_like")
+     * @Route("/guestbook/greeting/{id}/like/{page}", requirements={"id" = "\d+", "page" = "\d+"}, name="greeting_like")
+     * @param Request $request
+     * @param $id
+     * @param int $page
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function likeAction(Request $request, $id, $page = 1)
     {
         $em = $this->getDoctrine()->getManager();
         if (($greeting = $em->getRepository(Greeting::class)->find($id)) === null) {
-            throw $this->createNotFoundException(sprintf('No found any guestbook with ID %d', $id));
+            throw $this->createNotFoundException(sprintf('No found any greeting with ID %d', $id));
         }
 
         $greeting->setLikes($greeting->getLikes() + 1);
@@ -130,5 +145,56 @@ class GuestController extends Controller
         ));
         
         return $this->redirectToRoute('guestbook', ['page' => $page]);
+    }
+
+    /**
+     * @Route("/guestbook/greeting/{id}/comments", requirements={"id" = "\d+"}, name="greeting_comments")
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function commentsAction(Request $request, $id)
+    {
+        if (!$request->isXmlHttpRequest()) {
+            return $this->redirectToRoute('guestbook');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        if (($greeting = $em->getRepository(Greeting::class)->find($id)) === null) {
+            throw $this->createNotFoundException(sprintf('No found any greeting with ID %d', $id));
+        }
+
+        $status          = 200;
+        $greetingComment = new GreetingComment();
+        $greetingComment->setGreeting($greeting);
+        $form = $this->createForm(GreetingCommentType::class, $greetingComment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $greeting->addComment($greetingComment);
+                $em->persist($greetingComment);
+                $em->persist($greeting);
+                $em->flush();
+
+                return new JsonResponse([
+                    'view' => $this->renderView('guest/comments.html.twig', [
+                        'greeting' => $greeting,
+                        'form'     => $form->createView()
+                    ]),
+                    'data_comments' => $greeting->getId(),
+                    'comments'      => $greeting->getComments()->count()
+                ], $status);
+            } else {
+                $status = 400;
+            }
+        }
+
+        return new JsonResponse([
+            'view' => $this->renderView('guest/comments.html.twig', [
+                'greeting' => $greeting,
+                'form'     => $form->createView()
+            ])
+        ], $status);
     }
 }

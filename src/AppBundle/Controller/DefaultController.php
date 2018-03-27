@@ -42,7 +42,7 @@ class DefaultController extends Controller
                 $em->flush();
 
                 //Send notification
-                //$this->get('AppBundle\Service\Mailer')->sendEnquiryNotificationMessage($enquiry);
+                $this->get('AppBundle\Service\Mailer')->sendEnquiryNotificationMessage($enquiry);
 
                 return new JsonResponse(null, $status);
             } else {

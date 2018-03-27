@@ -79,6 +79,11 @@ class Greeting
     private $likes;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\GreetingComment", mappedBy="greeting")
+     */
+    private $comments;
+
+    /**
      * Greeting constructor.
      */
     public function __construct()
@@ -264,5 +269,41 @@ class Greeting
     public function getPublishedAt()
     {
         return $this->publishedAt;
+    }
+
+    /**
+     * Add comment.
+     *
+     * @param \AppBundle\Entity\GreetingComment $comment
+     *
+     * @return Greeting
+     */
+    public function addComment(\AppBundle\Entity\GreetingComment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment.
+     *
+     * @param \AppBundle\Entity\GreetingComment $comment
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeComment(\AppBundle\Entity\GreetingComment $comment)
+    {
+        return $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

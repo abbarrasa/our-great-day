@@ -4,6 +4,7 @@ frontend:
     info: Info
     close: Close
     title: Our great day
+    anonymous: Anonymous
     choice:
         yes: Yes
         no: No
@@ -37,7 +38,7 @@ frontend:
         placeholder_content: Your message here...
         description: If you need to know more information or tell us something, do not hesitate to do so.
         send: Send
-        success: Your message has been sent successfully and will be taken care as soon as possible.
+        success: Your enquiry has been sent successfully and will be taken care as soon as possible.
     joined:
         email: Your email
         placeholder_email: Your email here...
@@ -69,6 +70,14 @@ frontend:
         message: Your nice message
         success: Your message has been sent successfully and is pending moderation. After being reviewed it will be published.
         no_greetings: Be the first to send us a greeting!
+        no_comments: Be the first to comment!
+        comments:
+            content: Your comment
+            placeholder_content: Write some nice stuff here...
+            post: Post
+            title: '{1} 1 Comment|]1,Inf[ %count% Comments'
+            post_your_comment: Post your comment
+            tooltip: Click here to send and see all comments
         likes:
             tooltip: Click here to "Like" the message
             success: You have clicked "Like" on %author%\'s message.

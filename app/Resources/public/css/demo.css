@@ -2566,3 +2566,8 @@ a.scroll-arrow:hover {
     z-index: 2;
     position: relative;
 }
+
+.media .avatar {
+    width: 48px !important;
+    height: 48px !important;
+}

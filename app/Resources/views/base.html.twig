@@ -256,7 +256,7 @@
                             url: $(this).attr('action'),
                             data: $(this).serialize(),
                         }).done(function () {
-                            $('#ogd-modal-label').modal('hide');
+                            $('#ogd-modal').modal('hide');
                             materialKitDemo.showNotification(
                                 '{{ 'frontend.success'|trans }}',
                                 '{{ 'frontend.enquiry.success'|trans }}',
@@ -265,7 +265,7 @@
                             );
                         }).fail(function (jqXHR, textStatus, errorThrown) {
                             if (jqXHR.responseJSON.hasOwnProperty('view')) {
-                                $('#ogd-modal-label').find('.modal-body').html(jqXHR.responseJSON.view);
+                                $('#ogd-modal').find('.modal-body').html(jqXHR.responseJSON.view);
                             }
                         });
                     });
