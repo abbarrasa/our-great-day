@@ -11,7 +11,7 @@
 
 {{ include('guest/partials/comment-list.html.twig', {'comments': greeting.comments}) }}
 
-<h3 class="title text-center">{{ 'frontend.guestbook.comments.post_your_comment'|trans }}</h3>
+<h4 class="title text-center">{{ 'frontend.guestbook.comments.post_your_comment'|trans }}</h4>
 {{ form_start(form, {'action': path('greeting_comments', {'id': greeting.id})}) }}
     <div class="col-md-12 form-group bmd-form-group{% if not form.content.vars.valid %} has-error{% endif %}">
         <div class="input-group">
