@@ -73,7 +73,7 @@ frontend:
         no_comments: Se el/la primero/a en comentar!
         comments:
             content: Tu comentario
-            placeholder_content: Tu comentario aquí...
+            placeholder_content: Escribe algo bonito aquí...
             post: Enviar
             title: '{1} 1 Comentario|]1,Inf[ %count% Comentarios'
             post_your_comment: Envía tu comentario
