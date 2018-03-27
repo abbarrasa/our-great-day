@@ -76,7 +76,7 @@
                     url: url,
                     type: 'POST'
                 }).done(function (responseJSON) {
-                    $('#burger-button').trigger('click');
+//                    $('#burger-button').trigger('click');
                     $('#ogd-modal').find('.modal-body').html(responseJSON.view);
                     $('#ogd-modal').modal('show');
                 });
@@ -89,16 +89,10 @@
                     type: $(this).attr('method'),
                     url: $(this).attr('action'),
                     data: $(this).serialize(),
-                }).done(function () {
+                }).done(function (responseJSON) {
                     $('#ogd-modal').find('.modal-body').html(responseJSON.view);
-                    $('a[data-comments="' + responseJSON.data-comments + '"]').html('<i class="fa fa-comment"></i> ' + responseJSON.comments);
-                    {#$('#ogd-modal').modal('show');#}
-                    {#materialKitDemo.showNotification(#}
-                        {#'{{ 'frontend.success'|trans }}',#}
-                        {#'{{ 'frontend.enquiry.success'|trans }}',#}
-                        {#'success',#}
-                        {#'check'#}
-                    {#);#}
+                    $('#greeting_comment_content').val('');
+                    $('a[data-comments="' + responseJSON.data_comments + '"]').html('<i class="fa fa-comment"></i> ' + responseJSON.comments);
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                     if (jqXHR.responseJSON.hasOwnProperty('view')) {
                         $('#ogd-modal').find('.modal-body').html(jqXHR.responseJSON.view);

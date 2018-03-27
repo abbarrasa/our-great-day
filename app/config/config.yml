@@ -50,7 +50,7 @@ twig:
         email_admin: '%email_admin%'
         api_key: '%google.api_key%'
         wedding_date: '%wedding.date%'
-        version: 1.0
+        version: 1.1.0
     form_themes:
         - 'form/fields.html.twig'
 

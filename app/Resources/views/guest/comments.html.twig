@@ -12,24 +12,7 @@
 {{ include('guest/partials/comment-list.html.twig', {'comments': greeting.comments}) }}
 
 <h4 class="title text-center">{{ 'frontend.guestbook.comments.post_your_comment'|trans }}</h4>
-<div class="media media-post">
 {{ form_start(form, {'action': path('greeting_comments', {'id': greeting.id})}) }}
-    <div class="author float-left" href="#pablo">
-        <div class="avatar">
-            <img class="media-object" alt="64x64" src="../assets/img/faces/card-profile6-square.jpg">
-        </div>
-    </div>
-    <div class="media-body">
-        <div class="form-group label-floating bmd-form-group">
-            <label class="form-control-label bmd-label-floating" for="exampleBlogPost"> Write some nice stuff or nothing...</label>
-            <textarea class="form-control" rows="5" id="exampleBlogPost"></textarea>
-        </div>
-        <div class="media-footer">
-            <a href="#pablo" class="btn btn-primary btn-round btn-wd float-right">Post Comment</a>
-        </div>
-    </div>
-
-
     <div class="col-md-12 form-group bmd-form-group{% if not form.content.vars.valid %} has-error{% endif %}">
         <div class="input-group">
             <div class="input-group-prepend">
@@ -44,28 +27,8 @@
             {% endif %}
         </div>
     </div>
-
     <div class="col-md-12 form-group">
         {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
         <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">{{ 'frontend.close'|trans }}</button>
     </div>
 {{ form_end(form) }}
-
-
-
-
-                            <a class="author float-left" href="#pablo">
-                                <div class="avatar">
-                                    <img class="media-object" alt="64x64" src="../assets/img/faces/card-profile6-square.jpg">
-                                </div>
-                            </a>
-                            <div class="media-body">
-                                <div class="form-group label-floating bmd-form-group">
-                                    <label class="form-control-label bmd-label-floating" for="exampleBlogPost"> Write some nice stuff or nothing...</label>
-                                    <textarea class="form-control" rows="5" id="exampleBlogPost"></textarea>
-                                </div>
-                                <div class="media-footer">
-                                    <a href="#pablo" class="btn btn-primary btn-round btn-wd float-right">Post Comment</a>
-                                </div>
-                            </div>
-</div>

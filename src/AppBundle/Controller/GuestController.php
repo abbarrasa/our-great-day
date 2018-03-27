@@ -151,7 +151,7 @@ class GuestController extends Controller
      * @Route("/guestbook/greeting/{id}/comments", requirements={"id" = "\d+"}, name="greeting_comments")
      * @param Request $request
      * @param $id
-     * @return string|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function commentsAction(Request $request, $id)
     {
@@ -174,7 +174,6 @@ class GuestController extends Controller
             if ($form->isValid()) {
                 $greeting->addComment($greetingComment);
                 $em->persist($greetingComment);
-                //$em->merge($greeting);
                 $em->persist($greeting);
                 $em->flush();
 
@@ -183,10 +182,9 @@ class GuestController extends Controller
                         'greeting' => $greeting,
                         'form'     => $form->createView()
                     ]),
-                    'data-comments' => $greeting->getId(),
+                    'data_comments' => $greeting->getId(),
                     'comments'      => $greeting->getComments()->count()
                 ], $status);                
-//                return $this->redirectToRoute('greeting_comments', ['id' => $greeting->getId()]);
             } else {
                 $status = 400;
             }

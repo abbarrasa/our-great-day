@@ -1,6 +1,6 @@
 {% if comments|length > 0 %}
     <h4 class="title text-center">{{ 'frontend.guestbook.comments.title'|transchoice(comments|length) }}</h4>
-    {% for comment in comments|reverse %}
+    {% for comment in comments %}
     <div class="media">
         <div class="pull-left">
             <div class="avatar">
