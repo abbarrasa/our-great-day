@@ -69,7 +69,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             {# Load comment form #}
-            $('a.badge-comment').click(function(e) {
+            $('a[data-comments]').click(function(e) {
                 e.preventDefault();
                 var url = $(this).prop('href');
                 $.ajax({
@@ -91,7 +91,8 @@
                     data: $(this).serialize(),
                 }).done(function () {
                     $('#ogd-modal').find('.modal-body').html(responseJSON.view);
-                    $('#ogd-modal').modal('show');
+                    $('a[data-comments="' + responseJSON.data-comments + '"]').html('<i class="fa fa-comment"></i> ' + responseJSON.comments);
+                    {#$('#ogd-modal').modal('show');#}
                     {#materialKitDemo.showNotification(#}
                         {#'{{ 'frontend.success'|trans }}',#}
                         {#'{{ 'frontend.enquiry.success'|trans }}',#}
