@@ -40,7 +40,7 @@
                                 <a href="{{ path('greeting_like', {'id': greeting.id, 'page': app.request.attributes.get('page')}) }}" class="badge badge-danger" title="{{'frontend.guestbook.likes.tooltip'|trans}}" data-toggle="tooltip">
                                     <i class="fa fa-heart"></i>  {{ greeting.likes }}
                                 </a>
-                                <a href="{{ path('greeting_comments', {'id': greeting.id}) }}" class="badge badge-secondary badge-comment" title="{{'frontend.guestbook.comments.tooltip'|trans}}" data-toggle="tooltip">
+                                <a href="{{ path('greeting_comments', {'id': greeting.id}) }}" class="badge badge-secondary" title="{{'frontend.guestbook.comments.tooltip'|trans}}" data-toggle="tooltip" data-comments="{{ greeting.id }}">
                                     <i class="fa fa-comment"></i>  {{ greeting.comments|length }}
                                 </a>
                             </div>
