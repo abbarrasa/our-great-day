@@ -158,7 +158,7 @@ class GuestController extends Controller
         if (!$request->isXmlHttpRequest()) {
             return $this->redirectToRoute('guestbook');
         }
-        
+
         $em = $this->getDoctrine()->getManager();
         if (($greeting = $em->getRepository(Greeting::class)->find($id)) === null) {
             throw $this->createNotFoundException(sprintf('No found any greeting with ID %d', $id));
@@ -184,7 +184,7 @@ class GuestController extends Controller
                     ]),
                     'data_comments' => $greeting->getId(),
                     'comments'      => $greeting->getComments()->count()
-                ], $status);                
+                ], $status);
             } else {
                 $status = 400;
             }
