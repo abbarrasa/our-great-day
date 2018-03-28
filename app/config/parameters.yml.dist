@@ -26,5 +26,5 @@ parameters:
     
     # Emails
     email_admin: admin@domain.com
-    email_manager: abbarrasa@gmail.com
+    email_manager: managera@domain.com
     embedded_images: []
