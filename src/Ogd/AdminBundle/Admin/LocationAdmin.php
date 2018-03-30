@@ -1,16 +1,19 @@
 <?php
 
-namespace AppBundle\Admin;
+namespace AdminBundle\Admin;
 
 use AppBundle\Form\Type\GoogleMapType;
-use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class LocationAdmin extends Admin
+class LocationAdmin extends AbstractAdmin
 {
-    // Fields to be shown on create/edit forms
+    /**
+     * Fields to be shown on create/edit forms
+     * @param FormMapper $formMapper
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -24,7 +27,10 @@ class LocationAdmin extends Admin
         ;
     }
 
-    // Fields to be shown on filter forms
+    /**
+     * Fields to be shown on filter forms
+     * @param DatagridMapper $datagridMapper
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
 //        $datagridMapper
@@ -33,7 +39,10 @@ class LocationAdmin extends Admin
 //        ;
     }
 
-    // Fields to be shown on lists
+    /**
+     * Fields to be shown on lists
+     * @param ListMapper $listMapper
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper

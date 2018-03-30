@@ -2,7 +2,6 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: admin.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -10,10 +9,10 @@ parameters:
     locale: es
     mailer:
         default_sleep: 1
-        email_admin: '%email_admin%'
-        email_manager: '%email_manager%'
-        from_name: 'Nuestro gran día'
-        embedded_images: '%embedded_images%'
+        email_admin: '%mailer_email_admin%'
+        email_manager: '%mailer_email_manager%'
+        from_name: '%mailer_from_name%'
+        embedded_images: '%mailer_embedded_images%'
     # Maintenance mode
     maintenance: false
 
@@ -47,7 +46,7 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     globals:
-        email_admin: '%email_admin%'
+        email_admin: '%mailer_email_admin%'
         api_key: '%google.api_key%'
         wedding_date: '%wedding.date%'
         version: 1.1.0
@@ -98,8 +97,8 @@ fos_user:
     firewall_name: main
     user_class: Application\Sonata\UserBundle\Entity\User
     from_email:
-        address: "%email_admin%"
-        sender_name: 'Our Great Day'
+        address: "%mailer_email_admin%"
+        sender_name: '%mailer_from_name%'
     group:
         group_class:   Application\Sonata\UserBundle\Entity\Group
         group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
@@ -130,7 +129,7 @@ sonata_admin:
             admin.group.administration:
 #                keep_open: true
                 label: admin.group.administration
-                label_catalogue: admin
+                label_catalogue: AdminBundle
                 icon: '<i class="fa fa-gears"></i>'
 #                items:
 #                    - sonata.media.admin.media
@@ -139,5 +138,5 @@ sonata_admin:
             admin.group.settings:
 #                keep_open: true
                 label: admin.group.settings
-                label_catalogue: admin
+                label_catalogue: AdminBundle
                 icon: '<i class="fa fa-sliders"></i>'

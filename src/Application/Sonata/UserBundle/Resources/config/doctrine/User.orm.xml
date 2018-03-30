@@ -10,8 +10,8 @@
             <generator strategy="AUTO" />
         </id>
 
-        <one-to-many field="greetings" target-entity="AppBundle\Entity\Greeting" mapped-by="user" />
-        <one-to-many field="greetingComments" target-entity="AppBundle\Entity\GreetingComment" mapped-by="user" />
+        <one-to-many field="greetings" target-entity="AdminBundle\Entity\Greeting" mapped-by="user" />
+        <one-to-many field="greetingComments" target-entity="AdminBundle\Entity\GreetingComment" mapped-by="user" />
 
     </entity>
 

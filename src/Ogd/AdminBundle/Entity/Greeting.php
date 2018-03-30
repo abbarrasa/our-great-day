@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -9,7 +9,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Greeting
  *
  * @ORM\Table(name="ogd_greeting")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\GreetingRepository")
+ * @ORM\Entity(repositoryClass="AdminBundle\Repository\GreetingRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Greeting
 {
@@ -46,7 +47,6 @@ class Greeting
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
-     * @Assert\NotNull()
      */
     private $createdAt;
 
@@ -79,7 +79,7 @@ class Greeting
     private $likes;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\GreetingComment", mappedBy="greeting")
+     * @ORM\OneToMany(targetEntity="AdminBundle\Entity\GreetingComment", mappedBy="greeting")
      */
     private $comments;
 
@@ -88,7 +88,6 @@ class Greeting
      */
     public function __construct()
     {
-        $this->setCreatedAt(new \DateTime());
         $this->setStatus(self::STATUS_PENDING);
         $this->setLikes(0);
     }
@@ -274,11 +273,11 @@ class Greeting
     /**
      * Add comment.
      *
-     * @param \AppBundle\Entity\GreetingComment $comment
+     * @param \AdminBundle\Entity\GreetingComment $comment
      *
      * @return Greeting
      */
-    public function addComment(\AppBundle\Entity\GreetingComment $comment)
+    public function addComment(\AdminBundle\Entity\GreetingComment $comment)
     {
         $this->comments[] = $comment;
 
@@ -288,11 +287,11 @@ class Greeting
     /**
      * Remove comment.
      *
-     * @param \AppBundle\Entity\GreetingComment $comment
+     * @param \AdminBundle\Entity\GreetingComment $comment
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeComment(\AppBundle\Entity\GreetingComment $comment)
+    public function removeComment(\AdminBundle\Entity\GreetingComment $comment)
     {
         return $this->comments->removeElement($comment);
     }
@@ -306,4 +305,15 @@ class Greeting
     {
         return $this->comments;
     }
+
+    /**
+     * Set createdAt value before persist
+     *
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->setCreatedAt(new \DateTime());
+    }
+
 }

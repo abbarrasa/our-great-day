@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="ogd_greeting_comment")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GreetingCommentRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 
 class GreetingComment
@@ -52,12 +53,13 @@ class GreetingComment
     private $createdAt;
 
     /**
-     * GreetingComment constructor.
+     * @ORM\PrePersist
      */
-    public function __construct()
+    public function setCreatedAtValue()
     {
-        $this->setCreatedAt(new \DateTime());
+        $this->createdAt = new \DateTime();
     }
+
 
     /**
      * Get id.
@@ -139,29 +141,5 @@ class GreetingComment
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * Set greeting.
-     *
-     * @param \AppBundle\Entity\Greeting $greeting
-     *
-     * @return GreetingComment
-     */
-    public function setGreeting(\AppBundle\Entity\Greeting $greeting)
-    {
-        $this->greeting = $greeting;
-
-        return $this;
-    }
-
-    /**
-     * Get greeting.
-     *
-     * @return \AppBundle\Entity\Greeting
-     */
-    public function getGreeting()
-    {
-        return $this->greeting;
     }
 }

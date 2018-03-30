@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Symfony\Component\HttpFoundation\Request;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Reader\Exception;
 
 class GuestAdminController extends Controller
 {
@@ -17,9 +19,9 @@ class GuestAdminController extends Controller
         $inputFileName = './sampleData/example1.xls';
         try {
             /**  Identify the type of $inputFileName  **/
-            $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
+            $inputFileType = IOFactory::identify($inputFileName);
             /**  Create a new Reader of the type that has been identified  **/
-            $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
+            $reader = IOFactory::createReader($inputFileType);
             /**  Advise the Reader that we only want to load cell data  **/
             $reader->setReadDataOnly(true);
             /**  Load $inputFileName to a Spreadsheet Object  **/
@@ -27,7 +29,7 @@ class GuestAdminController extends Controller
 
             $worksheet = $spreadsheet->getActiveSheet();
             $rows = $worksheet->toArray();
-        } catch(\PhpOffice\PhpSpreadsheet\Reader\Exception $e) {
+        } catch(Exception $e) {
             die('Error loading file: '.$e->getMessage());
         }
     }

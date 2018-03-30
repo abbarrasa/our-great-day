@@ -1,18 +1,18 @@
 <?php
 
-namespace AppBundle\Admin;
+namespace AdminBundle\Admin;
 
-use AppBundle\Entity\Guest;
-use AppBundle\Entity\Greeting;
-use Sonata\AdminBundle\Admin\Admin;
+use AdminBundle\Entity\Greeting;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\UserBundle\Model\User;
 
-class GreetingAdmin extends Admin
+class GreetingAdmin extends AbstractAdmin
 {
-    // Fields to be shown on filter forms
+    /**
+     * Fields to be shown on filter forms
+     * @param DatagridMapper $datagridMapper
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -23,7 +23,10 @@ class GreetingAdmin extends Admin
         ;
     }
 
-    // Fields to be shown on lists
+    /**
+     * Fields to be shown on lists
+     * @param ListMapper $listMapper
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -41,6 +44,10 @@ class GreetingAdmin extends Admin
         ;
     }
 
+    /**
+     * Set publishedAt value on updates
+     * @param object $greeting
+     */
     public function preUpdate($greeting)
     {
         if ($greeting->getStatus() == Greeting::STATUS_APPROVED) {

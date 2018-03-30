@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Repository;
+namespace AdminBundle\Repository;
 
-use AppBundle\Entity\Greeting;
+use AdminBundle\Entity\Greeting;
 use Doctrine\ORM\EntityRepository;
 
 /**

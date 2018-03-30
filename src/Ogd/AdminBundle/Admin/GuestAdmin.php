@@ -1,8 +1,7 @@
 <?php
 
-namespace AppBundle\Admin;
+namespace AdminBundle\Admin;
 
-use AppBundle\Entity\Guest;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;

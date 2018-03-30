@@ -14,6 +14,12 @@ parameters:
     mailer_host: 127.0.0.1
     mailer_user: ~
     mailer_password: ~
+
+    # Emails settings
+    mailer_email_admin: admin@domain.com
+    mailer_email_manager: manager@domain.com
+    mailer_from_name: 'Our great day'
+    mailer_embedded_images: []
     
     # A secret key that's used to generate certain security-related tokens
     secret: ~
@@ -22,9 +28,4 @@ parameters:
     google.api_key: ~
     
     # Wedding date
-    wedding.date: '2018-09-14T19:00:00'
-    
-    # Emails
-    email_admin: admin@domain.com
-    email_manager: managera@domain.com
-    embedded_images: []
+    wedding.date: '2018-01-01T12:00:00'
