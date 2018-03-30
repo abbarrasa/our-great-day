@@ -1,0 +1,17 @@
+{% extends 'base-email.html.twig' %}
+
+{% block subject %}
+{%- autoescape false -%}
+{{ 'email.website_announcement.subject'|trans({}, 'email') }}
+{%- endautoescape -%}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+{{ 'email.website_announcement.body_plain'|trans({'%url%': absolute_url(path('homepage'))}, 'email') }}
+{% endautoescape %}
+{% endblock %}
+
+{% block content_html %}
+{{ 'email.website_announcement.body_html'|trans({'%url%': absolute_url(path('homepage'))}, 'email')|raw }}
+{% endblock %}

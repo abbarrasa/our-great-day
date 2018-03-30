@@ -1,0 +1,127 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'frontend.title'|trans }} - {{ 'frontend.guest.confirm_attendence'|trans }}{% endblock %}
+
+{% block main %}
+    <div id="first-section" class="section section-basic section-purple-gradient sr">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 text-center ml-auto mr-auto">
+                    <div class="section-description">
+                        <h2 class="title">{{ 'frontend.guest.title'|trans|raw }}</h2>
+                        <p class="description">{{ 'frontend.guest.description'|trans|raw }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mr-auto ml-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <ul class="nav nav-pills nav-pills-icons nav-pills-primary justify-content-center" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link{% if app.request.attributes.get('_route') == 'guest' %} active{% endif %}" href="{{ path('guest') }}">
+                                        <i class="material-icons">search</i>
+                                        {{ 'frontend.guest.search_you'|trans }}
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link{% if app.request.attributes.get('_route') == 'guest_confirm' %} active{% endif %}" href="{{ app.request.baseUrl }}">
+                                        <i class="material-icons">assignment_turned_in</i>
+                                        {{ 'frontend.guest.confirm_attendence'|trans }}
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content tab-space col-md-10 col-xs-12 mr-auto ml-auto">
+                                {{ form_start(form) }}
+                                {{ form_errors(form) }}
+                                <div class="row">
+                                    <div class="col form-group bmd-form-group{% if not form.firstname.vars.valid %} has-danger{% endif %}">
+                                        {{ form_label(form.firstname, form.firstname, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                        {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_errors(form.firstname) }}
+                                        {#<span class="bmd-help">We'll never share your email with anyone else.</span>#}
+                                        {% if not form.firstname.vars.valid %}
+                                            <span class="material-icons form-control-feedback">clear</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col form-group bmd-form-group{% if not form.lastname.vars.valid %} has-danger{% endif %}">
+                                        {{ form_label(form.lastname, form.lastname, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                        {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_errors(form.lastname) }}
+                                        {% if not form.lastname.vars.valid %}
+                                            <span class="material-icons form-control-feedback">clear</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col form-group bmd-form-group{% if not form.email.vars.valid %} has-danger{% endif %}">
+                                        {{ form_label(form.email, form.email, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                                        {{ form_errors(form.email) }}
+                                        {% if not form.email.vars.valid %}
+                                            <span class="material-icons form-control-feedback">clear</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                {% if app.request.attributes.get('_route') == 'guest_confirm' %}
+                                    <div class="row">
+                                        {% if form.guests is defined %}
+                                            <div class="col form-group bmd-form-group">
+                                                {{ form_label(form.guests) }}
+                                                {{ form_widget(form.guests, {'attr': {'class': 'selectpicker', 'data-style': 'select-with-transition', 'data-size': '7'}}) }}
+                                            </div>
+                                        {% endif %}
+
+                                        {% if form.childs is defined %}
+                                            <div class="col form-group bmd-form-group">
+                                                {{ form_label(form.childs) }}
+                                                {{ form_widget(form.childs, {'attr': {'class': 'selectpicker', 'data-style': 'select-with-transition', 'data-size': '7'}}) }}
+                                            </div>
+                                        {% endif %}
+
+                                        {% if form.vegans is defined %}
+                                            <div class="col form-group bmd-form-group">
+                                                {{ form_label(form.vegans) }}
+                                                {{ form_widget(form.vegans, {'attr': {'class': 'selectpicker', 'data-style': 'select-with-transition', 'data-size': '7'}}) }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="row">
+                                        {% if form.attending is defined %}
+                                            <div class="col form-group bmd-form-group">
+                                                {{ form_label(form.attending) }}
+                                                <div class="form-check form-check-inline">
+                                                    {% for child in form.attending %}
+                                                        <label class="form-check-label">
+                                                            {{ form_widget(child, {'attr': {'class': 'form-check-input'}}) }} {{ child.vars.label|trans }}
+                                                            <span class="circle">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="card-footer col-md-10 col-xs-12 mr-auto ml-auto">
+                            <div class="col form-group">
+                                {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
