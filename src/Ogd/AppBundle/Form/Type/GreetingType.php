@@ -27,7 +27,8 @@ class GreetingType extends AbstractType
     {
         $resolver
             ->setDefaults(array(
-                'data_class' => 'AdminBundle\Entity\Greeting'
+                'data_class' => 'AdminBundle\Entity\Greeting',
+                'translation_domain' => 'AppBundle',
             ))
         ;
     }

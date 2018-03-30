@@ -115,4 +115,5 @@
 {% block label %}
     {% import "knp_menu.html.twig" as macros %}
     {%- set attributes = item.labelAttributes %}
-    <p{{ macros.attributes(attributes) }}>{{ item.label|trans }}</p>{% endblock %}
+    {%- set translationDomain = item.extras.translation_domain %}
+    <p{{ macros.attributes(attributes) }}>{{ item.label|trans({}, translationDomain) }}</p>{% endblock %}

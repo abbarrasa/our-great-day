@@ -25,7 +25,8 @@ class GreetingCommentType extends AbstractType
     {
         $resolver
             ->setDefaults(array(
-                'data_class' => 'AdminBundle\Entity\GreetingComment'
+                'data_class' => 'AdminBundle\Entity\GreetingComment',
+                'translation_domain' => 'AppBundle',
             ))
         ;
     }

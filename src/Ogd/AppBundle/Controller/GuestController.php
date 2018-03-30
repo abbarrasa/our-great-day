@@ -41,7 +41,7 @@ class GuestController extends Controller
             }
         }
 
-        return $this->render('guest/confirmation.html.twig', [
+        return $this->render('@App/guest/confirmation.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -67,13 +67,13 @@ class GuestController extends Controller
             
             $helper = $this->get('app.helper.flash_message');
             $this->addFlash('success', $helper->getFlashMessage(
-                'success', 'frontend.success', 'frontend.guest.success'
+                'success', 'frontend.success', 'frontend.guest.success', [], 'AppBundle'
             ));            
 
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->render('guest/confirmation.html.twig', [
+        return $this->render('@App/guest/confirmation.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -100,7 +100,7 @@ class GuestController extends Controller
             //Flash success message
             $helper = $this->get('app.helper.flash_message');
             $this->addFlash('success', $helper->getFlashMessage(
-                'success', 'frontend.success', 'frontend.guestbook.success'
+                'success', 'frontend.success', 'frontend.guestbook.success', [], 'AppBundle'
             ));
 
             return $this->redirectToRoute('guestbook', ['page' => $page]);
@@ -115,7 +115,7 @@ class GuestController extends Controller
         );
 
         // parameters to template
-        return $this->render('guest/guestbook.html.twig', array(
+        return $this->render('@App/guest/guestbook.html.twig', array(
             'pagination' => $pagination,
             'form'       => $form->createView()
         ));
@@ -141,7 +141,7 @@ class GuestController extends Controller
         
         $helper = $this->get('app.helper.flash_message');
         $this->addFlash('success', $helper->getFlashMessage(
-            'success', 'frontend.success', 'frontend.guestbook.likes.success', ['%author%' => $greeting->getName()]
+            'success', 'frontend.success', 'frontend.guestbook.likes.success', ['%author%' => $greeting->getName()], 'AppBundle'
         ));
         
         return $this->redirectToRoute('guestbook', ['page' => $page]);
@@ -178,7 +178,7 @@ class GuestController extends Controller
                 $em->flush();
 
                 return new JsonResponse([
-                    'view' => $this->renderView('guest/comments.html.twig', [
+                    'view' => $this->renderView('@App/guest/comments.html.twig', [
                         'greeting' => $greeting,
                         'form'     => $form->createView()
                     ]),
@@ -191,7 +191,7 @@ class GuestController extends Controller
         }
 
         return new JsonResponse([
-            'view' => $this->renderView('guest/comments.html.twig', [
+            'view' => $this->renderView('@App/guest/comments.html.twig', [
                 'greeting' => $greeting,
                 'form'     => $form->createView()
             ])

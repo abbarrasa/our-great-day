@@ -1,3 +1,4 @@
+{% trans_default_domain 'AppBundle' %}
 {% if not form.vars.valid %}
     <div class="alert alert-danger">
         <div class="container">
@@ -9,7 +10,7 @@
     </div>
 {% endif %}
 
-{{ include('guest/partials/comment-list.html.twig', {'comments': greeting.comments}) }}
+{{ include('@App/guest/partials/comment-list.html.twig', {'comments': greeting.comments}) }}
 
 <h4 class="title text-center">{{ 'frontend.guestbook.comments.post_your_comment'|trans }}</h4>
 {{ form_start(form, {'action': path('greeting_comments', {'id': greeting.id})}) }}

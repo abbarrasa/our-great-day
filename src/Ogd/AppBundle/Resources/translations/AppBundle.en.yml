@@ -90,5 +90,6 @@ frontend:
         groom: Groom
     timeline:
         title: Our Great <em>Story</em>
+        to_be_continued: To be continued . . .
     location:
         title: Our Great <em>Wedding Location</em>

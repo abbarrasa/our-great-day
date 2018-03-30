@@ -25,22 +25,22 @@
                     <div class="card card-sr bg-{{ style }}">
                         <div class="card-body">
                             <div class="card-category text-right">
-                                <i class="material-icons">schedule</i> {{ greeting.publishedAt|elapsed_time }}
+                                <i class="material-icons">schedule</i> {{ greeting.publishedAt|elapsed_time('AppBundle') }}
                             </div>
                             <h4 class="card-title justify-content-center">{{ greeting.message }}</h4>
                         </div>
                         <div class="card-footer">
                             <div class="author">
-                                {% image '../app/Resources/public/images/user-default.jpg' %}
+                                {% image 'bundles/app/images/user-default.jpg' %}
                                 <img src="{{ asset_url }}" alt="{{ greeting.name }}" class="avatar img-raised">
                                 {% endimage %}
                                 <span>{{ greeting.name }}</span>
                             </div>
                             <div class="stats ml-auto">
-                                <a href="{{ path('greeting_like', {'id': greeting.id, 'page': app.request.attributes.get('page')}) }}" class="badge badge-danger" title="{{'frontend.guestbook.likes.tooltip'|trans}}" data-toggle="tooltip">
+                                <a href="{{ path('greeting_like', {'id': greeting.id, 'page': app.request.attributes.get('page')}) }}" class="badge badge-danger" title="{{'frontend.guestbook.likes.tooltip'|trans({}, 'AppBundle')}}" data-toggle="tooltip">
                                     <i class="fa fa-heart"></i>  {{ greeting.likes }}
                                 </a>
-                                <a href="{{ path('greeting_comments', {'id': greeting.id}) }}" class="badge badge-secondary" title="{{'frontend.guestbook.comments.tooltip'|trans}}" data-toggle="tooltip" data-comments="{{ greeting.id }}">
+                                <a href="{{ path('greeting_comments', {'id': greeting.id}) }}" class="badge badge-secondary" title="{{'frontend.guestbook.comments.tooltip'|trans({}, 'AppBundle')}}" data-toggle="tooltip" data-comments="{{ greeting.id }}">
                                     <i class="fa fa-comment"></i>  {{ greeting.comments|length }}
                                 </a>
                             </div>
@@ -53,7 +53,7 @@
     </div>
 
     <div class="col-8 ml-auto sr">
-        {{ knp_pagination_render(pagination, 'partials/knp_pagination.html.twig') }}
+        {{ knp_pagination_render(pagination, '@App/partials/knp_pagination.html.twig') }}
     </div>
 {% else %}
     <div class="alert alert-info">
@@ -61,7 +61,7 @@
             <div class="alert-icon">
                 <i class="material-icons">info_outline</i>
             </div>
-            <b>{{ 'frontend.info'|trans }}</b>: {{ 'frontend.guestbook.no_greetings'|trans }}
+            <b>{{ 'frontend.info'|trans }}</b>: {{ 'frontend.guestbook.no_greetings'|trans({}, 'AppBundle') }}
         </div>
     </div>
 {% endif %}

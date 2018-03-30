@@ -90,5 +90,6 @@ frontend:
         groom: Él
     timeline:
         title: Nuestra Gran <em>Historia</em>
+        to_be_continued: Continuará . . .
     location:
         title: Nuestro Gran <em>Lugar de la Celebración</em>

@@ -36,6 +36,10 @@ class GuestConfirmationType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver
+            ->setDefault('translation_domain', 'AppBundle')
+        ;
+
 //        if ('guest' === $this->requestStack->getCurrentRequest()->get('_route')) {
 //            $resolver->setDefaults([
 //                'constraints' => [
@@ -46,9 +50,7 @@ class GuestConfirmationType extends AbstractType
 //
         if ('guest_confirm' === $this->requestStack->getCurrentRequest()->get('_route')) {
             $resolver
-                ->setDefaults(array(
-                    'data_class' => 'AdminBundle\Entity\Guest',
-                ))
+                ->setDefault('data_class', 'AdminBundle\Entity\Guest')
             ;
         }
     }

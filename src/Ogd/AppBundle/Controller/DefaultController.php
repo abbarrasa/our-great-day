@@ -18,7 +18,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig');
+        return $this->render('@App/default/index.html.twig');
     }
 
     /**
@@ -51,7 +51,7 @@ class DefaultController extends Controller
         }
         
         return new JsonResponse([
-            'view' => $this->renderView('default/partials/enquiry.html.twig', [
+            'view' => $this->renderView('@App/default/partials/enquiry.html.twig', [
                 'form' => $form->createView()
             ])
         ], $status);

@@ -1,4 +1,5 @@
-{% extends 'base.html.twig' %}
+{% extends '@App/base.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
 
 {% block title %}{{ 'frontend.title'|trans }} - {{ 'frontend.guest.confirm_attendence'|trans }}{% endblock %}
 
@@ -10,7 +11,7 @@
                 <div class="section-description text-center sr">
                     <h2 class="title">{{ 'frontend.guestbook.title'|trans|raw }}</h2>
                 </div>
-                {{ include('guest/partials/card-list.html.twig', {'pagination': pagination}) }}
+                {{ include('@App/guest/partials/card-list.html.twig', {'pagination': pagination}) }}
             </div>
         </div>
     </div>
@@ -76,7 +77,6 @@
                     url: url,
                     type: 'POST'
                 }).done(function (responseJSON) {
-//                    $('#burger-button').trigger('click');
                     $('#ogd-modal').find('.modal-body').html(responseJSON.view);
                     $('#ogd-modal').modal('show');
                 });

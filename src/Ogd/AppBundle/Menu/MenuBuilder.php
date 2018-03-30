@@ -109,7 +109,7 @@ class MenuBuilder
                 'class' => 'nav-link',
                 'onclick' => "javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;",
                 'target' => '_blank',
-                'title' => $this->translator->trans('frontend.menu.share', ['%site%' => 'Facebook']),
+                'title' => $this->translator->trans('frontend.menu.share', ['%site%' => 'Facebook'], 'AppBundle'),
                 'data-toggle' => 'tooltip'
             ])
             ->setExtra('translation_domain', 'AppBundle')
@@ -123,7 +123,7 @@ class MenuBuilder
                 'class' => 'nav-link',
                 'onclick' => "javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;",
                 'target' => '_blank',
-                'title' => $this->translator->trans('frontend.menu.share', ['%site%' => 'Twitter']),
+                'title' => $this->translator->trans('frontend.menu.share', ['%site%' => 'Twitter'], 'AppBundle'),
                 'data-toggle' => 'tooltip'
             ])
             ->setExtra('translation_domain', 'AppBundle')
@@ -137,7 +137,7 @@ class MenuBuilder
                 'class' => 'nav-link',
                 'onclick' => "javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=350,width=480');return false;",
                 'target' => '_blank',
-                'title' => $this->translator->trans('frontend.menu.share', ['%site%' => 'Google+']),
+                'title' => $this->translator->trans('frontend.menu.share', ['%site%' => 'Google+'], 'AppBundle'),
                 'data-toggle' => 'tooltip'
             ])
             ->setExtra('translation_domain', 'AppBundle')

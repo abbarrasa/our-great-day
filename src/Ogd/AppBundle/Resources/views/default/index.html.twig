@@ -1,10 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends '@App/base.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
 
 {% block stylesheets %}
     {{ parent() }}
     {% stylesheets
-    '../app/Resources/public/css/timeline.css'
-    '../app/Resources/public/css/flipclock.css' filter='cssrewrite' %}
+    'bundles/app/css/timeline.css'
+    'bundles/app/css/flipclock.css' filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet" type='text/css'>
     {% endstylesheets %}
@@ -34,7 +35,7 @@
     <!-- End Countdown -->
 
     <!-- Bio cards -->
-    {% image '../app/Resources/public/images/wedding-rings.jpg' %}
+    {% image 'bundles/app/images/wedding-rings.jpg' %}
     <div class="section section-line-image" style="background-image: url('{{ asset_url }}');">
         <div class="container">
             <div class="row">
@@ -47,42 +48,12 @@
 
             <div class="row">
                 <div class="col-md-8 mr-auto ml-auto">
-                    {{ include('default/partials/profiles.html.twig') }}
+                    {{ include('@App/default/partials/profiles.html.twig') }}
                 </div>
             </div>
         </div>
     </div>
     {% endimage %}
-
-
-    {#<div class="section section-basic section-dark">#}
-        {#<div class="container">#}
-            {#<div class="row">#}
-                {#<div class="col-md-8 text-center ml-auto mr-auto">#}
-                    {#<div class="section-description">#}
-                        {#<h2 class="title sr">{{ 'frontend.bio.title'|trans|raw }}</h2>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-            {#<div class="row">#}
-                {#<div class="col-md-8 mr-auto ml-auto">#}
-                    {#{{ include('default/partials/profiles.html.twig') }}#}
-                {#</div>#}
-            {#</div>#}
-        {#</div>#}
-    {#</div>#}
-
-
-    {#<div class="section section-basic section-white-to-gray sr">#}
-        {#<div class="container">#}
-            {#<div class="row">#}
-                {#<div class="col-8 mr-auto ml-auto">#}
-                    {#<h2 class="title">{{ 'frontend.profiles.title'|trans|raw }}</h2>#}
-                    {#{{ include('default/partials/profiles.html.twig') }}#}
-                {#</div>            #}
-            {#</div>#}
-        {#</div>#}
-    {#</div>#}
     <!-- End Bio cards -->
 
     <!-- Timeline -->
@@ -97,21 +68,11 @@
             </div>
             <div class="row">
                 <div class="col-md-12 mr-auto ml-auto">
-                    {{ include('default/partials/timeline.html.twig') }}
+                    {{ include('@App/default/partials/timeline.html.twig') }}
                 </div>
             </div>
         </div>
     </div>
-    {#<div class="section section-basic section-gray sr">#}
-        {#<div class="container">#}
-            {#<div class="row">#}
-                {#<div class="col-12 mr-auto ml-auto">            #}
-                    {#<h2 class="title">{{ 'frontend.timeline.title'|trans|raw }}</h2>#}
-                    {#{{ include('default/partials/timeline.html.twig') }}#}
-                {#</div>#}
-            {#</div>#}
-        {#</div>#}
-    {#</div>#}
     <!-- End Timeline -->
 
     <!-- Maps -->
@@ -129,16 +90,6 @@
             <div id="map" class="big-map"></div>
         </div>
     </div>
-    {#<div class="section section-basic sr">#}
-        {#<div class="container">#}
-            {#<div class="row">#}
-                {#<div class="col-12 mr-auto ml-auto">#}
-                    {#<h2 class="title">{{ 'frontend.location.title'|trans|raw }}</h2>#}
-                {#</div>#}
-            {#</div>#}
-        {#</div>#}
-        {#<div id="map" class="big-map"></div>#}
-    {#</div>#}
     <!-- End Maps -->
 
 {% endblock %}
@@ -146,7 +97,7 @@
 {% block javascripts %}
     {{ parent() }}
     {% javascripts
-    '../app/Resources/public/js/plugins/flipclock.min.js' %}
+    'bundles/app/js/plugins/flipclock.min.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 

@@ -26,7 +26,8 @@ class JoinedType extends AbstractType
     {
         $resolver
             ->setDefaults([
-                'data_class' => 'AdminBundle\Entity\Joined'
+                'data_class' => 'AdminBundle\Entity\Joined',
+                'translation_domain' => 'AppBundle',
             ])
         ;
     }

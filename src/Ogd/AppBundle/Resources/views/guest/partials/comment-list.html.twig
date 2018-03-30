@@ -1,16 +1,16 @@
 {% if comments|length > 0 %}
-    <h4 class="title text-center">{{ 'frontend.guestbook.comments.title'|transchoice(comments|length) }}</h4>
+    <h4 class="title text-center">{{ 'frontend.guestbook.comments.title'|transchoice(comments|length, {}, 'AppBundle') }}</h4>
     {% for comment in comments %}
     <div class="media">
         <div class="pull-left">
             <div class="avatar">
-                {% image '../app/Resources/public/images/user-default.jpg' %}
+                {% image 'bundles/app/images/user-default.jpg' %}
                 <img src="{{ asset_url }}" alt=".." class="media-object img-raised">
                 {% endimage %}
             </div>
         </div>
         <div class="media-body">
-            <h5 class="media-heading">{{ comment.user.name|default('frontend.anonymous'|trans) }} <small class="text-muted">· {{ comment.createdAt|elapsed_time }}</small></h5>
+            <h5 class="media-heading">{{ comment.user.name|default('frontend.anonymous'|trans({}, 'AppBundle')) }} <small class="text-muted">· {{ comment.createdAt|elapsed_time('AppBundle') }}</small></h5>
             <p>{{ comment.content }}</p>
         </div>
     </div>
@@ -21,7 +21,7 @@
             <div class="alert-icon">
                 <i class="material-icons">info_outline</i>
             </div>
-            <b>{{ 'frontend.info'|trans }}</b>: {{ 'frontend.guestbook.no_comments'|trans }}
+            <b>{{ 'frontend.info'|trans }}</b>: {{ 'frontend.guestbook.no_comments'|trans({}, 'AppBundle') }}
         </div>
     </div>
 {% endif %}

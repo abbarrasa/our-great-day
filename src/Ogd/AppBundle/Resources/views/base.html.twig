@@ -17,9 +17,9 @@
         <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type='text/css'>
         {% stylesheets
-            '../app/Resources/public/css/bootstrap.min.css'
-            '../app/Resources/public/css/material-kit.css'
-            '../app/Resources/public/css/demo.css' filter='cssrewrite' %}
+            'bundles/app/css/bootstrap.min.css'
+            'bundles/app/css/material-kit.css'
+            'bundles/app/css/demo.css' filter='cssrewrite' %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
         {% endblock %}
@@ -36,7 +36,7 @@
                 <div class="container">
                     <div class="navbar-translate">
                         <a class="navbar-brand" href="{{ path('homepage') }}">
-                            {{ 'frontend.title'|trans }}
+                            {{ 'frontend.title'|trans({}, 'AppBundle') }}
                         </a>
                         <button id="burger-button" class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-bar bar1"></span>
@@ -44,10 +44,10 @@
                             <span class="navbar-toggler-bar bar3"></span>
                         </button>
                     </div>
-                    {% image '../app/Resources/public/images/blurred-image-1.jpg' %}
+                    {% image 'bundles/app/images/blurred-image-1.jpg' %}
                     <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{ asset_url }}">
-                        {{ knp_menu_render('main', {'template': 'partials/knp_menu.html.twig'}) }}
-                        {{ knp_menu_render('social', {'template': 'partials/knp_menu.html.twig'}) }}
+                        {{ knp_menu_render('main', {'template': '@App/partials/knp_menu.html.twig'}) }}
+                        {{ knp_menu_render('social', {'template': '@App/partials/knp_menu.html.twig'}) }}
                     </div>
                     {% endimage %}
                 </div>
@@ -57,26 +57,17 @@
             <div class="wrapper">          
                 <!-- Header -->
                 <div class="page-header clear-filter" filter-color="black">
-                {% image '../app/Resources/public/images/header.jpg' %}
+                {% image 'bundles/app/images/header.jpg' %}
                     <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset_url }}');"></div>
                 {% endimage %}
                     <div class="container">
                         <div class="content-center brand">
-                            {#<img class="n-logo" src="./assets/img/now-logo.png" alt="">#}
                             <h1 class="h1-seo">Vero y Carlos</h1>
-                            <h3>{{ 'frontend.title'|trans }}</h3>
+                            <h3>{{ 'frontend.title'|trans({}, 'AppBundle') }}</h3>
                         </div>
                         <a href="" data-scroll="true" data-id="#first-section" class="scroll-arrow hidden-xs hidden-sm">
                             <i class="fa fa-angle-down"></i>
                         </a>
-
-                        {#<h6 class="category category-absolute">Designed by#}
-                            {#<a href="http://invisionapp.com/" target="_blank">#}
-                                {#<img src="./assets/img/invision-white-slim.png" class="invision-logo" />#}
-                            {#</a>. Coded by#}
-                            {#<a href="https://www.creative-tim.com" target="_blank">#}
-                                {#<img src="./assets/img/creative-tim-white-slim2.png" class="creative-tim-logo" />#}
-                            {#</a>.</h6>#}
                     </div>
                 </div>
                 <!-- End Header -->
@@ -87,6 +78,16 @@
                 </div>
                 <!-- End Main -->
 
+                <!-- Footer -->
+                <footer class="footer" data-background-color="black">
+                    <div class="container">
+                        <div class="copyright">
+                            <p>&copy; 2018, made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/abbarrasa/our-great-day">Alberto Buitrago</a> for a better web. Thanks to <a href="http://www.creative-tim.com">Creative Tim</a>.</p>
+                        </div>
+                    </div>
+                </footer>
+                {#<!-- End footer -->#}
+
                 <!-- Modal -->
                 <div class="modal fade" id="ogd-modal" tabindex="-1" role="dialog" aria-labelledby="ogd-modal-label" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -94,7 +95,6 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="ogd-modal-label"></h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <!--<span aria-hidden="true">&times;</span>-->
                                     <span aria-hidden="true" class="material-icons">clear</span>
                                 </button>
                             </div>
@@ -104,94 +104,24 @@
                 </div>
                 <!-- End Modal -->
 
-                <footer class="footer" data-background-color="black">
-                    <div class="container">
-                        <div class="copyright">
-                            <p>&copy; 2018, made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/abbarrasa/our-great-day">Alberto Buitrago</a> for a better web. Thanks to <a href="http://www.creative-tim.com">Creative Tim</a>.</p>
-                        </div>
-                    </div>
-                </footer>
-
             </div>
         </div>
-
-
-        {#<div class="index-page">#}
-            {#<!-- Navbar -->#}
-            {#<nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">#}
-                {#<div class="container">#}
-                    {#<div class="navbar-translate">#}
-                        {#<a class="navbar-brand" href="{{ path('homepage') }}">{{ 'frontend.title'|trans }}</a>#}
-                        {#<button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">#}
-                            {#<span class="navbar-toggler-icon"></span>#}
-                            {#<span class="navbar-toggler-icon"></span>#}
-                            {#<span class="navbar-toggler-icon"></span>#}
-                        {#</button>#}
-                    {#</div>#}
-
-                    {# Social bar #}
-                    {#<div class="collapse navbar-collapse">                    #}
-                    {#{{ knp_menu_render('social', {'template': 'partials/knp_menu.html.twig'}) }}                        #}
-                    {#</div>#}
-                    {##}
-                    {# Main menu bar #}
-                    {#<div class="collapse navbar-collapse">#}
-                    {#{{ knp_menu_render('main', {'template': 'partials/knp_menu.html.twig'}) }}#}
-                    {#</div>#}
-                {#</div>#}
-            {#</nav>#}
-            {#<!-- End Navbar -->#}
-            {##}
-            {#<!-- Jumbotron -->#}
-            {#{% image '../app/Resources/public/images/main.jpg' output='assets/images/main.jpg' %}#}
-            {#<div class="page-header header-filter clear-filter purple-filter" data-parallax="true" style="background-image: url('{{ asset_url }}');">#}
-            {#{% endimage %}#}
-                {#<div class="container">#}
-                    {#<div class="row">#}
-                        {#<div class="col-md-8 ml-auto mr-auto">#}
-                            {#<div class="brand">#}
-                                {#<h1>Vero y Carlos</h1>#}
-                                {#<h3>{{ 'frontend.title'|trans }}</h3>#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-            {#<!-- End Jumbotron -->#}
-            {##}
-            {#<!-- Main -->#}
-            {#<div class="main">#}
-                {#{% block main %}{% endblock %}#}
-            {#</div>#}
-            {#<!-- End Main -->                        #}
-        {#</div>#}
-        {##}
-        {#<!-- Footer -->#}
-        {#<footer class="footer footer-black footer-big">#}
-            {#<div class="container">#}
-                {#<div class="copyright float-right">#}
-                    {#<p>Made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/abbarrasa/our-great-day">Alberto Buitrago</a> for a better web. Thanks to <a href="http://www.creative-tim.com">Creative Tim</a>.</p>#}
-                {#</div>#}
-            {#</div>#}
-        {#</footer>#}
-        {#<!-- End footer -->#}
-        {##}
         {% endblock %}
 
         {% block javascripts %}
             {% javascripts
-            '../app/Resources/public/js/core/jquery.min.js'
-            '../app/Resources/public/js/core/popper.min.js'
-            '../app/Resources/public/js/core/bootstrap.min.js'
-            '../app/Resources/public/js/core/bootstrap-material-design.min.js'
-            '../app/Resources/public/js/plugins/modernizr.js'
-            '../app/Resources/public/js/plugins/bootstrap-selectpicker.js'
-            '../app/Resources/public/js/plugins/bootstrap-notify.js'
-            '../app/Resources/public/js/plugins/scrollreveal.min.js'
-            '../app/Resources/public/js/plugins/nouislider.min.js'
-            '../app/Resources/public/js/material-kit.min.js'
-            '../app/Resources/public/js/now-ui-kit.js'
-            '../app/Resources/public/js/material-kit-demo.js' %}
+            'bundles/app/js/core/jquery.min.js'
+            'bundles/app/js/core/popper.min.js'
+            'bundles/app/js/core/bootstrap.min.js'
+            'bundles/app/js/core/bootstrap-material-design.min.js'
+            'bundles/app/js/plugins/modernizr.js'
+            'bundles/app/js/plugins/bootstrap-selectpicker.js'
+            'bundles/app/js/plugins/bootstrap-notify.js'
+            'bundles/app/js/plugins/scrollreveal.min.js'
+            'bundles/app/js/plugins/nouislider.min.js'
+            'bundles/app/js/material-kit.min.js'
+            'bundles/app/js/now-ui-kit.js'
+            'bundles/app/js/material-kit-demo.js' %}
             {#'../app/Resources/public/js/core/jquery.3.2.1.min.js'#}
             {#'../app/Resources/public/js/core/popper.min.js'#}
             {#'../app/Resources/public/js/core/bootstrap-material-design.min.js'#}
@@ -258,8 +188,8 @@
                         }).done(function () {
                             $('#ogd-modal').modal('hide');
                             materialKitDemo.showNotification(
-                                '{{ 'frontend.success'|trans }}',
-                                '{{ 'frontend.enquiry.success'|trans }}',
+                                '{{ 'frontend.success'|trans({}, 'AppBundle') }}',
+                                '{{ 'frontend.enquiry.success'|trans({}, 'AppBundle') }}',
                                 'success',
                                 'check'
                             );
@@ -271,370 +201,6 @@
                     });
                 });
             </script>
-
-            {##}
-            {##}
-            {##}
-            {#<script type="text/javascript">#}
-                {#$(document).ready(function()#}
-                {#{#}
-                    {#// the body of this function is in assets/js/now-ui-kit.js#}
-                    {#nowuiKit.initSliders();#}
-                    {##}
-                    {# Animation on each section #}
-                    {#window.sr = ScrollReveal();#}
-                    {#sr.reveal('.sr', {duration: 800, reset: true, viewOffset: { top: 64 }});#}
-
-                    {# Flash messages #}
-                    {#{% for flashMessages in app.flashes %}#}
-                        {#{% for flashMessage in flashMessages %}#}
-                            {#materialKitDemo.showNotification(#}
-                                {#'{{ flashMessage.title }}',#}
-                                {#'{{ flashMessage.message }}',#}
-                                {#'{{ flashMessage.alert }}','{{ flashMessage.icon }}'#}
-                            {#);#}
-                        {#{% endfor %}#}
-                    {#{% endfor %}#}
-
-                    {# Load enquiry form #}
-                    {#$('a.contact-us').click(function(e) {#}
-                        {#e.preventDefault();#}
-                        {#$.ajax({#}
-                            {#url: '{{ path('enquiry') }}',#}
-                            {#type: 'POST'#}
-                        {#}).done(function (responseJSON) {#}
-                            {#$('#myModal').find('.modal-body').html(responseJSON.view);#}
-                            {#$('#myModal').modal('show');#}
-                        {#});#}
-                    {#});#}
-
-                    {# Submit enquiry form #}
-                    {#$('body').on('submit', 'form[name="enquiry"]', function(e) {#}
-                        {#e.preventDefault();#}
-                        {#$.ajax({#}
-                            {#type: $(this).attr('method'),#}
-                            {#url: $(this).attr('action'),#}
-                            {#data: $(this).serialize(),#}
-                        {#}).done(function () {#}
-                            {#$('#myModal').modal('hide');#}
-                            {#materialKitDemo.showNotification(#}
-                                {#'{{ 'frontend.success'|trans }}',#}
-                                {#'{{ 'frontend.enquiry.success'|trans }}',#}
-                                {#'success',#}
-                                {#'check'#}
-                            {#);#}
-                        {#}).fail(function (jqXHR, textStatus, errorThrown) {#}
-                            {#if (jqXHR.responseJSON.hasOwnProperty('view')) {#}
-                                {#$('#myModal').find('.modal-body').html(jqXHR.responseJSON.view);#}
-                            {#}#}
-                        {#});#}
-                    {#});#}
-                {#});#}
-            {#</script>#}
         {% endblock %}
     </body>
 </html>
-
-
-{#<!DOCTYPE html>#}
-{#<html lang="{{ app.request.locale }}">#}
-    {#<head>#}
-        {#<meta charset="UTF-8" />#}
-        {#<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />#}
-        {#<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />#}
-
-        {#<title>{% block title %}{% endblock %}</title>#}
-        {#{% block stylesheets %}#}
-            {#<!--     Fonts and icons     -->#}
-            {#<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />#}
-            {#<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />#}
-
-            {#{% stylesheets#}
-            {#'@AppBundle/Resources/public/css/material-kit.css'#}
-            {#'@AppBundle/Resources/public/css/styles.css' filter='cssrewrite' %}#}
-            {#<link rel="stylesheet" href="{{ asset_url }}" />#}
-            {#{% endstylesheets %}#}
-        {#{% endblock %}#}
-        {#<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />#}
-    {#</head>#}
-    {#<body>#}
-    {#{% block body %}#}
-        {#<div class="index-page">#}
-            {#<!-- Navbar -->#}
-            {#<nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">#}
-                {#<div class="container">#}
-                    {#<div class="navbar-translate">#}
-                        {#<a class="navbar-brand" href="./index.html">Material Kit </a>#}
-                        {#<button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">#}
-                            {#<span class="navbar-toggler-icon"></span>#}
-                            {#<span class="navbar-toggler-icon"></span>#}
-                            {#<span class="navbar-toggler-icon"></span>#}
-                        {#</button>#}
-                    {#</div>#}
-
-                    {#<!-- Collect the nav links, forms, and other content for toggling -->#}
-                    {#<div class="collapse navbar-collapse">#}
-                    {#{{ knp_menu_render('main', {'template': 'AppBundle:menu:menu.html.twig'}) }}#}
-                    {#{% endblock %}#}
-                    {#</div>#}
-                {#</div>#}
-            {#</nav>#}
-            {#<!-- End Navbar -->#}
-
-
-
-            {#<nav class="navbar navbar-ct-purple navbar-fixed-top navbar-transparent" role="navigation">#}
-                {#<div class="container">#}
-                    {#<!-- Brand and toggle get grouped for better mobile display -->#}
-                    {#<div class="navbar-header">#}
-                        {#<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">#}
-                            {#<span class="sr-only">Toggle navigation</span>#}
-                            {#<span class="icon-bar"></span>#}
-                            {#<span class="icon-bar"></span>#}
-                            {#<span class="icon-bar"></span>#}
-                        {#</button>#}
-                        {#<a class="navbar-brand navbar-brand-logo" href="http://www.creative-tim.com">#}
-                            {#<div class="logo">#}
-                                {#<img src="https://s3.amazonaws.com/creativetim_bucket/new_logo.png">#}
-                            {#</div>#}
-                            {#<div class="brand"> Creative Tim </div>#}
-                        {#</a>#}
-                    {#</div>#}
-                    {#<!-- Collect the nav links, forms, and other content for toggling -->#}
-                    {#<div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;">#}
-                        {#{% block menu %}#}
-                            {#{{ knp_menu_render('main', {'template': 'AppBundle:menu:menu.html.twig'}) }}#}
-                        {#{% endblock %}#}
-                    {#</div>#}
-                {#</div><!-- /.container-fluid -->#}
-            {#</nav>#}
-            {#<!-- End Navbar -->#}
-
-            {#{% image '@AppBundle/Resources/public/images/main2.jpg' output='/images/main2.jpg' %}#}
-            {#<div class="page-header header-filter clear-filter rose-filter" data-parallax="true" style="background-image: url('{{ asset_url }}');">#}
-            {#{% endimage %}#}
-                {#<div class="container">#}
-                    {#<div class="row">#}
-                        {#<div class="col-md-8 ml-auto mr-auto">#}
-                            {#<div class="brand">#}
-                                {#<h1>{% block hero_title %}Vero y Carlos{% endblock %}</h1>#}
-                                {#<h3>{% block hero_subtitle %}Nuestro gran día{% endblock %}</h3>#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-
-
-            {#<div class="wrapper">#}
-                {#<div class="header header-filter" style="background-image: url('{{ asset('images/main2.jpg') }}');">#}
-                    {#<div class="container">#}
-                        {#<div class="row">#}
-                            {#<div class="col-md-8 col-md-offset-2">#}
-                                {#<div class="brand-hero">#}
-                                    {#<h1><strong>{% block hero_title %}Carlos y Vero{% endblock %}</strong></h1>#}
-                                    {#<h3>{% block hero_subtitle %}Nuestro gran día{% endblock %}</h3>#}
-                                {#</div>#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</div>#}
-
-                {#<div class="main">#}
-                    {#{% block main %}{% endblock %}#}
-
-                    {#{% image '@AppBundle/Resources/public/images/family.jpg' output='/images/family.jpg' %}#}
-                    {#<div class="section-parallax section-filter clear-filter black-filter" data-parallax="true" style="background-image: url('{{ asset_url }}');">#}
-                    {#{% endimage %}#}
-                        {#<div class="container">#}
-                            {#<div class="row">#}
-                                {#<div class="col-md-12 ml-auto mr-auto">#}
-                                    {#<div class="row">#}
-                                        {#<div id="contact-us" class="col-md-6"></div>#}
-                                    {#</div>#}
-                                {#</div>#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#</div>#}
-
-                    {#<div class="section section-our-team-freebie">#}
-                        {#<div class="parallax filter filter-color-black">#}
-                            {#{% image '@AppBundle/Resources/public/images/family.jpg' output='/images/family.jpg' %}#}
-                            {#<div class="image" style="background-image: url('{{ asset_url }}'); transform: translate3d(0px, -39.2722px, 0px);"></div>#}
-                            {#{% endimage %}                                                     #}
-                            {#<div class="container">#}
-                                {#<div class="content">#}
-                                    {#<div class="row">#}
-                                        {#<div class="title-area">#}
-                                            {#<h2>Who We Are</h2>#}
-                                            {#<div class="separator separator-danger">✻</div>#}
-                                            {#<p class="description">We promise you a new look and more importantly, a new attitude. We build that by getting to know you, your needs and creating the best looking clothes.</p>#}
-                                        {#</div>#}
-                                    {#</div>#}
-
-                                    {#<div class="row">#}
-                                        {#<div class="col-md-10 col-md-offset-1">#}
-                                            {#<div class="row">#}
-                                                {#<div id="contact-us2" class="col-md-6"></div>#}
-                                            {#</div>#}
-                                        {#</div>#}
-                                    {#</div>#}
-                                {#</div>        #}
-                            {#</div>            #}
-                        {#</div>                #}
-                    {#</div>#}
-
-                    {#<div class="section section-basic">#}
-                        {#<div class="parallax pattern-image">#}
-                            {#{% image '@AppBundle/Resources/public/images/family.jpg' output='/images/family.jpg' %}#}
-                            {#<img alt="Contact Us!" src="{{ asset_url }}" style="transform: translate3d(0px, -24.5px, 0px);">#}
-                            {#{% endimage %}#}
-                        {#</div>#}
-                        {#<div class="container">#}
-                            {#<div class="row">#}
-                                {#<div id="contact-us" class="col-md-6"></div>#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#</div>#}
-
-                {#</div>#}
-            {#</div>#}
-        {#</div>#}
-
-        {#<footer class="footer footer-black">#}
-            {#<div class="container">#}
-                {#<nav class="pull-left">#}
-                    {#<ul>#}
-                        {#<li>#}
-                            {#<a href="http://www.creative-tim.com">#}
-                                {#Creative Tim#}
-                            {#</a>#}
-                        {#</li>#}
-                        {#<li>#}
-                            {#<a href="http://presentation.creative-tim.com">#}
-                                {#About Us#}
-                            {#</a>#}
-                        {#</li>#}
-                        {#<li>#}
-                            {#<a href="http://blog.creative-tim.com">#}
-                                {#Blog#}
-                            {#</a>#}
-                        {#</li>#}
-                        {#<li>#}
-                            {#<a href="http://www.creative-tim.com/license">#}
-                                {#Licenses#}
-                            {#</a>#}
-                        {#</li>#}
-                    {#</ul>#}
-                {#</nav>#}
-                {#<div class="copyright pull-right">#}
-                    {#&copy; 2018, made with <i class="material-icons">favorite</i> by Alberto Buitrago for a better web.#}
-                {#</div>#}
-            {#</div>#}
-        {#</footer>#}
-    {#{% endblock %}#}
-
-    {#{% block javascripts %}#}
-        {#{% javascripts#}
-        {#'@AppBundle/Resources/public/js/core/jquery.min.js'#}
-        {#'@AppBundle/Resources/public/js/core/popper.min.js'#}
-        {#'@AppBundle/Resources/public/js/core/bootstrap-material-design.min.js'#}
-        {#'@AppBundle/Resources/public/js/plugins/bootstrap-selectpicker.js'#}
-        {#'@AppBundle/Resources/public/js/plugins/bootstrap-notify.js'#}
-        {#'@AppBundle/Resources/public/js/plugins/scrollreveal.min.js'#}
-        {#'@AppBundle/Resources/public/js/plugins/nouislider.min.js'#}
-        {#'@AppBundle/Resources/public/js/material-kit.js'#}
-        {#'@AppBundle/Resources/public/js/material-kit-demo.js' output='js/compiled/app.js' %}#}
-        {#<script src="{{ asset_url }}"></script>#}
-        {#{% endjavascripts %}#}
-
-        {#<script type="text/javascript">#}
-            {#$(document).ready(function()#}
-            {#{#}
-                {#{% if app.flashes|length > 0 %}#}
-                    {#{% set flashes = messages %}#}
-                    {#{% for flash in flashes %}#}
-                        {#materialKitDemo.showNotification('{{ flash.type }}', '{{ flash.message|raw }}', '{{ flash.icon }}');#}
-                    {#{% endfor %}#}
-                {#{% endif %}#}
-{#//                materialKitDemo.initFormExtendedDatetimepickers();#}
-{#//                // Sliders for demo purpose in refine cards section#}
-{#//                var slider = document.getElementById('sliderRegular');#}
-{#//#}
-{#//                noUiSlider.create(slider, {#}
-{#//                    start: 40,#}
-{#//                    connect: [true, false],#}
-{#//                    range: {#}
-{#//                        min: 0,#}
-{#//                        max: 100#}
-{#//                    }#}
-{#//                });#}
-{#//#}
-{#//                var slider2 = document.getElementById('sliderDouble');#}
-{#//#}
-{#//                noUiSlider.create(slider2, {#}
-{#//                    start: [20, 60],#}
-{#//                    connect: true,#}
-{#//                    range: {#}
-{#//                        min: 0,#}
-{#//                        max: 100#}
-{#//                    }#}
-{#//                });#}
-
-
-                {# the body of this function is in assets/material-kit.js #}
-                {# materialKit.initSliders(); #}
-
-{#//                window_width = $(window).width();#}
-{#//                if (window_width >= 992) {#}
-{#//                    big_image = $('.wrapper > .header');#}
-{#//                    $(window).on('scroll', materialKitDemo.checkScrollForParallax);#}
-{#//                }#}
-
-                {# Animation on each section #}
-                {#window.sr = ScrollReveal();#}
-                {#sr.reveal('.sr', {duration: 800, reset: true, viewOffset: { top: 64 }});#}
-                {#sr.reveal('#contact-us', {duration: 400});#}
-
-                {# Animation on scrolling #}
-                {#$('a[href^="#"]').on('click', function(e) {#}
-                    {#e.preventDefault();#}
-
-                    {#var target = this.hash;#}
-                    {#var $target = $(target);#}
-
-                    {#$('html, body').animate({#}
-                       {#scrollTop: $target.offset().top - 120#}
-                    {#}, 600, 'swing');#}
-                {#});#}
-
-                {# Load enquiry form #}
-                {#$.ajax({#}
-                    {#url: '{{ path('enquiry') }}',#}
-                    {#type: 'POST'#}
-                {#}).done(function (responseJSON) {#}
-                    {#$('#contact-us').html(responseJSON.view);#}
-                {#});#}
-
-                {# Submit enquiry form #}
-                {#$('body').on('submit', 'form[name="enquiry"]', function(e) {#}
-                    {#e.preventDefault();#}
-                    {#var $form = $(this);#}
-                    {#$.ajax({#}
-                        {#type: $(this).attr('method'),#}
-                        {#url: $(this).attr('action'),#}
-                        {#data: $form.serialize()#}
-                    {#}).done(function (responseJSON) {#}
-                        {#$form[0].reset();#}
-                        {#materialKitDemo.showNotification(responseJSON.flash.type, responseJSON.flash.message, responseJSON.flash.icon);#}
-                    {#}).fail(function (jqXHR, textStatus, errorThrown) {#}
-                        {#if (jqXHR.responseJSON.hasOwnProperty('form')) {#}
-                            {#$('#contact-us').html(jqXHR.responseJSON.view);#}
-                        {#}#}
-                    {#});#}
-                {#});#}
-            {#});#}
-        {#</script>#}
-    {#{% endblock %}#}
-    {#</body>#}
-{#</html>#}

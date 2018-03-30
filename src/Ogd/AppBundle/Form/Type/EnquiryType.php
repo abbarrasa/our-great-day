@@ -38,6 +38,7 @@ class EnquiryType extends AbstractType
         $resolver
             ->setDefaults(array(
                 'data_class' => 'AdminBundle\Entity\Enquiry',
+                'translation_domain' => 'AppBundle',
             ))
         ;
     }
