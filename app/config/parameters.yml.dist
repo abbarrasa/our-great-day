@@ -19,8 +19,7 @@ parameters:
     mailer_email_admin: admin@domain.com
     mailer_email_manager: manager@domain.com
     mailer_from_name: 'Our great day'
-    mailer_embedded_images: []
-    
+
     # A secret key that's used to generate certain security-related tokens
     secret: ~
     

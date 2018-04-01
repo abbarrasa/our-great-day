@@ -109,7 +109,7 @@
                                     {{ facebook_social_link('<img src="font-awesome_4-7-0_facebook.png">', {'class': 'btn btn-icon btn-fill btn-circle btn-facebook'}) }}
                                     {{ googleplus_social_link('<img src="font-awesome_4-7-0_google-plus.png">', {'class': 'btn btn-icon btn-fill btn-circle btn-google'}) }}
                                 </p>
-                                <p>Sent by <a href="{{ absolute_url(path('homepage')) }}">{{ 'frontend.title'|trans }}</a> of Vero y Carlos</p>
+                                <p>Sent by <a href="{{ absolute_url(path('homepage')) }}">{{ 'frontend.title'|trans({}, 'AppBundle') }}</a> of Vero y Carlos</p>
                                 <p>You can contact us by <a href="mailto:{{ email_admin }}">email</a></p>
                             </td>
                         </tr>

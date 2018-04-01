@@ -36,11 +36,6 @@ services:
         tags:
             - { name: validator.constraint_validator }
 
-    app.manager.mailer:
-        class: AppBundle\Manager\Mailer
-        arguments: ["@service_container"]
-        public: true
-
     app.listener.maintenance:
         class: AppBundle\Event\Listener\MaintenanceListener
         arguments: ["@service_container"]

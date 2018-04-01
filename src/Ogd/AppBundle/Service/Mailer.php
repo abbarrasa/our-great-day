@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Manager;
+namespace AppBundle\Service;
 
 use AdminBundle\Entity\Enquiry;
 use AdminBundle\Entity\Joined;
@@ -179,7 +179,7 @@ class Mailer
         $images = array();
         foreach($this->config['embedded_images'] as $filename) {
             if (0 === strpos($filename, '@')) {
-                $path      = $this->container->get('kernel')->locateResource($filename);
+                $path = $this->container->get('file_locator')->locate($filename);
             } else {
                 $path = $this->container->get('kernel')->getRootDir() . "/Resources/public/images/{$filename}";
             }

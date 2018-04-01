@@ -12,7 +12,11 @@ parameters:
         email_admin: '%mailer_email_admin%'
         email_manager: '%mailer_email_manager%'
         from_name: '%mailer_from_name%'
-        embedded_images: '%mailer_embedded_images%'
+        embedded_images:
+            - header-small.jpg
+            - font-awesome_4-7-0_facebook.png
+            - font-awesome_4-7-0_google-plus.png
+            - font-awesome_4-7-0_twitter.png
     # Maintenance mode
     maintenance: false
 
@@ -49,9 +53,11 @@ twig:
         email_admin: '%mailer_email_admin%'
         api_key: '%google.api_key%'
         wedding_date: '%wedding.date%'
-        version: 2.0.0
+        version: 2.1.0
     form_themes:
         - 'form/fields.html.twig'
+    paths:
+        '%kernel.project_dir%/src/Ogd/AdminBundle/Resources/view': Admin
 
 # Doctrine Configuration
 doctrine:

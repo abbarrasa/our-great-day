@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AdminBundle\Entity\Enquiry;
 use AppBundle\Form\Type\EnquiryType;
+use AppBundle\Service\Mailer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -24,8 +25,11 @@ class DefaultController extends Controller
     /**
      * @Route("/enquiry", name="enquiry")
      * @Method("POST")
+     * @param Request $request
+     * @param Mailer $mailer
+     * @return JsonResponse|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function enquiryAction(Request $request)
+    public function enquiryAction(Request $request, Mailer $mailer)
     {
         if (!$request->isXmlHttpRequest()) {
             return $this->redirectToRoute('homepage');
@@ -42,7 +46,7 @@ class DefaultController extends Controller
                 $em->flush();
 
                 //Send notification
-                $this->get('app.manager.mailer')->sendEnquiryNotificationMessage($enquiry);
+                $mailer->sendEnquiryNotificationMessage($enquiry);
 
                 return new JsonResponse(null, $status);
             } else {

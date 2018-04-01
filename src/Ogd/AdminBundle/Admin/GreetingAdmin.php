@@ -58,4 +58,21 @@ class GreetingAdmin extends AbstractAdmin
             $greeting->setPublishedAt(null);
         }
     }
+
+    public function configureActionButtons($action, $object = null)
+    {
+        $list = parent::configureActionButtons($action, $object);
+        unset($list['create']);
+
+        return $list;
+    }
+
+    public function getDashboardActions()
+    {
+        $actions = parent::getDashboardActions();
+        unset($actions['create']);
+
+        return $actions;
+    }
+
 }

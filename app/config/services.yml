@@ -2,6 +2,7 @@
 # https://symfony.com/doc/current/service_container.html
 parameters:
     #parameter_name: value
+    tmp_directory: '%kernel.project_dir%/web/uploads/tmp'
 
 services:
     # default configuration for services in *this* file
@@ -29,7 +30,20 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    AdminBundle\Controller\:
+        resource: '../../src/Ogd/AdminBundle/Controller'
+        public: true
+        tags: ['controller.service_arguments']
+
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    AppBundle\Service\FileUploader:
+        arguments:
+            $targetDirectory: '%tmp_directory%'
+        public: true
+
+    AppBundle\Service\Mailer:
+        arguments: ["@service_container"]
+        public: true
