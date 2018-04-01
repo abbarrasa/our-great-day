@@ -8,4 +8,10 @@ class GuestStrategy implements StrategyInterface
     {
         // TODO: Implement validateData() method.
     }
+
+    public function import(array $headers, array $data)
+    {
+        // TODO: Implement import() method.
+    }
+
 }
