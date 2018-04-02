@@ -3,7 +3,7 @@
 namespace AdminBundle\Import\Strategy;
 
 
-interface ImportInterface
+interface ImportStrategy
 {
     public function validateData(array $headers, array $data);
 
