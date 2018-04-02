@@ -9,7 +9,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\UserBundle\Model\User;
 
-class GuestAdmin extends AbstractAdmin implements ImportInterface
+class GuestAdmin extends AbstractAdmin
 {
     protected function configureRoutes(RouteCollection $collection)
     {
