@@ -2,10 +2,19 @@
 
 class Factory
 {
-    public static function getInstance($entity)
+    public static function getInstance($className)
     {
-        $classname = "{$entity}Stretagy";
+        $name = $this->classToTableName($className) . 'Strategy';
 
-        return new $classname();
+        return (new \ReflectionClass($name))->newInstance();
+    }
+    
+    protected function classToTableName($className)
+    {
+        if (strpos($className, '\\') !== false) {
+            return substr($className, strrpos($className, '\\') + 1);
+        }
+
+        return $className;
     }
 }
