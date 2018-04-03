@@ -4,6 +4,7 @@ namespace AdminBundle\Controller;
 
 use AdminBundle\Entity\Guest;
 use AdminBundle\Form\ImportType;
+use AppBundle\Import\Importer;
 use AppBundle\Service\FileUploader;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -40,20 +41,7 @@ class GuestAdminController extends Controller
                     $worksheet   = $spreadsheet->getActiveSheet();
                     $rows        = $worksheet->toArray();
                     $headers     = array_shift($rows);
-                    $count       = 0;
-                    foreach($rows as $row) {
-                        $reflectionClass = new \ReflectionClass(Guest::class);
-                        $object          = $reflectionClass->newInstanceArgs();
-                        foreach($row as $index => $value) {
-                            $property           = $headers[$index];
-                            $reflectionProperty = $reflectionClass->getProperty($property);
-                            $reflectionProperty->setAccessible(true);
-                            $reflectionProperty->setValue($object, $value);
-                        }
-
-                        $this->admin->create($object);
-                        $count++;
-                    }
+                    $count       = Importer::import($headers, $rows, $this->admin);
 
                     $this->addFlash('sonata_flash_success', sprintf('(%s) Registros importados', $count));
 

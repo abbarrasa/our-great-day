@@ -14,7 +14,5 @@ class AdminExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         //Services for Admin classes
         $loader->load('admin.yml');
-        //Rest of services
-        $loader->load('services.yml');        
     }
 }

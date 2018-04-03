@@ -2,7 +2,10 @@
 
 namespace AdminBundle\Import\Strategy;
 
-class GuestStrategy implements StrategyInterface
+use AdminBundle\Entity\Guest;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
+
+class GuestStrategy implements ImportStrategy
 {
     private $admin;
     
@@ -16,17 +19,14 @@ class GuestStrategy implements StrategyInterface
         // TODO: Implement validateData() method.
     }
 
-    public function import(array $headers, array $data)
+    public function import(array $headers, array $rows)
     {
         $count = 0;
         foreach($rows as $row) {
-            $reflectionClass = new \ReflectionClass(Guest::class);
-            $object          = $reflectionClass->newInstanceArgs();
+            $object = new Guest();
             foreach($row as $index => $value) {
-                $property           = $headers[$index];
-                $reflectionProperty = $reflectionClass->getProperty($property);
-                $reflectionProperty->setAccessible(true);
-                $reflectionProperty->setValue($object, $value);
+                $property = $headers[$index];
+                $object->__set($property, $value);
             }
             $this->admin->create($object);
             $count++;
