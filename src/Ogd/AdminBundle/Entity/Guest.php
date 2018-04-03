@@ -12,7 +12,12 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="ogd_guest")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\GuestRepository")
- * @UniqueEntity("email") 
+ * @UniqueEntity("email")
+ * @UniqueEntity(
+ *     fields={"firstname", "lastname"},
+ *     errorPath="firstname",
+ *     message="guest.name"
+ * ) 
  */
 class Guest
 {
