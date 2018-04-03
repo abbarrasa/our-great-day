@@ -65,17 +65,13 @@
 {% endblock %}
 
 {% block dividerElement %}
-{% if item.level == 1 %}
-    <li class="divider-vertical"></li>
-{% else %}
-    <li class="divider"></li>
-{% endif %}
+    <div class="dropdown-divider"></div>
 {% endblock %}
 
 {% block linkElement %}
     {% import "knp_menu.html.twig" as macros %}
 	<a href="{{ item.uri }}"{{ macros.attributes(item.linkAttributes) }}>
-        	{{ block('icon') }}
+       	{{ block('icon') }}
 		{{ block('label') }}
 	</a>
 {% endblock %}
@@ -83,10 +79,24 @@
 {% block spanElement %}
     {% import "knp_menu.html.twig" as macros %}
 	<span>{{ macros.attributes(item.labelAttributes) }}>
-        	{{ block('icon') }} 
+       	{{ block('icon') }}
 		{{ block('label') }}
 	</span>
 {% endblock %}
+
+{#{% block dropdownElement %}#}
+    {#{% import "knp_menu.html.twig" as macros %}#}
+    {#{%- set classes = item.linkAttribute('class') is not empty ? [item.linkAttribute('class')] : [] %}#}
+    {#{%- set classes = classes|merge(['dropdown-toggle']) %}#}
+    {#{%- set attributes = item.linkAttributes %}#}
+    {#{%- set attributes = attributes|merge({'class': classes|join(' ')}) %}#}
+    {#{%- set attributes = attributes|merge({'data-toggle': 'dropdown'}) %}#}
+    {#<a href="#"{{ macros.attributes(attributes) }}>#}
+        {#{{ block('icon') }} #}
+    	{#{{ block('label') }} #}
+    	{#<b class="caret"></b>#}
+    {#</a>#}
+{#{% endblock %}#}
 
 {% block dropdownElement %}
     {% import "knp_menu.html.twig" as macros %}
@@ -96,10 +106,27 @@
     {%- set attributes = attributes|merge({'class': classes|join(' ')}) %}
     {%- set attributes = attributes|merge({'data-toggle': 'dropdown'}) %}
     <a href="#"{{ macros.attributes(attributes) }}>
-        {{ block('icon') }} 
-    	{{ block('label') }} 
-    	<b class="caret"></b>
+        {{ block('icon') }}
+        {{ block('label') }}
     </a>
+    <div class="dropdown-menu">
+        {% set children = item.children %}
+        {% for item in children %}
+            {%- set attributes = item.attributes %}
+            {%- set divider_prepend = attributes.divider_prepend|default(false) %}
+            {%- set divider_append = attributes.divider_append|default(false) %}
+
+            {%- if divider_prepend %}
+                {{ block('dividerElement') }}
+            {%- endif %}
+
+            {{ block('linkElement') }}
+
+            {%- if divider_append %}
+                {{ block('dividerElement') }}
+            {%- endif %}
+        {% endfor %}
+    </div>
 {% endblock %}
 
 {% block icon %}
@@ -115,5 +142,6 @@
 {% block label %}
     {% import "knp_menu.html.twig" as macros %}
     {%- set attributes = item.labelAttributes %}
-    {%- set translationDomain = item.extras.translation_domain %}
-    <p{{ macros.attributes(attributes) }}>{{ item.label|trans({}, translationDomain) }}</p>{% endblock %}
+    {%- set translationDomain = item.extras.translation_domain|default(null) %}
+    <p{{ macros.attributes(attributes) }}>{{ item.label|trans({}, translationDomain) }}</p>
+{% endblock %}

@@ -54,6 +54,27 @@ class MenuBuilder
             ->setExtra('translation_domain', 'AppBundle')
         ;
 
+        $menu->addChild('User')
+            ->setAttributes(['dropdown' => true, 'class' => 'nav-item', 'icon' => 'account_circle'])
+            ->setLinkAttributes([
+                'class' =>'nav-link',
+                'data-toggle' => 'dropdown',
+                'aria-expanded' => 'false'
+            ])
+//            ->setExtra('translation_domain', 'AppBundle')
+        ;
+        $menu['User']
+            ->addChild('Profile', array('uri' => '#'))
+            ->setAttribute('divider_append', true)
+            ->setLinkAttribute('class', 'dropdown-item')
+//            ->setExtra('translation_domain', 'AppBundle')
+        ;
+        $menu['User']
+            ->addChild('Logout', array('uri' => '#'))
+            ->setLinkAttribute('class', 'dropdown-item')
+//            ->setExtra('translation_domain', 'AppBundle')
+        ;
+
         $menu
             ->addChild('frontend.menu.contact_us', ['uri' => '#'])
             ->setAttributes(['icon' => 'email', 'class' => 'nav-item'])
