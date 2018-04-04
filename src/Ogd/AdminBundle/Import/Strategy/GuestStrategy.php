@@ -1,11 +1,11 @@
 <?php
 
-namespace AdminBundle\Import\Strategy;
+namespace AdminBundle\Import\Storage;
 
 use AdminBundle\Entity\Guest;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 
-class GuestStrategy implements ImportStrategy
+class GuestImportStorage implements ImportStorage
 {
     private $admin;
     
@@ -14,12 +14,12 @@ class GuestStrategy implements ImportStrategy
         $this->admin = $admin;
     }
     
-    public function validateData(array $headers, array $data)
+    public function filterData(array $headers, array $data)
     {
         // TODO: Implement validateData() method.
     }
 
-    public function import(array $headers, array $rows)
+    public function updateData(array $headers, array $rows)
     {
         $count = 0;
         foreach($rows as $row) {
