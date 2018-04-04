@@ -14,8 +14,10 @@ class GuestImportStorage implements ImportStorage
         $this->admin = $admin;
     }
     
-    public function filterData(array $headers, array $rows)
+    public function filterData(array $headers, array $rows, &$filtered)
     {
+        $filtered = array();
+        
         // TODO: Implement validateData() method.
     }
 
