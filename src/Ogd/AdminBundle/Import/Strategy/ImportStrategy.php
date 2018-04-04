@@ -1,12 +1,10 @@
 <?php
 
-namespace AdminBundle\Import\Strategy;
+namespace AdminBundle\Import\Storage;
 
 
 interface ImportStrategy
 {
-    public function validateData(array $headers, array $rows);
-
-    public function import(array $headers, array $rows);
-
+    public function filterData(array $headers, array $rows);
+    
 }
