@@ -8,6 +8,9 @@ class Importer
 {
     public static function import(array $headers, array $rows, AbstractAdmin $admin)
     {
+        //Filter repeated data
+        $rows = array_unique($rows, SORT_REGULAR);
+        
         $count = 0;
         foreach($rows as $row) {
             $reflectionClass = new \ReflectionClass($admin->getClass());
@@ -26,15 +29,9 @@ class Importer
         return $count;
     }
 
-    public function filterRepeated(array $headers, array &$rows)
+    protected function getStorage(AbstractAdmin $admin)
     {
-
-    }
-
-    public function getStrategy($className)
-    {
-        $name  = $this->classToTableName($className) . 'Strategy';
-        $admin = $this->pool->getAdminByClass($className);
+        $name  = $this->classToTableName($admin->getClass()) . 'ImportStorage';
 
         return (new \ReflectionClass($name))->newInstance($admin);
     }
