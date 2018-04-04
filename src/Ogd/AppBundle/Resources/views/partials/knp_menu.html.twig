@@ -84,20 +84,6 @@
 	</span>
 {% endblock %}
 
-{#{% block dropdownElement %}#}
-    {#{% import "knp_menu.html.twig" as macros %}#}
-    {#{%- set classes = item.linkAttribute('class') is not empty ? [item.linkAttribute('class')] : [] %}#}
-    {#{%- set classes = classes|merge(['dropdown-toggle']) %}#}
-    {#{%- set attributes = item.linkAttributes %}#}
-    {#{%- set attributes = attributes|merge({'class': classes|join(' ')}) %}#}
-    {#{%- set attributes = attributes|merge({'data-toggle': 'dropdown'}) %}#}
-    {#<a href="#"{{ macros.attributes(attributes) }}>#}
-        {#{{ block('icon') }} #}
-    	{#{{ block('label') }} #}
-    	{#<b class="caret"></b>#}
-    {#</a>#}
-{#{% endblock %}#}
-
 {% block dropdownElement %}
     {% import "knp_menu.html.twig" as macros %}
     {%- set classes = item.linkAttribute('class') is not empty ? [item.linkAttribute('class')] : [] %}
