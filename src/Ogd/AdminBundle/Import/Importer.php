@@ -9,22 +9,25 @@ class Importer
     public static function import(array $headers, array $rows, AbstractAdmin $admin)
     {
         //Filter repeated data
-        $rows = array_unique($rows, SORT_REGULAR);
+        $rows    = array_unique($rows, SORT_REGULAR);
+        $storage = $this->getStorage($admin);
+        $rows    = $storage->filterData($headers, $rows, $filtered);
+        $count   = $storage->importData($headers, $rows);
         
-        $count = 0;
-        foreach($rows as $row) {
-            $reflectionClass = new \ReflectionClass($admin->getClass());
-            $object          = $reflectionClass->newInstanceArgs();
-            foreach($row as $index => $value) {
-                $property           = $headers[$index];
-                $reflectionProperty = $reflectionClass->getProperty($property);
-                $reflectionProperty->setAccessible(true);
-                $reflectionProperty->setValue($object, $value);
-            }
+//        $count = 0;
+//        foreach($rows as $row) {
+//            $reflectionClass = new \ReflectionClass($admin->getClass());
+//            $object          = $reflectionClass->newInstanceArgs();
+//            foreach($row as $index => $value) {
+//                $property           = $headers[$index];
+//                $reflectionProperty = $reflectionClass->getProperty($property);
+//                $reflectionProperty->setAccessible(true);
+//                $reflectionProperty->setValue($object, $value);
+//            }
 
-            $admin->create($object);
+//            $admin->create($object);
             $count++;
-        }
+//        }
 
         return $count;
     }
