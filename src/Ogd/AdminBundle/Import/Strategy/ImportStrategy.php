@@ -3,7 +3,7 @@
 namespace AdminBundle\Import\Storage;
 
 
-interface ImportStrategy
+interface ImportStorage
 {
     public function filterData(array $headers, array $rows);
     
