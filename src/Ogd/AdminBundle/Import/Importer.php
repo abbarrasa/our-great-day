@@ -9,7 +9,7 @@ class Importer
     public static function import(AbstractAdmin $admin, array $rows, array $headers = array())
     {
         $storage = $this->getStorage($admin);
-        $matrix  = $storage->filter($this->build($headers, $rows), $filtered);
+        $matrix  = $storage->filter($this->buildMatrix($headers, $rows), $errors);
         $count   = 0;        
         foreach($matrix as $row) {
             $storage->update($row);
@@ -47,7 +47,7 @@ class Importer
         return $className;
     }
     
-    private function build($headers, $rows)
+    private function buildMatrix($headers, $rows)
     {
         if (empty($headers)) {
             return $rows;
