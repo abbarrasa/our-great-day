@@ -43,9 +43,10 @@ class GuestAdminController extends Controller
                     $headers     = array_shift($rows);
                     //Filter repeated data                    
                     $rows        = array_unique($rows, SORT_REGULAR);
-                    $count       = Importer::import($this->admin, $rows, $headers);
+                    $result      = Importer::import($this->admin, $rows, $headers);
 
-                    $this->addFlash('sonata_flash_success', sprintf('(%s) Registros importados', $count));
+                    //$this->addFlash('sonata_flash_warning', sprintf('(%s) Registros importados', $result->getCount()));                    
+                    $this->addFlash('sonata_flash_success', sprintf('(%s) Registros importados', $result->getCount()));
 
                     return new RedirectResponse($this->admin->generateUrl('list'));
                 } catch(Exception $e) {
