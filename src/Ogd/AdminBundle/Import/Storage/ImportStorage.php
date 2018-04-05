@@ -5,8 +5,8 @@ namespace AdminBundle\Import\Storage;
 
 interface ImportStorage
 {
-    public function filterData(array $headers, array $rows);
+    public function filter(array $headers, array $rows, &$filtered);
     
-    public function updateData(array $data);    
+    public function update(array $row);    
     
 }
