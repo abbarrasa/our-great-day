@@ -27,8 +27,12 @@ class Importer
 
 //            $admin->create($object);
 //        }
-
-        return $count;
+        
+        $result = new ImportResult();
+        $result->setCount($count);
+        $result->setErrors($errors);
+        
+        return $result;
     }
 
     protected function getStorage(AbstractAdmin $admin)
