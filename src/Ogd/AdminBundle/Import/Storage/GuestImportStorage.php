@@ -14,9 +14,19 @@ class GuestImportStorage implements ImportStorage
         $this->admin = $admin;
     }
     
-    public function filter(array $headers, array $rows, &$filtered)
+    public function filter(array $rows, &$filtered)
     {
         $filtered = array();
+        $visited  = array();
+        foreach($rows as $number => $row) {
+            $email = $row['email'];
+            $firstname = $row['firstname'];
+            $lastname = $row['lastname'];
+            if (empty($firstname) || empty($lastname)) {
+                $filtered[$number] = 
+            }
+        }
+        
         
     }
 
