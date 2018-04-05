@@ -14,30 +14,22 @@ class GuestImportStorage implements ImportStorage
         $this->admin = $admin;
     }
     
-    public function filterData(array $headers, array $rows, &$filtered)
+    public function filter(array $headers, array $rows, &$filtered)
     {
         $filtered = array();
         
-        // TODO: Implement validateData() method.
     }
 
-    public function updateData(array $headers, array $rows)
-    {       
-        $count        = 0;
-        $emailKey     = array_search('email', $headers);
-        $firstnameKey = array_search('firstname', $headers);
-        $lastnameKey  = array_search('lastname', $headers);        
-        foreach($rows as $row) {
-            $object = $this->getObject($row[$lastKey], $row[$firstnameKey], $row[$emailKey]);
-            foreach($row as $index => $value) {
-                $property = $headers[$index];
-                $object->__set($property, $value);
-            }
-            $this->admin->create($object);
-            $count++;
+    public function update(array $row)
+    {
+        $object = $this->getObject($row['email'], $row['firstname'], $row['lastname']);
+        
+        foreach($row as $index => $value) {
+            $property = $headers[$index];
+            $object->__set($property, $value);
         }
         
-        return $count;
+        $this->admin->create($object);
     }
                                            
     private function getObject($firstname, $lastname, $email = null)
