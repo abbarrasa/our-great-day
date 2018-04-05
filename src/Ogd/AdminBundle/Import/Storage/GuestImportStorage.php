@@ -14,20 +14,35 @@ class GuestImportStorage implements ImportStorage
         $this->admin = $admin;
     }
     
-    public function filter(array $rows, &$filtered)
+    public function filter(array $rows, &$errors)
     {
-        $filtered = array();
-        $visited  = array();
+        $errors  = array();
+        $visited = array();
         foreach($rows as $number => $row) {
             $email = $row['email'];
             $firstname = $row['firstname'];
             $lastname = $row['lastname'];
             if (empty($firstname) || empty($lastname)) {
-                $filtered[$number] = 
+                $errors[$number] = sprintf("Required columns are empty: [%s, %s]", $firstname, $lastname);
+                continue;
             }
+            
+            if (in_array($email, array_column($visited, 'email'))) {
+                $errors[$number] = sprintf("Value of %s column is repeated", $firstname, $lastname);
+                continue;                
+            }
+                
+            if (in_array($firstname, array_column($visited, 'firstname')) &&
+                in_array($lastname, array_column($visited, 'lastname'))
+            ) {
+                $errors[$number] = sprintf("Value of %s and %s column are repeated", $firstname, $lastname);
+                continue;                
+            }
+            
+            $visited[] = $row;
         }
         
-        
+        return $visited;        
     }
 
     public function update(array $row)
