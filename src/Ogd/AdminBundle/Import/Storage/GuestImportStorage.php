@@ -22,10 +22,13 @@ class GuestImportStorage implements ImportStorage
     }
 
     public function updateData(array $headers, array $rows)
-    {
-        $count = 0;
+    {       
+        $count        = 0;
+        $emailKey     = array_search('email', $headers);
+        $firstnameKey = array_search('firstname', $headers);
+        $lastnameKey  = array_search('lastname', $headers);        
         foreach($rows as $row) {
-            $object = new Guest();
+            $object = $this->getObject($row[$lastKey], $row[$firstnameKey], $row[$emailKey]);
             foreach($row as $index => $value) {
                 $property = $headers[$index];
                 $object->__set($property, $value);
@@ -36,5 +39,18 @@ class GuestImportStorage implements ImportStorage
         
         return $count;
     }
-
+                                           
+    private function getObject($firstname, $lastname, $email = null)
+    {
+        $modelManager = $this->admin->getModelManager();
+        if (!empty($email) && ($object = $modelManager->findOneBy(Guest::class, ['email' => $email])) !== null) {
+            return $object;
+        }
+        
+        if (($object = $modelManager->findOneBy(Guest::class, ['firstname' => $firstname, 'lastname' => $lastname])) !== null) {
+            return $object;            
+        }
+        
+        return new Guest();
+    }
 }
