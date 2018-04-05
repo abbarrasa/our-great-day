@@ -41,7 +41,9 @@ class GuestAdminController extends Controller
                     $worksheet   = $spreadsheet->getActiveSheet();
                     $rows        = $worksheet->toArray();
                     $headers     = array_shift($rows);
-                    $count       = Importer::import($headers, $rows, $this->admin);
+                    //Filter repeated data                    
+                    $data        = array_unique($rows, SORT_REGULAR);
+                    $count       = Importer::import($headers, $data, $this->admin);
 
                     $this->addFlash('sonata_flash_success', sprintf('(%s) Registros importados', $count));
 
