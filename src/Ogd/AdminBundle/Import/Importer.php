@@ -6,15 +6,15 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 
 class Importer
 {
-    public static function import(array $headers, array $rows, AbstractAdmin $admin)
+    public static function import(AbstractAdmin $admin, array $rows, array $headers = array())
     {
-        //Filter repeated data
-        $rows    = array_unique($rows, SORT_REGULAR);
         $storage = $this->getStorage($admin);
-        $rows    = $storage->filterData($headers, $rows, $filtered);
-        $count   = $storage->importData($headers, $rows);
-        
-//        $count = 0;
+        $rows    = $this->build($headers, $storage->filter($headers, $rows, $filtered));
+        $count   = 0;        
+        foreach($rows as $row) {
+            $storage->update($row);
+            $count++;
+        }
 //        foreach($rows as $row) {
 //            $reflectionClass = new \ReflectionClass($admin->getClass());
 //            $object          = $reflectionClass->newInstanceArgs();
@@ -26,7 +26,6 @@ class Importer
 //            }
 
 //            $admin->create($object);
-            $count++;
 //        }
 
         return $count;
@@ -46,5 +45,19 @@ class Importer
         }
 
         return $className;
+    }
+    
+    private function build($headers, $rows)
+    {
+        if (empty($headers)) {
+            return $rows;
+        }
+        
+        $matrix = array();
+        foreach($rows as $row) {
+            $matrix[] = array_combine($headers, $row);
+        }
+        
+        return $matrix;
     }
 }
