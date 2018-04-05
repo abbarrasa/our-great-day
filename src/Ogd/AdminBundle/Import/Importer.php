@@ -9,9 +9,9 @@ class Importer
     public static function import(AbstractAdmin $admin, array $rows, array $headers = array())
     {
         $storage = $this->getStorage($admin);
-        $rows    = $this->build($headers, $storage->filter($headers, $rows, $filtered));
+        $matrix  = $storage->filter($this->build($headers, $rows), $filtered);
         $count   = 0;        
-        foreach($rows as $row) {
+        foreach($matrix as $row) {
             $storage->update($row);
             $count++;
         }
