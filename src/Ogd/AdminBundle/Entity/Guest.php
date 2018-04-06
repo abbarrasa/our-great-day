@@ -34,7 +34,7 @@ class Guest
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255)
-     * @Assert\Length(max=255)
+     * @Assert\Length(min=2, max=255)
      * @Assert\NotBlank()
      */
     private $firstname;
@@ -43,7 +43,7 @@ class Guest
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=255)
-     * @Assert\Length(max=255)
+     * @Assert\Length(min=2, max=255)
      * @Assert\NotBlank()
      */
     private $lastname;
@@ -52,7 +52,7 @@ class Guest
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true, unique=true)
-     * @Assert\Length(max=255)
+     * @Assert\Length(min=3, max=255)
      * @AppAsserts\Email()
      */
     private $email;
