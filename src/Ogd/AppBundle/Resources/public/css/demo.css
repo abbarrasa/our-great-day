@@ -2570,3 +2570,12 @@ a.scroll-arrow:hover {
     width: 48px !important;
     height: 48px !important;
 }
+
+.card-signup .card-body .alert {
+    margin-left: 10px !important;
+    margin-right: -10px !important;
+}
+
+.card-signup .card-body .container {
+    padding-top: 0 !important;
+}
