@@ -2,15 +2,16 @@
 
 namespace AppBundle\Import;
 
+use AdminBundle\Import\Storage\ImportStorage;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 
 class Importer
 {
     public static function import(AbstractAdmin $admin, array $rows, array $headers = array())
     {
-        $storage = $this->getStorage($admin);
-        $matrix  = $storage->filter($this->buildMatrix($headers, $rows), $errors);
-        $count   = 0;        
+        $storage = self::getStorage($admin);
+        $matrix  = $storage->filter(self::buildMatrix($headers, $rows), $errors);
+        $count   = 0;
         foreach($matrix as $row) {
             $storage->update($row);
             $count++;
@@ -28,13 +29,14 @@ class Importer
 //            $admin->create($object);
 //        }
         
-        $result = new ImportResult();
-        $result->setCount($count);
-        $result->setErrors($errors);
-        
-        return $result;
+        return new ImportResult($count, $errors);
     }
 
+    /**
+     * Get import storage class by an admin.
+     * @param AbstractAdmin $admin
+     * @return ImportStorage
+     */
     protected function getStorage(AbstractAdmin $admin)
     {
         $name  = $this->classToTableName($admin->getClass()) . 'ImportStorage';

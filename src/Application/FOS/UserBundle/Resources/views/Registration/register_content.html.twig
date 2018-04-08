@@ -1,0 +1,51 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register')}) }}
+    {#{{ dump(form) }}#}
+
+    <div class="row">
+        <div class="col form-group bmd-form-group{% if not form.email.vars.valid %} has-danger{% endif %}">
+            {{ form_label(form.email, form.email, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.email) }}
+            {#<span class="bmd-help">We'll never share your email with anyone else.</span>#}
+            {% if not form.email.vars.valid %}
+                <span class="material-icons form-control-feedback">clear</span>
+            {% endif %}
+        </div>
+        <div class="col form-group bmd-form-group{% if not form.username.vars.valid %} has-danger{% endif %}">
+            {{ form_label(form.username, form.username, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+            {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.username) }}
+            {#<span class="bmd-help">We'll never share your email with anyone else.</span>#}
+            {% if not form.username.vars.valid %}
+                <span class="material-icons form-control-feedback">clear</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col form-group bmd-form-group{% if not form.plainPassword.first.vars.valid %} has-danger{% endif %}">
+            {{ form_label(form.plainPassword.first, form.plainPassword.first, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+            {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.plainPassword.first) }}
+            {#<span class="bmd-help">We'll never share your email with anyone else.</span>#}
+            {% if not form.plainPassword.first.vars.valid %}
+                <span class="material-icons form-control-feedback">clear</span>
+            {% endif %}
+        </div>
+        <div class="col form-group bmd-form-group{% if not form.plainPassword.second.vars.valid %} has-danger{% endif %}">
+            {{ form_label(form.plainPassword.second, form.plainPassword.second, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+            {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.plainPassword.second) }}
+            {#<span class="bmd-help">We'll never share your email with anyone else.</span>#}
+            {% if not form.plainPassword.second.vars.valid %}
+                <span class="material-icons form-control-feedback">clear</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="col form-group">
+        <input type="submit" class="btn btn-primary pull-right" value="{{ 'registration.submit'|trans }}" />
+    </div>
+{{ form_end(form) }}

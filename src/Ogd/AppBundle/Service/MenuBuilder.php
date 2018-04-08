@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Menu;
+namespace AppBundle\Service;
 
 use Knp\Menu\FactoryInterface;
 use AppBundle\Templating\Helper\SocialUrlHelper;
@@ -54,26 +54,32 @@ class MenuBuilder
             ->setExtra('translation_domain', 'AppBundle')
         ;
 
-        $menu->addChild('User')
-            ->setAttributes(['dropdown' => true, 'class' => 'nav-item', 'icon' => 'account_circle'])
-            ->setLinkAttributes([
-                'class' =>'nav-link',
-                'data-toggle' => 'dropdown',
-                'aria-expanded' => 'false'
-            ])
-//            ->setExtra('translation_domain', 'AppBundle')
+        $menu
+            ->addChild('security.login.submit', ['route' => 'fos_user_security_login'])
+            ->setAttributes(['icon' => 'fingerprint', 'class' => 'nav-item'])
+            ->setLinkAttribute('class', 'nav-link')
+            ->setExtra('translation_domain', 'FOSUserBundle')
         ;
-        $menu['User']
-            ->addChild('Profile', array('uri' => '#'))
-            ->setAttribute('divider_append', true)
-            ->setLinkAttribute('class', 'dropdown-item')
-//            ->setExtra('translation_domain', 'AppBundle')
-        ;
-        $menu['User']
-            ->addChild('Logout', array('uri' => '#'))
-            ->setLinkAttribute('class', 'dropdown-item')
-//            ->setExtra('translation_domain', 'AppBundle')
-        ;
+//        $menu->addChild('User')
+//            ->setAttributes(['dropdown' => true, 'class' => 'nav-item', 'icon' => 'account_circle'])
+//            ->setLinkAttributes([
+//                'class' =>'nav-link',
+//                'data-toggle' => 'dropdown',
+//                'aria-expanded' => 'false'
+//            ])
+////            ->setExtra('translation_domain', 'AppBundle')
+//        ;
+//        $menu['User']
+//            ->addChild('Profile', array('uri' => '#'))
+//            ->setAttribute('divider_append', true)
+//            ->setLinkAttribute('class', 'dropdown-item')
+////            ->setExtra('translation_domain', 'AppBundle')
+//        ;
+//        $menu['User']
+//            ->addChild('Logout', array('uri' => '#'))
+//            ->setLinkAttribute('class', 'dropdown-item')
+////            ->setExtra('translation_domain', 'AppBundle')
+//        ;
 
         $menu
             ->addChild('frontend.menu.contact_us', ['uri' => '#'])

@@ -16958,9 +16958,9 @@ thead.thead-inverse th {
     padding: 0 30px 0 10px
 }
 
-.card-signup .form-check {
-    padding-top: 27px
-}
+/*.card-signup .form-check {*/
+    /*padding-top: 27px*/
+/*}*/
 
 .card-signup .form-check label {
     margin-left: 18px
@@ -19217,9 +19217,10 @@ select.selectpicker {
     width: auto
 }
 
-.login-page .card-signup .input-group {
+.login-page .card-signup .input-group,
+.login-page .card-signup .form-check {
     padding-bottom: 7px;
-    margin: 27px 0 0
+    margin: 0;
 }
 
 .login-page .page-header {

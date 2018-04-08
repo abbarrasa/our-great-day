@@ -1,0 +1,22 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST">
+    <div class="col-md-12 form-group bmd-form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <i class="material-icons">account_circle</i>
+                </span>
+            </div>
+
+            <input type="text" id="username" name="username" required="required" class="form-control" placeholder="{{ 'resetting.request.username'|trans }}" />
+            {#{% if not form.name.vars.valid %}#}
+                {#<span class="material-icons form-control-feedback">clear</span>#}
+            {#{% endif %}#}
+        </div>
+    </div>
+
+    <div class="col-md-12 form-group bmd-form-group">
+        <input type="submit" id="_submit" name="_submit" value="{{ 'resetting.request.submit'|trans }}" class="btn btn-primary pull-right" />
+    </div>
+</form>

@@ -44,11 +44,13 @@ class GuestAdminController extends Controller
                     //Filter repeated data                    
                     $rows        = array_unique($rows, SORT_REGULAR);
                     $result      = Importer::import($this->admin, $rows, $headers);
-                    
-                    if ($result->hasErrors()) {
-                        $this->addFlash('sonata_flash_warning', sprintf('No se ha podido importar: (%s)', $result->getFormattedErrors()));                        
-                    }
+
                     $this->addFlash('sonata_flash_success', sprintf('(%s) Registros importados', $result->getCount()));
+                    if ($result->hasErrors()) {
+                        $this->addFlash('sonata_flash_warning', sprintf(
+                            'No se ha podido importar: (%s)', $result->formattedErrors($this->get('twig'))
+                        ));
+                    }
 
                     return new RedirectResponse($this->admin->generateUrl('list'));
                 } catch(Exception $e) {

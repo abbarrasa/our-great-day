@@ -35,6 +35,7 @@ class AppKernel extends Kernel
 
             // And finally, the application bundles
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Application\FOS\UserBundle\UserBundle(),
             new AdminBundle\AdminBundle(),
             new AppBundle\AppBundle(),
         ];

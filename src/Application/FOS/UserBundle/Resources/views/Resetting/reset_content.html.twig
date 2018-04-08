@@ -1,0 +1,24 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}) } }) }}
+
+    {{ dump(form) }}
+    <div class="col-md-12 form-group bmd-form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="material-icons">account_circle</i>
+                    </span>
+            </div>
+
+            {% if not form.name.vars.valid %}
+            <span class="material-icons form-control-feedback">clear</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="col-md-12 form-group bmd-form-group">
+        <input type="submit" id="_submit" name="_submit" value="{{ 'resetting.reset.submit'|trans }}" class="btn btn-primary pull-right" />
+    </div>
+
+{{ form_end(form) }}

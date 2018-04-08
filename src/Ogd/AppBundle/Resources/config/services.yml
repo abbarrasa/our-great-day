@@ -19,13 +19,13 @@ services:
             - { name: templating.helper }
 
     app.menu.social:
-        class: AppBundle\Menu\MenuBuilder
+        class: AppBundle\Service\MenuBuilder
         arguments: ["@knp_menu.factory", "@app.helper.social_url", "@translator"]
         tags:
             - { name: knp_menu.menu_builder, method: createSocialMenu, alias: social } # The alias is what is used to retrieve the menu    
         
     app.menu.main:
-        class: AppBundle\Menu\MenuBuilder
+        class: AppBundle\Service\MenuBuilder
         arguments: ["@knp_menu.factory", "@app.helper.social_url", "@translator"]
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main } # The alias is what is used to retrieve the menu

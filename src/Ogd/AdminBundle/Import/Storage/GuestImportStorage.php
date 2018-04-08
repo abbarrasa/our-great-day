@@ -14,14 +14,13 @@ class GuestImportStorage implements ImportStorage
         $this->admin = $admin;
     }
     
-    public function filter(array $rows, &$errors = null)
+    public function filter(array $rows, array &$errors = null)
     {
-        $errors  = array();
         $visited = array();
         foreach($rows as $number => $row) {
-            $email = $row['email'];
+            $email     = $row['email'];
             $firstname = $row['firstname'];
-            $lastname = $row['lastname'];
+            $lastname  = $row['lastname'];
             if (empty($firstname) || empty($lastname)) {
                 $errors[$number] = sprintf("Required columns are empty: [%s, %s]", $firstname, $lastname);
                 continue;
@@ -49,8 +48,7 @@ class GuestImportStorage implements ImportStorage
     {
         $object = $this->getObject($row['email'], $row['firstname'], $row['lastname']);
         
-        foreach($row as $index => $value) {
-            $property = $headers[$index];
+        foreach($row as $property => $value) {
             $object->__set($property, $value);
         }
         
