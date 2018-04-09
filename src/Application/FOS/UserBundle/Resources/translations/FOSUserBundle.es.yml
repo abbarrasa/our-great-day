@@ -84,3 +84,5 @@ form:
     password_confirmation: 'Repita la contraseña'
     new_password: 'Nueva contraseña'
     new_password_confirmation: 'Repita la contraseña'
+    firstname: 'Nombre'
+    lastname: 'Apellidos'
