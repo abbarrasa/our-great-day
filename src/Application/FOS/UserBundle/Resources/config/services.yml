@@ -1,0 +1,28 @@
+parameters:
+    user.registration.listener.class: Application\FOS\UserBundle\EventListener\RegistrationListener
+    user.registration.form.class: Application\FOS\UserBundle\Form\Type\RegistrationType
+
+services:
+    user.resetting.controller:
+        class: Application\FOS\UserBundle\Controller\ResettingController
+        arguments:
+            - "@event_dispatcher"
+            - "@fos_user.resetting.form.factory"
+            - "@fos_user.user_manager"
+            - "@fos_user.util.token_generator"
+            - "@AppBundle\\Service\\Mailer"
+            - "%fos_user.resetting.retry_ttl%"
+        public: true
+        calls:
+            - [setContainer, ["@service_container"]]
+
+    user.form.registration:
+        class: "%user.registration.form.class%"
+        tags:
+            - { name: form.type, alias: app_user_registration }
+
+    fos_user.listener.email_confirmation:
+        class:        "%user.registration.listener.class%"
+        arguments:    ["@AppBundle\\Service\\Mailer", "@fos_user.util.token_generator", "@router", "@session"]
+        tags:
+            - { name: kernel.event_subscriber }

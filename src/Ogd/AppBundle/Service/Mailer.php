@@ -4,13 +4,17 @@ namespace AppBundle\Service;
 
 use AdminBundle\Entity\Enquiry;
 use AdminBundle\Entity\Joined;
+use FOS\UserBundle\Mailer\MailerInterface;
+use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class Mailer
+class Mailer implements MailerInterface
 {
     const TEMPLATE_ENQUIRY_NOTIFICATION   = 'email/enquiry-notification.txt.twig';
     const TEMPLATE_GUESTBOOK_NOTIFICATION = 'email/guestbook-notification.txt.twig';
     const TEMPLATE_WEBSITE_ANNOUNCEMENT   = 'email/website-announcement.txt.twig';
+    const TEMPLATE_REGISTER_NOTIFICATION  = 'email/register-notification.txt.twig';
+    const TEMPLATE_RESETTING_REQUEST      = 'email/resetting-request.txt.twig';
 
     /** @var \Swift_Mailer */
     protected $mailer;
@@ -70,6 +74,34 @@ class Mailer
         }
 
         return null;
+    }
+
+    /**
+     * Send an email to a user to confirm the account creation.
+     * @param UserInterface $user
+     * @return int
+     */
+    public function sendConfirmationEmailMessage(UserInterface $user)
+    {
+        $message = $this->getMessage(self::TEMPLATE_REGISTER_NOTIFICATION, ['user' => $user]);
+
+        return $this->sendEmailMessage($this->config['email_admin'], (string) $user->getEmail(), $message);
+    }
+
+    /**
+     * Send an email to a user to confirm the password reset.
+     * @param UserInterface $user
+     * @return int
+     */
+    public function sendResettingEmailMessage(UserInterface $user)
+    {
+        $url = $this->router->generate('fos_user_resetting_reset', array('token' => $user->getConfirmationToken()), UrlGeneratorInterface::ABSOLUTE_URL);
+        $message = $this->getMessage(self::TEMPLATE_RESETTING_REQUEST, [
+            'user' => $user,
+            'confirmationUrl' => $url
+        ]);
+
+        return $this->sendEmailMessage($this->config['email_admin'], (string) $user->getEmail(), $message);
     }
 
     /**
