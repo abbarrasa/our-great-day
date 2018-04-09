@@ -743,10 +743,6 @@ body {
     width: 21px;
 }
 
-.index-page .page-header .container>.content-center {
-    top: 37%;
-}
-
 .index-page .page-header .category-absolute {
     position: absolute;
     top: 100vh;
@@ -2512,6 +2508,18 @@ a.scroll-arrow:hover {
 [data-background-color] h6,
 [data-background-color] a:not(.btn):not(.dropdown-item) {
     color: #FFFFFF;
+}
+
+#countdown {
+    transform-origin: 0 0;
+    transform: scale(.25);
+    -ms-transform: scale(.25);
+    -webkit-transform-origin: 0 0;
+    -webkit-transform: scale(.25);
+    -o-transform-origin: 0 0;
+    -o-transform: scale(.25);
+    -moz-transform-origin: 0 0;
+    -moz-transform: scale(.25);
 }
 
 #countdown,
