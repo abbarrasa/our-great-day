@@ -110,6 +110,9 @@ fos_user:
         group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
     service:
         user_manager: sonata.user.orm.user_manager
+    registration:
+        form:
+            name: app_user_registration
 
 # Sonata Admin Configuration
 sonata_user:
