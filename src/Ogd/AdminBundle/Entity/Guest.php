@@ -92,6 +92,12 @@ class Guest
      * @ORM\Column(name="vegans", type="integer", nullable=true)
      */
     private $vegans;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Application\Sonata\UserBundle\Entity\User", inversedBy="guest")
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id", nullable=true)
+     */
+    private $user;    
 
     /**
      * Guest constructor.
