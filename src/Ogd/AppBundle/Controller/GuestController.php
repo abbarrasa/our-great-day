@@ -62,21 +62,31 @@ class GuestController extends Controller
         $form = $this->createForm(GuestConfirmationType::class, $guest);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+                $guest->setUser($this->getUser());
+            }
+            
             $em->persist($guest);
             $em->flush();
             
             $helper = $this->get('app.helper.flash_message');
             $this->addFlash('success', $helper->getFlashMessage(
                 'success', 'frontend.success', 'frontend.guest.success', [], 'AppBundle'
-            ));            
+            ));
 
-            return $this->redirectToRoute('homepage');
+            if (null !== $guest->getUser()) {
+                return $this->redirectToRoute('homepage');                        
+            }
+            
+            return $this->render('@App/guest/login-register.html.twig']);            
         }
 
         return $this->render('@App/guest/confirmation.html.twig', [
             'form' => $form->createView()
         ]);
     }
+    
+    public function setUserGuest
 
     /**
      * @Route("/guestbook/{page}", requirements={"page" = "\d+"}, name="guestbook")
