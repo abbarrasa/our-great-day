@@ -8,10 +8,10 @@
 
 {% block body_text %}
 {% autoescape false %}
-{{ 'email.resetting.body_plain'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}, 'email') }}
+{{ 'email.resetting.body_plain'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl, '%email%': email_admin}, 'email') }}
 {% endautoescape %}
 {% endblock %}
 
 {% block content_html %}
-{{ 'email.resetting.body_html'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}, 'email')|raw }}
+{{ 'email.resetting.body_html'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl, '%email%': email_admin}, 'email')|raw }}
 {% endblock %}
