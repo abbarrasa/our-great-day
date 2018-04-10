@@ -29,13 +29,9 @@ email:
                     el equipo técnico de Nuestro gran día.
         body_html: |
                     <p>Hola,</p>
-
                     <p><b>%name%</b> ha enviado la siguiente consulta:</p>
-
                     <p><b>"%enquiry%"</b></p>
-
                     <p>Puedes responder a la consulta dirigiéndote al correo electrónico <a href="mailto:%email%">%email%</a>.
-
                     <p>Atentemente,<br />el equipo técnico de Nuestro gran día.</p>
     register:
         subject: '¡Bienvenido/a %username%!'
@@ -48,14 +44,10 @@ email:
                     
                     Un enorme saludo de Vero y Carlos. ¡Te esperamos!
         body_html: |
-                    <p>Hola <a>%username%</a>,</p>
-                    
-                    <p>¡Bienvenido/a!. Gracias por registrarte en nuestra página web y ayudarnos a mejorar para que <a>Nuestro Gran Día</a> sea lo más grande posible. Ya puedes acceder pulsando <a href="%url%">aquí</a>.</p>
-                    
-                    <p>Esperamos que te guste la web y si tienes alguna sugerencia, pregunta o simplemente quieres saludarnos, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico (mailto:%email%).
-                    
-                    <a class="btn btn-primary" href="%url%">Accede ahora</a>
-                    
+                    <p>Hola <a>%username%</a>,</p>                    
+                    <p>¡Bienvenido/a!. Gracias por registrarte en nuestra página web y ayudarnos a mejorar para que <a>Nuestro Gran Día</a> sea lo más grande posible. Ya puedes acceder pulsando <a href="%url%">aquí</a>.</p>                    
+                    <p>Esperamos que te guste la web y si tienes alguna sugerencia, pregunta o simplemente quieres saludarnos, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico (mailto:%email%).                    
+                    <a class="btn btn-primary" href="%url%">¡Accede ahora!</a>
                     <p>Un enorme saludo de Vero y Carlos. ¡Te esperamos!</p>
     resetting:
         subject: 'Reestablecer contraseña'
@@ -66,18 +58,13 @@ email:
                     
                     Si no has solicitado reestablecer tu contraseña, no hagas caso a este correo.
                     
-                    Esperamos haberte ayudado y si tienes alguna sugerencia o pregunta, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico: mailto:
+                    Esperamos haberte ayudado y si tienes alguna sugerencia o pregunta, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico: mailto:                    
                     
                     Un enorme saludo de Vero y Carlos. ¡Te esperamos!
         body_html: |
-                    <p>Hola <a>%username%</a>,</p>
-                    
-                    <p>Has solicitado reestablecer tu contraseña. Para restablecer tu contraseña, por favor visita <a href="%confirmationUrl%"> este enlace</a>.</p>
-                    
-                    <p>Si no has solicitado reestablecer tu contraseña, no hagas caso a este correo.</p>
-                    
-                    <p>Esperamos haberte ayudado y si tienes alguna sugerencia o pregunta, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico en mailto:</p>
-                    
-                    <a class="btn btn-primary" href="%confirmationUrl%">Reestablece tu contraseña</a>
-                    
+                    <p>Hola <a>%username%</a>,</p>                    
+                    <p>Has solicitado reestablecer tu contraseña. Para restablecer tu contraseña, por favor visita <a href="%confirmationUrl%"> este enlace</a>.</p>                    
+                    <p>Si no has solicitado reestablecer tu contraseña, no hagas caso a este correo.</p>                    
+                    <p>Esperamos haberte ayudado y si tienes alguna sugerencia o pregunta, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico en mailto:</p>                    
+                    <a class="btn btn-primary" href="%confirmationUrl%">Reestablece tu contraseña</a>                    
                     <p>Un enorme saludo de Vero y Carlos. ¡Te esperamos!</p>
