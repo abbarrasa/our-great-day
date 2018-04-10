@@ -9,6 +9,7 @@ use FOS\UserBundle\Util\TokenGeneratorInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class RegistrationListener implements EventSubscriberInterface
 {
@@ -54,5 +55,8 @@ class RegistrationListener implements EventSubscriberInterface
         $user->setEnabled(true);
         //Send a welcome email to user
         $this->mailer->sendConfirmationEmailMessage($user);
+        
+        $url = $this->router->generate('homepage');
+        $event->setResponse(new RedirectResponse($url));
     }
 }
