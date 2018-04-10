@@ -34,7 +34,7 @@ email:
                     <p>You can resolve the enquiry by writing to email <a href="mailto:%email%">%email%</a>.
                     <p>Sincerely,<br />the technical team of Our great day.</p>
     register:
-        subject: '¡Welcome %username%!'
+        subject: 'Welcome %username%!'
         body_plain: |
                     Hello %username%,
                     
@@ -47,9 +47,10 @@ email:
                     <p>Hello <a>%username%</a>,</p>                    
                     <p>you are welcome!. Thank you for registering on our website and helping us improve so that <a>Our Great Day</a> is as great day as possible. You can now access clicking <a href="%url%">here</a>.</p>
                     <p>We hope you like the website. If you have any suggestions, questions or just want to say hello, do not hesitate to contact us both from the web itself and by email (mailto:%email%).                    
+                    <a class="btn btn-primary" href="%confirmationUrl%">Access now!</a>                    
                     <p>A huge greeting from Vero and Carlos. We are waiting you!</p>
     resetting:
-        subject: 'Reestablecer contraseña'
+        subject: 'Reset password'
         body_plain: |
                     Hello %username%,
                    
@@ -58,11 +59,12 @@ email:
                     If you have not requested to reset your password, do not listen to this email.
                     
                     We hope we have helped you. If you have any suggestions or questions, do not hesitate to contact us both from the website itself and by email: mailto:
-                    
+                                        
                     A huge greeting from Vero and Carlos. We are waiting you!
         body_html: |
                     <p>Hello <a>%username%</a>,</p>                    
                     <p>you have requested to reset your password. To reset your password, please visit <a href="%confirmationUrl%"> este enlace</a>.</p>                    
                     <p>If you have not requested to reset your password, do not listen to this email.</p>                    
                     <p>We hope we have helped you. If you have any suggestions or questions, do not hesitate to contact us both from the website itself and by email:</p>                    
+                    <a class="btn btn-primary" href="%confirmationUrl%">Reset your password</a>                    
                     <p>A huge greeting from Vero and Carlos. We are waiting you!</p>
