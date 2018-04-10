@@ -62,6 +62,7 @@ class GuestController extends Controller
         $form = $this->createForm(GuestConfirmationType::class, $guest);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            //Set authenticated user to guest
             if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
                 $guest->setUser($this->getUser());
             }
@@ -74,11 +75,9 @@ class GuestController extends Controller
                 'success', 'frontend.success', 'frontend.guest.success', [], 'AppBundle'
             ));
 
-            if (null !== $guest->getUser()) {
+            //if (null !== $guest->getUser()) {
                 return $this->redirectToRoute('homepage');                        
-            }
-            
-            return $this->render('@App/guest/login-register.html.twig']);            
+            //}            
         }
 
         return $this->render('@App/guest/confirmation.html.twig', [
