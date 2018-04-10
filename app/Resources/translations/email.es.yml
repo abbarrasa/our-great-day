@@ -1,21 +1,21 @@
 email:
     website_announcement:
-        subject: "'Nuestro gran día' está disponible"
+        subject: 'La web está disponible'
         body_plain: |
                     Hola,
 
-                    Como ya sabrás nos vamos a casar. Te mandamos este correo para anunciarte que tenemos disponible una web donde vamos informándote de todas las novedades referentes al evento y a nosotros.
+                    como ya sabrás nos vamos a casar. Te mandamos este correo para anunciarte que tenemos disponible una web donde vamos informándote de todas las novedades referentes al evento y a nosotros.
 
                     Puedes visitarla en %url%.
 
                     Un enorme saludo de Vero y Carlos. ¡Te esperamos!
         body_html: |
                     <h2>Hola,</h2>
-                    <p>Como ya sabrás nos vamos a casar. Te mandamos este correo para anunciarte que tenemos disponible una web donde vamos informándote de todas las novedades referentes al evento y a nosotros.</p>
+                    <p>como ya sabrás nos vamos a casar. Te mandamos este correo para anunciarte que tenemos disponible una web donde vamos informándote de todas las novedades referentes al evento y a nosotros.</p>
                     <p>Puedes visitarla en <a href="%url%">%url%</a>.
                     <p>Un enorme saludo de Vero y Carlos. ¡Te esperamos!</p>
     enquiry_notification:
-        subject: Se ha recibido una consulta de %name%
+        subject: 'Se ha recibido una consulta de %name%'
         body_plain: |
                     Hola,
 
@@ -37,3 +37,43 @@ email:
                     <p>Puedes responder a la consulta dirigiéndote al correo electrónico <a href="mailto:%email%">%email%</a>.
 
                     <p>Atentemente,<br />el equipo técnico de Nuestro gran día.</p>
+    register:
+        subject: '¡Bienvenido/a %username%!'
+        body_plain: |
+                    Hola %username%,
+                    
+                    ¡Bienvenido/a!. Gracias por registrarte en nuestra página web y ayudarnos a mejorar para que Nuestro Gran Día sea lo más grande posible. Ya puedes acceder a %url%.
+                    
+                    Esperamos que te guste la web y si tienes alguna sugerencia, pregunta o simplemente quieres saludarnos, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico (mailto:).
+                    
+                    Un enorme saludo de Vero y Carlos. ¡Te esperamos!
+        body_html: |
+                    <p>Hola <a>%username%</a>,</p>
+                    
+                    <p>¡Bienvenido/a!. Gracias por registrarte en nuestra página web y ayudarnos a mejorar para que <a>Nuestro Gran Día</a> sea lo más grande posible. Ya puedes acceder pulsando <a href="%url%">aquí</a>.</p>
+                    
+                    <p>Esperamos que te guste la web y si tienes alguna sugerencia, pregunta o simplemente quieres saludarnos, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico (mailto:%email%).
+                    
+                    <p>Un enorme saludo de Vero y Carlos. ¡Te esperamos!</p>
+    resetting:
+        subject: 'Reestablecer contraseña'
+        body_plain: |
+                    Hola %username%,
+                    
+                    Has solicitado reestablecer tu contraseña. Para restablecer tu contraseña, por favor visita %confirmationUrl%
+                    
+                    Si no has solicitado reestablecer tu contraseña, no hagas caso a este correo.
+                    
+                    Esperamos haberte ayudado y si tienes alguna sugerencia o pregunta, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico: mailto:
+                    
+                    Un enorme saludo de Vero y Carlos. ¡Te esperamos!
+        body_html: |
+                    <p>Hola <a>%username%</a>,</p>
+                    
+                    <p>Has solicitado reestablecer tu contraseña. Para restablecer tu contraseña, por favor visita <a href="%confirmationUrl%"> este enlace</a>.</p>
+                    
+                    <p>Si no has solicitado reestablecer tu contraseña, no hagas caso a este correo.</p>
+                    
+                    <p>Esperamos haberte ayudado y si tienes alguna sugerencia o pregunta, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico en mailto:</p>
+                    
+                    <p>Un enorme saludo de Vero y Carlos. ¡Te esperamos!</p>
