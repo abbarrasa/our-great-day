@@ -9,10 +9,10 @@
 
 {% block body_text %}
 {% autoescape false %}
-{{ 'email.register.body_plain'|trans({'%username%': user.username, '%url%': absolute_url(path('homepage'))}, 'email') }}
+{{ 'email.register.body_plain'|trans({'%username%': user.username, '%url%': absolute_url(path('homepage')), '%email%': email_admin}, 'email') }}
 {% endautoescape %}
 {% endblock %}
 
 {% block content_html %}
-{{ 'email.register.body_html'|trans({'%username%': user.username, '%url%': absolute_url(path('homepage'))}, 'email')|raw }}
+{{ 'email.register.body_html'|trans({'%username%': user.username, '%url%': absolute_url(path('homepage')), '%email%': email_admin}, 'email')|raw }}
 {% endblock %}
