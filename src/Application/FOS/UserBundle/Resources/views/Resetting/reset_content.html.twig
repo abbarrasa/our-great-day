@@ -1,8 +1,27 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
-    {{ form_widget(form) }}
-<div>
-    <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" />
-</div>
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_resetting_reset', {'token': token})}) }}
+    <div class="col-md-12 form-group bmd-form-group{% if not form.plainPassword.first.vars.valid %} has-danger{% endif %}">
+        {{ form_label(form.plainPassword.first, form.plainPassword.first, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+        {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.plainPassword.first) }}
+        {#<span class="bmd-help">We'll never share your email with anyone else.</span>#}
+        {% if not form.plainPassword.first.vars.valid %}
+            <span class="material-icons form-control-feedback">clear</span>
+        {% endif %}
+    </div>
+    
+    <div class="col-md-12 form-group bmd-form-group{% if not form.plainPassword.second.vars.valid %} has-danger{% endif %}">
+        {{ form_label(form.plainPassword.second, form.plainPassword.second, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+        {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.plainPassword.second) }}
+        {#<span class="bmd-help">We'll never share your email with anyone else.</span>#}
+        {% if not form.plainPassword.second.vars.valid %}
+            <span class="material-icons form-control-feedback">clear</span>
+        {% endif %}
+    </div>
+    
+    <div class="col-md-12 form-group">
+        <input type="submit" class="btn btn-primary pull-right" value="{{ 'resetting.reset.submit'|trans }}" />
+    </div>
 {{ form_end(form) }}
