@@ -54,6 +54,8 @@ email:
                     
                     <p>Esperamos que te guste la web y si tienes alguna sugerencia, pregunta o simplemente quieres saludarnos, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico (mailto:%email%).
                     
+                    <a class="btn btn-primary" href="%url%">Accede ahora</a>
+                    
                     <p>Un enorme saludo de Vero y Carlos. ¡Te esperamos!</p>
     resetting:
         subject: 'Reestablecer contraseña'
@@ -75,5 +77,7 @@ email:
                     <p>Si no has solicitado reestablecer tu contraseña, no hagas caso a este correo.</p>
                     
                     <p>Esperamos haberte ayudado y si tienes alguna sugerencia o pregunta, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico en mailto:</p>
+                    
+                    <a class="btn btn-primary" href="%confirmationUrl%">Reestablece tu contraseña</a>
                     
                     <p>Un enorme saludo de Vero y Carlos. ¡Te esperamos!</p>
