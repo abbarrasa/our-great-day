@@ -85,8 +85,6 @@ class GuestController extends Controller
             'form' => $form->createView()
         ]);
     }
-    
-    public function setUserGuest
 
     /**
      * @Route("/guestbook/{page}", requirements={"page" = "\d+"}, name="guestbook")
