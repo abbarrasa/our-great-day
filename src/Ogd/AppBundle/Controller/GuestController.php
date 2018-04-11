@@ -23,6 +23,12 @@ class GuestController extends Controller
      */
     public function guestAction(Request $request)
     {
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED') &&
+            ($guest = $this->getUser()->getGuest()) !== null
+        ) {
+            return $this->redirectToRoute('guest_confirm', ['id' => $guest->getId()]);            
+        }
+        
         $form = $this->createForm(GuestConfirmationType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
@@ -63,7 +69,9 @@ class GuestController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             //Set authenticated user to guest
-            if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED') &&
+                null === $guest->getUser()
+            ) {
                 $guest->setUser($this->getUser());
             }
             
