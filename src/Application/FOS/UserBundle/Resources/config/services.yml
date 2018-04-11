@@ -1,6 +1,5 @@
 parameters:
     user.registration.listener.class: Application\FOS\UserBundle\EventListener\RegistrationListener
-    user.registration.form.class: Application\FOS\UserBundle\Form\Type\RegistrationType
     user.resetting.listener.class: Application\FOS\UserBundle\EventListener\ResettingListener
 
 services:
@@ -16,11 +15,6 @@ services:
         public: true
         calls:
             - [setContainer, ["@service_container"]]
-
-    user.form.registration:
-        class: "%user.registration.form.class%"
-        tags:
-            - { name: form.type, alias: app_user_registration }
 
     fos_user.listener.email_confirmation:
         class:        "%user.registration.listener.class%"

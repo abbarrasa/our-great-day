@@ -112,7 +112,7 @@ fos_user:
         user_manager: sonata.user.orm.user_manager
     registration:
         form:
-            type: app_user_registration
+            type: Application\FOS\UserBundle\Form\Type\RegistrationType
 
 # Sonata Admin Configuration
 sonata_user:

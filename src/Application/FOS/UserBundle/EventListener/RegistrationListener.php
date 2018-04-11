@@ -13,9 +13,16 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class RegistrationListener implements EventSubscriberInterface
 {
+    /** @var MailerInterface */
     private $mailer;
+
+    /** @var TokenGeneratorInterface */
     private $tokenGenerator;
+
+    /** @var UrlGeneratorInterface */
     private $router;
+
+    /** @var SessionInterface */
     private $session;
 
     /**
