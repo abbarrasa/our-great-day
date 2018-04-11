@@ -1,6 +1,7 @@
 parameters:
-    user.registration.listener.class: Application\FOS\UserBundle\EventListener\RegistrationListener
-    user.resetting.listener.class: Application\FOS\UserBundle\EventListener\ResettingListener
+    user.listener.registration.class: Application\FOS\UserBundle\EventListener\RegistrationListener
+    user.listener.resetting.class: Application\FOS\UserBundle\EventListener\ResettingListener
+    user.listener.flash.class: Application\FOS\UserBundle\EventListener\FlashListener
 
 services:
     user.resetting.controller:
@@ -17,13 +18,19 @@ services:
             - [setContainer, ["@service_container"]]
 
     fos_user.listener.email_confirmation:
-        class:        "%user.registration.listener.class%"
+        class:        "%user.listener.registration.class%"
         arguments:    ["@AppBundle\\Service\\Mailer", "@fos_user.util.token_generator", "@router", "@session"]
         tags:
             - { name: kernel.event_subscriber }
     
     fos_user.listener.resetting:
-        class:        "%user.resetting.listener.class%"
+        class:        "%user.listener.resetting.class%"
         arguments:    ["@router", "%fos_user.resetting.token_ttl%"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    fos_user.listener.flash:
+        class:        "%user.listener.flash.class%"
+        arguments:    ["@session", "@app.helper.flash_message"]
         tags:
             - { name: kernel.event_subscriber }

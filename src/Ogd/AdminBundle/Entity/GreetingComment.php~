@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * GreetingComment
  *
  * @ORM\Table(name="ogd_greeting_comment")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\GreetingCommentRepository")
+ * @ORM\Entity(repositoryClass="AdminBundle\Repository\GreetingCommentRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 
@@ -25,7 +25,7 @@ class GreetingComment
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Greeting", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Greeting", inversedBy="comments")
      * @ORM\JoinColumn(name="id_greeting", referencedColumnName="id", nullable=false)
      */
     private $greeting;
@@ -48,18 +48,8 @@ class GreetingComment
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
-     * @Assert\NotNull()
      */
     private $createdAt;
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function setCreatedAtValue()
-    {
-        $this->createdAt = new \DateTime();
-    }
-
 
     /**
      * Get id.
@@ -141,5 +131,39 @@ class GreetingComment
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set greeting.
+     *
+     * @param \AdminBundle\Entity\Greeting $greeting
+     *
+     * @return GreetingComment
+     */
+    public function setGreeting(\AdminBundle\Entity\Greeting $greeting)
+    {
+        $this->greeting = $greeting;
+
+        return $this;
+    }
+
+    /**
+     * Get greeting.
+     *
+     * @return \AdminBundle\Entity\Greeting
+     */
+    public function getGreeting()
+    {
+        return $this->greeting;
+    }
+
+    /**
+     * Set createdAt value before persist
+     *
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->setCreatedAt(new \DateTime());
     }
 }

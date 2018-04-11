@@ -103,6 +103,10 @@ class GuestController extends Controller
     {
         $em        = $this->getDoctrine()->getManager();
         $greeting  = new Greeting();
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $greeting->setUser($this->getUser());
+        }
+
         $form      = $this->createForm(GreetingType::class, $greeting);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -182,6 +186,10 @@ class GuestController extends Controller
         $status          = 200;
         $greetingComment = new GreetingComment();
         $greetingComment->setGreeting($greeting);
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $greetingComment->setUser($this->getUser());
+        }
+
         $form = $this->createForm(GreetingCommentType::class, $greetingComment);
         $form->handleRequest($request);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -11,8 +11,13 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * Guest
  *
  * @ORM\Table(name="ogd_guest")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\GuestRepository")
- * @UniqueEntity("email") 
+ * @ORM\Entity(repositoryClass="AdminBundle\Repository\GuestRepository")
+ * @UniqueEntity("email")
+ * @UniqueEntity(
+ *     fields={"firstname", "lastname"},
+ *     errorPath="firstname",
+ *     message="guest.name"
+ * )
  */
 class Guest
 {
@@ -29,7 +34,7 @@ class Guest
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255)
-     * @Assert\Length(max=255)
+     * @Assert\Length(min=2, max=255)
      * @Assert\NotBlank()
      */
     private $firstname;
@@ -38,7 +43,7 @@ class Guest
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=255)
-     * @Assert\Length(max=255)
+     * @Assert\Length(min=2, max=255)
      * @Assert\NotBlank()
      */
     private $lastname;
@@ -47,7 +52,7 @@ class Guest
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true, unique=true)
-     * @Assert\Length(max=255)
+     * @Assert\Length(min=3, max=255)
      * @AppAsserts\Email()
      */
     private $email;
@@ -87,6 +92,12 @@ class Guest
      * @ORM\Column(name="vegans", type="integer", nullable=true)
      */
     private $vegans;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Application\Sonata\UserBundle\Entity\User", inversedBy="guest")
+     * @ORM\JoinColumn(name="id_user", referencedColumnName="id", nullable=true)
+     */
+    private $user;    
 
     /**
      * Guest constructor.
@@ -300,4 +311,19 @@ class Guest
     {
         return $this->attending;
     }
+
+    public function __get($name)
+    {
+        $func = 'get' . ucfirst(strtolower($name));
+
+        return $this->$func();
+    }
+
+    public function __set($name, $value)
+    {
+        $func = 'set' . ucfirst(strtolower($name));
+        $this->$func($value);
+    }
+
+
 }

@@ -1,2 +1,4 @@
 email.error: No es una dirección email válida.
-guest.name: Este nombre y apellidos ya existen.
+guest.fullname.error: Este nombre y apellidos ya existen.
+user.name.error: Este valor no puede estar vacío.
+

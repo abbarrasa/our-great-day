@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -11,7 +11,7 @@ use AppBundle\Validator\Constraints as AppAsserts;
  * Enquiry
  *
  * @ORM\Table(name="ogd_enquiry")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\EnquiryRepository")
+ * @ORM\Entity(repositoryClass="AdminBundle\Repository\EnquiryRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Enquiry

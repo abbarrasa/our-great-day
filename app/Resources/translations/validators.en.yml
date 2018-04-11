@@ -1,2 +1,3 @@
 email.error: This value is not a valid email address.
-guest.name: These firstname and lastname are already in use.
+guest.fullname.error: These firstname and lastname are already in use.
+user.name.error: This value should not be blank.

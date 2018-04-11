@@ -2,9 +2,12 @@
 
 namespace Application\FOS\UserBundle\Form\Type;
 
+use AppBundle\Validator\Constraints\FullName;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 class RegistrationType extends AbstractType
 {
@@ -14,12 +17,23 @@ class RegistrationType extends AbstractType
             ->add('firstname', TextType::class, [
                 'label'              => 'form.firstname',
                 'required'           => false,
-                'translation_domain' => 'FOSUserBundle'
+                'translation_domain' => 'FOSUserBundle',
+                'constraints'        => new Length(['max' => 64])
             ])
             ->add('lastname', TextType::class, [
                 'label'              => 'form.lastname',
                 'required'           => false,
-                'translation_domain' => 'FOSUserBundle'
+                'translation_domain' => 'FOSUserBundle',
+                'constraints'        => new Length(['max' => 64])
+            ])
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver
+            ->setDefault('constraints', [
+                new FullName()
             ])
         ;
     }
