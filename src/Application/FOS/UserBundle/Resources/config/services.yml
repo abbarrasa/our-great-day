@@ -1,4 +1,6 @@
-parameters:
+parameters:    
+    user.controller.resetting.class: Application\FOS\UserBundle\Controller\ResettingController
+    user.controller.security.class: Application\FOS\UserBundle\Controller\SecurityController
     user.listener.registration.class: Application\FOS\UserBundle\EventListener\RegistrationListener
     user.listener.resetting.class: Application\FOS\UserBundle\EventListener\ResettingListener
     user.listener.flash.class: Application\FOS\UserBundle\EventListener\FlashListener
@@ -6,7 +8,7 @@ parameters:
 
 services:
     user.resetting.controller:
-        class: Application\FOS\UserBundle\Controller\ResettingController
+        class: "%user.controller.resetting.class%"
         arguments:
             - "@event_dispatcher"
             - "@fos_user.resetting.form.factory"
@@ -19,7 +21,7 @@ services:
             - [setContainer, ["@service_container"]]
             
     user.security.controller:
-        class: Application\FOS\UserBundle\Controller\SecurityController
+        class: "%user.controller.security.class%"
         arguments:
             - "@event_dispatcher"
             - "@security.csrf.token_manager"
