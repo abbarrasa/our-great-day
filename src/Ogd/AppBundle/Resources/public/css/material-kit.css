@@ -10830,13 +10830,13 @@ form {
     font-weight: 400;
     color: #f44336;
     right: 15px;
-    z-index: 2;
     display: block;
     text-align: right !important;
+    margin-bottom: 10px;
 }
 
 .bmd-error li {
-    padding-bottom: 8px;
+    padding-bottom: 0px;
 }
 
 .bmd-error .material-icons {
