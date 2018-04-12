@@ -60,6 +60,7 @@ class RegistrationListener implements EventSubscriberInterface
         $user = $event->getForm()->getData();
 
         $user->setEnabled(true);
+        $user->setConfirmationToken($this->tokenGenerator->generateToken());        
         //Send a welcome email to user
         $this->mailer->sendConfirmationEmailMessage($user);
         
