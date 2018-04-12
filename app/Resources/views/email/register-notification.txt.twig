@@ -2,17 +2,17 @@
 
 {% block subject %}
 {%- autoescape false -%}
-{{ 'email.register.email.subject'|trans({'%username%': user.username}, 'email') }}
+{{ 'email.register.subject'|trans({'%username%': user.username}, 'email') }}
 
 {%- endautoescape -%}
 {% endblock %}
 
 {% block body_text %}
 {% autoescape false %}
-{{ 'email.register.body_plain'|trans({'%username%': user.username, '%url%': absolute_url(path('homepage')), '%email%': email_admin}, 'email') }}
+{{ 'email.register.body_plain'|trans({'%username%': user.username, '%url%': url, '%email%': email_admin}, 'email') }}
 {% endautoescape %}
 {% endblock %}
 
 {% block content_html %}
-{{ 'email.register.body_html'|trans({'%username%': user.username, '%url%': absolute_url(path('homepage')), '%email%': email_admin}, 'email')|raw }}
+{{ 'email.register.body_html'|trans({'%username%': user.username, '%url%': url, '%email%': email_admin}, 'email')|raw }}
 {% endblock %}
