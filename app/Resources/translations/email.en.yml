@@ -38,16 +38,16 @@ email:
         body_plain: |
                     Hello %username%,
                     
-                    you are welcome!. Thank you for registering on our website and helping us improve so that Our Big Day is as great day as possible. You can now access %url%
+                    you are welcome!. Thank you for registering on our website and helping us improve so that Our Big Day is as great day as possible. You can now access %accessUrl%
                     
-                    We hope you like the website. If you have any suggestions, questions or just want to say hello, do not hesitate to contact us both from the web itself and by email.(mailto:)
+                    We hope you like the website. If you have any suggestions, questions or just want to say hello, do not hesitate to contact us both from the web itself and by email in %email%
                     
                     A huge greeting from Vero and Carlos. We are waiting you!
         body_html: |
-                    <p>Hello <a>%username%</a>,</p>                    
-                    <p>you are welcome!. Thank you for registering on our website and helping us improve so that <a>Our Great Day</a> is as great day as possible. You can now access clicking <a href="%url%">here</a>.</p>
-                    <p>We hope you like the website. If you have any suggestions, questions or just want to say hello, do not hesitate to contact us both from the web itself and by email (mailto:%email%).                    
-                    <a class="btn btn-primary" href="%url%">Access now!</a>                    
+                    <p>Hello <b>%username%</b>,</p>
+                    <p>you are welcome!. Thank you for registering on our website and helping us improve so that <b>Our Great Day</b> is as great day as possible. You can now access clicking <a href="%accessUrl%">here</a>.</p>
+                    <p>We hope you like the website. If you have any suggestions, questions or just want to say hello, do not hesitate to contact us both from the web itself and by email in <a href="mailto:%email%">%email%</a>.</p>
+                    <a class="btn btn-primary" href="%accessUrl%">Access now!</a>                    
                     <p>A huge greeting from Vero and Carlos. We are waiting you!</p>
     resetting:
         subject: 'Reset password'
