@@ -38,16 +38,16 @@ email:
         body_plain: |
                     Hola %username%,
                     
-                    ¡Bienvenido/a!. Gracias por registrarte en nuestra página web y ayudarnos a mejorar para que Nuestro Gran Día sea lo más grande posible. Ya puedes acceder pulsando el siguiente enlace: %url%
+                    ¡Bienvenido/a!. Gracias por registrarte en nuestra página web y ayudarnos a mejorar para que Nuestro Gran Día sea lo más grande posible. Ya puedes acceder pulsando el siguiente enlace: %accessUrl%
                     
                     Esperamos que te guste la web y si tienes alguna sugerencia, pregunta o simplemente quieres saludarnos, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico en %email%.
                     
                     Un enorme saludo de Vero y Carlos. ¡Te esperamos!
         body_html: |
                     <p>Hola <b>%username%</b>,</p>
-                    <p>¡Bienvenido/a!. Gracias por registrarte en nuestra página web y ayudarnos a mejorar para que <b>Nuestro Gran Día</b> sea lo más grande posible. Ya puedes acceder con tu usuario pulsando <a href="%url%">aquí</a>.</p>
+                    <p>¡Bienvenido/a!. Gracias por registrarte en nuestra página web y ayudarnos a mejorar para que <b>Nuestro Gran Día</b> sea lo más grande posible. Ya puedes acceder con tu usuario pulsando <a href="%accessUrl%">aquí</a>.</p>
                     <p>Esperamos que te guste la web y si tienes alguna sugerencia, pregunta o simplemente quieres saludarnos, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico en <a href="mailto:%email%">%email%</a>.
-                    <a class="btn btn-primary" href="%url%">¡Accede ahora!</a>
+                    <a class="btn btn-primary" href="%accessUrl%">¡Accede ahora!</a>
                     <p>Un enorme saludo de Vero y Carlos. ¡Te esperamos!</p>
     resetting:
         subject: 'Reestablecer contraseña'
