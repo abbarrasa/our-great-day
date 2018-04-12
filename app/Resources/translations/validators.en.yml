@@ -1,3 +1,4 @@
 email.error: This value is not a valid email address.
 guest.fullname.error: These firstname and lastname are already in use.
 user.name.error: This value should not be blank.
+password.format.error: This value should have at least one number.

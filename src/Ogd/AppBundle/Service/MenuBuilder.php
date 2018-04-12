@@ -25,7 +25,9 @@ class MenuBuilder
      *
      * @param FactoryInterface $factory
      * @param SocialUrlHelper $socialUrlHelper
-     * @param TranslatorInterface $translator     
+     * @param TranslatorInterface $translator
+     * @param AuthorizationCheckerInterface $authorizationChecker
+     * @param TokenStorageInterface $tokenStorage
      */
     public function __construct(
 	    FactoryInterface $factory,
@@ -67,40 +69,41 @@ class MenuBuilder
             ->setExtra('translation_domain', 'AppBundle')
         ;
 
-	if ($this->authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED')) {		
-//        $menu->addChild($this->tokenStorage->getToken()->getUser()->getUsername())
-//            ->setAttributes(['dropdown' => true, 'class' => 'nav-item', 'icon' => 'account_circle'])
-//            ->setLinkAttributes([
-//                'class' =>'nav-link',
-//                'data-toggle' => 'dropdown',
-//                'aria-expanded' => 'false'
-//            ])
-////            ->setExtra('translation_domain', 'AppBundle')
-//        ;
-//        $menu['User']
+        if ($this->authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $username = $this->tokenStorage->getToken()->getUser()->getUsername();
+            $menu->addChild($username)
+                ->setAttributes(['dropdown' => true, 'class' => 'nav-item', 'icon' => 'account_circle'])
+                ->setLinkAttributes([
+                    'class' =>'nav-link',
+                    'data-toggle' => 'dropdown',
+                    'aria-expanded' => 'false'
+                ])
+//              ->setExtra('translation_domain', 'AppBundle')
+        ;
+//        $menu[$username]
 //            ->addChild('Profile', array('uri' => '#'))
 //            ->setAttribute('divider_append', true)
 //            ->setLinkAttribute('class', 'dropdown-item')
 ////            ->setExtra('translation_domain', 'AppBundle')
 //        ;
-//        $menu['User']
-//            ->addChild('Logout', array('route' => 'fos_user_security_logout'))
-//            ->setLinkAttribute('class', 'dropdown-item')
-////            ->setExtra('translation_domain', 'AppBundle')
-//        ;		
-	} else {
-		$menu
-		    ->addChild('security.login.submit', ['route' => 'fos_user_security_login'])
-		    ->setAttributes(['icon' => 'fingerprint', 'class' => 'nav-item'])
-		    ->setLinkAttribute('class', 'nav-link')
-		    ->setExtra('translation_domain', 'FOSUserBundle')
-		;
-		$menu
-		    ->addChild('security.register.submit', ['route' => 'fos_user_registration_register'])
-		    ->setAttributes(['icon' => 'fingerprint', 'class' => 'nav-item'])
-		    ->setLinkAttribute('class', 'nav-link')
-		    ->setExtra('translation_domain', 'FOSUserBundle')
-		;		
+            $menu[$username]
+                ->addChild('Logout', array('route' => 'fos_user_security_logout'))
+                ->setLinkAttribute('class', 'dropdown-item')
+//              ->setExtra('translation_domain', 'AppBundle')
+            ;
+        } else {
+            $menu
+                ->addChild('security.login.submit', ['route' => 'fos_user_security_login'])
+                ->setAttributes(['icon' => 'fingerprint', 'class' => 'nav-item'])
+                ->setLinkAttribute('class', 'nav-link')
+                ->setExtra('translation_domain', 'FOSUserBundle')
+            ;
+            $menu
+                ->addChild('registration.submit', ['route' => 'fos_user_registration_register'])
+                ->setAttributes(['icon' => 'person_add', 'class' => 'nav-item'])
+                ->setLinkAttribute('class', 'nav-link')
+                ->setExtra('translation_domain', 'FOSUserBundle')
+            ;
 		
 //		    $menu
 //                ->addChild('Login', array('route' => 'homepage'))
@@ -112,7 +115,7 @@ class MenuBuilder
 //			    ->setAttribute('icon', 'vpn key')
 //			    ->setExtra('translation_domain', 'AppBundle')
 //		    ;				
-	}
+	    }
 	    
         $menu
             ->addChild('frontend.menu.contact_us', ['uri' => '#'])

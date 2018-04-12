@@ -10832,6 +10832,7 @@ form {
     right: 15px;
     z-index: 2;
     display: block;
+    text-align: right !important;
 }
 
 .bmd-error li {

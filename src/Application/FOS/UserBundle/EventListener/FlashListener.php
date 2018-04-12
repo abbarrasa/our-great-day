@@ -4,6 +4,7 @@ namespace Application\FOS\UserBundle\EventListener;
 
 use AppBundle\Templating\Helper\FlashMessageHelper;
 use FOS\UserBundle\EventListener\FlashListener as BaseListener;
+use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Session\Session;
 
