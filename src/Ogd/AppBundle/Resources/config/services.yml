@@ -20,13 +20,23 @@ services:
 
     app.menu.social:
         class: AppBundle\Service\MenuBuilder
-        arguments: ["@knp_menu.factory", "@app.helper.social_url", "@translator"]
+        arguments:
+            - "@knp_menu.factory"
+            - "@app.helper.social_url"
+            - "@translator"
+            - "@security.authorization_checker"
+            - "@security.token_storage"
         tags:
             - { name: knp_menu.menu_builder, method: createSocialMenu, alias: social } # The alias is what is used to retrieve the menu    
         
     app.menu.main:
         class: AppBundle\Service\MenuBuilder
-        arguments: ["@knp_menu.factory", "@app.helper.social_url", "@translator"]
+        arguments:
+            - "@knp_menu.factory"
+            - "@app.helper.social_url"
+            - "@translator"
+            - "@security.authorization_checker"
+            - "@security.token_storage"        
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main } # The alias is what is used to retrieve the menu
 
