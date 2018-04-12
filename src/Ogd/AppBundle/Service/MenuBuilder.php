@@ -4,6 +4,8 @@ namespace AppBundle\Service;
 use Knp\Menu\FactoryInterface;
 use AppBundle\Templating\Helper\SocialUrlHelper;
 use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class MenuBuilder
 {
@@ -12,7 +14,11 @@ class MenuBuilder
     /** @var SocialUrlHelper */
     private $socialUrlHelper;
     /** @var TranslatorInterface */
-    private $translator;	
+    private $translator;
+    /** @var AuthorizationCheckerInterface */
+    private $authorizationChecker;
+    /** @var TokenStorageInterface */	
+    private $tokenStorage;
 
     /**
      * MenuBuilder constructor.
@@ -21,11 +27,18 @@ class MenuBuilder
      * @param SocialUrlHelper $socialUrlHelper
      * @param TranslatorInterface $translator     
      */
-    public function __construct(FactoryInterface $factory, SocialUrlHelper $socialUrlHelper, TranslatorInterface $translator)
-    {
-        $this->factory    	= $factory;
-        $this->socialUrlHelper 	= $socialUrlHelper;
-        $this->translator 	= $translator;	    
+    public function __construct(
+	    FactoryInterface $factory,
+	    SocialUrlHelper $socialUrlHelper,
+	    TranslatorInterface $translator,
+	    AuthorizationCheckerInterface $authorizationChecker,
+	    TokenStorageInterface $tokenStorage
+    ) {
+        $this->factory    	    = $factory;
+        $this->socialUrlHelper 	    = $socialUrlHelper;
+        $this->translator 	    = $translator;
+        $this->authorizationChecker = $authorizationChecker;
+        $this->tokenStorage 	    = $tokenStorage;	    
     }
 
     public function createMainMenu()
@@ -54,13 +67,8 @@ class MenuBuilder
             ->setExtra('translation_domain', 'AppBundle')
         ;
 
-        $menu
-            ->addChild('security.login.submit', ['route' => 'fos_user_security_login'])
-            ->setAttributes(['icon' => 'fingerprint', 'class' => 'nav-item'])
-            ->setLinkAttribute('class', 'nav-link')
-            ->setExtra('translation_domain', 'FOSUserBundle')
-        ;
-//        $menu->addChild('User')
+	if ($this->authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED')) {		
+//        $menu->addChild($this->tokenStorage->getToken()->getUser()->getUsername())
 //            ->setAttributes(['dropdown' => true, 'class' => 'nav-item', 'icon' => 'account_circle'])
 //            ->setLinkAttributes([
 //                'class' =>'nav-link',
@@ -76,11 +84,36 @@ class MenuBuilder
 ////            ->setExtra('translation_domain', 'AppBundle')
 //        ;
 //        $menu['User']
-//            ->addChild('Logout', array('uri' => '#'))
+//            ->addChild('Logout', array('route' => 'fos_user_security_logout'))
 //            ->setLinkAttribute('class', 'dropdown-item')
 ////            ->setExtra('translation_domain', 'AppBundle')
-//        ;
-
+//        ;		
+	} else {
+		$menu
+		    ->addChild('security.login.submit', ['route' => 'fos_user_security_login'])
+		    ->setAttributes(['icon' => 'fingerprint', 'class' => 'nav-item'])
+		    ->setLinkAttribute('class', 'nav-link')
+		    ->setExtra('translation_domain', 'FOSUserBundle')
+		;
+		$menu
+		    ->addChild('security.register.submit', ['route' => 'fos_user_registration_register'])
+		    ->setAttributes(['icon' => 'fingerprint', 'class' => 'nav-item'])
+		    ->setLinkAttribute('class', 'nav-link')
+		    ->setExtra('translation_domain', 'FOSUserBundle')
+		;		
+		
+//		    $menu
+//                ->addChild('Login', array('route' => 'homepage'))
+//			    ->setAttribute('icon', 'exit to app')
+//			    ->setExtra('translation_domain', 'AppBundle')
+//		    ;
+//		    $menu
+//                ->addChild('Singup', array('route' => 'homepage'))
+//			    ->setAttribute('icon', 'vpn key')
+//			    ->setExtra('translation_domain', 'AppBundle')
+//		    ;				
+	}
+	    
         $menu
             ->addChild('frontend.menu.contact_us', ['uri' => '#'])
             ->setAttributes(['icon' => 'email', 'class' => 'nav-item'])
