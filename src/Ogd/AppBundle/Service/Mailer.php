@@ -83,7 +83,11 @@ class Mailer implements MailerInterface
      */
     public function sendConfirmationEmailMessage(UserInterface $user)
     {
-        $message = $this->getMessage(self::TEMPLATE_REGISTER_NOTIFICATION, ['user' => $user]);
+        $url = $this->router->generate('user_autologin', array('token' => $user->getConfirmationToken()), UrlGeneratorInterface::ABSOLUTE_URL);
+        $message = $this->getMessage(self::TEMPLATE_REGISTER_NOTIFICATION, [
+            'user' => $user,
+            'accessUrl' => $url
+        ]);
 
         return $this->sendEmailMessage($this->config['email_admin'], (string) $user->getEmail(), $message);
     }
