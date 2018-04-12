@@ -2,6 +2,7 @@ parameters:
     user.listener.registration.class: Application\FOS\UserBundle\EventListener\RegistrationListener
     user.listener.resetting.class: Application\FOS\UserBundle\EventListener\ResettingListener
     user.listener.flash.class: Application\FOS\UserBundle\EventListener\FlashListener
+    user.listener.authentication.class: Application\FOS\UserBundle\EventListener\AuthenticationListener
 
 services:
     user.resetting.controller:
@@ -16,6 +17,15 @@ services:
         public: true
         calls:
             - [setContainer, ["@service_container"]]
+            
+    user.security.controller:
+        class: Application\FOS\UserBundle\Controller\SecurityController
+        arguments:
+            - "@event_dispatcher"
+            - "@security.csrf.token_manager"
+        public: true
+        calls:
+            - [setContainer, ["@service_container"]]            
 
     fos_user.listener.email_confirmation:
         class:        "%user.listener.registration.class%"
@@ -34,3 +44,9 @@ services:
         arguments:    ["@session", "@app.helper.flash_message"]
         tags:
             - { name: kernel.event_subscriber }
+            
+    fos_user.listener.authentication:
+        class:        "%user.listener.authentication.class%"
+        arguments:    ["@fos_user.security.login_manager", "%fos_user.firewall_name%"]
+        tags:
+            - { name: kernel.event_subscriber }            
