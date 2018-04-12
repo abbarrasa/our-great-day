@@ -9,10 +9,10 @@
 
 {% block body_text %}
 {% autoescape false %}
-{{ 'email.register.body_plain'|trans({'%username%': user.username, '%url%': url, '%email%': email_admin}, 'email') }}
+{{ 'email.register.body_plain'|trans({'%username%': user.username, '%accessUrl%': accessUrl, '%email%': email_admin}, 'email') }}
 {% endautoescape %}
 {% endblock %}
 
 {% block content_html %}
-{{ 'email.register.body_html'|trans({'%username%': user.username, '%url%': url, '%email%': email_admin}, 'email')|raw }}
+{{ 'email.register.body_html'|trans({'%username%': user.username, '%accessUrl%': accessUrl, '%email%': email_admin}, 'email')|raw }}
 {% endblock %}
