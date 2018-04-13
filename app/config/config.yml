@@ -116,6 +116,9 @@ fos_user:
     resetting:
         form:
             type: Application\FOS\UserBundle\Form\Type\ResettingType
+    profile:
+        form:
+            type: Application\FOS\UserBundle\Form\Type\ProfileType
 
 # Sonata Admin Configuration
 sonata_user:
