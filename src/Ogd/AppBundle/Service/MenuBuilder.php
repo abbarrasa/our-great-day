@@ -81,7 +81,7 @@ class MenuBuilder
 //              ->setExtra('translation_domain', 'AppBundle')
         ;
 //        $menu[$username]
-//            ->addChild('Profile', array('uri' => '#'))
+//            ->addChild('Profile', array('route' => 'fos_user_profile_edit'))
 //            ->setAttribute('divider_append', true)
 //            ->setLinkAttribute('class', 'dropdown-item')
 ////            ->setExtra('translation_domain', 'AppBundle')
