@@ -64,7 +64,7 @@ class RegistrationListener implements EventSubscriberInterface
         //Send a welcome email to user
         $this->mailer->sendConfirmationEmailMessage($user);
         
-        $url = $this->router->generate('homepage');
+        $url = $this->router->generate('fos_user_profile_edit');
         $event->setResponse(new RedirectResponse($url));
     }
 }
