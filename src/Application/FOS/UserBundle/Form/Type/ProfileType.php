@@ -6,20 +6,40 @@ use AppBundle\Validator\Constraints\FullName;
 use AppBundle\Validator\Constraints\Password;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
-class RegistrationType extends AbstractType
+class ProfileType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $constraintsOptions = ['message' => 'fos_user.current_password.invalid'];
+
+        if (!empty($options['validation_groups'])) {
+            $constraintsOptions['groups'] = array(reset($options['validation_groups']));
+        }
+
         $builder
+            ->add('current_password', PasswordType::class, [
+                'label' => 'form.current_password',
+                'translation_domain' => 'FOSUserBundle',
+                'mapped' => false,
+                'constraints' => array(
+                    new NotBlank(),
+                    new UserPassword($constraintsOptions),
+                    new Password()
+                ),
+                'attr' => array(
+                    'autocomplete' => 'current-password',
+                ),
+            ])
             ->add('firstname', TextType::class, [
                 'label'              => 'form.firstname',
                 'required'           => false,
@@ -36,19 +56,6 @@ class RegistrationType extends AbstractType
                     new Length(['max' => 64])
                 ]
             ])
-            ->add('plainPassword', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'options' => [
-                    'translation_domain' => 'FOSUserBundle',
-                    'attr' => ['autocomplete' => 'new-password'],
-                ],
-                'first_options' => ['label' => 'form.password'],
-                'second_options' => ['label' => 'form.password_confirmation'],
-                'invalid_message' => 'fos_user.password.mismatch',
-                'constraints' => [
-                    new Password()
-                ]
-            ])
         ;
     }
 
@@ -58,15 +65,16 @@ class RegistrationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefault('constraints', [
-                new FullName()
-            ])
-        ;
+            ->setDefault(
+                'constraints', [
+                    new FullName()
+                ]
+            );
     }
 
     public function getParent()
     {
-        return 'fos_user_registration';
+        return 'fos_user_profile';
     }
 
     /**
@@ -79,6 +87,6 @@ class RegistrationType extends AbstractType
 
     public function getName()
     {
-        return 'app_user_registration';
+        return 'app_user_profile';
     }
 }

@@ -80,12 +80,12 @@ class MenuBuilder
                 ])
 //              ->setExtra('translation_domain', 'AppBundle')
         ;
-//        $menu[$username]
-//            ->addChild('Profile', array('route' => 'fos_user_profile_edit'))
-//            ->setAttribute('divider_append', true)
-//            ->setLinkAttribute('class', 'dropdown-item')
-////            ->setExtra('translation_domain', 'AppBundle')
-//        ;
+        $menu[$username]
+            ->addChild('Profile', array('route' => 'fos_user_profile_edit'))
+            ->setAttribute('divider_append', true)
+            ->setLinkAttribute('class', 'dropdown-item')
+//            ->setExtra('translation_domain', 'AppBundle')
+        ;
             $menu[$username]
                 ->addChild('Logout', array('route' => 'fos_user_security_logout'))
                 ->setLinkAttribute('class', 'dropdown-item')

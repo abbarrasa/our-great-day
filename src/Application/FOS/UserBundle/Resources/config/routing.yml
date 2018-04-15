@@ -1,0 +1,49 @@
+fos_user_security_login:
+    path: /login
+    defaults: { _controller: user.security.controller:loginAction }
+    methods: [GET, POST]
+
+fos_user_security_check:
+    path: /login_check
+    defaults: { _controller: user.security.controller:checkAction }
+    methods: [POST]
+
+fos_user_security_logout:
+    path: /logout
+    defaults: { _controller: user.security.controller:logoutAction }
+    methods: [GET, POST]
+
+fos_user_security_autologin:
+    path: /autologin/{token}
+    defaults: { _controller: user.security.controller:logoutAction }
+    methods: [GET]
+
+fos_user_profile_edit:
+    path: /profile
+    defaults: { _controller: fos_user.profile.controller:editAction }
+    methods: [GET, POST]
+
+fos_user_registration_register:
+    path: /register
+    defaults: { _controller: fos_user.registration.controller:registerAction }
+    methods: [GET, POST]
+
+fos_user_resetting_request:
+    path: /resetting/request
+    defaults: { _controller: user.resetting.controller:requestAction }
+    methods: [GET]
+
+fos_user_resetting_send_email:
+    path: /resetting/send-email
+    defaults: { _controller: user.resetting.controller:sendEmailAction }
+    methods: [POST]
+
+fos_user_resetting_check_email:
+    path: /resetting/check-email/{username}
+    defaults: { _controller: user.resetting.controller:checkEmailAction }
+    methods: [GET]
+
+fos_user_resetting_reset:
+    path: /resetting/reset/{token}
+    defaults: { _controller: user.resetting.controller:resetAction }
+    methods: [GET, POST]

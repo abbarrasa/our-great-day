@@ -2,25 +2,20 @@
 
 {% block fos_user_content %}
     <div class="row">
-        <div class="col-md-5 col-xs-12 ml-auto mr-auto">
+        <div class="col-md-6 col-xs-12 ml-auto mr-auto">
             <div class="card card-signup">
                 <div class="card-header card-header-primary text-center">
                     <h4 class="card-title">{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}</h4>
                 </div>
                 <div class="card-body">
-                    <p class="description text-center">{{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime}, 'FOSUserBundle')|nl2br }}</p>
+                    <p class="card-description text-center">{{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime}, 'FOSUserBundle')|nl2br }}</p>
                 </div>
                 <div class="card-footer">
-                    {#<div class="col-md-6 col-xs-12">#}
-                    {#<a href="{{ path('fos_user_registration_register') }}">#}
-                    {#<h6 class="text-left">Regístrate</h6>#}
-                    {#</a>#}
-                    {#</div>#}
-                    {#<div class="col-md-6 col-xs-12">#}
-                    {#<a href="{{ path('fos_user_resetting_request') }}">#}
-                    {#<h6 class="text-right">¿Olvidaste tu contraseña?</h6>#}
-                    {#</a>#}
-                    {#</div>#}
+                    <div class="col-md-6 col-xs-12">
+                        <a href="{{ path('homepage') }}">
+                            <h6 class="text-left">Ir a inicio</h6>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

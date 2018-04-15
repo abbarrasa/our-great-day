@@ -39,17 +39,6 @@ registration:
     submit: Register
     flash:
         user_created: 'The user has been created successfully.'
-    email:
-        subject: 'Welcome %username%!'
-        message: |
-            Hello %username%!
-
-            To finish activating your account - please visit %confirmationUrl%
-
-            This link can only be used once to validate your account.
-
-            Regards,
-            the Team.
 
 resetting:
     check_email: |
@@ -64,15 +53,9 @@ resetting:
         submit: 'Change password'
     flash:
         success: 'The password has been reset successfully.'
-    email:
-        subject: 'Reset Password'
-        message: |
-            Hello %username%!
-
-            To reset your password - please visit %confirmationUrl%
-
-            Regards,
-            the Team.
+        error:
+            username: 'Username or email invalid.'
+            account_locked: 'There are some problems with your user account. Contact the administrator <a class="contact-us" href="#">here</a>.'
 
 # Global strings
 layout:
@@ -92,3 +75,10 @@ form:
     new_password_confirmation: 'Repeat new password'
     firstname: 'First name'
     lastname: 'Last name'
+    password.help: 'It must have at least 8 characters and a number.'
+    current_password.help: 'Leave it blank to NOT change it.'
+
+flash:
+    success: Success!
+    error: Ooops!
+    info: Info

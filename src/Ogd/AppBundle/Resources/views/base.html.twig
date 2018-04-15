@@ -126,7 +126,7 @@
                         {% for flashMessage in flashMessages %}
                             materialKitDemo.showNotification(
                                 '{{ flashMessage.title }}',
-                                '{{ flashMessage.message }}',
+                                '{{ flashMessage.message|raw }}',
                                 '{{ flashMessage.alert }}',
                                 '{{ flashMessage.icon }}'
                             );

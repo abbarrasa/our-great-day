@@ -10,6 +10,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class ResettingType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -32,6 +35,14 @@ class ResettingType extends AbstractType
     public function getParent()
     {
         return 'fos_user_resetting';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return $this->getName();
     }
 
     public function getName()

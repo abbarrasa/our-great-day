@@ -2,7 +2,7 @@
 
 {% block subject %}
 {%- autoescape false -%}
-{{ 'email.resetting.subject'|trans({'%username%': user.username, 'email'}) }}
+{{ 'email.resetting.subject'|trans({'%username%': user.username}, 'email') }}
 {%- endautoescape -%}
 {% endblock %}
 

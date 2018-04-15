@@ -22,9 +22,9 @@ class SecurityController extends BaseController
     }
 
     /**
-     * @Route("/autologin/{token}", name="user_autologin")
      * @param Request $request
      * @param $token
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function autologinAction(Request $request, $token)
     {

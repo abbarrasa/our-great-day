@@ -7,6 +7,7 @@ use AdminBundle\Entity\Joined;
 use FOS\UserBundle\Mailer\MailerInterface;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class Mailer implements MailerInterface
 {
@@ -21,6 +22,9 @@ class Mailer implements MailerInterface
 
     /** @var \Twig_Environment */
     protected $environment;
+
+    /** @var \Symfony\Bundle\FrameworkBundle\Routing\Router */
+    protected $router;
 
     /** @var ContainerInterface */
     protected $container;
@@ -37,6 +41,7 @@ class Mailer implements MailerInterface
         $this->container   = $container;
         $this->mailer      = $container->get('mailer');
         $this->environment = $container->get('twig');
+        $this->router      = $container->get('router');
         $this->config      = $container->getParameter('mailer');
     }
 
@@ -83,7 +88,7 @@ class Mailer implements MailerInterface
      */
     public function sendConfirmationEmailMessage(UserInterface $user)
     {
-        $url = $this->router->generate('user_autologin', array('token' => $user->getConfirmationToken()), UrlGeneratorInterface::ABSOLUTE_URL);
+        $url = $this->router->generate('fos_user_security_autologin', array('token' => $user->getConfirmationToken()), UrlGeneratorInterface::ABSOLUTE_URL);
         $message = $this->getMessage(self::TEMPLATE_REGISTER_NOTIFICATION, [
             'user' => $user,
             'accessUrl' => $url

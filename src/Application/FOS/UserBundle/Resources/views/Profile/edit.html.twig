@@ -1,5 +1,37 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends "@App/base.html.twig" %}
+{% trans_default_domain 'AppBundle' %}
 
-{% block fos_user_content %}
-{% include "@FOSUser/Profile/edit_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block title %}{{ 'profile.edit.submit'|trans }}{% endblock %}
+
+{% block main %}
+    <div id="first-section" class="section section-basic sr">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 text-center ml-auto mr-auto">
+                    <div class="section-description">
+                        <h2 class="title">{{ 'frontend.welcome.title'|trans|raw }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mr-auto ml-auto">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title text-center">{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}</h4>
+                        </div>
+                        <div class="card-body">
+                            {% include "@FOSUser/Profile/edit_content.html.twig" %}
+                        </div>
+                        <div class="card-footer">
+                            {#<div class="col-md-6 col-xs-12">#}
+                            {#<a href="{{ path('fos_user_security_login') }}">#}
+                            {#<h6 class="text-left">Entra!</h6>#}
+                            {#</a>#}
+                            {#</div>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main %}
