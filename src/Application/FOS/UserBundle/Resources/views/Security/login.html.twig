@@ -1,6 +1,7 @@
 {% extends "@FOSUser/layout.html.twig" %}
-
 {% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}{{ 'security.login.title'|trans }}{% endblock %}
 
 {% block fos_user_content %}
 <div class="row">
