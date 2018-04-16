@@ -12,12 +12,16 @@ group:
 
 security:
     login:
+        title: 'Log in'
         username: Username or Email
         password: Password
         remember_me: 'Remember me'
         submit: 'Log in'
-
+        forgotten_password: 'Did you forget your password?'
+        register: 'Sign up'
 profile:
+    title: 'Your Great <em>Profile</em>'
+    header: 'Update your profile'
     show:
         username: Username
         email: Email
@@ -32,20 +36,23 @@ change_password:
         success: 'The password has been changed.'
 
 registration:
+    title: 'Sign up'
     check_email: |
         An email has been sent to %email%. It contains an activation link you must click to activate your account.
     confirmed: 'Congrats %username%, your account is now activated.'
-    back: 'Back to the originating page.'
+    back: 'Back to home'
     submit: Register
     flash:
         user_created: 'The user has been created successfully.'
 
 resetting:
+    title: 'Reset your password'
     check_email: |
         An email has been sent. It contains a link you must click to reset your password.
         Note: You can only request a new password once within %tokenLifetime% hours.
 
         If you don't get an email check your spam folder or try again.
+    back: 'Back to home'        
     request:
         username: 'Username or email address'
         submit: 'Reset password'
