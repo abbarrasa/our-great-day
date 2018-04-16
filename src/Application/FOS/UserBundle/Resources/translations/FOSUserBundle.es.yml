@@ -51,7 +51,7 @@ resetting:
         success: 'La contraseña se ha cambiado con éxito.'
         error:
             username: 'El nombre de usuario o email no es válido.'
-            account_locked: 'Existen problemas con tu cuenta. Ponte en contacto con el administrador <a class="contact-us" href="#">aquí</a>.'
+            account_locked: 'Existen problemas con tu cuenta. Ponte en contacto con el administrador <a class="alert-link contact-us" href="#">aquí</a>.'
 
 layout:
     logout: Salir
