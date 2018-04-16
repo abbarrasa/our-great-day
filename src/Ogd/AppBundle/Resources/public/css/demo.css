@@ -573,13 +573,13 @@ body {
     color: #FFFFFF;
 }
 
-.navbar .navbar-nav .nav-item.active .nav-link:not(.btn),
+/*.navbar .navbar-nav .nav-item.active .nav-link:not(.btn),
 .navbar .navbar-nav .nav-item .nav-link:not(.btn):focus,
 .navbar .navbar-nav .nav-item .nav-link:not(.btn):hover,
 .navbar .navbar-nav .nav-item .nav-link:not(.btn):active {
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 0.1875rem;
-}
+}*/
 
 .navbar .logo-container {
     width: 27px;
