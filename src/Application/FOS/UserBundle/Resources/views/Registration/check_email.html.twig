@@ -1,7 +1,26 @@
 {% extends "@FOSUser/layout.html.twig" %}
-
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% block title %}{{ 'registration.title'|trans }}{% endblock %}
+
 {% block fos_user_content %}
-    <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+    <div class="row">
+        <div class="col-md-6 col-xs-12 ml-auto mr-auto">
+            <div class="card card-signup">
+                <div class="card-header card-header-primary text-center">
+                    <h4 class="card-title">{{ 'resetting.request.title'|trans }}</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-description text-center">{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+                </div>
+                <div class="card-footer">
+                    <div class="col-md-6 col-xs-12">
+                        <a href="{{ path('homepage') }}">
+                            <h6 class="text-left">{{ 'resetting.back'|trans }}</h6>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock fos_user_content %}
