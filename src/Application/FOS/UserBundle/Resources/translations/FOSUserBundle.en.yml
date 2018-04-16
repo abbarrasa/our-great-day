@@ -46,7 +46,6 @@ registration:
         user_created: 'The user has been created successfully.'
 
 resetting:
-    title: 'Reset your password'
     check_email: |
         An email has been sent. It contains a link you must click to reset your password.
         Note: You can only request a new password once within %tokenLifetime% hours.
@@ -54,9 +53,11 @@ resetting:
         If you don't get an email check your spam folder or try again.
     back: 'Back to home'        
     request:
+        title: 'Reset your password'
         username: 'Username or email address'
         submit: 'Reset password'
     reset:
+        title: 'Change your password'    
         submit: 'Change password'
     flash:
         success: 'The password has been reset successfully.'
