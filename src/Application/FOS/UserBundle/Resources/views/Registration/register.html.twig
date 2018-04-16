@@ -1,4 +1,7 @@
 {% extends "@FOSUser/layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}{{ 'registration.title'|trans }}{% endblock %}
 
 {% block fos_user_content %}
     <div class="row">
@@ -13,7 +16,7 @@
                 <div class="card-footer">
                     <div class="col-md-6 col-xs-12">
                         <a href="{{ path('fos_user_security_login') }}">
-                            <h6 class="text-left">Entra!</h6>
+                            <h6 class="text-left">{{ 'registration.login'|trans }}</h6>
                         </a>
                     </div>
                 </div>
