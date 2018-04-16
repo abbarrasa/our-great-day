@@ -42,7 +42,6 @@ registration:
         user_created: 'El usuario se ha creado satisfactoriamente.'
 
 resetting:
-    title: '¿Olvidaste tu contraseña?'
     check_email: |
         Se ha enviado un correo electrónico a tu cuenta de correo. Contiene un enlace de activación al que debes acceder para restablecer tu contraseña.
         Nota: Solo se puede solicitar una nueva contraseña cada %tokenLifetime% horas.
@@ -50,9 +49,11 @@ resetting:
         Si no recibes un correo electrónico, comprueba tu carpeta de correo no deseado o inténtalo de nuevo.
     back: 'Ir a la página original'    
     request:
+        title: '¿Olvidaste tu contraseña?'    
         username: 'Usuario o Email'
         submit: 'Restablecer contraseña'        
     reset:
+        title: 'Cambia tu contraseña'
         submit: 'Cambiar contraseña'
     flash:
         success: 'La contraseña se ha cambiado con éxito.'
