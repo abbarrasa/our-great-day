@@ -47,7 +47,7 @@ email:
                     <p>Hola <b>%username%</b>,</p>
                     <p>¡Bienvenido/a!. Gracias por registrarte en nuestra página web y ayudarnos a mejorar para que <b>Nuestro Gran Día</b> sea lo más grande posible. Ya puedes acceder con tu usuario pulsando <a href="%accessUrl%">aquí</a>.</p>
                     <p>Esperamos que te guste la web y si tienes alguna sugerencia, pregunta o simplemente quieres saludarnos, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico en <a href="mailto:%email%">%email%</a>.
-                    <a class="btn btn-primary" href="%accessUrl%">¡Accede ahora!</a>
+                    <p><a class="btn btn-primary" href="%accessUrl%">¡Accede ahora!</a></p>
                     <p>Un enorme saludo de Vero y Carlos. ¡Te esperamos!</p>
     resetting:
         subject: 'Reestablecer contraseña'
@@ -66,5 +66,5 @@ email:
                     <p>Has solicitado reestablecer tu contraseña. Para restablecer tu contraseña, por favor visita <a href="%confirmationUrl%">este enlace</a>.</p>
                     <p>Si no has solicitado reestablecer tu contraseña, no hagas caso a este correo.</p>                    
                     <p>Esperamos haberte ayudado y si tienes alguna sugerencia o pregunta, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico en <a href="mailto:%email%">%email%</a>.</p>
-                    <a class="btn btn-primary" href="%confirmationUrl%">Reestablece tu contraseña</a>                    
+                    <p><a class="btn btn-primary" href="%confirmationUrl%">Reestablece tu contraseña</a></p>
                     <p>Un enorme saludo de Vero y Carlos. ¡Te esperamos!</p>
