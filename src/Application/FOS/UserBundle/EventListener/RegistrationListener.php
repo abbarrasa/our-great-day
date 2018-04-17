@@ -16,29 +16,19 @@ class RegistrationListener implements EventSubscriberInterface
     /** @var MailerInterface */
     private $mailer;
 
-    /** @var TokenGeneratorInterface */
-    private $tokenGenerator;
-
     /** @var UrlGeneratorInterface */
     private $router;
-
-    /** @var SessionInterface */
-    private $session;
 
     /**
      * RegistrationListener constructor.
      *
      * @param MailerInterface         $mailer
-     * @param TokenGeneratorInterface $tokenGenerator
      * @param UrlGeneratorInterface   $router
-     * @param SessionInterface        $session
      */
-    public function __construct(MailerInterface $mailer, TokenGeneratorInterface $tokenGenerator, UrlGeneratorInterface $router, SessionInterface $session)
+    public function __construct(MailerInterface $mailer, UrlGeneratorInterface $router)
     {
         $this->mailer = $mailer;
-        $this->tokenGenerator = $tokenGenerator;
         $this->router = $router;
-        $this->session = $session;
     }
 
     /**
@@ -59,8 +49,7 @@ class RegistrationListener implements EventSubscriberInterface
         /** @var $user \FOS\UserBundle\Model\UserInterface */
         $user = $event->getForm()->getData();
 
-        $user->setEnabled(true);
-        $user->setConfirmationToken($this->tokenGenerator->generateToken());        
+        $user->setEnabled(true);    
         //Send a welcome email to user
         $this->mailer->sendConfirmationEmailMessage($user);
         
