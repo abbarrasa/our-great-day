@@ -11,7 +11,9 @@ final class Events
      *
      * @Event("FOS\UserBundle\Event\FilterUserResponseEvent")
      */
-    const USER_AUTOLOGIN = 'user.autologin';
+    const AUTOLOGIN_USER_COMPLETE = 'autologin.user.completed';
+    
+    const AUTOLOGIN_USER_ACCOUNT_LOCKED = 'autologin.user.account.locked';
 
     /**
      * The RESETTING_REQUEST_USER_INVALID event occurs when the user requested is invalid in resetting process.
@@ -23,6 +25,5 @@ final class Events
      */
     const RESETTING_REQUEST_USERNAME_INVALID = 'resetting.request.username.invalid';
 
-    const RESETTING_ACCOUNT_LOCKED = 'resetting.account.locked';
-
+    const RESETTING_ACCOUNT_LOCKED = 'resetting.account.locked';    
 }
