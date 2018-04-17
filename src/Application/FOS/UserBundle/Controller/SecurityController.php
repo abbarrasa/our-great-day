@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Nzo\UrlEncryptorBundle\Annotations\ParamDecryptor;
 
 class SecurityController extends BaseController
 {
@@ -23,19 +24,18 @@ class SecurityController extends BaseController
 
     /**
      * @param Request $request
-     * @param $token
+     * @param $username
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @ParamDecryptor(params={"username"})     
      */
-    public function autologinAction(Request $request, $token)
+    public function autologinAction(Request $request, $username)
     {
-        $userManager = $this->userManager;
-        $user = $userManager->findUserByConfirmationToken($token);
+        $userManager = $this->userManager;        
+        $user = $userManager->findUserByConfirmationToken($username);
         if (null === $user) {
             throw new NotFoundHttpException(sprintf('The user with confirmation token "%s" does not exist', $token));
         }
 
-        $user->setConfirmationToken(null);
-        $user->setEnabled(true);
         $userManager->updateUser($user);
 
         $response = $this->redirectToRoute('homepage');
