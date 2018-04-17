@@ -72,7 +72,7 @@ class ResettingListener implements EventSubscriberInterface
     public function onResettingResetRequest(GetResponseUserEvent $event, $eventName, EventDispatcherInterface $eventDispatcher)
     {
         if (!$event->getUser()->isEnabled()) {
-            $eventDispatcher->dispatch(Events::RESETTING_ACCOUNT_LOCKED, $event);
+            $eventDispatcher->dispatch(Events::RESETTING_REQUEST_ACCOUNT_LOCKED, $event);
 
             $url = $this->router->generate('fos_user_resetting_request');
             $event->setResponse(new RedirectResponse($url));

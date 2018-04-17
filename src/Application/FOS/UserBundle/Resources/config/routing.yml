@@ -14,7 +14,7 @@ fos_user_security_logout:
     methods: [GET, POST]
 
 fos_user_security_autologin:
-    path: /autologin/{token}
+    path: /autologin/{username}
     defaults: { _controller: user.security.controller:logoutAction }
     methods: [GET]
 

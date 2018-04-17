@@ -2,24 +2,24 @@
 
 namespace Application\FOS\UserBundle\Controller;
 
+use Application\FOS\UserBundle\Event\Events;
 use FOS\UserBundle\Controller\SecurityController as BaseController;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
+use FOS\UserBundle\Event\GetResponseNullableUserEvent;
+use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Nzo\UrlEncryptorBundle\Annotations\ParamDecryptor;
 
 class SecurityController extends BaseController
 {
     private $eventDispatcher;
-    private $tokenManager;
+    private $userManager;
 
-    public function __construct(EventDispatcherInterface $eventDispatcher, CsrfTokenManagerInterface $tokenManager)
+    public function __construct(EventDispatcherInterface $eventDispatcher, UserManagerInterface $userManager)
     {
         $this->eventDispatcher = $eventDispatcher;
-        $this->tokenManager = $tokenManager;
+        $this->userManager = $userManager;
     }
 
     /**
@@ -30,17 +30,19 @@ class SecurityController extends BaseController
      */
     public function autologinAction(Request $request, $username)
     {
-        $userManager = $this->userManager;        
-        $user = $userManager->findUserByConfirmationToken($username);
-        if (null === $user) {
-            throw new NotFoundHttpException(sprintf('The user with confirmation token "%s" does not exist', $token));
+        $user = $this->userManager->findUserByUsername($username);
+        $event = new GetResponseNullableUserEvent($user, $request);
+        $this->eventDispatcher->dispatch(Events::AUTOLOGIN_USER_INITIALIZE, $event);
+
+        if (($response = $event->getResponse()) !== null) {
+            return $response;
         }
 
-        $userManager->updateUser($user);
+        $this->userManager->updateUser($user);
 
         $response = $this->redirectToRoute('homepage');
         $this->eventDispatcher->dispatch(
-            Events::USER_AUTOLOGIN,
+            Events::AUTOLOGIN_USER_COMPLETED,
             new FilterUserResponseEvent($user, $request, $response)
         );
 

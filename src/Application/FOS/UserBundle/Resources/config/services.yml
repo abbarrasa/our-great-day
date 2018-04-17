@@ -24,14 +24,14 @@ services:
         class: "%user.controller.security.class%"
         arguments:
             - "@event_dispatcher"
-            - "@security.csrf.token_manager"
+            - "@fos_user.user_manager"
         public: true
         calls:
             - [setContainer, ["@service_container"]]            
 
     fos_user.listener.email_confirmation:
         class:        "%user.listener.registration.class%"
-        arguments:    ["@AppBundle\\Service\\Mailer", "@fos_user.util.token_generator", "@router", "@session"]
+        arguments:    ["@AppBundle\\Service\\Mailer", "@router"]
         tags:
             - { name: kernel.event_subscriber }
     
@@ -51,4 +51,4 @@ services:
         class:        "%user.listener.authentication.class%"
         arguments:    ["@fos_user.security.login_manager", "%fos_user.firewall_name%"]
         tags:
-            - { name: kernel.event_subscriber }            
+            - { name: kernel.event_subscriber }

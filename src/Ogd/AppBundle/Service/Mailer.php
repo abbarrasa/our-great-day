@@ -6,6 +6,7 @@ use AdminBundle\Entity\Enquiry;
 use AdminBundle\Entity\Joined;
 use FOS\UserBundle\Mailer\MailerInterface;
 use FOS\UserBundle\Model\UserInterface;
+use Nzo\UrlEncryptorBundle\UrlEncryptor\UrlEncryptor;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -28,7 +29,8 @@ class Mailer implements MailerInterface
 
     /** @var ContainerInterface */
     protected $container;
-    
+
+    /** @var UrlEncryptor */
     protected $encryptor;
 
     /** @var array */
