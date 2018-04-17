@@ -4,6 +4,7 @@ namespace Application\FOS\UserBundle\Event;
 
 final class Events
 {
+    const AUTOLOGIN_USER_INITIALIZE = 'autologin.user.initialize';
     /**
      * The USER_AUTOLOGIN event occurs after validating the user token login of a autologin link.
      *
@@ -11,7 +12,7 @@ final class Events
      *
      * @Event("FOS\UserBundle\Event\FilterUserResponseEvent")
      */
-    const AUTOLOGIN_USER_COMPLETE = 'autologin.user.completed';
+    const AUTOLOGIN_USER_COMPLETED = 'autologin.user.completed';
     
     const AUTOLOGIN_USER_ACCOUNT_LOCKED = 'autologin.user.account.locked';
 
