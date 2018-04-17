@@ -28,6 +28,8 @@ class Mailer implements MailerInterface
 
     /** @var ContainerInterface */
     protected $container;
+    
+    protected $encryptor;
 
     /** @var array */
     protected $config;
@@ -42,6 +44,7 @@ class Mailer implements MailerInterface
         $this->mailer      = $container->get('mailer');
         $this->environment = $container->get('twig');
         $this->router      = $container->get('router');
+        $this->encryptor   = $container->get('nzo_url_encryptor');        
         $this->config      = $container->getParameter('mailer');
     }
 
@@ -88,7 +91,7 @@ class Mailer implements MailerInterface
      */
     public function sendConfirmationEmailMessage(UserInterface $user)
     {
-        $url = $this->router->generate('fos_user_security_autologin', array('token' => $user->getConfirmationToken()), UrlGeneratorInterface::ABSOLUTE_URL);
+        $url = $this->router->generate('fos_user_security_autologin', ['username' => $this->encryptor->decrypt($user->getUsername())], UrlGeneratorInterface::ABSOLUTE_URL);
         $message = $this->getMessage(self::TEMPLATE_REGISTER_NOTIFICATION, [
             'user' => $user,
             'accessUrl' => $url
