@@ -23,7 +23,8 @@ class FlashListener extends BaseListener
     /** @var string[]  */
     private static $errorMessages = [
         Events::RESETTING_REQUEST_USERNAME_INVALID => 'resetting.flash.error.username',
-        Events::RESETTING_ACCOUNT_LOCKED => 'resetting.flash.error.account_locked'
+        Events::RESETTING_ACCOUNT_LOCKED => 'resetting.flash.error.account_locked',    
+        Events::AUTOLOGIN_USER_ACCOUNT_LOCKED = 'autologin.flash.error.account.locked';        
     ];
 
     /** @var Session */
@@ -55,7 +56,8 @@ class FlashListener extends BaseListener
             FOSUserEvents::REGISTRATION_COMPLETED => 'addSuccessFlash',
             FOSUserEvents::RESETTING_RESET_COMPLETED => 'addSuccessFlash',
             Events::RESETTING_REQUEST_USERNAME_INVALID => 'addErrorFlash',
-            Events::RESETTING_ACCOUNT_LOCKED => 'addErrorFlash'
+            Events::RESETTING_ACCOUNT_LOCKED => 'addErrorFlash',
+            Events::AUTOLOGIN_USER_ACCOUNT_LOCKED => 'addErrorFlash'
         );
     }
 
