@@ -15,7 +15,7 @@ services:
             - "@fos_user.user_manager"
             - "@fos_user.util.token_generator"
             - "@AppBundle\\Service\\Mailer"
-            - "%fos_user.resetting.retry_ttl%"
+            - "%fos_user.resetting.token_ttl%"
         public: true
         calls:
             - [setContainer, ["@service_container"]]
