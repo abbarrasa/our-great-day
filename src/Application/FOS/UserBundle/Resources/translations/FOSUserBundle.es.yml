@@ -59,7 +59,7 @@ resetting:
     flash:
         success: 'La contraseña se ha cambiado con éxito.'
         error:
-            username: 'El nombre de usuario o email no es válido.'
+            username_invalid: 'El nombre de usuario o email no es válido.'
             account_locked: 'Existen problemas con tu cuenta. Ponte en contacto con el administrador <a class="alert-link contact-us" href="#">aquí</a>.'
 
 layout:
@@ -85,3 +85,9 @@ flash:
     success: Bien!
     error: Ooops!
     info: Info
+
+autologin:
+    flash:
+        error:
+            username_invalid: 'El nombre de usuario o email no es válido.'
+            account_locked: 'Existen problemas con tu cuenta. Ponte en contacto con el administrador <a class="alert-link contact-us" href="#">aquí</a>.'
