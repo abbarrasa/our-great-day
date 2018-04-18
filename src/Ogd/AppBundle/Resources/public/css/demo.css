@@ -2575,3 +2575,9 @@ a.scroll-arrow:hover {
 .card-signup .card-body .container {
     padding-top: 0 !important;
 }
+
+.card-signup .card-body p.card-description {
+    margin-left: 10px;
+    margin-right: -10px;
+    font-size: 1.14em;
+}

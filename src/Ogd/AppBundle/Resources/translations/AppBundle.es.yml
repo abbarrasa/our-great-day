@@ -45,7 +45,7 @@ frontend:
         notify_me: Notifícame
         success: Te has unido a la lista con éxito. Te avisaremos cuando el sitio web esté listo.
     guest:
-        title: Nuestros Grandiosos <em>Invitados</em>
+        title: Nuestros grandiosos <em>Invitados</em>
         description: Desde esta página puedes confirmar tu asistencia o rechazar nuestra invitación (en cuyo caso lo lamentaremos mucho). Para ello deberás buscarte primero en la lista de invitados y después enviar la confirmación. Si no consigues encontrarte y piensas que deberías estar o tienes cualquer otro problema puedes dirigirte a nosotros por <a class="contact-us" href="#">aquí</a>. No lo pienses mucho y asiste... sin tí seguro que no será igual.
         firstname: Tu nombre
         lastname: Tus apellidos
@@ -62,7 +62,7 @@ frontend:
         not_found: No se encontraron coincidencias. Inténtalo de nuevo concretando tu búsqueda un poco más.
         multiple_matches: Se encontraron varias coincidencias. Inténtalo de nuevo concretando tu búsqueda un poco más.
     guestbook:
-        title: Nuestro Gran <em>Libro de invitados</em>
+        title: Nuestro gran <em>Libro de invitados</em>
         description: No seas tímido/a. Mándanos un original mensajito que nos alegre si cabe un poco más nuestro gran día. De antemano, muchísimas gracias.
         send_message: Envíanos tu mensaje
         send: Enviar
@@ -85,11 +85,14 @@ frontend:
         title: Bienvenidos a todos a <em>Nuestro Gran Día</em>
         description:
     bio:
-        title: Nuestras Grandes <em>Biografías</em>
+        title: Nuestras grandes <em>Biografías</em>
         bride: Ella
         groom: Él
     timeline:
-        title: Nuestra Gran <em>Historia</em>
+        title: Nuestra gran <em>Historia</em>
         to_be_continued: Continuará . . .
     location:
-        title: Nuestro Gran <em>Lugar de la Celebración</em>
+        title: Nuestro gran <em>Lugar de la celebración</em>
+    profile:
+        title: Tu gran <em>Perfil de usuario</em>
+        description: Do not be shy!. Send us an original message that would make us happy in our great day. Beforehand, thank you very much to all.

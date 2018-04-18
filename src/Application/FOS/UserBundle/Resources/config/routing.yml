@@ -15,7 +15,7 @@ fos_user_security_logout:
 
 fos_user_security_autologin:
     path: /autologin/{username}
-    defaults: { _controller: user.security.controller:logoutAction }
+    defaults: { _controller: user.security.controller:autologinAction }
     methods: [GET]
 
 fos_user_profile_edit:

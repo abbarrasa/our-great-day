@@ -45,7 +45,7 @@ frontend:
         notify_me: Notify me
         success: You have been joined successfully. We will notify you when the website is ready.
     guest:
-        title: Our Great <em>Guests</em>
+        title: Our great <em>Guests</em>
         description: On this page you can confirm your attendance or reject our invitation (in which case we will be very sorry). To do this, you must first search yourself in the guest list and then send your confirmation. If you can not find yourself and you think you should be or have some other problem, you can contact us <a class="contact-us" href="#">here</a>. Do not think about it much and attend... without you, it will not be the same.
         firstname: Your Firstname
         lastname: Your Lastname
@@ -62,7 +62,7 @@ frontend:
         not_found: No matches found. Try to specify your search again.
         multiple_matches: There are several coincidences. Try to specify your search again.
     guestbook:
-        title: Our Great <em>Guestbook</em>
+        title: Our great <em>Guestbook</em>
         description: Do not be shy!. Send us an original message that would make us happy in our great day. Beforehand, thank you very much to all.
         send_message: Send your message
         send: Send
@@ -85,11 +85,14 @@ frontend:
         title: Welcome y'all to <em>Our Great Day</em>
         description:
     bio:
-        title: Our Great <em>Lifes</em>
+        title: Our great <em>Lifes</em>
         bride: Bride
         groom: Groom
     timeline:
-        title: Our Great <em>Story</em>
+        title: Our great <em>Story</em>
         to_be_continued: To be continued . . .
     location:
-        title: Our Great <em>Wedding Location</em>
+        title: Our great <em>Wedding Location</em>
+    profile:
+        title: Your great <em>Profile</em>
+        description: Do not be shy!. Send us an original message that would make us happy in our great day. Beforehand, thank you very much to all.

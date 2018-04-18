@@ -15,8 +15,13 @@
                 </div>
                 <div class="card-footer">
                     <div class="col-md-6 col-xs-12">
+                        <a href="{{ path('fos_user_security_login') }}">
+                            <h6 class="text-left">{{ 'resetting.login'|trans }}</h6>
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
                         <a href="{{ path('homepage') }}">
-                            <h6 class="text-left">{{ 'resetting.back'|trans }}</h6>
+                            <h6 class="text-right">{{ 'resetting.back'|trans }}</h6>
                         </a>
                     </div>
                 </div>

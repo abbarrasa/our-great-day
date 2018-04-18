@@ -9,7 +9,6 @@ group:
         updated: 'The group has been updated.'
         created: 'The group has been created.'
         deleted: 'The group has been deleted.'
-
 security:
     login:
         title: 'Log in'
@@ -20,7 +19,7 @@ security:
         forgotten_password: 'Did you forget your password?'
         register: 'Sign up'
 profile:
-    title: 'Your Great <em>Profile</em>'
+    title: 'Your great profile'
     header: 'Update your profile'
     show:
         username: Username
@@ -34,7 +33,6 @@ change_password:
     submit: 'Change password'
     flash:
         success: 'The password has been changed.'
-
 registration:
     title: 'Sign up'
     check_email: |
@@ -45,7 +43,6 @@ registration:
     submit: Register
     flash:
         user_created: 'The user has been created successfully.'
-
 resetting:
     check_email: |
         An email has been sent. It contains a link you must click to reset your password.
@@ -53,6 +50,7 @@ resetting:
 
         If you don't get an email check your spam folder or try again.
     back: 'Back to home'        
+    login: 'Log in'
     request:
         title: 'Reset your password'
         username: 'Username or email address'
@@ -71,8 +69,8 @@ layout:
     logout: 'Log out'
     login: 'Log in'
     register: Register
+    profile: 'Your profile'
     logged_in_as: 'Logged in as %username%'
-
 form:
     group_name: 'Group name'
     username: Username
@@ -86,12 +84,10 @@ form:
     lastname: 'Last name'
     password.help: 'It must have at least 8 characters and a number.'
     current_password.help: 'Leave it blank to NOT change it.'
-
 flash:
     success: Success!
     error: Ooops!
     info: Info
-    
 autologin:
     flash:
         error:

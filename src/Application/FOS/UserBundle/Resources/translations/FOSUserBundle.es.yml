@@ -19,7 +19,7 @@ security:
         forgotten_password: '¿Olvidaste tu contraseña?'
         register: 'Crea tu cuenta'
 profile:
-    title: 'Tu gran <em>perfil de usuario</em>'
+    title: 'Tu gran perfil de usuario'
     header: 'Modifica tus datos'
     show:
         username: 'Nombre de usuario'
@@ -49,6 +49,7 @@ resetting:
 
         Si no recibes un correo electrónico, comprueba tu carpeta de correo no deseado o inténtalo de nuevo.
     back: 'Ir a la página original'    
+    login: 'Accede con tu cuenta'
     request:
         title: '¿Olvidaste tu contraseña?'    
         username: 'Usuario o Email'
@@ -61,11 +62,11 @@ resetting:
         error:
             username_invalid: 'El nombre de usuario o email no es válido.'
             account_locked: 'Existen problemas con tu cuenta. Ponte en contacto con el administrador <a class="alert-link contact-us" href="#">aquí</a>.'
-
 layout:
     logout: Salir
     login: Entrar
     register: Registrar
+    profile: 'Tu perfil'
     logged_in_as: 'Identificado como %username%'
 form:
     group_name: 'Nombre de grupo'
@@ -80,12 +81,10 @@ form:
     lastname: 'Apellidos'
     password.help: 'Debe tener al menos 8 caracteres y un número.'
     current_password.help: 'Déjala en blanco para NO cambiarla.'
-
 flash:
     success: Bien!
     error: Ooops!
     info: Info
-
 autologin:
     flash:
         error:

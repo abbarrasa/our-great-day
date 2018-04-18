@@ -81,25 +81,25 @@ class MenuBuilder
 //              ->setExtra('translation_domain', 'AppBundle')
         ;
         $menu[$username]
-            ->addChild('Profile', array('route' => 'fos_user_profile_edit'))
+            ->addChild('layout.profile', array('route' => 'fos_user_profile_edit'))
             ->setAttribute('divider_append', true)
             ->setLinkAttribute('class', 'dropdown-item')
-//            ->setExtra('translation_domain', 'AppBundle')
+            ->setExtra('translation_domain', 'FOSUserBundle')
         ;
             $menu[$username]
-                ->addChild('Logout', array('route' => 'fos_user_security_logout'))
+                ->addChild('layout.logout', array('route' => 'fos_user_security_logout'))
                 ->setLinkAttribute('class', 'dropdown-item')
-//              ->setExtra('translation_domain', 'AppBundle')
+              ->setExtra('translation_domain', 'FOSUserBundle')
             ;
         } else {
             $menu
-                ->addChild('security.login.submit', ['route' => 'fos_user_security_login'])
+                ->addChild('layout.login', ['route' => 'fos_user_security_login'])
                 ->setAttributes(['icon' => 'fingerprint', 'class' => 'nav-item'])
                 ->setLinkAttribute('class', 'nav-link')
                 ->setExtra('translation_domain', 'FOSUserBundle')
             ;
             $menu
-                ->addChild('registration.submit', ['route' => 'fos_user_registration_register'])
+                ->addChild('layout.register', ['route' => 'fos_user_registration_register'])
                 ->setAttributes(['icon' => 'person_add', 'class' => 'nav-item'])
                 ->setLinkAttribute('class', 'nav-link')
                 ->setExtra('translation_domain', 'FOSUserBundle')

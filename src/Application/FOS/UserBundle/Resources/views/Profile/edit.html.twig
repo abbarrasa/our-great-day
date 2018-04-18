@@ -1,15 +1,16 @@
 {% extends "@App/base.html.twig" %}
 {% trans_default_domain 'AppBundle' %}
 
-{% block title %}{{ 'profile.header'|trans({}, 'FOSUserBundle') }}{% endblock %}
+{% block title %}{{ 'profile.title'|trans({}, 'FOSUserBundle') }}{% endblock %}
 
 {% block main %}
-    <div id="first-section" class="section section-basic sr">
+    <div id="first-section" class="section section-basic section-purple-gradient sr">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-center ml-auto mr-auto">
                     <div class="section-description">
-                        <h2 class="title">{{ 'profile.title'|trans|raw }}</h2>
+                        <h2 class="title">{{ 'frontend.profile.title'|trans|raw }}</h2>
+                        <p class="description">{{ 'frontend.profile.description'|trans }}</p>
                     </div>
                 </div>
             </div>
@@ -22,13 +23,7 @@
                         <div class="card-body">
                             {% include "@FOSUser/Profile/edit_content.html.twig" %}
                         </div>
-                        <div class="card-footer">
-                            {#<div class="col-md-6 col-xs-12">#}
-                            {#<a href="{{ path('fos_user_security_login') }}">#}
-                            {#<h6 class="text-left">Entra!</h6>#}
-                            {#</a>#}
-                            {#</div>#}
-                        </div>
+                        <div class="card-footer"></div>
                     </div>
                 </div>
             </div>

@@ -30,6 +30,7 @@ class ProfileType extends AbstractType
             ->add('current_password', PasswordType::class, [
                 'label' => 'form.current_password',
                 'translation_domain' => 'FOSUserBundle',
+                'required' => false,
                 'mapped' => false,
                 'constraints' => array(
                     new NotBlank(),

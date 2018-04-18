@@ -8,9 +8,21 @@ use FOS\UserBundle\EventListener\AuthenticationListener as BaseListener;
 use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use FOS\UserBundle\Security\LoginManagerInterface;
 
 class AuthenticationListener extends BaseListener
 {
+    private $eventDispatcher;
+    private $router;
+
+    public function __construct(LoginManagerInterface $loginManager, EventDispatcherInterface $eventDispatcher, UrlGeneratorInterface $router, $firewallName)
+    {
+        parent::__construct($loginManager, $firewallName);
+        $this->eventDispatcher = $eventDispatcher;
+        $this->router = $router;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -35,12 +47,12 @@ class AuthenticationListener extends BaseListener
         if (($user = $event->getUser()) === null) {
             $eventDispatcher->dispatch(Events::AUTOLOGIN_USER_USERNAME_INVALID, $event);
 
-            $url = $this->router->generate('fos_user_resetting_request');
+            $url = $this->router->generate('homepage');
             $event->setResponse(new RedirectResponse($url));
         } else if(!$user->isEnabled()) {
             $eventDispatcher->dispatch(Events::AUTOLOGIN_USER_ACCOUNT_LOCKED, $event);
 
-            $url = $this->router->generate('fos_user_resetting_request');
+            $url = $this->router->generate('homepage');
             $event->setResponse(new RedirectResponse($url));
         }
     }

@@ -19,7 +19,7 @@ services:
         public: true
         calls:
             - [setContainer, ["@service_container"]]
-            
+
     user.security.controller:
         class: "%user.controller.security.class%"
         arguments:
@@ -49,6 +49,6 @@ services:
             
     fos_user.listener.authentication:
         class:        "%user.listener.authentication.class%"
-        arguments:    ["@fos_user.security.login_manager", "%fos_user.firewall_name%"]
+        arguments:    ["@fos_user.security.login_manager", "@event_dispatcher", "@router", "%fos_user.firewall_name%"]
         tags:
             - { name: kernel.event_subscriber }
