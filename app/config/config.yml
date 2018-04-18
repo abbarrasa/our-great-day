@@ -155,3 +155,7 @@ sonata_admin:
                 label: admin.group.settings
                 label_catalogue: AdminBundle
                 icon: '<i class="fa fa-sliders"></i>'
+
+nzo_url_encryptor:
+    secret_key: "%secret%       # optional, max length of 100 characters.
+    secret_iv:  "%secret_iv%    # optional, max length of 100 characters.
