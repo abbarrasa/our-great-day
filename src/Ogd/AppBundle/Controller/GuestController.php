@@ -13,6 +13,7 @@ use AdminBundle\Entity\Guest;
 use AdminBundle\Entity\Greeting;
 use AppBundle\Form\Type\GreetingType;
 use AppBundle\Form\Type\GuestConfirmationType;
+use Nzo\UrlEncryptorBundle\Annotations\ParamDecryptor;
 
 class GuestController extends Controller
 {
@@ -23,10 +24,11 @@ class GuestController extends Controller
      */
     public function guestAction(Request $request)
     {
+        $encryptor =  $this->get('nzo_url_encryptor');
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED') &&
             ($guest = $this->getUser()->getGuest()) !== null
         ) {
-            return $this->redirectToRoute('guest_confirm', ['id' => $guest->getId()]);            
+            return $this->redirectToRoute('guest_confirm', ['id' => $encryptor->encrypt($guest->getId())]);            
         }
         
         $form = $this->createForm(GuestConfirmationType::class);
@@ -40,7 +42,7 @@ class GuestController extends Controller
                 } else if (count($guests) == 0) {
                     $form->addError(new FormError('frontend.guest.not_found'));
                 } else {
-                    return $this->redirectToRoute('guest_confirm', ['id' => $guests[0]->getId()]);
+                    return $this->redirectToRoute('guest_confirm', ['id' => $encryptor->encrypt($guests[0]->getId())]);
                 }
             } else {
                 $form->addError(new FormError('frontend.form.error'));
@@ -57,6 +59,7 @@ class GuestController extends Controller
      * @param Request $request
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @ParamDecryptor(params={"id"})     
      */
     public function confirmAction(Request $request, $id)
     {
