@@ -114,6 +114,7 @@ fos_user:
         form:
             type: Application\FOS\UserBundle\Form\Type\RegistrationType
     resetting:
+        token_ttl: 86400
         form:
             type: Application\FOS\UserBundle\Form\Type\ResettingType
     profile:
