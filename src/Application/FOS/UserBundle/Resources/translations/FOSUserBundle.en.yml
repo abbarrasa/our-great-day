@@ -63,7 +63,7 @@ resetting:
     flash:
         success: 'The password has been reset successfully.'
         error:
-            username: 'Username or email invalid.'
+            username_invalid: 'Username or email invalid.'
             account_locked: 'There are some problems with your user account. Contact the administrator <a class="alert-link contact-us" href="#">here</a>.'
 
 # Global strings
@@ -91,3 +91,9 @@ flash:
     success: Success!
     error: Ooops!
     info: Info
+    
+autologin:
+    flash:
+        error:
+            username_invalid: 'Username or email invalid.'
+            account_locked: 'There are some problems with your user account. Contact the administrator <a class="alert-link contact-us" href="#">here</a>.'
