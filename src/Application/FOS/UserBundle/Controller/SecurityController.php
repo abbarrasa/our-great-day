@@ -9,7 +9,6 @@ use FOS\UserBundle\Event\GetResponseNullableUserEvent;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Nzo\UrlEncryptorBundle\Annotations\ParamDecryptor;
 
 class SecurityController extends BaseController
 {
@@ -17,11 +16,11 @@ class SecurityController extends BaseController
     private $userManager;
     private $tokenGenerator;
 
-    public function __construct(EventDispatcherInterface $eventDispatcher, UserManagerInterface $userManager, TokenGeneratorInterface $tokenGenerator)
+    public function __construct(EventDispatcherInterface $eventDispatcher, UserManagerInterface $userManager, UrlEncryptor $encryptor)
     {
         $this->eventDispatcher = $eventDispatcher;
         $this->userManager = $userManager;
-        $this->tokenGenerator = $tokenGenerator;
+        $this->encryptor = $encryptor;
     }
 
     /**
@@ -31,7 +30,7 @@ class SecurityController extends BaseController
      */
     public function autologinAction(Request $request, $token)
     {
-        $username = $this->tokenGenerator->decrypt($token);
+        $username = $this->encryptor->decrypt(base64_decode(strtr($token, '-_', '+/')));
         $user = $this->userManager->findUserByUsername($username);
         $event = new GetResponseNullableUserEvent($user, $request);
         $this->eventDispatcher->dispatch(Events::AUTOLOGIN_USER_INITIALIZE, $event);
