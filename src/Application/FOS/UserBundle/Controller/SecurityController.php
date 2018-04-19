@@ -15,21 +15,23 @@ class SecurityController extends BaseController
 {
     private $eventDispatcher;
     private $userManager;
+    private $tokenGenerator;
 
-    public function __construct(EventDispatcherInterface $eventDispatcher, UserManagerInterface $userManager)
+    public function __construct(EventDispatcherInterface $eventDispatcher, UserManagerInterface $userManager, TokenGeneratorInterface $tokenGenerator)
     {
         $this->eventDispatcher = $eventDispatcher;
         $this->userManager = $userManager;
+        $this->tokenGenerator = $tokenGenerator;
     }
 
     /**
      * @param Request $request
      * @param $username
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @ParamDecryptor(params={"username"})     
      */
-    public function autologinAction(Request $request, $username)
+    public function autologinAction(Request $request, $token)
     {
+        $username = $this->tokenGenerator->decrypt($token);
         $user = $this->userManager->findUserByUsername($username);
         $event = new GetResponseNullableUserEvent($user, $request);
         $this->eventDispatcher->dispatch(Events::AUTOLOGIN_USER_INITIALIZE, $event);
