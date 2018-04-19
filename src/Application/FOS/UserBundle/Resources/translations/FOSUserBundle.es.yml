@@ -21,6 +21,7 @@ security:
 profile:
     title: 'Tu gran perfil de usuario'
     header: 'Modifica tus datos'
+    change_password: 'Cambia tu contraseña'
     show:
         username: 'Nombre de usuario'
         email: Email
