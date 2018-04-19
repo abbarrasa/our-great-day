@@ -16,31 +16,25 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class ProfileType extends AbstractType
 {
     /**
+     * @var string
+     */
+    private $class;
+    /**
+     * @param string $class The User class name
+     */
+    public function __construct($class)
+    {
+        $this->class = $class;
+    }
+        
+    /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $constraintsOptions = ['message' => 'fos_user.current_password.invalid'];
-
-        if (!empty($options['validation_groups'])) {
-            $constraintsOptions['groups'] = array(reset($options['validation_groups']));
-        }
-
         $builder
-            ->add('current_password', PasswordType::class, [
-                'label' => 'form.current_password',
-                'translation_domain' => 'FOSUserBundle',
-                'required' => false,
-                'mapped' => false,
-                'constraints' => array(
-                    new NotBlank(),
-                    new UserPassword($constraintsOptions),
-                    new Password()
-                ),
-                'attr' => array(
-                    'autocomplete' => 'current-password',
-                ),
-            ])
+            ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
+            ->add('email', EmailType::class, array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))            
             ->add('firstname', TextType::class, [
                 'label'              => 'form.firstname',
                 'required'           => false,
@@ -66,16 +60,14 @@ class ProfileType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefault(
-                'constraints', [
+            ->setDefaults([
+                'data_class' => $this->class,
+                'csrf_token_id' => 'profile',                
+                'constraints' => [
                     new FullName()
                 ]
-            );
-    }
-
-    public function getParent()
-    {
-        return 'fos_user_profile';
+            ])
+        ;
     }
 
     /**
