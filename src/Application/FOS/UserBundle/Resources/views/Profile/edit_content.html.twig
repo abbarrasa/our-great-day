@@ -1,5 +1,16 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% if not form.vars.valid %}
+    <div class="alert alert-danger">
+        <div class="container">
+            <div class="alert-icon">
+                <i class="material-icons">error_outline</i>
+            </div>
+            <b>{{ 'frontend.error'|trans({}, 'AppBundle') }}</b> {{ 'frontend.form.error'|trans({}, 'AppBundle') }}
+        </div>
+    </div>
+{% endif %}
+
 {{ form_start(form, { 'action': path('fos_user_profile_edit') }) }}
     <div class="row">
         <div class="col form-group bmd-form-group{% if not form.email.vars.valid %} has-danger{% endif %}">
