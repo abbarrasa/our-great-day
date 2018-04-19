@@ -93,7 +93,8 @@ class Mailer implements MailerInterface
      */
     public function sendConfirmationEmailMessage(UserInterface $user)
     {
-        $url = $this->router->generate('fos_user_security_autologin', ['username' => $this->encryptor->encrypt($user->getUsername())], UrlGeneratorInterface::ABSOLUTE_URL);
+        $token = rtrim(strtr(base64_encode($this->encryptor->encrypt($user->getUsername())), '+/', '-_'), '=');
+        $url = $this->router->generate('fos_user_security_autologin', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
         $message = $this->getMessage(self::TEMPLATE_REGISTER_NOTIFICATION, [
             'user' => $user,
             'accessUrl' => $url
