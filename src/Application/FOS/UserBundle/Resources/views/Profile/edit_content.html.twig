@@ -23,19 +23,6 @@
     </div>
 
     <div class="row">
-        <div class="col form-group bmd-form-group{% if not form.current_password.vars.valid %} has-danger{% endif %}">
-            {{ form_label(form.current_password, form.current_password, {'label_attr': {'class': 'bmd-label-floating'}}) }}
-            {{ form_widget(form.current_password, {'attr': {'class': 'form-control'}}) }}
-            <span class="bmd-help">{{ 'form.current_password.help'|trans }}</span>
-            <span class="bmd-help">{{ 'form.password.help'|trans }}</span>
-            {{ form_errors(form.current_password) }}
-            {% if not form.current_password.vars.valid %}
-                <span class="material-icons form-control-feedback">clear</span>
-            {% endif %}
-        </div>
-    </div>
-
-    <div class="row">
         <div class="col form-group bmd-form-group{% if not form.firstname.vars.valid %} has-danger{% endif %}">
             {{ form_label(form.firstname, form.firstname, {'label_attr': {'class': 'bmd-label-floating'}}) }}
             {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
