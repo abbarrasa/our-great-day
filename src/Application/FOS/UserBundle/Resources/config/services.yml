@@ -5,6 +5,7 @@ parameters:
     user.listener.resetting.class: Application\FOS\UserBundle\EventListener\ResettingListener
     user.listener.flash.class: Application\FOS\UserBundle\EventListener\FlashListener
     user.listener.authentication.class: Application\FOS\UserBundle\EventListener\AuthenticationListener
+    user.listener.editing_profile.class: Application\FOS\UserBundle\EventListener\EditingProfileListener
 
 services:
     user.resetting.controller:
@@ -23,12 +24,13 @@ services:
     user.security.controller:
         class: "%user.controller.security.class%"
         arguments:
+            - "@security.csrf.token_manager"
             - "@event_dispatcher"
             - "@fos_user.user_manager"
             - "@nzo_url_encryptor"
         public: true
         calls:
-            - [setContainer, ["@service_container"]]            
+            - [setContainer, ["@service_container"]]
 
     fos_user.listener.email_confirmation:
         class:        "%user.listener.registration.class%"
@@ -53,3 +55,15 @@ services:
         arguments:    ["@fos_user.security.login_manager", "@router", "%fos_user.firewall_name%"]
         tags:
             - { name: kernel.event_subscriber }                     
+
+    fos_user.listener.editing_profile:
+        class:        "%user.listener.editing_profile.class%"
+        arguments:    ["@router"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    user.profile.form.type:
+        class: Application\FOS\UserBundle\Form\Type\ProfileType
+        arguments: ["%fos_user.model.user.class%"]
+        tags:
+            - { name: form.type, alias: app_user_profile }

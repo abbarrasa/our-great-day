@@ -25,7 +25,7 @@ fos_user_profile_edit:
     
 fos_user_change_password:
     path: /profile/change-password
-    defaults: { _controller: user.change_password.controller:changePasswordAction }
+    defaults: { _controller: fos_user.change_password.controller:changePasswordAction }
     methods: [GET, POST]    
 
 fos_user_registration_register:

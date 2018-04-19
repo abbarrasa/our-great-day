@@ -7,8 +7,10 @@ use FOS\UserBundle\Controller\SecurityController as BaseController;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\GetResponseNullableUserEvent;
 use FOS\UserBundle\Model\UserManagerInterface;
+use Nzo\UrlEncryptorBundle\UrlEncryptor\UrlEncryptor;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class SecurityController extends BaseController
 {
@@ -16,8 +18,16 @@ class SecurityController extends BaseController
     private $userManager;
     private $encryptor;
 
-    public function __construct(EventDispatcherInterface $eventDispatcher, UserManagerInterface $userManager, UrlEncryptor $encryptor)
+    /**
+     * SecurityController constructor.
+     * @param CsrfTokenManagerInterface $tokenManager
+     * @param EventDispatcherInterface $eventDispatcher
+     * @param UserManagerInterface $userManager
+     * @param UrlEncryptor $encryptor
+     */
+    public function __construct(CsrfTokenManagerInterface $tokenManager, EventDispatcherInterface $eventDispatcher, UserManagerInterface $userManager, UrlEncryptor $encryptor)
     {
+        parent::__construct($tokenManager);
         $this->eventDispatcher = $eventDispatcher;
         $this->userManager = $userManager;
         $this->encryptor = $encryptor;
@@ -25,8 +35,8 @@ class SecurityController extends BaseController
 
     /**
      * @param Request $request
-     * @param $username
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @param $token
+     * @return null|\Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function autologinAction(Request $request, $token)
     {
