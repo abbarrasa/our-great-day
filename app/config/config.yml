@@ -121,6 +121,9 @@ fos_user:
     profile:
         form:
             type: Application\FOS\UserBundle\Form\Type\ProfileType
+    change_password:
+        form:
+            type: Application\FOS\UserBundle\Form\Type\ChangePasswordType        
 
 # Sonata Admin Configuration
 sonata_user:
