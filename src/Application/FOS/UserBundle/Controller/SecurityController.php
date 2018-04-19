@@ -14,7 +14,7 @@ class SecurityController extends BaseController
 {
     private $eventDispatcher;
     private $userManager;
-    private $tokenGenerator;
+    private $encryptor;
 
     public function __construct(EventDispatcherInterface $eventDispatcher, UserManagerInterface $userManager, UrlEncryptor $encryptor)
     {
