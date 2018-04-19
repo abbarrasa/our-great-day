@@ -13,13 +13,11 @@ use FOS\UserBundle\Security\LoginManagerInterface;
 
 class AuthenticationListener extends BaseListener
 {
-    private $eventDispatcher;
     private $router;
 
-    public function __construct(LoginManagerInterface $loginManager, EventDispatcherInterface $eventDispatcher, UrlGeneratorInterface $router, $firewallName)
+    public function __construct(LoginManagerInterface $loginManager, UrlGeneratorInterface $router, $firewallName)
     {
         parent::__construct($loginManager, $firewallName);
-        $this->eventDispatcher = $eventDispatcher;
         $this->router = $router;
     }
 
