@@ -10,7 +10,7 @@ parameters:
 services:
     fos_user.util.token_generator.default:
         class: "%user.util.token_generator.class%"
-        public: false
+        arguments: ["@"]
         
     user.resetting.controller:
         class: "%user.controller.resetting.class%"
