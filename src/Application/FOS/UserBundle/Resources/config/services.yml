@@ -5,8 +5,13 @@ parameters:
     user.listener.resetting.class: Application\FOS\UserBundle\EventListener\ResettingListener
     user.listener.flash.class: Application\FOS\UserBundle\EventListener\FlashListener
     user.listener.authentication.class: Application\FOS\UserBundle\EventListener\AuthenticationListener
+    user.util.token_generator.class: Application\FOS\UserBundle\Util\TokenGenerator
 
 services:
+    fos_user.util.token_generator.default:
+        class: "%user.util.token_generator.class%"
+        public: false
+        
     user.resetting.controller:
         class: "%user.controller.resetting.class%"
         arguments:
@@ -51,4 +56,4 @@ services:
         class:        "%user.listener.authentication.class%"
         arguments:    ["@fos_user.security.login_manager", "@router", "%fos_user.firewall_name%"]
         tags:
-            - { name: kernel.event_subscriber }
+            - { name: kernel.event_subscriber }                     
