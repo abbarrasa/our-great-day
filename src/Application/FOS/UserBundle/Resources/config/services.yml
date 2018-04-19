@@ -25,6 +25,7 @@ services:
         arguments:
             - "@event_dispatcher"
             - "@fos_user.user_manager"
+            - "@nzo_url_encryptor"
         public: true
         calls:
             - [setContainer, ["@service_container"]]            
