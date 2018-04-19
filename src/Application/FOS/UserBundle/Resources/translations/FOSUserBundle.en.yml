@@ -21,6 +21,7 @@ security:
 profile:
     title: 'Your great profile'
     header: 'Update your profile'
+    change_password: 'Change your password'    
     show:
         username: Username
         email: Email
