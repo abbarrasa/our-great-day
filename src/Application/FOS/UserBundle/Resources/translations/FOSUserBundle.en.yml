@@ -32,6 +32,7 @@ profile:
 
 change_password:
     submit: 'Change password'
+    back: 'Back to profile'
     flash:
         success: 'The password has been changed.'
 registration:
