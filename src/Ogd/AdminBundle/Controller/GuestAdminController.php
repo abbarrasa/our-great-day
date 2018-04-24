@@ -50,6 +50,8 @@ class GuestAdminController extends Controller
                         $this->addFlash('sonata_flash_warning', sprintf(
                             'No se ha podido importar: (%s)', $result->formattedErrors($this->get('twig'))
                         ));
+                        
+                        return new RedirectResponse($this->admin->generateUrl('import'));
                     }
 
                     return new RedirectResponse($this->admin->generateUrl('list'));
