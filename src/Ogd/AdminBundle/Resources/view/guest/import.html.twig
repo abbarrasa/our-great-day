@@ -1,6 +1,9 @@
 {% extends '@SonataAdmin/standard_layout.html.twig' %}
 
 {% block sonata_admin_content %}
+
+    {% include '@Admin/guest/partials/flashmessege.html.twig' %}
+
     <div class="sonata-ba-form">
         {{ form_start(form) }}
         <div class="row">
