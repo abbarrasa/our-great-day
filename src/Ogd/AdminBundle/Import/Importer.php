@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Import;
+namespace AdminBundle\Import;
 
 use AdminBundle\Import\Storage\ImportStorage;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
@@ -39,9 +39,10 @@ class Importer
      */
     protected function getStorage(AbstractAdmin $admin)
     {
-        $name  = $this->classToTableName($admin->getClass()) . 'ImportStorage';
+        $namespace = __NAMESPACE__ . '\\Storage';
+        $className  = $namespace . '\\' . self::classToTableName($admin->getClass()) . 'ImportStorage';
 
-        return (new \ReflectionClass($name))->newInstance($admin);
+        return (new \ReflectionClass($className))->newInstance($admin);
     }
     
     protected function classToTableName($className)

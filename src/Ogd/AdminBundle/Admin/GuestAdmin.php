@@ -106,7 +106,7 @@ class GuestAdmin extends AbstractAdmin
     {
         $list = parent::configureActionButtons($action, $object);
 
-        $list['import']['template'] =  '@Admin/guest/import-button.html.twig';
+        $list['import']['template'] =  '@Admin/guest/partials/import-button.html.twig';
 
         return $list;
     }

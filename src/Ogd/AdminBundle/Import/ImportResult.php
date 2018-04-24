@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Import;
+namespace AdminBundle\Import;
 
 class ImportResult
 {

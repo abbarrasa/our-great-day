@@ -26,8 +26,8 @@ class GuestImportStorage implements ImportStorage
                 continue;
             }
             
-            if (in_array($email, array_column($visited, 'email'))) {
-                $errors[$number] = sprintf("Value of %s column is repeated", $firstname, $lastname);
+            if (!empty($email) && in_array($email, array_column($visited, 'email'))) {
+                $errors[$number] = sprintf("Value of %s column is repeated", $email);
                 continue;                
             }
                 
@@ -46,12 +46,17 @@ class GuestImportStorage implements ImportStorage
 
     public function update(array $row)
     {
-        $object = $this->getObject($row['email'], $row['firstname'], $row['lastname']);
-        
+        $object = $this->getObject($row['firstname'], $row['lastname'], $row['email']);
         foreach($row as $property => $value) {
-            $object->__set($property, $value);
+            if (!empty($value)) {
+                if (in_array($property, ['guests', 'vegans', 'childs'])) {
+                    $object->__set($property, (int)$value);
+                } else {
+                    $object->__set($property, (string)$value);
+                }
+            }
         }
-        
+
         $this->admin->create($object);
     }
                                            
@@ -63,7 +68,7 @@ class GuestImportStorage implements ImportStorage
         }
         
         if (($object = $modelManager->findOneBy(Guest::class, ['firstname' => $firstname, 'lastname' => $lastname])) !== null) {
-            return $object;            
+            return $object;
         }
         
         return new Guest();
