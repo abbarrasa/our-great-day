@@ -24,6 +24,18 @@ class GreetingAdmin extends AbstractAdmin
             ->add('status')
         ;
     }
+    
+    // Fields to be shown on create/edit forms
+    protected function configureFormFields(FormMapper $formMapper)
+    {
+        $formMapper
+            ->add('message', 'textarea', ['label' => 'Message'])
+            ->add('status', 'choice', [
+                'label' => 'Status',
+                'choices' => Greeting::getStatusList(),
+            ])
+        ;
+    }    
 
     /**
      * Fields to be shown on lists
@@ -37,11 +49,7 @@ class GreetingAdmin extends AbstractAdmin
             ->add('publishedAt')
             ->add('status', 'choice', [
                 'editable' => true,
-                'choices' => [
-                    Greeting::STATUS_PENDING => 'Pending',
-                    Greeting::STATUS_APPROVED => 'Approved',
-                    Greeting::STATUS_REJECTED => 'Rejected',
-                ],
+                'choices' => Greeting::getStatusList(),
             ])
         ;
     }
@@ -76,5 +84,4 @@ class GreetingAdmin extends AbstractAdmin
 
         return $actions;
     }
-
 }
