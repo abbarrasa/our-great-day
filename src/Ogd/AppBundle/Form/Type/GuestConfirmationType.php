@@ -40,14 +40,6 @@ class GuestConfirmationType extends AbstractType
             ->setDefault('translation_domain', 'AppBundle')
         ;
 
-//        if ('guest' === $this->requestStack->getCurrentRequest()->get('_route')) {
-//            $resolver->setDefaults([
-//                'constraints' => [
-//                    new GuestExists()
-//                ],
-//            ]);
-//        }
-//
         if ('guest_confirm' === $this->requestStack->getCurrentRequest()->get('_route')) {
             $resolver
                 ->setDefault('data_class', 'AdminBundle\Entity\Guest')

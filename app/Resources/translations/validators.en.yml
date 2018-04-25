@@ -1,4 +1,6 @@
 email.error: This value is not a valid email address.
 guest.fullname.error: These firstname and lastname are already in use.
+guest.multiple_matches.error: No matches found. Try to specify your search again.
+guest.not_found.error: There are several coincidences. Try to specify your search again.
 user.name.error: This value should not be blank.
 password.format.error: This value should have at least one number.

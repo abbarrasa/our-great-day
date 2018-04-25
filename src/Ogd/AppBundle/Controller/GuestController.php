@@ -24,7 +24,7 @@ class GuestController extends Controller
      */
     public function guestAction(Request $request)
     {
-        $encryptor =  $this->get('nzo_url_encryptor');
+        $encryptor = $this->get('nzo_url_encryptor');
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED') &&
             ($guest = $this->getUser()->getGuest()) !== null
         ) {
@@ -38,9 +38,9 @@ class GuestController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $guests = $em->getRepository(Guest::class)->findByCriteria($form->getData());
                 if (count($guests) > 1) {
-                    $form->addError(new FormError('frontend.guest.multiple_matches'));
+                    $form->addError(new FormError('guest.multiple_matches.error'));
                 } else if (count($guests) == 0) {
-                    $form->addError(new FormError('frontend.guest.not_found'));
+                    $form->addError(new FormError('guest.not_found.error'));
                 } else {
                     return $this->redirectToRoute('guest_confirm', ['id' => $encryptor->encrypt($guests[0]->getId())]);
                 }
@@ -55,7 +55,7 @@ class GuestController extends Controller
     }
 
     /**
-     * @Route("/guest/confirm/{id}", requirements={"id" = "\d+"}, name="guest_confirm")
+     * @Route("/guest/confirm/{id}", name="guest_confirm")
      * @param Request $request
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response

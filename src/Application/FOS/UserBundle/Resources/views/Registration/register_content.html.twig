@@ -1,8 +1,17 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register')}) }}
-    {#{{ dump(form) }}#}
+{% if not form.vars.valid %}
+    <div class="alert alert-danger">
+        <div class="container">
+            <div class="alert-icon">
+                <i class="material-icons">error_outline</i>
+            </div>
+            <strong>{{ 'frontend.error'|trans({}, 'AppBundle') }}</strong> {{ 'frontend.form.error'|trans({}, 'AppBundle') }}
+        </div>
+    </div>
+{% endif %}
 
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register')}) }}
     <div class="row">
         <div class="col form-group bmd-form-group{% if not form.email.vars.valid %} has-danger{% endif %}">
             {{ form_label(form.email, form.email, {'label_attr': {'class': 'bmd-label-floating'}}) }}

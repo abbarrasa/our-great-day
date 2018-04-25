@@ -1,4 +1,6 @@
 email.error: No es una dirección email válida.
 guest.fullname.error: Este nombre y apellidos ya existen.
+guest.multiple_matches.error: No se encontraron coincidencias. Inténtalo de nuevo concretando tu búsqueda un poco más.
+guest.not_found.error: Se encontraron varias coincidencias. Inténtalo de nuevo concretando tu búsqueda un poco más.
 user.name.error: Este valor no puede estar vacío.
 password.format.error: Debe tener al menos un número.

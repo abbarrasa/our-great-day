@@ -1,29 +1,7 @@
-/*!
-
- =========================================================
- * Now-ui-kit - v1.1.0
- =========================================================
-
- * Product Page: https://www.creative-tim.com/product/now-ui-kit
- * Copyright 2017 Creative Tim (http://www.creative-tim.com)
- * Licensed under MIT (https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md)
-
- * Designed by www.invisionapp.com Coded by www.creative-tim.com
-
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
- */
-
 var transparent = true;
-
-var transparentDemo = true;
 var fixedTop = false;
-
-var navbar_initialized,
-    backgroundOrange = false,
-    toggle_initialized = false;
+var navbar_initialized;
+var big_image;
 
 $(document).ready(function() {
     // Activate the image for the navbar-collapse
@@ -33,7 +11,6 @@ $(document).ready(function() {
     scroll_distance = $navbar.attr('color-on-scroll') || 500;
 
     // Check if we have the class "navbar-color-on-scroll" then add the function to remove the class "navbar-transparent" so it will transform to a plain color.
-
     if ($('.navbar[color-on-scroll]').length != 0) {
         nowuiKit.checkScrollForTransparentNavbar();
         $(window).on('scroll', nowuiKit.checkScrollForTransparentNavbar)
@@ -117,26 +94,6 @@ nowuiKit = {
                 .removeClass('has-image');
         }
     }
-}
-
-
-var big_image;
-
-// Javascript just for Demo purpose, remove it from your project
-nowuiKitDemo = {
-    checkScrollForParallax: debounce(function() {
-        var current_scroll = $(this).scrollTop();
-
-        oVal = ($(window).scrollTop() / 3);
-        big_image.css({
-            'transform': 'translate3d(0,' + oVal + 'px,0)',
-            '-webkit-transform': 'translate3d(0,' + oVal + 'px,0)',
-            '-ms-transform': 'translate3d(0,' + oVal + 'px,0)',
-            '-o-transform': 'translate3d(0,' + oVal + 'px,0)'
-        });
-
-    }, 6)
-
 }
 
 // Returns a function, that, as long as it continues to be invoked, will not

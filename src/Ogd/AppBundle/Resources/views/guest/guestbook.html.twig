@@ -29,7 +29,7 @@
                             {% endfor %}
                         {% endfor %}
                         {% set columns = [column0, column1, column2] %}                
-                    {% else if is_tablet() %}
+                    {% elseif is_tablet() %}
                         {% set column0 = [] %}
                         {% set column1 = [] %}
                         {% for row in pagination|batch(2) %}

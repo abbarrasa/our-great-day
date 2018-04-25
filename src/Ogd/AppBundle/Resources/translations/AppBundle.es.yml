@@ -59,8 +59,6 @@ frontend:
         confirm_attendence: Confirma tu asistencia
         search_you: Búscate
         success: Has realizado tu confirmación con éxito. Si necesitas cambiarla puedes realizarla en cualquier momento.
-        not_found: No se encontraron coincidencias. Inténtalo de nuevo concretando tu búsqueda un poco más.
-        multiple_matches: Se encontraron varias coincidencias. Inténtalo de nuevo concretando tu búsqueda un poco más.
     guestbook:
         title: Nuestro gran <em>Libro de invitados</em>
         description: No seas tímido/a. Mándanos un original mensajito que nos alegre si cabe un poco más nuestro gran día. De antemano, muchísimas gracias.

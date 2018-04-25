@@ -6,6 +6,7 @@ use AdminBundle\Entity\Greeting;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Form\FormMapper;
 
 class GreetingAdmin extends AbstractAdmin
 {
@@ -32,7 +33,11 @@ class GreetingAdmin extends AbstractAdmin
             ->add('message', 'textarea', ['label' => 'Message'])
             ->add('status', 'choice', [
                 'label' => 'Status',
-                'choices' => Greeting::getStatusList(),
+                'choices' => [
+                    'Pending' => Greeting::STATUS_PENDING,
+                    'Approved' => Greeting::STATUS_APPROVED,
+                    'Rejected' => Greeting::STATUS_REJECTED
+                ],
             ])
         ;
     }    
@@ -49,7 +54,11 @@ class GreetingAdmin extends AbstractAdmin
             ->add('publishedAt')
             ->add('status', 'choice', [
                 'editable' => true,
-                'choices' => Greeting::getStatusList(),
+                'choices' => [
+                    Greeting::STATUS_PENDING => 'Pending',
+                    Greeting::STATUS_APPROVED => 'Approved',
+                    Greeting::STATUS_REJECTED => 'Rejected'
+                ],
             ])
         ;
     }
