@@ -9,6 +9,8 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 
 class GreetingAdmin extends AbstractAdmin
 {
+    protected $baseRoutePattern = 'greeting';
+    
     /**
      * Fields to be shown on filter forms
      * @param DatagridMapper $datagridMapper
