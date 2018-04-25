@@ -48,6 +48,17 @@ class ProfileType extends AbstractType
                     new Length(['max' => 64])
                 ]
             ])
+            ->add('gender', ChoiceType::class, [
+                'label' => 'form.gender',
+                'required' => false,
+                'expanded' => true,
+                'choices' => [
+                    'form.gender.male' => User::GENDER_MALE,
+                    'form.gender.female' => User::GENDER_FEMALE
+                ],
+                'translation_domain' => 'FOSUserBundle',
+                'choice_translation_domain' => 'FOSUserBundle'
+            ])
         ;
     }
 
