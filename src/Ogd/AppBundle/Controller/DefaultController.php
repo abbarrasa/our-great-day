@@ -35,7 +35,7 @@ class DefaultController extends Controller
             return $this->redirectToRoute('homepage');
         }
         
-        $status  = 200;
+        $status  = JsonResponse::HTTP_OK;
         $enquiry = new Enquiry();
         $form    = $this->createForm(EnquiryType::class, $enquiry);
         $form->handleRequest($request);
@@ -50,7 +50,7 @@ class DefaultController extends Controller
 
                 return new JsonResponse(null, $status);
             } else {
-                $status = 400;
+                $status = JsonResponse::HTTP_BAD_REQUEST;
             }
         }
         
