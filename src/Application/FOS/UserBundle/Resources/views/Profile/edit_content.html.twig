@@ -53,6 +53,22 @@
             {% endif %}
         </div>
     </div>
+    
+    <div class="row">
+        <div class="col form-group bmd-form-group">
+            {{ form_label(form.gender) }}
+            <div class="form-check form-check-inline">
+                {% for child in form.gender %}
+                <label class="form-check-label">
+                    {{ form_widget(child, {'attr': {'class': 'form-check-input'}}) }} {{ child.vars.label|trans }}
+                    <span class="circle">
+                        <span class="check"></span>
+                    </span>
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+    </div>    
 
     <div class="col form-group bmd-form-group">
         <input type="submit" class="btn btn-primary pull-right" value="{{ 'profile.edit.submit'|trans }}" />
