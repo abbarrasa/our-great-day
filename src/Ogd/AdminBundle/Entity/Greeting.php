@@ -316,4 +316,17 @@ class Greeting
         $this->setCreatedAt(new \DateTime());
     }
 
+    /**
+     * Get status list
+     *
+     * @return array
+     */
+    public static function getStatusList()
+    {
+        return [
+            self::STATUS_PENDING => 'Pending',
+            self::STATUS_APPROVED => 'Approved',
+            self::STATUS_REJECTED => 'Rejected'
+        ];
+    }
 }
