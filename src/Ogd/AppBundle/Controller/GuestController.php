@@ -133,7 +133,7 @@ class GuestController extends Controller
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
             $page /*page number*/,
-            9 /*limit per page*/
+            12 /*limit per page*/
         );
 
         // parameters to template
