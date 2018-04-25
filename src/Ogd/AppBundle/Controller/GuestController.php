@@ -186,7 +186,7 @@ class GuestController extends Controller
             throw $this->createNotFoundException(sprintf('No found any greeting with ID %d', $id));
         }
 
-        $status          = 200;
+        $status          = JsonResponse::HTTP_OK;
         $greetingComment = new GreetingComment();
         $greetingComment->setGreeting($greeting);
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
@@ -212,7 +212,7 @@ class GuestController extends Controller
                     'comments'      => $greeting->getComments()->count()
                 ], $status);
             } else {
-                $status = 400;
+                $status = JsonResponse::HTTP_BAD_REQUEST;
             }
         }
 
