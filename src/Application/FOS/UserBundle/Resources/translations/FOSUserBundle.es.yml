@@ -31,7 +31,7 @@ profile:
         updated: 'El perfil ha sido actualizado.'
 change_password:
     submit: 'Cambiar contraseña'
-    header: 'Cambia tu contraseña'    
+    header: 'Cambia tu contraseña'
     back: 'Volver a tu perfil'    
     flash:
         success: 'La contraseña se ha cambiado con éxito.'
@@ -44,7 +44,6 @@ registration:
     submit: Registrar
     flash:
         user_created: 'El usuario se ha creado satisfactoriamente.'
-
 resetting:
     check_email: |
         Se ha enviado un correo electrónico a tu cuenta de correo. Contiene un enlace de activación al que debes acceder para restablecer tu contraseña.
