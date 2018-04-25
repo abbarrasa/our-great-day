@@ -11,6 +11,8 @@ use Sonata\UserBundle\Model\User;
 
 class GuestAdmin extends AbstractAdmin
 {
+    protected $baseRoutePattern = 'guest';
+    
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->add('import');
