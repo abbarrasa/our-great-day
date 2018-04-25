@@ -11,7 +11,42 @@
                 <div class="section-description text-center sr">
                     <h2 class="title">{{ 'frontend.guestbook.title'|trans|raw }}</h2>
                 </div>
-                {{ include('@App/guest/partials/card-list.html.twig', {'pagination': pagination}) }}
+                {% if is_mobile() %}
+                    {% set column0 = [] %}
+                    {% set column1 = [] %}
+                    {% set column2 = [] %}
+                    {% for row in pagination|batch(3) %}
+                        {% for position, entry in row %}
+                            {% set key = position % 3 %}
+                            {% if key == 0 %}
+                                {% set column0 = column0|merge([entry]) %}
+                            {% elseif key == 1 %}
+                                {% set column1 = column1|merge([entry]) %}
+                            {% elseif key == 2 %}
+                                {% set column2 = column2|merge([entry]) %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    {% set columns = [column0, column1, column2] %}                
+                {% else if is_tabled() %}
+                    {% set column0 = [] %}
+                    {% set column1 = [] %}
+                    {% for row in pagination|batch(2) %}
+                        {% for position, entry in row %}
+                            {% set key = position % 2 %}
+                            {% if key == 0 %}
+                                {% set column0 = column0|merge([entry]) %}
+                            {% elseif key == 1 %}
+                                {% set column1 = column1|merge([entry]) %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    {% set columns = [column0, column1] %}
+                {% else %}
+                    {% set columns = [pagination] %}
+                {% endif %}
+                
+                {{ include('@App/guest/partials/card-list.html.twig', {'columns': columns, 'pagination': pagination}) }}
             </div>
         </div>
     </div>
