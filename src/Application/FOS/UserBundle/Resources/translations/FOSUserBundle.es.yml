@@ -30,6 +30,7 @@ profile:
     flash:
         updated: 'El perfil ha sido actualizado.'
 change_password:
+    title: 'Cambia tu contraseña'
     submit: 'Cambiar contraseña'
     header: 'Cambia tu contraseña'
     back: 'Volver a tu perfil'    

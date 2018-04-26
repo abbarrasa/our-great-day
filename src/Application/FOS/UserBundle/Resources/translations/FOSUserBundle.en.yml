@@ -31,6 +31,7 @@ profile:
         updated: 'The profile has been updated.'
 
 change_password:
+    title: 'Change your password'
     submit: 'Change password'
     header: 'Change your password'    
     back: 'Back to profile'

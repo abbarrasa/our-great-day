@@ -61,10 +61,10 @@ class Importer
         }
         
         $matrix = array();
-        foreach($rows as $row) {
-            $matrix[] = array_combine($headers, $row);
+        foreach($rows as $number => $row) {
+            $matrix[$number] = array_combine($headers, $row);
         }
-        
+
         return $matrix;
     }
 }

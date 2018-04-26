@@ -39,7 +39,8 @@ class GuestAdminController extends Controller
                     $spreadsheet = $reader->load($fileName);
                     $worksheet   = $spreadsheet->getActiveSheet();
                     $rows        = $worksheet->toArray();
-                    $headers     = array_shift($rows);
+                    $headers     = reset($rows);
+                    $rows        = array_slice($rows, 1, null, true);
                     //Filter repeated data                    
                     $rows        = array_unique($rows, SORT_REGULAR);
                     $result      = Importer::import($this->admin, $rows, $headers);
