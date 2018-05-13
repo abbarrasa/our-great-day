@@ -6,14 +6,14 @@
             <div class="alert-icon">
                 <i class="material-icons">error_outline</i>
             </div>
-            <strong>{{ 'frontend.error'|trans({}, 'AppBundle') }}</strong> {{ 'frontend.form.error'|trans({}, 'AppBundle') }}
+            <strong>{{ 'frontend.error'|trans({}, 'AppBundle') }}</strong> {{ 'form.error'|trans({}, 'validators') }}
         </div>
     </div>
 {% endif %}
 
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register')}) }}
     <div class="row">
-        <div class="col form-group bmd-form-group{% if not form.email.vars.valid %} has-danger{% endif %}">
+        <div class="col-md-6 col-xs-12 form-group{% if not form.email.vars.valid %} has-danger{% endif %}">
             {{ form_label(form.email, form.email, {'label_attr': {'class': 'bmd-label-floating'}}) }}
             {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.email) }}
@@ -22,7 +22,7 @@
                 <span class="material-icons form-control-feedback">clear</span>
             {% endif %}
         </div>
-        <div class="col form-group bmd-form-group{% if not form.username.vars.valid %} has-danger{% endif %}">
+        <div class="col-md-6 col-xs-12 form-group{% if not form.username.vars.valid %} has-danger{% endif %}">
             {{ form_label(form.username, form.username, {'label_attr': {'class': 'bmd-label-floating'}}) }}
             {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.username) }}
@@ -34,15 +34,16 @@
     </div>
 
     <div class="row">
-        <div class="col form-group bmd-form-group{% if not form.plainPassword.first.vars.valid %} has-danger{% endif %}">
+        <div class="col-md-6 col-xs-12 form-group{% if not form.plainPassword.first.vars.valid %} has-danger{% endif %}">
             {{ form_label(form.plainPassword.first, form.plainPassword.first, {'label_attr': {'class': 'bmd-label-floating'}}) }}
             {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
             <span class="bmd-help">{{ 'form.password.help'|trans }}</span>
+            {{ form_errors(form.plainPassword.first) }}
             {% if not form.plainPassword.first.vars.valid %}
                 <span class="material-icons form-control-feedback">clear</span>
             {% endif %}
         </div>
-        <div class="col form-group bmd-form-group{% if not form.plainPassword.second.vars.valid %} has-danger{% endif %}">
+        <div class="col-md-6 col-xs-12 form-group{% if not form.plainPassword.second.vars.valid %} has-danger{% endif %}">
             {{ form_label(form.plainPassword.second, form.plainPassword.second, {'label_attr': {'class': 'bmd-label-floating'}}) }}
             {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
             <span class="bmd-help">{{ 'form.password.help'|trans }}</span>
@@ -54,7 +55,7 @@
     </div>
     
     <div class="row">
-        <div class="col form-group bmd-form-group{% if not form.firstname.vars.valid %} has-danger{% endif %}">
+        <div class="col-md-6 col-xs-12 form-group{% if not form.firstname.vars.valid %} has-danger{% endif %}">
             {{ form_label(form.firstname, form.firstname, {'label_attr': {'class': 'bmd-label-floating'}}) }}
             {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.firstname) }}
@@ -63,7 +64,7 @@
                 <span class="material-icons form-control-feedback">clear</span>
             {% endif %}
         </div>
-        <div class="col form-group bmd-form-group{% if not form.lastname.vars.valid %} has-danger{% endif %}">
+        <div class="col-md-6 col-xs-12 form-group{% if not form.lastname.vars.valid %} has-danger{% endif %}">
             {{ form_label(form.lastname, form.lastname, {'label_attr': {'class': 'bmd-label-floating'}}) }}
             {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.lastname) }}
@@ -74,7 +75,7 @@
         </div>
     </div>    
 
-    <div class="col form-group bmd-form-group">
+    <div class="col-md-12 form-group bmd-form-group">
         <input type="submit" class="btn btn-primary pull-right" value="{{ 'registration.submit'|trans }}" />
     </div>
 {{ form_end(form) }}

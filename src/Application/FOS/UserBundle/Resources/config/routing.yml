@@ -4,7 +4,7 @@ fos_user_security_login:
     methods: [GET, POST]
 
 fos_user_security_check:
-    path: /login_check
+    path: /login-check
     defaults: { _controller: user.security.controller:checkAction }
     methods: [POST]
 
@@ -30,7 +30,7 @@ fos_user_change_password:
 
 fos_user_registration_register:
     path: /register
-    defaults: { _controller: fos_user.registration.controller:registerAction }
+    defaults: { _controller: user.registration.controller:registerAction }
     methods: [GET, POST]
 
 fos_user_resetting_request:
@@ -51,4 +51,9 @@ fos_user_resetting_check_email:
 fos_user_resetting_reset:
     path: /resetting/reset/{token}
     defaults: { _controller: user.resetting.controller:resetAction }
+    methods: [GET, POST]
+
+fos_user_landing:
+    path: /landing
+    defaults: { _controller: user.landing.controller:landingAction }
     methods: [GET, POST]

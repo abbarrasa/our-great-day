@@ -13,22 +13,7 @@
                 </div>
                 {% if pagination|length > 0 %}
                     {% if is_mobile() %}
-                        {% set column0 = [] %}
-                        {% set column1 = [] %}
-                        {% set column2 = [] %}
-                        {% for row in pagination|batch(3) %}
-                            {% for position, entry in row %}
-                                {% set key = position % 3 %}
-                                {% if key == 0 %}
-                                    {% set column0 = column0|merge([entry]) %}
-                                {% elseif key == 1 %}
-                                    {% set column1 = column1|merge([entry]) %}
-                                {% elseif key == 2 %}
-                                    {% set column2 = column2|merge([entry]) %}
-                                {% endif %}
-                            {% endfor %}
-                        {% endfor %}
-                        {% set columns = [column0, column1, column2] %}                
+                        {% set columns = [pagination] %}
                     {% elseif is_tablet() %}
                         {% set column0 = [] %}
                         {% set column1 = [] %}
@@ -44,7 +29,22 @@
                         {% endfor %}
                         {% set columns = [column0, column1] %}
                     {% else %}
-                        {% set columns = [pagination] %}
+                        {% set column0 = [] %}
+                        {% set column1 = [] %}
+                        {% set column2 = [] %}
+                        {% for row in pagination|batch(3) %}
+                            {% for position, entry in row %}
+                                {% set key = position % 3 %}
+                                {% if key == 0 %}
+                                    {% set column0 = column0|merge([entry]) %}
+                                {% elseif key == 1 %}
+                                    {% set column1 = column1|merge([entry]) %}
+                                {% elseif key == 2 %}
+                                    {% set column2 = column2|merge([entry]) %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                        {% set columns = [column0, column1, column2] %}
                     {% endif %}
 
                     {{ include('@App/guest/partials/card-list.html.twig', {'columns': columns, 'pagination': pagination}) }}                

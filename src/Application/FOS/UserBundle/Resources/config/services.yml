@@ -1,6 +1,8 @@
 parameters:    
     user.controller.resetting.class: Application\FOS\UserBundle\Controller\ResettingController
     user.controller.security.class: Application\FOS\UserBundle\Controller\SecurityController
+    user.controller.registration.class: Application\FOS\UserBundle\Controller\RegistrationController
+    user.controller.landing.class: Application\FOS\UserBundle\Controller\LandingController
     user.listener.registration.class: Application\FOS\UserBundle\EventListener\RegistrationListener
     user.listener.resetting.class: Application\FOS\UserBundle\EventListener\ResettingListener
     user.listener.flash.class: Application\FOS\UserBundle\EventListener\FlashListener
@@ -8,6 +10,28 @@ parameters:
     user.listener.editing_profile.class: Application\FOS\UserBundle\EventListener\EditingProfileListener
 
 services:
+    user.security.controller:
+        class: "%user.controller.security.class%"
+        arguments:
+            - "@security.csrf.token_manager"
+            - "@event_dispatcher"
+            - "@fos_user.user_manager"
+            - "@fos_user.registration.form.factory"
+            - "@nzo_url_encryptor"
+        public: true
+        calls:
+            - [setContainer, ["@service_container"]]
+
+    user.registration.controller:
+        class: "%user.controller.registration.class%"
+        arguments:
+            - "@event_dispatcher"
+            - "@fos_user.registration.form.factory"
+            - "@fos_user.user_manager"
+            - "@security.token_storage"
+        calls:
+            - [setContainer, ["@service_container"]]
+
     user.resetting.controller:
         class: "%user.controller.resetting.class%"
         arguments:
@@ -21,20 +45,15 @@ services:
         calls:
             - [setContainer, ["@service_container"]]
 
-    user.security.controller:
-        class: "%user.controller.security.class%"
-        arguments:
-            - "@security.csrf.token_manager"
-            - "@event_dispatcher"
-            - "@fos_user.user_manager"
-            - "@nzo_url_encryptor"
+    user.landing.controller:
+        class: "%user.controller.landing.class%"
         public: true
         calls:
             - [setContainer, ["@service_container"]]
 
     fos_user.listener.email_confirmation:
         class:        "%user.listener.registration.class%"
-        arguments:    ["@AppBundle\\Service\\Mailer", "@router"]
+        arguments:    ["@AppBundle\\Service\\Mailer", "@router", "@twig"]
         tags:
             - { name: kernel.event_subscriber }
     

@@ -26,7 +26,7 @@ class AddUserNameSubscriber implements EventSubscriberInterface
             ->add('name', TextType::class, [
                 'label' => 'frontend.guestbook.name',
                 'required' => true,
-                'data' => $data->getUser() !== null ? $data->getUser()->getFullname() : null
+                'data' => $data->getUser() !== null ? $data->getUser()->getUsername() : null
             ])
         ;
     }

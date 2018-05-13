@@ -6,6 +6,7 @@ use Application\FOS\UserBundle\Event\Events;
 use FOS\UserBundle\Controller\SecurityController as BaseController;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\GetResponseNullableUserEvent;
+use FOS\UserBundle\Form\Factory\FactoryInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Nzo\UrlEncryptorBundle\UrlEncryptor\UrlEncryptor;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -16,6 +17,7 @@ class SecurityController extends BaseController
 {
     private $eventDispatcher;
     private $userManager;
+    private $formFactory;
     private $encryptor;
 
     /**
@@ -23,13 +25,20 @@ class SecurityController extends BaseController
      * @param CsrfTokenManagerInterface $tokenManager
      * @param EventDispatcherInterface $eventDispatcher
      * @param UserManagerInterface $userManager
+     * @param FactoryInterface $formFactory
      * @param UrlEncryptor $encryptor
      */
-    public function __construct(CsrfTokenManagerInterface $tokenManager, EventDispatcherInterface $eventDispatcher, UserManagerInterface $userManager, UrlEncryptor $encryptor)
-    {
+    public function __construct(
+        CsrfTokenManagerInterface $tokenManager,
+        EventDispatcherInterface $eventDispatcher,
+        UserManagerInterface $userManager,
+        FactoryInterface $formFactory,
+        UrlEncryptor $encryptor
+    ) {
         parent::__construct($tokenManager);
         $this->eventDispatcher = $eventDispatcher;
         $this->userManager = $userManager;
+        $this->formFactory = $formFactory;
         $this->encryptor = $encryptor;
     }
 
@@ -58,5 +67,32 @@ class SecurityController extends BaseController
         );
 
         return $response;
+    }
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function landingAction(Request $request)
+    {
+        return $this->loginAction($request);
+    }
+
+    /**
+     * Renders the login template with the given parameters. Overwrite this function in
+     * an extended controller to provide additional data for the login template.
+     *
+     * @param array $data
+     *
+     * @return Response
+     */
+    protected function renderLogin(array $data)
+    {
+        $request = $this->get('request_stack')->getCurrentRequest();
+        if ($request->get('_forwarded') !== null) {
+            return $this->render('@FOSUser/Landing/login_content.html.twig', $data);
+        }
+
+        return $this->render('@FOSUser/Security/login.html.twig', $data);
     }
 }

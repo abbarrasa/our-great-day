@@ -513,7 +513,11 @@ body {
 .navbar p {
     display: inline-block;
     margin: 0;
-    line-height: 21px;
+    font-size: 11px;
+}
+
+.navbar .navbar-nav .dropdown-menu p {
+    font-size: 14px;
 }
 
 .navbar .navbar-nav.navbar-logo {
@@ -544,13 +548,11 @@ body {
     line-height: 1.625rem;
 }
 
-.navbar .navbar-nav .nav-link:not(.btn) i.fa+p,
-.navbar .navbar-nav .nav-link:not(.btn) i.now-ui-icons+p {
+.navbar .navbar-nav .nav-link:not(.btn) i.fa+p {
     margin-left: 5px;
 }
 
-.navbar .navbar-nav .nav-link:not(.btn) i.fa,
-.navbar .navbar-nav .nav-link:not(.btn) i.now-ui-icons {
+.navbar .navbar-nav .nav-link:not(.btn) i.fa {
     font-size: 18px;
     position: relative;
     top: 2px;
@@ -581,21 +583,18 @@ body {
     border-radius: 0.1875rem;
 }*/
 
-.navbar .logo-container {
-    width: 27px;
-    height: 27px;
-    overflow: hidden;
-    margin: 0 auto;
-    border-radius: 50%;
-    border: 1px solid transparent;
-}
+/*.navbar .logo-container {*/
+    /*width: 27px;*/
+    /*height: 27px;*/
+    /*overflow: hidden;*/
+    /*margin: 0 auto;*/
+    /*border-radius: 50%;*/
+    /*border: 1px solid transparent;*/
+/*}*/
 
 .navbar .navbar-brand {
     text-transform: uppercase;
     font-size: 0.8571em;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    line-height: 1.625rem;
 }
 
 .navbar .navbar-toggler {
@@ -732,12 +731,12 @@ body {
 .navbar .navbar-nav .nav-item .nav-link .material-icons {
     font-size: 1.25rem;
     max-width: 24px;
-    margin-top: -1.1em
+    /*margin-top: -1.1em*/
 }
 
 .navbar .navbar-nav .nav-item .nav-link:not(.btn) .material-icons {
     position: relative;
-    top: 8px;
+    /*top: 8px;*/
     margin-right: 4px;
     text-align: center;
     width: 21px;
@@ -848,7 +847,7 @@ body {
 }
 
 .page-header {
-    height: 100vh;
+    height: 100vh !important;
     max-height: 1050px;
     padding: 0;
     color: #FFFFFF;
@@ -872,11 +871,11 @@ body {
     width: 100%;
 }
 
-.page-header .container {
-    height: 100%;
-    z-index: 1;
-    position: relative;
-}
+/*.page-header .container {*/
+    /*height: 100%;*/
+    /*z-index: 1;*/
+    /*position: relative;*/
+/*}*/
 
 .page-header .container>.content-center {
     position: absolute;
@@ -897,10 +896,10 @@ body {
     color: rgba(255, 255, 255, 0.5);
 }
 
-.page-header.page-header-small {
-    height: 60vh;
-    max-height: 440px;
-}
+/*.page-header.page-header-small {*/
+    /*height: 60vh;*/
+    /*max-height: 440px;*/
+/*}*/
 
 .page-header:after,
 .page-header:before {
@@ -1018,16 +1017,16 @@ body {
         transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
     }
 
-    .sidebar-collapse .navbar-collapse:before {
-        background: #e91e63;
+    .sidebar-collapse .navbar-collapse:after {
+        background: #e91e63 !important;
         /* For browsers that do not support gradients */
-        background: -webkit-linear-gradient(#e91e63 0%, #000 80%);
+        background: -webkit-linear-gradient(#e91e63 0%, #000 80%) !important;
         /* For Safari 5.1 to 6.0 */
-        background: -o-linear-gradient(#e91e63 0%, #000 80%);
+        background: -o-linear-gradient(#e91e63 0%, #000 80%) !important;
         /* For Opera 11.1 to 12.0 */
-        background: -moz-linear-gradient(#e91e63 0%, #000 80%);
+        background: -moz-linear-gradient(#e91e63 0%, #000 80%) !important;
         /* For Firefox 3.6 to 15 */
-        background: linear-gradient(#e91e63 0%, #000 80%);
+        background: linear-gradient(#e91e63 0%, #000 80%) !important;
         /* Standard syntax (must be last) */
         opacity: 0.76;
         filter: alpha(opacity=76);
@@ -1927,15 +1926,15 @@ body {
         transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
     }
     .burger-menu .navbar-collapse:before {
-        background: #e91e63;
+        background: #e91e63 !important;
         /* For browsers that do not support gradients */
-        background: -webkit-linear-gradient(#e91e63 0%, #000 80%);
+        background: -webkit-linear-gradient(#e91e63 0%, #000 80%) !important;
         /* For Safari 5.1 to 6.0 */
-        background: -o-linear-gradient(#e91e63 0%, #000 80%);
+        background: -o-linear-gradient(#e91e63 0%, #000 80%) !important;
         /* For Opera 11.1 to 12.0 */
-        background: -moz-linear-gradient(#e91e63 0%, #000 80%);
+        background: -moz-linear-gradient(#e91e63 0%, #000 80%) !important;
         /* For Firefox 3.6 to 15 */
-        background: linear-gradient(#e91e63 0%, #000 80%);
+        background: linear-gradient(#e91e63 0%, #000 80%) !important;
         /* Standard syntax (must be last) */
         opacity: 0.76;
         filter: alpha(opacity=76);
@@ -2584,4 +2583,120 @@ a.scroll-arrow:hover {
 
 b, strong {
     font-weight: bold;
+}
+
+body {
+    margin: 0;
+    font-family: Lato, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fafafa
+}
+
+.tooltip,
+.popover {
+    font-family: Lato, Helvetica, Arial, sans-serif;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Lato, Helvetica, Arial, sans-serif;
+}
+
+.card-title,
+.footer-big h4,
+.footer-big h5,
+.footer-brand,
+.info-title,
+.media .media-heading,
+.title {
+    font-family: Lato, Times New Roman, serif
+}
+
+.form-check {
+    display: block;
+}
+.form-check .form-check-label {
+    margin-right: 20px;
+}
+.is-filled .bmd-label-floating,
+.is-focused .bmd-label-floating {
+    padding-left: 15px;
+}
+.bmd-error {
+    position: absolute;
+    font-size: .75rem;
+    font-weight: normal;
+    color: #f44336;
+    right: 0;
+    padding: 0 15px;
+}
+.input-group .bmd-error {
+    margin-top: 37px;
+    padding-right: 0;
+}
+.bmd-error .material-icons {
+    font-size: .8rem !important
+}
+.bmd-error:nth-of-type(2) {
+    padding-top: 1rem;
+}
+.bmd-error+.bmd-error{
+    position: relative;
+    margin-bottom: 0
+}
+.form-control-feedback {
+    position: absolute;
+    top: 33px;
+    right: 15px;
+    z-index: 2;
+    display: block;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0
+}
+.input-group .form-control-feedback {
+    top: 0;
+}
+.input-group .form-control-feedback {
+    top: 0;
+}
+.has-success .form-control-feedback {
+    color: #4caf50;
+    opacity: 1
+}
+.has-danger .form-control-feedback {
+    color: #f44336;
+    opacity: 1
+}
+
+.login-page .page-header .container {
+    padding-top: 20vh;
+}
+
+.login-page .card-signup .input-group {
+    margin: 0;
+}
+
+.login-page .page-header .alert .container {
+    padding-top: 0;
+}
+
+.with-separator-right {
+    border-right: 1px solid #d2d2d2;
 }

@@ -27,8 +27,6 @@ frontend:
         home: Inicio
         confirm_attendance: Confirmar asistencia
         guestbook: Libro de invitados
-    form:
-        error: Existen errores en el formulario.
     enquiry:
         name: Tu nombre
         placeholder_name: Tu nombre aquí...
@@ -59,6 +57,9 @@ frontend:
         confirm_attendence: Confirma tu asistencia
         search_you: Búscate
         success: Has realizado tu confirmación con éxito. Si necesitas cambiarla puedes realizarla en cualquier momento.
+        set_user:
+            description: Ahora puedes asociar tu invitación a tu usuario. Si ya estás registrado, accede con tu usuario. Si no estás registrado, anímate y crea una cuenta de usuario. También puedes pasar de todo esto pulsando <a href="%url%">aquí</a>.
+            success: Se ha asociado tu invitación a tu cuenta de usuario.
     guestbook:
         title: Nuestro gran <em>Libro de invitados</em>
         description: No seas tímido/a. Mándanos un original mensajito que nos alegre si cabe un poco más nuestro gran día. De antemano, muchísimas gracias.

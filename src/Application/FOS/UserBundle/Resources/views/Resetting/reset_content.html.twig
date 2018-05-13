@@ -6,13 +6,13 @@
             <div class="alert-icon">
                 <i class="material-icons">error_outline</i>
             </div>
-            <strong>{{ 'frontend.error'|trans({}, 'AppBundle') }}</strong> {{ 'frontend.form.error'|trans({}, 'AppBundle') }}
+            <strong>{{ 'frontend.error'|trans({}, 'AppBundle') }}</strong> {{ 'form.error'|trans({}, 'validators') }}
         </div>
     </div>
 {% endif %}
 
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_resetting_reset', {'token': token})}) }}
-    <div class="col-md-12 form-group bmd-form-group{% if not form.plainPassword.first.vars.valid %} has-danger{% endif %}">
+    <div class="col-md-12 form-group{% if not form.plainPassword.first.vars.valid %} has-danger{% endif %}">
         {{ form_label(form.plainPassword.first, form.plainPassword.first, {'label_attr': {'class': 'bmd-label-floating'}}) }}
         {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
         <span class="bmd-help">{{ 'form.password.help'|trans }}</span>
@@ -22,7 +22,7 @@
         {% endif %}
     </div>
     
-    <div class="col-md-12 form-group bmd-form-group{% if not form.plainPassword.second.vars.valid %} has-danger{% endif %}">
+    <div class="col-md-12 form-group{% if not form.plainPassword.second.vars.valid %} has-danger{% endif %}">
         {{ form_label(form.plainPassword.second, form.plainPassword.second, {'label_attr': {'class': 'bmd-label-floating'}}) }}
         {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
         <span class="bmd-help">{{ 'form.password.help'|trans }}</span>

@@ -17,8 +17,7 @@
         <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type='text/css'>
         {% stylesheets
-            'bundles/app/css/bootstrap.min.css'
-            'bundles/app/css/material-kit.css'
+            'bundles/app/css/material-kit.min.css'
             'bundles/app/css/demo.css' filter='cssrewrite' %}
             <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
@@ -46,31 +45,33 @@
                     </div>
                     {% image 'bundles/app/images/blurred-image-1.jpg' %}
                     <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{ asset_url }}">
-                        {{ knp_menu_render('main', {'template': '@App/partials/knp_menu.html.twig'}) }}
-                        {{ knp_menu_render('social', {'template': '@App/partials/knp_menu.html.twig'}) }}
+                    {{ knp_menu_render('main', {'template': '@App/partials/knp_menu.html.twig'}) }}
+                    {{ knp_menu_render('social', {'template': '@App/partials/knp_menu.html.twig'}) }}
                     </div>
                     {% endimage %}
                 </div>
             </nav>
             <!-- End Navbar -->
 
-            <div class="wrapper">          
-                <!-- Header -->
+            <div class="wrapper">
+                <!-- Jumbotron -->
                 <div class="page-header clear-filter" filter-color="black">
                 {% image 'bundles/app/images/header.jpg' %}
                     <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset_url }}');"></div>
                 {% endimage %}
                     <div class="container">
-                        <div class="content-center brand">
-                            <h1 class="h1-seo">Vero y Carlos</h1>
-                            <h3>{{ 'frontend.title'|trans({}, 'AppBundle') }}</h3>
+                        <div class="col-md-8 ml-auto mr-auto">
+                            <div class="brand">
+                                <h1 class="h1-seo">Vero y Carlos</h1>
+                                <h3>{{ 'frontend.title'|trans({}, 'AppBundle') }}</h3>
+                            </div>
                         </div>
                         <a href="" data-scroll="true" data-id="#first-section" class="scroll-arrow hidden-xs hidden-sm text-center">
                             <i class="fa fa-angle-down"></i>
                         </a>
                     </div>
                 </div>
-                <!-- End Header -->
+                <!-- End Jumbotron -->
                 
                 <!-- Main -->
                 <div class="main">
@@ -100,25 +101,20 @@
             {% javascripts
             'bundles/app/js/core/jquery.min.js'
             'bundles/app/js/core/popper.min.js'
-            'bundles/app/js/core/bootstrap.min.js'
+            'bundles/app/js/core/moment.min.js'
+            'bundles/app/js/core/nouislider.min.js'
             'bundles/app/js/core/bootstrap-material-design.min.js'
             'bundles/app/js/plugins/modernizr.js'
-            'bundles/app/js/plugins/bootstrap-selectpicker.js'
-            'bundles/app/js/plugins/bootstrap-notify.js'
             'bundles/app/js/plugins/scrollreveal.min.js'
-            'bundles/app/js/plugins/nouislider.min.js'
+            'bundles/app/js/plugins/bootstrap-notify.js'
+            'bundles/app/js/plugins/bootstrap-datetimepicker.min.js'
+            'bundles/app/js/plugins/bootstrap-selectpicker.min.js'
             'bundles/app/js/material-kit.min.js'
-            'bundles/app/js/material-kit-demo.js'
-            'bundles/app/js/now-ui-kit.js' %}
-            {#'../app/Resources/public/js/core/jquery.3.2.1.min.js'#}
-            {#'../app/Resources/public/js/core/popper.min.js'#}
-            {#'../app/Resources/public/js/core/bootstrap-material-design.min.js'#}
-            {#'../app/Resources/public/js/plugins/bootstrap-switch.js'#}
-            {#'../app/Resources/public/js/plugins/nouislider.min.js'#}
-            {#'../app/Resources/public/js/plugins/bootstrap-datepicker.js'#}
-            {#'../app/Resources/public/js/now-ui-kit.js' %}#}
+            'bundles/app/js/now-ui-kit.js'
+            'bundles/app/js/material-kit-demo.js' %}
             <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
+
             <script type="text/javascript">
                 $(document).ready(function() {
                     {# Flash messages #}
@@ -150,7 +146,6 @@
                                 scrollTop: $(scroll_target).offset().top - 50
                             }, 1000);
                         }
-
                     });
 
                     {# Load enquiry form #}

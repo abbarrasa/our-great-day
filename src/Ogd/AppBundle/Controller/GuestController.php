@@ -45,7 +45,7 @@ class GuestController extends Controller
                     return $this->redirectToRoute('guest_confirm', ['id' => $encryptor->encrypt($guests[0]->getId())]);
                 }
             } else {
-                $form->addError(new FormError('frontend.form.error'));
+                $form->addError(new FormError('form.error'));
             }
         }
 
@@ -72,11 +72,11 @@ class GuestController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             //Set authenticated user to guest
-            if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED') &&
-                null === $guest->getUser()
-            ) {
-                $guest->setUser($this->getUser());
-            }
+//            if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED') &&
+//                null === $guest->getUser()
+//            ) {
+//                $guest->setUser($this->getUser());
+//            }
             
             $em->persist($guest);
             $em->flush();
@@ -86,14 +86,51 @@ class GuestController extends Controller
                 'success', 'frontend.success', 'frontend.guest.success', [], 'AppBundle'
             ));
 
+//            $encryptor = $this->get('nzo_url_encryptor');
             //if (null !== $guest->getUser()) {
-                return $this->redirectToRoute('homepage');                        
+            $request->getSession()->set('ogd.guest.id', $guest->getId());
+
+                return $this->redirectToRoute('guest_set_user');
             //}            
         }
 
         return $this->render('@App/guest/confirmation.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/guest/set-user", name="guest_set_user")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function setUserAction(Request $request)
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirectToRoute('fos_user_landing');
+        }
+
+        $id = $request->getSession()->get('ogd.guest.id');
+        $em = $this->getDoctrine()->getManager();
+        if (($guest = $em->getRepository(Guest::class)->find($id)) === null) {
+            throw $this->createNotFoundException(sprintf('No found any guest with ID %d', $id));
+        }
+
+        if (null === $guest->getUser()) {
+            $guest->setUser($this->getUser());
+
+            $em->persist($guest);
+            $em->flush();
+
+            $helper = $this->get('app.helper.flash_message');
+            $this->addFlash('success', $helper->getFlashMessage(
+                'success', 'frontend.success', 'frontend.guest.set_user.success', [], 'AppBundle'
+            ));
+        }
+
+        $request->getSession()->remove('ogd.guest.id');
+
+        return $this->redirectToRoute('homepage');
     }
 
     /**
