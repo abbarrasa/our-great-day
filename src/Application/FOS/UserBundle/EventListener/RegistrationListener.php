@@ -61,7 +61,7 @@ class RegistrationListener implements EventSubscriberInterface
             $this->router->generate($request->request->get('_target_path')) :
             $this->router->generate('fos_user_profile_edit')
         ;
-        $event->setResponse(new RedirectResponse($url));
+        $event->setResponse(new RedirectResponse($url, Response::HTTP_CREATED));
     }
 
 
