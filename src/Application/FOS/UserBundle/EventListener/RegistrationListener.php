@@ -20,6 +20,8 @@ class RegistrationListener implements EventSubscriberInterface
 
     /** @var \Twig_Environment */
     private $twig;
+    
+    private $em;
 
     /**
      * RegistrationListener constructor.
@@ -27,11 +29,12 @@ class RegistrationListener implements EventSubscriberInterface
      * @param UrlGeneratorInterface $router
      * @param \Twig_Environment $twig
      */
-    public function __construct(MailerInterface $mailer, UrlGeneratorInterface $router, \Twig_Environment $twig)
+    public function __construct(MailerInterface $mailer, UrlGeneratorInterface $router, \Twig_Environment $twig, EntityManager $em)
     {
         $this->mailer = $mailer;
         $this->router = $router;
         $this->twig   = $twig;
+        $this->em     = $em;
     }
 
     /**
@@ -40,11 +43,28 @@ class RegistrationListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
+            FOSUserEvents::REGISTRATION_INITIALIZE => 'onRegistrationInitialize',
             FOSUserEvents::REGISTRATION_SUCCESS => 'onRegistrationSuccess',
             FOSUserEvents::REGISTRATION_FAILURE => 'onRegistrationFailure',
         ];
     }
-
+    
+    public function onRegistrationInitialize(GetResponseUserEvent $event)
+    {
+        $request = $event->getRequest();
+        if (null !== $request->get('_forwarded') && $request->getSession()->has('ogd.guest.id')) {
+            $id    = $request->getSession()->get('ogd.guest.id');
+            if (!empty($id) {
+                $guest = $this->em->getRepository(Guest::class)->find($id);
+                $user  = $event->getUser();
+                
+                $user->getEmail($guest->getEmail());
+                $user->getFirstname($guest->getFirstname());
+                $user->getLastname($guest->getLastname());
+            }
+        }         
+    }
+    
     /**
      * @param FormEvent $event
      */
@@ -64,7 +84,9 @@ class RegistrationListener implements EventSubscriberInterface
         $event->setResponse(new RedirectResponse($url, Response::HTTP_CREATED));
     }
 
-
+    /**
+     * @param FormEvent $event
+     */                
     public function onRegistrationFailure(FormEvent $event)
     {
         $request = $event->getRequest();
