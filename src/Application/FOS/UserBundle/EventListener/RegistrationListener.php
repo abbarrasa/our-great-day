@@ -54,8 +54,7 @@ class RegistrationListener implements EventSubscriberInterface
         $request = $event->getRequest();
         if (null !== $request->get('_forwarded') && $request->getSession()->has('ogd.guest.id')) {
             $id    = $request->getSession()->get('ogd.guest.id');
-            if (!empty($id) {
-                $guest = $this->em->getRepository(Guest::class)->find($id);
+            if (!empty($id) && ($guest = $em->getRepository(Guest::class)->find($id)) !== null) {
                 $user  = $event->getUser();
                 
                 $user->getEmail($guest->getEmail());
