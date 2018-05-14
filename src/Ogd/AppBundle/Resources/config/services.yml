@@ -1,9 +1,12 @@
 # Learn more about services, parameters and containers at
 # https://symfony.com/doc/current/service_container.html
 parameters:
-    #parameter_name: value
+    session.flash_bag.class: Symfony\Component\HttpFoundation\Session\Flash\AutoExpireFlashBag
 
 services:
+    session.flash_bag:
+        class: "%session.flash_bag.class%"
+        
     app.helper.flash_message:
         class: AppBundle\Templating\Helper\FlashMessageHelper
         arguments: ["@translator"]
