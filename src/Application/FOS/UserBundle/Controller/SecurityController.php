@@ -50,8 +50,8 @@ class SecurityController extends BaseController
     public function autologinAction(Request $request, $token)
     {
         $username = $this->encryptor->decrypt(base64_decode(strtr($token, '-_', '+/')));
-        $user = $this->userManager->findUserByUsername($username);
-        $event = new GetResponseNullableUserEvent($user, $request);
+        $user     = $this->userManager->findUserByUsername($username);
+        $event    = new GetResponseNullableUserEvent($user, $request);
         $this->eventDispatcher->dispatch(Events::AUTOLOGIN_USER_INITIALIZE, $event);
 
         if (($response = $event->getResponse()) !== null) {
@@ -67,15 +67,6 @@ class SecurityController extends BaseController
         );
 
         return $response;
-    }
-
-    /**
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function landingAction(Request $request)
-    {
-        return $this->loginAction($request);
     }
 
     /**

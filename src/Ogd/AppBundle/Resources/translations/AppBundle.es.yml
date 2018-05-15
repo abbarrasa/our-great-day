@@ -58,7 +58,7 @@ frontend:
         search_you: Búscate
         success: Has realizado tu confirmación con éxito. Si necesitas cambiarla puedes realizarla en cualquier momento.
         set_user:
-            description: Ahora puedes asociar tu invitación a tu usuario. Si ya estás registrado, accede con tu usuario. Si no estás registrado, anímate y crea una cuenta de usuario. También puedes pasar de todo esto pulsando <a href="%url%">aquí</a>.
+            description: Ahora puedes asociar tu invitación a tu usuario. Si ya estás registrado, accede con a tu cuenta. Si no estás registrado, anímate y crea una cuenta de usuario. También puedes pasar de todo esto pulsando <a href="%url%">aquí</a>.
             success: Se ha asociado tu invitación a tu cuenta de usuario.
     guestbook:
         title: Nuestro gran <em>Libro de invitados</em>

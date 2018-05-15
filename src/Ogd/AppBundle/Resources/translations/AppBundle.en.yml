@@ -58,7 +58,7 @@ frontend:
         search_you: Search you
         success: You have confirmed successfully. If you need change your confirmation, you can do it at any time.
         set_user:
-            description: Now you can associate your invitation to your user. If you are already registered, access your user. If you are not registered, go ahead and create a user account. You can also go through all this by clicking <a href="%url%">here</a>.
+            description: Now you can associate your invitation to your user. If you are already registered, access to account. If you are not registered, go ahead and create a user account. You can also go through all this by clicking <a href="%url%">here</a>.
             success: Your invitation has been associated with your user account.
     guestbook:
         title: Our great <em>Guestbook</em>

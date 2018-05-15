@@ -53,7 +53,7 @@ services:
 
     fos_user.listener.email_confirmation:
         class:        "%user.listener.registration.class%"
-        arguments:    ["@AppBundle\\Service\\Mailer", "@router", "@twig"]
+        arguments:    ["@AppBundle\\Service\\Mailer", "@router", "@twig", "@doctrine.orm.entity_manager"]
         tags:
             - { name: kernel.event_subscriber }
     

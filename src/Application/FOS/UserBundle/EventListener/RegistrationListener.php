@@ -2,7 +2,10 @@
 
 namespace Application\FOS\UserBundle\EventListener;
 
+use AdminBundle\Entity\Guest;
+use Doctrine\ORM\EntityManager;
 use FOS\UserBundle\Event\FormEvent;
+use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Mailer\MailerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -20,7 +23,8 @@ class RegistrationListener implements EventSubscriberInterface
 
     /** @var \Twig_Environment */
     private $twig;
-    
+
+    /** @var EntityManager  */
     private $em;
 
     /**
@@ -28,6 +32,7 @@ class RegistrationListener implements EventSubscriberInterface
      * @param MailerInterface $mailer
      * @param UrlGeneratorInterface $router
      * @param \Twig_Environment $twig
+     * @param EntityManager $em
      */
     public function __construct(MailerInterface $mailer, UrlGeneratorInterface $router, \Twig_Environment $twig, EntityManager $em)
     {
@@ -48,18 +53,23 @@ class RegistrationListener implements EventSubscriberInterface
             FOSUserEvents::REGISTRATION_FAILURE => 'onRegistrationFailure',
         ];
     }
-    
+
+    /**
+     * @param GetResponseUserEvent $event
+     */
     public function onRegistrationInitialize(GetResponseUserEvent $event)
     {
         $request = $event->getRequest();
         if (null !== $request->get('_forwarded') && $request->getSession()->has('ogd.guest.id')) {
             $id    = $request->getSession()->get('ogd.guest.id');
-            if (!empty($id) && ($guest = $em->getRepository(Guest::class)->find($id)) !== null) {
+            if (!empty($id) &&
+                ($guest = $this->em->getRepository(Guest::class)->find($id)) !== null
+            ) {
                 $user  = $event->getUser();
                 
-                $user->getEmail($guest->getEmail());
-                $user->getFirstname($guest->getFirstname());
-                $user->getLastname($guest->getLastname());
+                $user->setEmail($guest->getEmail());
+                $user->setFirstname($guest->getFirstname());
+                $user->setLastname($guest->getLastname());
             }
         }         
     }
@@ -80,7 +90,7 @@ class RegistrationListener implements EventSubscriberInterface
             $this->router->generate($request->request->get('_target_path')) :
             $this->router->generate('fos_user_profile_edit')
         ;
-        $event->setResponse(new RedirectResponse($url, Response::HTTP_CREATED));
+        $event->setResponse(new RedirectResponse($url));
     }
 
     /**

@@ -11,12 +11,13 @@
     </div>
 {% endif %}
 
-<form action="{{ path("fos_user_landing") }}" method="post">
+<form action="{{ path("fos_user_security_check") }}" method="post">
     {% if csrf_token %}
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
     {% endif %}
 
     <input type="hidden" name="_target_path" value="guest_set_user" />
+    <input type="hidden" name="_failure_path" value="fos_user_landing" />
     <div class="col-md-12 form-group">
         <div class="input-group">
             <div class="input-group-prepend">
