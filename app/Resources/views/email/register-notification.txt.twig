@@ -1,0 +1,18 @@
+{% extends 'base-email.html.twig' %}
+
+{% block subject %}
+{%- autoescape false -%}
+{{ 'email.register.subject'|trans({'%username%': user.username}, 'email') }}
+
+{%- endautoescape -%}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+{{ 'email.register.body_plain'|trans({'%username%': user.username, '%accessUrl%': accessUrl, '%email%': email_admin}, 'email') }}
+{% endautoescape %}
+{% endblock %}
+
+{% block content_html %}
+{{ 'email.register.body_html'|trans({'%username%': user.username, '%accessUrl%': accessUrl, '%email%': email_admin}, 'email')|raw }}
+{% endblock %}

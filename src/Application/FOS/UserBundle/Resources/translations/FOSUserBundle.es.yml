@@ -1,0 +1,98 @@
+group:
+    edit:
+        submit: 'Actualizar grupo'
+    show:
+        name: 'Nombre de grupo'
+    new:
+        submit: 'Crear grupo'
+    flash:
+        updated: 'El grupo ha sido actualizado.'
+        created: 'El grupo ha sido creado.'
+        deleted: 'El grupo ha sido borrado.'
+security:
+    login:
+        title: 'Accede con tu cuenta'
+        username: 'Usuario o Email'
+        password: Contraseña
+        remember_me: Recuérdame
+        submit: Entrar
+        forgotten_password: '¿Olvidaste tu contraseña?'
+        register: 'Crea tu cuenta'
+profile:
+    title: 'Tu gran perfil de usuario'
+    header: 'Modifica tus datos'
+    change_password: 'Cambia tu contraseña'
+    show:
+        username: 'Nombre de usuario'
+        email: Email
+    edit:
+        submit: 'Actualizar usuario'
+    flash:
+        updated: 'El perfil ha sido actualizado.'
+change_password:
+    title: 'Cambia tu contraseña'
+    submit: 'Cambiar contraseña'
+    header: 'Cambia tu contraseña'
+    back: 'Volver a tu perfil'    
+    flash:
+        success: 'La contraseña se ha cambiado con éxito.'
+registration:
+    title: 'Crea tu cuenta'
+    check_email: 'Se ha enviado un correo electrónico a %email%. Contiene un enlace de activación al que debes acceder para activar tu cuenta.'
+    confirmed: 'Felicidades %username%, tu cuenta está ahora confirmada.'
+    back: 'Ir a la página original'
+    login: 'Accede con tu cuenta'
+    submit: Registrar
+    flash:
+        user_created: 'El usuario se ha creado satisfactoriamente.'
+resetting:
+    check_email: |
+        Se ha enviado un correo electrónico a tu cuenta de correo. Contiene un enlace de activación al que debes acceder para restablecer tu contraseña.
+        Nota: Solo se puede solicitar una nueva contraseña cada %tokenLifetime% horas.
+
+        Si no recibes un correo electrónico, comprueba tu carpeta de correo no deseado o inténtalo de nuevo.
+    back: 'Ir a la página original'    
+    login: 'Accede con tu cuenta'
+    request:
+        title: '¿Olvidaste tu contraseña?'    
+        username: 'Usuario o Email'
+        submit: 'Restablecer contraseña'        
+    reset:
+        title: 'Cambia tu contraseña'
+        submit: 'Cambiar contraseña'
+    flash:
+        success: 'La contraseña se ha cambiado con éxito.'
+        error:
+            username_invalid: 'El nombre de usuario o email no es válido.'
+            account_locked: 'Existen problemas con tu cuenta. Ponte en contacto con el administrador <a class="alert-link contact-us" href="#">aquí</a>.'
+layout:
+    logout: Salir
+    login: Entrar
+    register: Registrar
+    profile: 'Tu perfil'
+    logged_in_as: 'Identificado como %username%'
+form:
+    group_name: 'Nombre de grupo'
+    username: 'Nombre de usuario'
+    email: Email
+    current_password: 'Contraseña actual'
+    password: Contraseña
+    password_confirmation: 'Repita la contraseña'
+    new_password: 'Nueva contraseña'
+    new_password_confirmation: 'Repita la contraseña'
+    firstname: Nombre
+    lastname: Apellidos
+    gender: Sexo
+    gender.male: Hombre
+    gender.female: Mujer
+    password.help: 'Debe tener al menos 8 caracteres y un número.'
+    current_password.help: 'Déjala en blanco para NO cambiarla.'
+flash:
+    success: Bien!
+    error: Ooops!
+    info: Info
+autologin:
+    flash:
+        error:
+            username_invalid: 'El nombre de usuario o email no es válido.'
+            account_locked: 'Existen problemas con tu cuenta. Ponte en contacto con el administrador <a class="alert-link contact-us" href="#">aquí</a>.'

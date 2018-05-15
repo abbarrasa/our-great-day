@@ -17,6 +17,8 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new Nzo\UrlEncryptorBundle\NzoUrlEncryptorBundle(),
+            new SunCat\MobileDetectBundle\MobileDetectBundle(),
 
             // These are the other bundles the SonataAdminBundle relies on
             new Sonata\CoreBundle\SonataCoreBundle(),
@@ -35,6 +37,8 @@ class AppKernel extends Kernel
 
             // And finally, the application bundles
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Application\FOS\UserBundle\UserBundle(),
+            new AdminBundle\AdminBundle(),
             new AppBundle\AppBundle(),
         ];
 

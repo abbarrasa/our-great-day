@@ -1,0 +1,38 @@
+{% extends "@App/base.html.twig" %}
+{% trans_default_domain 'AppBundle' %}
+
+{% block title %}{{ 'profile.title'|trans({}, 'FOSUserBundle') }}{% endblock %}
+
+{% block main %}
+    <div id="first-section" class="section section-basic section-purple-gradient sr">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 text-center ml-auto mr-auto">
+                    <div class="section-description">
+                        <h2 class="title">{{ 'frontend.profile.title'|trans|raw }}</h2>
+                        <p class="description">{{ 'frontend.profile.description'|trans }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mr-auto ml-auto">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title text-center">{{ 'profile.header'|trans({}, 'FOSUserBundle') }}</h4>
+                        </div>
+                        <div class="card-body">
+                            {% include "@FOSUser/Profile/edit_content.html.twig" %}
+                        </div>
+                        <div class="card-footer">
+                            <div class="col-md-6 col-xs-12">
+                                <a href="{{ path('fos_user_change_password') }}">
+                                    <h6 class="text-left">{{ 'profile.change_password'|trans({}, 'FOSUserBundle') }}</h6>
+                                </a>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main %}

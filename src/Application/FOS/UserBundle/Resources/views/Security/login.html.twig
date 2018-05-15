@@ -1,0 +1,33 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}{{ 'security.login.title'|trans }}{% endblock %}
+
+{% block fos_user_content %}
+<div class="content">
+    <div class="row">
+        <div class="col-md-8 col-xs-12 ml-auto mr-auto">
+            <div class="card card-signup">
+                <div class="card-header card-header-primary text-center">
+                    <h4 class="card-title">{{ 'security.login.title'|trans }}</h4>
+                </div>
+                <div class="card-body">
+                    {{ include('@FOSUser/Security/login_content.html.twig') }}
+                </div>
+                <div class="card-footer">
+                    <div class="col-md-6 col-xs-12">
+                        <a href="{{ path('fos_user_registration_register') }}">
+                            <h6 class="text-left">{{ 'security.login.register'|trans }}</h6>
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <a href="{{ path('fos_user_resetting_request') }}">
+                            <h6 class="text-right">{{ 'security.login.forgotten_password'|trans }}</h6>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock fos_user_content %}

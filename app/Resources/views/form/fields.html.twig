@@ -1,16 +1,5 @@
 {% use "form_div_layout.html.twig" %}
 
-{# Widgets #}
-
-{#{%- block checkbox_widget -%}#}
-    {#<input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />#}
-{#{%- endblock checkbox_widget -%}#}
-
-{#{%- block radio_widget -%}#}
-    {#<input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />#}
-{#{%- endblock radio_widget -%}#}
-
-
 {# Errors #}
 
 {% block form_errors -%}
@@ -26,7 +15,7 @@
             {%- for error in errors -%}
                 <div class="alert-icon">
                     <i class="material-icons">error_outline</i>
-                </div> <b>{{ 'frontend.error'|trans }}</b> {{ error.message|trans }}
+                </div><strong>{{ 'frontend.error'|trans({}, 'AppBundle') }}</strong> {{ error.message|trans({}, 'validators') }}
             {%- endfor -%}
             </div></div>
         {% endif %}

@@ -1,0 +1,41 @@
+{% extends '@SonataAdmin/standard_layout.html.twig' %}
+
+{% block sonata_admin_content %}
+
+    {% include '@SonataCore/FlashMessage/render.html.twig' %}
+
+    <div class="sonata-ba-form">
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <h4 class="box-title">Invitados</h4>
+                            </div>
+                            <div class="box-body">
+                                <div class="sonata-ba-collapsed-fields">
+                                    <div class="form-group">
+                                        {{ form_label(form.file) }}
+                                        <div class="sonata-ba-field sonata-ba-field-standard-natural">
+                                            {{ form_widget(form.file) }}
+                                            {{ form_errors(form.file) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sonata-ba-form-actions well well-small form-actions stuck">
+            <button class="btn btn-success" type="submit" name="btn_import">
+                <i class="fa fa-level-up" aria-hidden="true"></i> {{ 'admin.guest.import_submit'|trans({}, 'AdminBundle') }}
+            </button>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+{% endblock %}

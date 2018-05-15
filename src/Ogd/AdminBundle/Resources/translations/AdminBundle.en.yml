@@ -1,0 +1,12 @@
+admin:
+    group:
+        administration: Administration
+        settings: Settings
+    model:
+        guests: Guests
+        greetings: Greetings
+        locations: Locations
+    guest:
+        import: Import
+        import_file: File
+        import_submit: Import

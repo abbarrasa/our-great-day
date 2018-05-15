@@ -1,0 +1,36 @@
+services:
+    admin.guest:
+        class: AdminBundle\Admin\GuestAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin.group.administration, label: admin.model.guests }
+        arguments:
+            - ~
+            - AdminBundle\Entity\Guest
+            - AdminBundle\Controller\GuestAdminController
+        calls:
+            - [ setTranslationDomain, [AdminBundle]]
+        public: true
+
+    admin.greetings:
+        class: AdminBundle\Admin\GreetingAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin.group.administration, label: admin.model.greetings }
+        arguments:
+            - ~
+            - AdminBundle\Entity\Greeting
+            - ~
+        calls:
+            - [ setTranslationDomain, [AdminBundle]]
+        public: true
+
+    admin.location:
+        class: AdminBundle\Admin\LocationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin.group.settings, label: admin.model.locations }
+        arguments:
+            - ~
+            - AdminBundle\Entity\Location
+            - ~
+        calls:
+            - [ setTranslationDomain, [AdminBundle]]
+        public: true

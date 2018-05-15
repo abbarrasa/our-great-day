@@ -1,0 +1,17 @@
+{% extends 'base-email.html.twig' %}
+
+{% block subject %}
+{%- autoescape false -%}
+{{ 'email.resetting.subject'|trans({'%username%': user.username}, 'email') }}
+{%- endautoescape -%}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+{{ 'email.resetting.body_plain'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl, '%email%': email_admin}, 'email') }}
+{% endautoescape %}
+{% endblock %}
+
+{% block content_html %}
+{{ 'email.resetting.body_html'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl, '%email%': email_admin}, 'email')|raw }}
+{% endblock %}

@@ -1,0 +1,5 @@
+<ul>
+    {% for number, error in errors %}
+    <li><strong>Line {{ number }}:</strong> {{ error }}</li>
+    {% endfor %}
+</ul>

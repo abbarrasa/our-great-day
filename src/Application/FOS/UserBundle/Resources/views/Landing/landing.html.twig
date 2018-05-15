@@ -1,0 +1,46 @@
+{% extends '@App/base.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
+
+{% block title %}{{ 'frontend.title'|trans }} - {{ 'frontend.guest.confirm_attendence'|trans }}{% endblock %}
+
+{% block main %}
+    <div id="first-section" class="section section-basic section-purple-gradient sr">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 text-center ml-auto mr-auto">
+                <div class="section-description">
+                    <h2 class="title">{{ 'frontend.guest.title'|trans|raw }}</h2>
+                    <p class="description">{{ 'frontend.guest.set_user.description'|trans({'%url%': path('homepage')})|raw }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card col-12">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12 with-separator-right">
+                            <div class="card card-plain">
+                                <div class="card-header card-header-primary text-center">
+                                    <h4 class="card-title">{{ 'security.login.title'|trans({}, 'FOSUserBundle') }}</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ login|raw }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="card card-plain">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title text-center">{{ 'registration.title'|trans({}, 'FOSUserBundle') }}</h4>
+                                </div>
+                                <div class="card-body">
+                                    {{ register|raw }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

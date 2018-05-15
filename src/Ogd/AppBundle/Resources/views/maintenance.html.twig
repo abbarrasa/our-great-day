@@ -1,0 +1,71 @@
+{% extends '@App/base.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
+
+{% block title %}{{ 'frontend.title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="login-page sidebar-collapse">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg bg-rose fixed-top navbar-transparent " color-on-scroll="100">
+            <div class="container">
+                <div class="navbar-translate">
+                    <a class="navbar-brand" href="{{ path('homepage') }}">
+                        {{ 'frontend.title'|trans({}, 'AppBundle') }}
+                    </a>
+                    <button id="burger-button" class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-bar bar1"></span>
+                        <span class="navbar-toggler-bar bar2"></span>
+                        <span class="navbar-toggler-bar bar3"></span>
+                    </button>
+                </div>
+                {% image 'bundles/app/images/blurred-image-1.jpg' %}
+                <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{ asset_url }}">
+                    {{ knp_menu_render('main', {'template': '@App/partials/knp_menu.html.twig'}) }}
+                    {{ knp_menu_render('social', {'template': '@App/partials/knp_menu.html.twig'}) }}
+                </div>
+                {% endimage %}
+            </div>
+        </nav>
+        <!-- End Navbar -->
+
+        <div class="page-header" filter-color="black">
+            {% image 'bundles/app/images/header.jpg' %}
+            <div class="page-header-image" style="background-image: url('{{ asset_url }}');"></div>
+            {% endimage %}
+
+            <div class="content">
+                <div class="container">
+                    {% block fos_user_content %}
+                    {% endblock fos_user_content %}
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="copyright">
+                        <p>&copy; 2018, made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/abbarrasa/our-great-day">Alberto Buitrago</a> for a better web. Thanks to <a href="http://www.creative-tim.com">Creative Tim</a>.</p>
+                    </div>
+                </div>
+            </footer>
+            {#<!-- End footer -->#}
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="ogd-modal" tabindex="-1" role="dialog" aria-labelledby="ogd-modal-label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ogd-modal-label"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="material-icons">clear</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"></div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+    </div>
+
+{% endblock %}

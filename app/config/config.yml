@@ -2,7 +2,6 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: admin.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -10,10 +9,14 @@ parameters:
     locale: es
     mailer:
         default_sleep: 1
-        email_admin: '%email_admin%'
-        email_manager: '%email_manager%'
-        from_name: 'Nuestro gran día'
-        embedded_images: '%embedded_images%'
+        email_admin: '%mailer_email_admin%'
+        email_manager: '%mailer_email_manager%'
+        from_name: '%mailer_from_name%'
+        embedded_images:
+            - header-small.jpg
+            - font-awesome_4-7-0_facebook.png
+            - font-awesome_4-7-0_google-plus.png
+            - font-awesome_4-7-0_twitter.png
     # Maintenance mode
     maintenance: false
 
@@ -47,12 +50,14 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     globals:
-        email_admin: '%email_admin%'
+        email_admin: '%mailer_email_admin%'
         api_key: '%google.api_key%'
         wedding_date: '%wedding.date%'
-        version: 1.1.0
+        version: 2.2.0
     form_themes:
         - 'form/fields.html.twig'
+    paths:
+        '%kernel.project_dir%/src/Ogd/AdminBundle/Resources/view': Admin
 
 # Doctrine Configuration
 doctrine:
@@ -98,13 +103,27 @@ fos_user:
     firewall_name: main
     user_class: Application\Sonata\UserBundle\Entity\User
     from_email:
-        address: "%email_admin%"
-        sender_name: 'Our Great Day'
+        address: "%mailer_email_admin%"
+        sender_name: '%mailer_from_name%'
     group:
         group_class:   Application\Sonata\UserBundle\Entity\Group
         group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
     service:
         user_manager: sonata.user.orm.user_manager
+    registration:
+        form:
+            type: Application\FOS\UserBundle\Form\Type\RegistrationType
+    resetting:
+        retry_ttl: 7200
+        token_ttl: 86400
+        form:
+            type: Application\FOS\UserBundle\Form\Type\ResettingType
+    profile:
+        form:
+            type: Application\FOS\UserBundle\Form\Type\ProfileType
+    change_password:
+        form:
+            type: Application\FOS\UserBundle\Form\Type\ChangePasswordType        
 
 # Sonata Admin Configuration
 sonata_user:
@@ -130,7 +149,7 @@ sonata_admin:
             admin.group.administration:
 #                keep_open: true
                 label: admin.group.administration
-                label_catalogue: admin
+                label_catalogue: AdminBundle
                 icon: '<i class="fa fa-gears"></i>'
 #                items:
 #                    - sonata.media.admin.media
@@ -139,5 +158,10 @@ sonata_admin:
             admin.group.settings:
 #                keep_open: true
                 label: admin.group.settings
-                label_catalogue: admin
+                label_catalogue: AdminBundle
                 icon: '<i class="fa fa-sliders"></i>'
+
+nzo_url_encryptor:
+    secret_key: "%secret%"      # optional, max length of 100 characters.
+    secret_iv:  "%secret_iv%"   # optional, max length of 100 characters.
+    cipher_algorithm: 'aes-256-ctr'

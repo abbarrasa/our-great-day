@@ -1,0 +1,99 @@
+group:
+    edit:
+        submit: 'Update group'
+    show:
+        name: 'Group name'
+    new:
+        submit: 'Create group'
+    flash:
+        updated: 'The group has been updated.'
+        created: 'The group has been created.'
+        deleted: 'The group has been deleted.'
+security:
+    login:
+        title: 'Log in'
+        username: Username or Email
+        password: Password
+        remember_me: 'Remember me'
+        submit: 'Log in'
+        forgotten_password: 'Did you forget your password?'
+        register: 'Sign up'
+profile:
+    title: 'Your great profile'
+    header: 'Update your profile'
+    change_password: 'Change your password'    
+    show:
+        username: Username
+        email: Email
+    edit:
+        submit: Update
+    flash:
+        updated: 'The profile has been updated.'
+
+change_password:
+    title: 'Change your password'
+    submit: 'Change password'
+    header: 'Change your password'    
+    back: 'Back to profile'
+    flash:
+        success: 'The password has been changed.'
+registration:
+    title: 'Sign up'
+    check_email: |
+        An email has been sent to %email%. It contains an activation link you must click to activate your account.
+    confirmed: 'Congrats %username%, your account is now activated.'
+    back: 'Back to home'
+    login: 'Log in'
+    submit: Register
+    flash:
+        user_created: 'The user has been created successfully.'
+resetting:
+    check_email: |
+        An email has been sent. It contains a link you must click to reset your password.
+        Note: You can only request a new password once within %tokenLifetime% hours.
+
+        If you don't get an email check your spam folder or try again.
+    back: 'Back to home'        
+    login: 'Log in'
+    request:
+        title: 'Reset your password'
+        username: 'Username or email address'
+        submit: 'Reset password'
+    reset:
+        title: 'Change your password'    
+        submit: 'Change password'
+    flash:
+        success: 'The password has been reset successfully.'
+        error:
+            username_invalid: 'Username or email invalid.'
+            account_locked: 'There are some problems with your user account. Contact the administrator <a class="alert-link contact-us" href="#">here</a>.'
+
+# Global strings
+layout:
+    logout: 'Log out'
+    login: 'Log in'
+    register: Register
+    profile: 'Your profile'
+    logged_in_as: 'Logged in as %username%'
+form:
+    group_name: 'Group name'
+    username: Username
+    email: Email
+    current_password: 'Current password'
+    password: Password
+    password_confirmation: 'Repeat password'
+    new_password: 'New password'
+    new_password_confirmation: 'Repeat new password'
+    firstname: 'First name'
+    lastname: 'Last name'
+    password.help: 'It must have at least 8 characters and a number.'
+    current_password.help: 'Leave it blank to NOT change it.'
+flash:
+    success: Success!
+    error: Ooops!
+    info: Info
+autologin:
+    flash:
+        error:
+            username_invalid: 'Username or email invalid.'
+            account_locked: 'There are some problems with your user account. Contact the administrator <a class="alert-link contact-us" href="#">here</a>.'

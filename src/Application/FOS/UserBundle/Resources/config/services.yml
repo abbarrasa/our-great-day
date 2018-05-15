@@ -1,0 +1,88 @@
+parameters:    
+    user.controller.resetting.class: Application\FOS\UserBundle\Controller\ResettingController
+    user.controller.security.class: Application\FOS\UserBundle\Controller\SecurityController
+    user.controller.registration.class: Application\FOS\UserBundle\Controller\RegistrationController
+    user.controller.landing.class: Application\FOS\UserBundle\Controller\LandingController
+    user.listener.registration.class: Application\FOS\UserBundle\EventListener\RegistrationListener
+    user.listener.resetting.class: Application\FOS\UserBundle\EventListener\ResettingListener
+    user.listener.flash.class: Application\FOS\UserBundle\EventListener\FlashListener
+    user.listener.authentication.class: Application\FOS\UserBundle\EventListener\AuthenticationListener
+    user.listener.editing_profile.class: Application\FOS\UserBundle\EventListener\EditingProfileListener
+
+services:
+    user.security.controller:
+        class: "%user.controller.security.class%"
+        arguments:
+            - "@security.csrf.token_manager"
+            - "@event_dispatcher"
+            - "@fos_user.user_manager"
+            - "@fos_user.registration.form.factory"
+            - "@nzo_url_encryptor"
+        public: true
+        calls:
+            - [setContainer, ["@service_container"]]
+
+    user.registration.controller:
+        class: "%user.controller.registration.class%"
+        arguments:
+            - "@event_dispatcher"
+            - "@fos_user.registration.form.factory"
+            - "@fos_user.user_manager"
+            - "@security.token_storage"
+        calls:
+            - [setContainer, ["@service_container"]]
+
+    user.resetting.controller:
+        class: "%user.controller.resetting.class%"
+        arguments:
+            - "@event_dispatcher"
+            - "@fos_user.resetting.form.factory"
+            - "@fos_user.user_manager"
+            - "@fos_user.util.token_generator"
+            - "@AppBundle\\Service\\Mailer"
+            - "%fos_user.resetting.retry_ttl%"
+        public: true
+        calls:
+            - [setContainer, ["@service_container"]]
+
+    user.landing.controller:
+        class: "%user.controller.landing.class%"
+        public: true
+        calls:
+            - [setContainer, ["@service_container"]]
+
+    fos_user.listener.email_confirmation:
+        class:        "%user.listener.registration.class%"
+        arguments:    ["@AppBundle\\Service\\Mailer", "@router", "@twig", "@doctrine.orm.entity_manager"]
+        tags:
+            - { name: kernel.event_subscriber }
+    
+    fos_user.listener.resetting:
+        class:        "%user.listener.resetting.class%"
+        arguments:    ["@router", "%fos_user.resetting.token_ttl%"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    fos_user.listener.flash:
+        class:        "%user.listener.flash.class%"
+        arguments:    ["@session", "@app.helper.flash_message"]
+        tags:
+            - { name: kernel.event_subscriber }
+            
+    fos_user.listener.authentication:
+        class:        "%user.listener.authentication.class%"
+        arguments:    ["@fos_user.security.login_manager", "@router", "%fos_user.firewall_name%"]
+        tags:
+            - { name: kernel.event_subscriber }                     
+
+    fos_user.listener.editing_profile:
+        class:        "%user.listener.editing_profile.class%"
+        arguments:    ["@router"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    user.profile.form.type:
+        class: Application\FOS\UserBundle\Form\Type\ProfileType
+        arguments: ["%fos_user.model.user.class%"]
+        tags:
+            - { name: form.type, alias: app_user_profile }

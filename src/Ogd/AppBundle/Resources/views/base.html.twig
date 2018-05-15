@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        {% block meta_description %}
+        <meta name="description" content="Somos Vero y Carlos y nos casamos. Descubre toda la información referente a nuestra historia de amor y a Nuestro Gran Día">
+        <link rel="canonical" href="{{ absolute_url(path('homepage')) }}" />
+        {% endblock %}
+        <meta name="viewport" content="width=device-width" />
+
+        <title>{% block title %}{% endblock %}</title>
+        {% block stylesheets %}
+        <!--     Fonts     -->
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type='text/css'>
+        {% stylesheets
+            'bundles/app/css/material-kit.min.css'
+            'bundles/app/css/demo.css' filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+        {% endblock %}
+        
+        <link rel="apple-touch-icon" href="{{ asset('apple-icon.png') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+
+    <body>
+        {% block body %}
+        <div class="index-page sidebar-collapse">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg bg-rose fixed-top navbar-transparent" color-on-scroll="100">
+                <div class="container">
+                    <div class="navbar-translate">
+                        <a class="navbar-brand" href="{{ path('homepage') }}">
+                            {{ 'frontend.title'|trans({}, 'AppBundle') }}
+                        </a>
+                        <button id="burger-button" class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-bar bar1"></span>
+                            <span class="navbar-toggler-bar bar2"></span>
+                            <span class="navbar-toggler-bar bar3"></span>
+                        </button>
+                    </div>
+                    {% image 'bundles/app/images/blurred-image-1.jpg' %}
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{ asset_url }}">
+                    {{ knp_menu_render('main', {'template': '@App/partials/knp_menu.html.twig'}) }}
+                    {{ knp_menu_render('social', {'template': '@App/partials/knp_menu.html.twig'}) }}
+                    </div>
+                    {% endimage %}
+                </div>
+            </nav>
+            <!-- End Navbar -->
+
+            <div class="wrapper">
+                <!-- Jumbotron -->
+                <div class="page-header clear-filter" filter-color="black">
+                {% image 'bundles/app/images/header.jpg' %}
+                    <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset_url }}');"></div>
+                {% endimage %}
+                    <div class="container">
+                        <div class="col-md-8 ml-auto mr-auto">
+                            <div class="brand">
+                                <h1 class="h1-seo">Vero y Carlos</h1>
+                                <h3>{{ 'frontend.title'|trans({}, 'AppBundle') }}</h3>
+                            </div>
+                        </div>
+                        <a href="" data-scroll="true" data-id="#first-section" class="scroll-arrow hidden-xs hidden-sm text-center">
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- End Jumbotron -->
+                
+                <!-- Main -->
+                <div class="main">
+                    {% block main %}{% endblock %}
+                </div>
+                <!-- End Main -->
+
+                <!-- Footer -->
+                <footer class="footer footer-black">
+                    <div class="container">
+                        <div class="copyright">
+                            <p>&copy; 2018, made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/abbarrasa/our-great-day">Alberto Buitrago</a> for a better web. Thanks to <a href="http://www.creative-tim.com">Creative Tim</a>.</p>
+                        </div>
+                    </div>
+                </footer>
+                {#<!-- End footer -->#}
+
+                <!-- Modal -->
+                {{ include('@App/partials/modal.html.twig') }}
+                <!-- End Modal -->
+
+            </div>
+        </div>
+        {% endblock %}
+
+        {% block javascripts %}
+            {% javascripts
+            'bundles/app/js/core/jquery.min.js'
+            'bundles/app/js/core/popper.min.js'
+            'bundles/app/js/core/moment.min.js'
+            'bundles/app/js/core/nouislider.min.js'
+            'bundles/app/js/core/bootstrap-material-design.min.js'
+            'bundles/app/js/plugins/modernizr.js'
+            'bundles/app/js/plugins/scrollreveal.min.js'
+            'bundles/app/js/plugins/bootstrap-notify.js'
+            'bundles/app/js/plugins/bootstrap-datetimepicker.min.js'
+            'bundles/app/js/plugins/bootstrap-selectpicker.min.js'
+            'bundles/app/js/material-kit.min.js'
+            'bundles/app/js/now-ui-kit.js'
+            'bundles/app/js/material-kit-demo.js' %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    {# Flash messages #}
+                    {% for flashMessages in app.flashes %}
+                        {% for flashMessage in flashMessages %}
+                            materialKitDemo.showNotification(
+                                '{{ flashMessage.title }}',
+                                '{{ flashMessage.message|raw }}',
+                                '{{ flashMessage.alert }}',
+                                '{{ flashMessage.icon }}'
+                            );
+                        {% endfor %}
+                    {% endfor %}
+
+                    {# Animation on each section #}
+                    window.sr = ScrollReveal();
+                    sr.reveal('.sr', {duration: 800, reset: false, viewOffset: { top: 64 }});
+                    sr.reveal('.card-sr', {duration: 800, reset: true, viewOffset: { top: 64 }});
+
+                    {# Data scroll #}
+                    $('a[data-scroll="true"]').click(function(e){
+                        var scroll_target = $(this).data('id');
+                        var scroll_trigger = $(this).data('scroll');
+
+                        if(scroll_trigger == true && scroll_target !== undefined){
+                            e.preventDefault();
+
+                            $('html, body').animate({
+                                scrollTop: $(scroll_target).offset().top - 50
+                            }, 1000);
+                        }
+                    });
+
+                    {# Load enquiry form #}
+                    $('a.contact-us').click(function(e) {
+                        e.preventDefault();
+                        $.ajax({
+                            url: '{{ path('enquiry') }}',
+                            type: 'POST'
+                        }).done(function (responseJSON) {
+                            $('#burger-button').trigger('click');
+                            $('#ogd-modal').find('.modal-body').html(responseJSON.view);
+                            $('#ogd-modal').modal('show');
+                        });
+                    });
+
+                    {# Submit enquiry form #}
+                    $('body').on('submit', 'form[name="enquiry"]', function(e) {
+                        e.preventDefault();
+                        $.ajax({
+                            type: $(this).attr('method'),
+                            url: $(this).attr('action'),
+                            data: $(this).serialize(),
+                        }).done(function () {
+                            $('#ogd-modal').modal('hide');
+                            materialKitDemo.showNotification(
+                                '{{ 'frontend.success'|trans({}, 'AppBundle') }}',
+                                '{{ 'frontend.enquiry.success'|trans({}, 'AppBundle') }}',
+                                'success',
+                                'check'
+                            );
+                        }).fail(function (jqXHR, textStatus, errorThrown) {
+                            if (jqXHR.responseJSON.hasOwnProperty('view')) {
+                                $('#ogd-modal').find('.modal-body').html(jqXHR.responseJSON.view);
+                            }
+                        });
+                    });
+                });
+            </script>
+        {% endblock %}
+    </body>
+</html>

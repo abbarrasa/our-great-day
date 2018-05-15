@@ -1,0 +1,34 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}{{ 'registration.title'|trans }}{% endblock %}
+
+{% block fos_user_content %}
+    <div class="content">
+        <div class="row">
+            <div class="col-md-8 col-xs-12 ml-auto mr-auto">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title text-center">{{ 'registration.title'|trans({}, 'FOSUserBundle') }}</h4>
+                    </div>
+                    <div class="card-body">
+                        {% include "@FOSUser/Registration/register_content.html.twig" %}
+                    </div>
+                    <div class="card-footer">
+                        <div class="col-md-6 col-xs-12">
+                            <a href="{{ path('fos_user_security_login') }}">
+                                <h6 class="text-left">{{ 'registration.login'|trans }}</h6>
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <a href="{{ path('homepage') }}">
+                                <h6 class="text-right">{{ 'registration.back'|trans }}</h6>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock fos_user_content %}
+

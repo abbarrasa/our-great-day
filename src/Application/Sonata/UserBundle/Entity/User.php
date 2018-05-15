@@ -18,6 +18,8 @@ class User extends BaseUser
      * @var int $id
      */
     protected $id;
+    
+    protected $guest;
 
     protected $greetings;
 
@@ -33,6 +35,26 @@ class User extends BaseUser
         return $this->id;
     }
 
+    /**
+     * Set guest.
+     *
+     * @param $guest
+     */
+    public function setGuest($guest)
+    {
+        $this->guest = $guest;
+    }
+
+    /**
+     * Get guest.
+     *
+     * @return mixed
+     */
+    public function getGuest()
+    {
+        return $this->guest;
+    }
+    
     /**
      * Set greetings.
      *

@@ -16,4 +16,4 @@
 /vendor/
 /web/bundles/
 /.idea
-/src/AppBundle/Entity/*.php~
+/src/Ogde/AdminBundle/Entity/*.php~

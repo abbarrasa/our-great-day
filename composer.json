@@ -4,7 +4,8 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "AppBundle\\": "src/AppBundle",
+            "AppBundle\\": "src/Ogd/AppBundle",
+            "AdminBundle\\": "src/Ogd/AdminBundle",
             "Application\\": "src/Application"
         },
         "classmap": [
@@ -24,15 +25,18 @@
         "php": ">=5.5.9",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
-        "friendsofsymfony/user-bundle": "~2.0",
+        "friendsofsymfony/user-bundle": "~2.1",
         "incenteev/composer-parameter-handler": "^2.0",
         "knplabs/knp-paginator-bundle": "^2.7",
+        "nzo/url-encryptor-bundle": "^4.2",
+        "phpoffice/phpspreadsheet": "^1.2",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^5.0.0",
         "sonata-project/admin-bundle": "^3.30",
         "sonata-project/doctrine-orm-admin-bundle": "^3.3",
         "sonata-project/easy-extends-bundle": "^2.3",
         "sonata-project/user-bundle": "^4.0",
+        "suncat/mobile-detect-bundle": "^1.1",
         "symfony/assetic-bundle": "^2.8",
         "symfony/monolog-bundle": "^3.1.0",
         "symfony/polyfill-apcu": "^1.0",
