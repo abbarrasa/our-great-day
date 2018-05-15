@@ -75,8 +75,27 @@
     </div>
     <!-- End Timeline -->
 
+    <!-- News -->
+    <div class="section section-basic sr">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-xs-12 text-center ml-auto mr-auto">
+                    <div class="section-description">
+                        <h2 class="title sr">{{ 'frontend.news.title'|trans|raw }}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-xs-12 ml-auto mr-auto">
+                    {{ carousel() }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End News -->
+
     <!-- Maps -->
-    <div class="section section-basic section-gray">
+    <div class="section section-basic section-light-gray">
         <div class="sr">
             <div class="container">
                 <div class="row">
@@ -210,7 +229,7 @@
         }
 
         $(document).ready(function() {
-            // Initialize countdown clock
+            {# Initialize countdown clock #}
             var time = Date.parse('{{ wedding_date }}') - Date.parse(new Date());
             var deadline = Math.round(time / 1000);
             $('#countdown').FlipClock(deadline, {

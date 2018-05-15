@@ -95,3 +95,5 @@ frontend:
     profile:
         title: Your great <em>Profile</em>
         description: You have entered your private area. In this area you can change your user data and update your password.
+    news:
+        title: Our great <em>News</em>

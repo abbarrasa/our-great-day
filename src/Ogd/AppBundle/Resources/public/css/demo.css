@@ -2700,3 +2700,53 @@ h6 {
 .with-separator-right {
     border-right: 1px solid #d2d2d2;
 }
+
+.carousel .carousel-caption {
+    background-color: #222;
+    opacity: 0.8;
+    right: 0;
+    left: 0;
+}
+
+.section-white-to-gray {
+    background-color:#fff !important;
+    background:transparent -webkit-gradient(linear,left bottom,left top,from(#e5e5e5),to(#fff)) repeat scroll 0 0 !important;
+    background:transparent linear-gradient(0deg,#e5e5e5 0,#fff 100%) repeat scroll 0 0 !important;
+}
+.section-gray {
+    background:#e5e5e5 !important;
+}
+.section-light-gray {
+    background:#eee !important;
+}
+.section-primary {
+    background:#e1bee7 !important;
+    background:linear-gradient(60deg,#e1bee7,#ba68c8) !important;
+}
+.section-info {
+    background:#b2ebf2 !important;
+    background:linear-gradient(60deg,#b2ebf2,#4dd0e1) !important;
+}
+.section-success {
+    background:#c8e6c9 !important;
+    background:linear-gradient(60deg,#c8e6c9,#81c784) !important;
+}
+.section-warning {
+    background:#ffe0b2 !important;
+    background:linear-gradient(60deg,#ffe0b2,#ffb74d) !important;
+}
+.section-danger {
+    background:#ffcdd2 !important;
+    background:linear-gradient(60deg,#ffcdd2,#e57373) !important;
+}
+.section-rose {
+    background:#f8bbd0 !important;
+    background:linear-gradient(60deg,#f8bbd0,#f06292) !important;
+}
+.section-dark {
+    background-color:#343434 !important;
+    background-size:200% 240% !important;
+    background:#232323 !important;
+    background:radial-gradient(ellipse at center,#585858 0,#232323 100%) !important;
+    background-size:550% 450% !important;
+}
