@@ -3,6 +3,7 @@
 parameters:
     #parameter_name: value
     tmp_directory: '%kernel.project_dir%/web/uploads/tmp'
+    user_directory: '%kernel.project_dir%/web/uploads/user'    
 
 services:
     # default configuration for services in *this* file
@@ -39,11 +40,15 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
-    AppBundle\Service\DefaultFileUploader:
-        class: AppBundle\Service\FileUploader
+    AppBundle\Service\Uploader\FileUploader:
         arguments:
-            $defaultTargetDirectory: '%tmp_directory%'
+            $targetDirectory: '%tmp_directory%'
         public: true
+        
+    AppBundle\Service\Uploader\AvatarUploader:
+        arguments:
+            $targetDirectory: '%user_directory%'
+        public: true        
 
     AppBundle\Service\Mailer:
         arguments: ["@service_container"]
