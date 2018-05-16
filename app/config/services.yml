@@ -41,7 +41,7 @@ services:
     #         $someArgument: 'some_value'
     AppBundle\Service\FileUploader:
         arguments:
-            $targetDirectory: '%tmp_directory%'
+            $defaultTargetDirectory: '%tmp_directory%'
         public: true
 
     AppBundle\Service\Mailer:
