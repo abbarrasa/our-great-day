@@ -1,25 +1,23 @@
 <?php
 
-namespace AppBundle\Service;
+namespace AppBundle\Service\Uploader;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileUploader
 {
-    private $defaultTargetDirectory;
+    protected $targetDirectory;
 
-    public function __construct($defaultTargetDirectory)
+    public function __construct($targetDirectory)
     {
-        $this->defaultTargetDirectory = $defaultTargetDirectory;
+        $this->targetDirectory = $targetDirectory;
     }
 
-    public function upload(UploadedFile $file, $targetDirectory = null)
+    public function upload(UploadedFile $file)
     {
-        $fileName = md5(uniqid()).'.'.$file->guessExtension();        
-        if (null === $targetDirectory) {
-            $targetDirectory = $this->getDefaultTargetDirectory();
-        }
-
+        $targetDirectory = $this->getTargetDirectory();        
+        $fileName        = md5(uniqid()).'.'.$file->guessExtension();
+        
         if (!file_exists($targetDirectory)) {
             mkdir($targetDirectory, 0775);
         }
@@ -29,8 +27,8 @@ class FileUploader
         return $fileName;
     }
 
-    public function getDefaultTargetDirectory()
+    public function getTargetDirectory()
     {
-        return $this->defaultTargetDirectory;
+        return $this->targetDirectory;
     }
 }
