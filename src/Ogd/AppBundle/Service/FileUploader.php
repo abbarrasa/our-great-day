@@ -16,7 +16,7 @@ class FileUploader
     public function upload(UploadedFile $file)
     {
         $targetDirectory = $this->getTargetDirectory();        
-        $fileName        = md5(uniqid()).'.'.$file->guessExtension();
+        $fileName        = $this->generateFilename . '.' . $file->guessExtension();
         
         if (!file_exists($targetDirectory)) {
             mkdir($targetDirectory, 0775);
@@ -30,5 +30,10 @@ class FileUploader
     public function getTargetDirectory()
     {
         return $this->targetDirectory;
+    }
+    
+    protected function generateFilename()
+    {
+        return md5(uniqid());
     }
 }
