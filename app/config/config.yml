@@ -132,6 +132,9 @@ sonata_user:
     class:
         user: Application\Sonata\UserBundle\Entity\User
         group: Application\Sonata\UserBundle\Entity\Group
+    profile:
+        default_avatar: 'bundles/app/images/user-default.jpg' # Default avatar displayed if the user doesn't have one
+        
 
 sonata_block:
     default_contexts: [cms]
