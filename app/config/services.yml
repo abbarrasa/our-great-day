@@ -39,7 +39,8 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
-    AppBundle\Service\FileUploader:
+    AppBundle\Service\DefaultFileUploader:
+        class: AppBundle\Service\FileUploader
         arguments:
             $defaultTargetDirectory: '%tmp_directory%'
         public: true
