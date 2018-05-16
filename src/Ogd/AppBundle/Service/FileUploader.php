@@ -16,7 +16,7 @@ class FileUploader
     public function upload(UploadedFile $file)
     {
         $targetDirectory = $this->getTargetDirectory();        
-        $fileName        = $this->generateFilename . '.' . $file->guessExtension();
+        $fileName        = $this->generateFilename() . '.' . $file->guessExtension();
         
         if (!file_exists($targetDirectory)) {
             mkdir($targetDirectory, 0775);
