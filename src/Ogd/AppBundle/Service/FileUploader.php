@@ -6,28 +6,31 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileUploader
 {
-    private $targetDirectory;
+    private $defaultTargetDirectory;
 
-    public function __construct($targetDirectory)
+    public function __construct($defaultTargetDirectory)
     {
-        $this->targetDirectory = $targetDirectory;
+        $this->defaultTargetDirectory = $defaultTargetDirectory;
     }
 
-    public function upload(UploadedFile $file)
+    public function upload(UploadedFile $file, $targetDirectory = null)
     {
-        $fileName = md5(uniqid()).'.'.$file->guessExtension();
-
-        if (!file_exists($this->getTargetDirectory())) {
-            mkdir($this->getTargetDirectory(), 0775);
+        $fileName = md5(uniqid()).'.'.$file->guessExtension();        
+        if (null === $targetDirectory) {
+            $targetDirectory = $this->getDefaultTargetDirectory();
         }
 
-        $file->move($this->getTargetDirectory(), $fileName);
+        if (!file_exists($targetDirectory)) {
+            mkdir($targetDirectory, 0775);
+        }
+
+        $file->move($targetDirectory, $fileName);
 
         return $fileName;
     }
 
-    public function getTargetDirectory()
+    public function getDefaultTargetDirectory()
     {
-        return $this->targetDirectory;
+        return $this->defaultTargetDirectory;
     }
 }
