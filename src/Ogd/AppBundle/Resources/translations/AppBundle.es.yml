@@ -47,7 +47,7 @@ frontend:
         description: Desde esta página puedes confirmar tu asistencia o rechazar nuestra invitación (en cuyo caso lo lamentaremos mucho). Para ello deberás buscarte primero en la lista de invitados y después enviar la confirmación. Si no consigues encontrarte y piensas que deberías estar o tienes cualquer otro problema puedes dirigirte a nosotros por <a class="contact-us" href="#">aquí</a>. No lo pienses mucho y asiste... sin tí seguro que no será igual.
         firstname: Tu nombre
         lastname: Tus apellidos
-        email: Tu email (optional)
+        email: Tu email (opcional)
         guests: Número de invitados
         childs: Número de niños
         vegans: Número de veganos
