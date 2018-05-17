@@ -14,10 +14,8 @@
                     </div>
                     <div class="card-footer">
                         <div class="author">
-                            {% image 'bundles/app/images/user-default.jpg' %}
-                            <img src="{{ asset_url }}" alt="{{ greeting.name }}" class="avatar img-raised">
-                            {% endimage %}
-                            <span>{{ greeting.name }}</span>
+                            {% include('@App/partials/avatar.html.twig', { 'user': greeting.user, classes: ['avatar', 'img-raised'], 'alt': greeting.name }) %}
+                            <span>{{ greeting.user.username|default(greeting.name) }}</span>
                         </div>
                         <div class="stats ml-auto">
                             <a href="{{ path('greeting_like', {'id': greeting.id, 'page': app.request.attributes.get('page')}) }}" class="badge badge-danger" title="{{'frontend.guestbook.likes.tooltip'|trans({}, 'AppBundle')}}" data-toggle="tooltip">
