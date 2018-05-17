@@ -4,9 +4,7 @@
     <div class="media">
         <div class="pull-left">
             <div class="avatar">
-                {% image 'bundles/app/images/user-default.jpg' %}
-                <img src="{{ asset_url }}" alt=".." class="media-object img-raised">
-                {% endimage %}
+                {% include('@App/partials/avatar.html.twig', { 'user': comment.user, classes: ['media-object', 'img-raised'], 'alt': 'anonymous' }) %}
             </div>
         </div>
         <div class="media-body">
