@@ -25,6 +25,8 @@ class User extends BaseUser
 
     protected $greetingComments;
 
+    protected $picture;
+
     /**
      * Get id.
      *
@@ -95,4 +97,75 @@ class User extends BaseUser
         return $this->greetingComments;
     }
 
+    /**
+     * Set picture.
+     *
+     * @param $picture
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+    }
+
+    /**
+     * Get picture.
+     *
+     * @return mixed
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Add greeting.
+     *
+     * @param \AdminBundle\Entity\Greeting $greeting
+     *
+     * @return User
+     */
+    public function addGreeting(\AdminBundle\Entity\Greeting $greeting)
+    {
+        $this->greetings[] = $greeting;
+
+        return $this;
+    }
+
+    /**
+     * Remove greeting.
+     *
+     * @param \AdminBundle\Entity\Greeting $greeting
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeGreeting(\AdminBundle\Entity\Greeting $greeting)
+    {
+        return $this->greetings->removeElement($greeting);
+    }
+
+    /**
+     * Add greetingComment.
+     *
+     * @param \AdminBundle\Entity\GreetingComment $greetingComment
+     *
+     * @return User
+     */
+    public function addGreetingComment(\AdminBundle\Entity\GreetingComment $greetingComment)
+    {
+        $this->greetingComments[] = $greetingComment;
+
+        return $this;
+    }
+
+    /**
+     * Remove greetingComment.
+     *
+     * @param \AdminBundle\Entity\GreetingComment $greetingComment
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeGreetingComment(\AdminBundle\Entity\GreetingComment $greetingComment)
+    {
+        return $this->greetingComments->removeElement($greetingComment);
+    }
 }

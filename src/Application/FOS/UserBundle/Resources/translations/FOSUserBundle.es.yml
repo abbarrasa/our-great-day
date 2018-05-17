@@ -80,13 +80,16 @@ form:
     password_confirmation: 'Repita la contraseña'
     new_password: 'Nueva contraseña'
     new_password_confirmation: 'Repita la contraseña'
-    firstname: Nombre
-    lastname: Apellidos
-    gender: Sexo
+    firstname: 'Nombre (opcional)'
+    lastname: 'Apellidos (opcional)'
+    gender: 'Sexo (opcional)'
     gender.male: Hombre
     gender.female: Mujer
+    picture: Avatar
+    picture.select_image: 'Seleccionar imagen'
+    picture.change: Cambiar
+    picture.remove: Eliminar
     password.help: 'Debe tener al menos 8 caracteres y un número.'
-    current_password.help: 'Déjala en blanco para NO cambiarla.'
 flash:
     success: Bien!
     error: Ooops!
