@@ -86,7 +86,6 @@ form:
     gender.male: Hombre
     gender.female: Mujer
     password.help: 'Debe tener al menos 8 caracteres y un número.'
-    current_password.help: 'Déjala en blanco para NO cambiarla.'
 flash:
     success: Bien!
     error: Ooops!
