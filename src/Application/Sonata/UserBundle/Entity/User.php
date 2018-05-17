@@ -24,6 +24,8 @@ class User extends BaseUser
     protected $greetings;
 
     protected $greetingComments;
+    
+    protected $picture;
 
     /**
      * Get id.
@@ -94,5 +96,24 @@ class User extends BaseUser
     {
         return $this->greetingComments;
     }
+    
+    /**
+     * Set picture.
+     *
+     * @param $picture
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+    }
 
+    /**
+     * Get picture.
+     *
+     * @return mixed
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }    
 }
