@@ -95,3 +95,5 @@ frontend:
     profile:
         title: Tu gran <em>Perfil de usuario</em>
         description: Has entrado en tu zona privada. En esta zona puedes cambiar tus datos de usuario y actualizar tu contraseña.
+    news:
+        title: Nuestras grandes <em>Novedades</em>
