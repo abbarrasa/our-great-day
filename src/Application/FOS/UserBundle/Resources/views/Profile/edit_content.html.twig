@@ -16,7 +16,8 @@
         <div class="col-md-12 fileinput fileinput-new text-center" data-provides="fileinput">
             <div class="fileinput-new thumbnail img-circle img-raised">
                 {% if form.picture.vars.data %}
-                <img src="{{ asset('uploads/user/' ~ form.picture.vars.data.filename) }}" alt="{{ form.picture.vars.data.filename }}">
+                {% set filename = form.picture.vars.data.filename %}
+                <img src="{{ asset('uploads/user/' ~ filename) }}" alt="{{ filename }}">
                 {% else %}
                 {% image 'bundles/app/images/user-default.jpg' %}
                 <img src="{{ asset_url }}" alt="user-default.jpg">
@@ -27,10 +28,14 @@
             <div>
                 <span class="btn btn-raised btn-round btn-default btn-file">
                     <span class="fileinput-new">{{ 'form.picture.select_image'|trans }}</span>
+                    {% if form.picture.vars.data %}                
                     <span class="fileinput-exists">{{ 'form.picture.change'|trans }}</span>
+                    {% endif %}
                     {{ form_widget(form.picture) }}
                 </span>
-                <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="material-icons">clear</i> {{ 'form.picture.remove'|trans }}</a>
+                {% if form.picture.vars.data %}                
+                <a href="#remove" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="material-icons">clear</i> {{ 'form.picture.remove'|trans }}</a>
+                {% endif %}
             </div>
         </div>
     </div>
