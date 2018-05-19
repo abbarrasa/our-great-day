@@ -12,9 +12,9 @@
                     <h2 class="title">{{ 'frontend.guestbook.title'|trans|raw }}</h2>
                 </div>
                 {% if pagination|length > 0 %}
-                    {% if is_mobile() %}
+                    {% if is_mobile() or is_mobile_view()  %}
                         {% set columns = [pagination] %}
-                    {% elseif is_tablet() %}
+                    {% elseif is_tablet() or is_tablet_view() %}
                         {% set column0 = [] %}
                         {% set column1 = [] %}
                         {% for row in pagination|batch(2) %}
@@ -46,8 +46,7 @@
                         {% endfor %}
                         {% set columns = [column0, column1, column2] %}
                     {% endif %}
-
-                    {{ include('@App/guest/partials/card-list.html.twig', {'columns': columns, 'pagination': pagination}) }}                
+                    {{ include('@App/guest/partials/card-list.html.twig', {'columns': columns, 'pagination': pagination}) }}
                 {% else %}
                     <div class="alert alert-info">
                         <div class="container">

@@ -3,15 +3,14 @@
 namespace Application\FOS\UserBundle\Form\Type;
 
 use AppBundle\Validator\Constraints\FullName;
+use Application\FOS\UserBundle\Form\EventSubscriber\AddUserPictureSubscriber;
 use Application\Sonata\UserBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\Length;
 
 class ProfileType extends AbstractType
@@ -20,12 +19,19 @@ class ProfileType extends AbstractType
      * @var string
      */
     private $class;
+
+    /**
+     * @var string
+     */
+    private $directory;
+
     /**
      * @param string $class The User class name
      */
-    public function __construct($class)
+    public function __construct($class, $directory)
     {
-        $this->class = $class;
+        $this->class     = $class;
+        $this->directory = $directory;
     }
         
     /**
@@ -63,18 +69,7 @@ class ProfileType extends AbstractType
                 'translation_domain' => 'FOSUserBundle',
                 'choice_translation_domain' => 'FOSUserBundle'
             ])
-            ->add('picture', FileType::class, [
-                'label'              => 'form.picture',
-                'required'           => false,
-                'translation_domain' => 'FOSUserBundle',
-                'constraints'        => [
-                    new Image([
-                      'maxWidth' => 180,
-                      'maxHeight' => 180,
-                      'maxSize'   => '800k'
-                    ])
-                ]
-            ])
+            ->addEventSubscriber(new AddUserPictureSubscriber($this->directory))
         ;
     }
 

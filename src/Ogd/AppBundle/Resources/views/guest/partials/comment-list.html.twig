@@ -4,7 +4,7 @@
     <div class="media">
         <div class="pull-left">
             <div class="avatar">
-                {% include('@App/partials/avatar.html.twig', { 'user': comment.user, classes: ['media-object', 'img-raised'], 'alt': 'anonymous' }) %}
+                {{ include('@App/partials/avatar.html.twig', { 'user': comment.user, 'classes': ['media-object', 'img-raised'], 'alt': 'anonymous' }) }}
             </div>
         </div>
         <div class="media-body">

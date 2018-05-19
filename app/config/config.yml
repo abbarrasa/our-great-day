@@ -54,6 +54,9 @@ twig:
         api_key: '%google.api_key%'
         wedding_date: '%wedding.date%'
         version: 2.2.2
+        web_directory: '%kernel.project_dir%/web'
+        user_directory: '%kernel.project_dir%/web/uploads/user'
+
     form_themes:
         - 'form/fields.html.twig'
     paths:

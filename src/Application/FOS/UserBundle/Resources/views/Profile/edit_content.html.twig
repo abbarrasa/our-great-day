@@ -27,16 +27,16 @@
             <div class="fileinput-preview fileinput-exists thumbnail img-circle img-raised"></div>
             <div>
                 <span class="btn btn-raised btn-round btn-default btn-file">
-                    {% if form.picture.vars.data %}                
-                    <span class="fileinput-exists">{{ 'form.picture.change'|trans }}</span>
-                    {% else %}
                     <span class="fileinput-new">{{ 'form.picture.select_image'|trans }}</span>
-                    {% endif %}
+                    {#{% if form.picture.vars.data %}                #}
+                    <span class="fileinput-exists">{{ 'form.picture.change'|trans }}</span>
+                    {#{% else %}#}
+                    {#{% endif %}#}
                     {{ form_widget(form.picture) }}
                 </span>
-                {% if form.picture.vars.data %}                
+                {#{% if form.picture.vars.data %}                #}
                 <a href="#remove" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="material-icons">clear</i> {{ 'form.picture.remove'|trans }}</a>
-                {% endif %}
+                {#{% endif %}#}
             </div>
         </div>
     </div>
