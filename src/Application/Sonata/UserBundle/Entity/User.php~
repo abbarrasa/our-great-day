@@ -2,7 +2,6 @@
 
 namespace Application\Sonata\UserBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 
 /**
@@ -12,23 +11,109 @@ use Sonata\UserBundle\Entity\BaseUser as BaseUser;
  *
  * References:
  * @link http://www.doctrine-project.org/projects/orm/2.0/docs/reference/working-with-objects/en
- *
- *
- * @ORM\Table(name="fos_user_user")
- * @ORM\Entity
  */
 class User extends BaseUser
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var int $id
      */
     protected $id;
+    
+    protected $guest;
+
+    protected $greetings;
+
+    protected $greetingComments;
+
+    protected $picture;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Guestbook", mappedBy="user")
+     * Get id.
+     *
+     * @return int $id
      */
-    protected $guestbook;
+    public function getId()
+    {
+        return $this->id;
+    }
 
+    /**
+     * Set guest.
+     *
+     * @param $guest
+     */
+    public function setGuest($guest)
+    {
+        $this->guest = $guest;
+    }
+
+    /**
+     * Get guest.
+     *
+     * @return mixed
+     */
+    public function getGuest()
+    {
+        return $this->guest;
+    }
+    
+    /**
+     * Set greetings.
+     *
+     * @param $greetings
+     */
+    public function setGreetings($greetings)
+    {
+        $this->greetings = $greetings;
+    }
+
+    /**
+     * Get greetings.
+     *
+     * @return mixed
+     */
+    public function getGreetings()
+    {
+        return $this->greetings;
+    }
+
+    /**
+     * Set greetingComments.
+     *
+     * @param $greetingComments
+     */
+    public function setGreetingComments($greetingComments)
+    {
+        $this->greetingComments = $greetingComments;
+    }
+
+    /**
+     * Get greetingComments.
+     *
+     * @return mixed
+     */
+    public function getGreetingComments()
+    {
+        return $this->greetingComments;
+    }
+
+    /**
+     * Set picture.
+     *
+     * @param $picture
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+    }
+
+    /**
+     * Get picture.
+     *
+     * @return mixed
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
 }

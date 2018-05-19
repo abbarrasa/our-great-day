@@ -36,3 +36,11 @@
         </div>
     </div>
 {% endblock main %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+    'bundles/app/js/plugins/jasny-bootstrap.min.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock javascripts %}

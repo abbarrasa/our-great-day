@@ -53,7 +53,10 @@ twig:
         email_admin: '%mailer_email_admin%'
         api_key: '%google.api_key%'
         wedding_date: '%wedding.date%'
-        version: 2.2.1
+        version: 2.2.2
+        web_directory: '%kernel.project_dir%/web'
+        user_directory: '%kernel.project_dir%/web/uploads/user'
+
     form_themes:
         - 'form/fields.html.twig'
     paths:
@@ -134,7 +137,6 @@ sonata_user:
         group: Application\Sonata\UserBundle\Entity\Group
     profile:
         default_avatar: 'bundles/app/images/user-default.jpg' # Default avatar displayed if the user doesn't have one
-        
 
 sonata_block:
     default_contexts: [cms]

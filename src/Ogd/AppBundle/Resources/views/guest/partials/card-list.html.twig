@@ -14,9 +14,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="author">
-                            {% image 'bundles/app/images/user-default.jpg' %}
-                            <img src="{{ asset_url }}" alt="{{ greeting.name }}" class="avatar img-raised">
-                            {% endimage %}
+                            {{ include('@App/partials/avatar.html.twig', { 'user': greeting.user, 'classes': ['avatar', 'img-raised'], 'alt': greeting.name }) }}
                             <span>{{ greeting.name }}</span>
                         </div>
                         <div class="stats ml-auto">

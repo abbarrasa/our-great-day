@@ -45,10 +45,15 @@ services:
             $targetDirectory: '%tmp_directory%'
         public: true
         
-#    AppBundle\Service\Uploader\AvatarUploader:
-#        arguments:
-#            $targetDirectory: '%user_directory%'
-#        public: true
+    AppBundle\Service\Uploader\AvatarUploader:
+        arguments:
+            $targetDirectory: '%user_directory%'
+        public: true
+
+    AppBundle\Event\Listener\AvatarUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
 
     AppBundle\Service\Mailer:
         arguments: ["@service_container"]

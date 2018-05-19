@@ -83,6 +83,6 @@ services:
 
     user.profile.form.type:
         class: Application\FOS\UserBundle\Form\Type\ProfileType
-        arguments: ["%fos_user.model.user.class%"]
+        arguments: ["%fos_user.model.user.class%", "%user_directory%"]
         tags:
             - { name: form.type, alias: app_user_profile }
