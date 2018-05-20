@@ -1,12 +1,12 @@
 {% extends '@App/base.html.twig' %}
 {% trans_default_domain 'AppBundle' %}
 
-{% block title %}{{ 'frontend.title'|trans }}{% endblock %}
+{% block title %}{{ 'frontend.maintenance.title'|trans }}{% endblock %}
 
 {% block body %}
-    <div class="login-page sidebar-collapse">
+    <div class="presentation-page sidebar-collapse">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg bg-rose fixed-top navbar-transparent " color-on-scroll="100">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-transparent">
             <div class="container">
                 <div class="navbar-translate">
                     <a class="navbar-brand" href="{{ path('homepage') }}">
@@ -18,25 +18,21 @@
                         <span class="navbar-toggler-bar bar3"></span>
                     </button>
                 </div>
-                {% image 'bundles/app/images/blurred-image-1.jpg' %}
-                <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{ asset_url }}">
-                    {{ knp_menu_render('main', {'template': '@App/partials/knp_menu.html.twig'}) }}
-                    {{ knp_menu_render('social', {'template': '@App/partials/knp_menu.html.twig'}) }}
-                </div>
-                {% endimage %}
             </div>
         </nav>
         <!-- End Navbar -->
 
-        <div class="page-header" filter-color="black">
+        <div class="page-header" filter-color="purple">
             {% image 'bundles/app/images/header.jpg' %}
             <div class="page-header-image" style="background-image: url('{{ asset_url }}');"></div>
             {% endimage %}
 
-            <div class="content">
+            <div class="content col-md-8 ml-auto mr-auto">
                 <div class="container">
-                    {% block fos_user_content %}
-                    {% endblock fos_user_content %}
+                    <div class="brand">
+                        <h1 class="h1-seo">Vero y Carlos</h1>
+                        <h3>{{ 'frontend.maintenance.description'|trans({}, 'AppBundle') }}</h3>
+                    </div>
                 </div>
             </div>
 

@@ -21,6 +21,9 @@ frontend:
         months_ago: hace %number% meses
         a_year_ago: hace un año
         years_ago: hace %number% años
+    maintenance:
+        title: En mantenimiento
+        description: Estamos realizando tareas de mantenimiento para mejorar la web. Lamentamos no estar disponibles ahora, pero intenta visitarnos más tarde.
     menu:
         share: Compartir en %site%
         contact_us: Contáctanos
