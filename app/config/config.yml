@@ -53,7 +53,7 @@ twig:
         email_admin: '%mailer_email_admin%'
         api_key: '%google.api_key%'
         wedding_date: '%wedding.date%'
-        version: 2.2.3
+        version: 2.3.0
         user_directory: '%kernel.project_dir%/web/uploads/user'
     form_themes:
         - 'form/fields.html.twig'

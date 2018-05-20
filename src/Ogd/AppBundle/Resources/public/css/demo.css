@@ -944,18 +944,6 @@ body {
 }
 
 .page-header[filter-color="blue"] {
-    /*background: rgba(44, 44, 44, 0.2);*/
-    /*!* For browsers that do not support gradients *!*/
-    /*background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.3), rgba(233, 30, 99, 0.26));*/
-    /*!* For Safari 5.1 to 6.0 *!*/
-    /*background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.3), rgba(233, 30, 99, 0.26));*/
-    /*!* For Opera 11.1 to 12.0 *!*/
-    /*background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.3), rgba(233, 30, 99, 0.26));*/
-    /*!* For Firefox 3.6 to 15 *!*/
-    /*background: linear-gradient(0deg, rgba(44, 44, 44, 0.3), rgba(233, 30, 99, 0.26));*/
-    /*!* Standard syntax *!*/
-
-
     background: rgba(44, 44, 44, 0.2);
     /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(8, 80, 120, 0.7));
@@ -969,15 +957,15 @@ body {
 }
 
 .page-header[filter-color="black"] {
-    background: rgba(44, 44, 44, 0.2);
+    background: rgba(44, 44, 44, 0.4);
     /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(15, 15, 15, 0.6));
+    background: -webkit-linear-gradient(90deg, rgba(44, 44, 44, 0.4), rgba(15, 15, 15, 0.6));
     /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(15, 15, 15, 0.6));
+    background: -o-linear-gradient(90deg, rgba(44, 44, 44, 0.4), rgba(15, 15, 15, 0.6));
     /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.2), rgba(15, 15, 15, 0.6));
+    background: -moz-linear-gradient(90deg, rgba(44, 44, 44, 0.4), rgba(15, 15, 15, 0.6));
     /* For Firefox 3.6 to 15 */
-    background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(15, 15, 15, 0.6));
+    background: linear-gradient(0deg, rgba(44, 44, 44, 0.4), rgba(15, 15, 15, 0.6));
     /* Standard syntax */
 }
 
@@ -2752,4 +2740,9 @@ h6 {
 }
 .fileinput .thumbnail.img-circle {
     max-width: 120px;
+}
+
+.presentation-page .footer .copyright,
+.presentation-page .footer a {
+    color: #fff;
 }

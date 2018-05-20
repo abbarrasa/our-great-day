@@ -28,10 +28,9 @@ class MaintenanceListener
     public function onKernelRequest(GetResponseEvent $event)
     {
         $maintenance = $this->container->hasParameter('maintenance') ? $this->container->getParameter('maintenance') : false;
-        $environment  = $this->container->get('kernel')->getEnvironment();
-
-        if ($maintenance && $environment === 'prod') {
-            $page = $this->container->get('twig')->render('maintenance.html.twig');
+//        $environment  = $this->container->get('kernel')->getEnvironment();
+        if ($maintenance) {
+            $page = $this->container->get('twig')->render('@App/maintenance.html.twig');
 
             $event->setResponse(new Response($page, Response::HTTP_SERVICE_UNAVAILABLE));
             $event->stopPropagation();

@@ -21,6 +21,9 @@ frontend:
         months_ago: %number% months ago
         a_year_ago: a year ago
         years_ago: %number% years ago
+    maintenance:
+        title: Maintenance task
+        description: We are performing maintenance tasks to improve the web. We regret not being available now, but try to visit us later.
     menu:
         share: Share on %site%
         contact_us: Contact us
