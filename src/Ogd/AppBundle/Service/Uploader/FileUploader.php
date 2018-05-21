@@ -4,7 +4,7 @@ namespace AppBundle\Service\Uploader;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class FileUploader
+class FileUploader implements FileUploaderInterface
 {
     protected $targetDirectory;
 
@@ -32,7 +32,7 @@ class FileUploader
         return $this->targetDirectory;
     }
     
-    protected function generateFilename()
+    public function generateFilename()
     {
         return md5(uniqid());
     }
