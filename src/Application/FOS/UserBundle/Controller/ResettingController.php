@@ -14,12 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ResettingController extends BaseController
 {
-    private $eventDispatcher;
-    private $formFactory;
-    private $userManager;
-    private $tokenGenerator;
-    private $mailer;
-
     /**
      * @var int
      */
@@ -41,11 +35,7 @@ class ResettingController extends BaseController
         MailerInterface $mailer,
         $retryTtl
     ) {
-        $this->eventDispatcher = $eventDispatcher;
-        $this->formFactory = $formFactory;
-        $this->userManager = $userManager;
-        $this->tokenGenerator = $tokenGenerator;
-        $this->mailer = $mailer;
+        parent::__construct($eventDispatcher, $formFactory, $userManager, $tokenGenerator, $mailer, $retryTtl);
         $this->retryTtl = $retryTtl;
     }
 
