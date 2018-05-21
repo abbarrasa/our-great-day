@@ -26,6 +26,9 @@ class Mailer implements MailerInterface
 
     /** @var \Symfony\Bundle\FrameworkBundle\Routing\Router */
     protected $router;
+    
+    /** @var \Symfony\Component\Config\FileLocatorInterface */
+    protected $fileLocator;
 
     /** @var ContainerInterface */
     protected $container;
@@ -35,7 +38,10 @@ class Mailer implements MailerInterface
 
     /** @var array */
     protected $config;
-
+    
+    /** @var string */
+    protected $rootDir;
+    
     /**
      * Mailer constructor.
      * @param ContainerInterface $container
@@ -46,8 +52,10 @@ class Mailer implements MailerInterface
         $this->mailer      = $container->get('mailer');
         $this->environment = $container->get('twig');
         $this->router      = $container->get('router');
-        $this->encryptor   = $container->get('nzo_url_encryptor');        
+        $this->fileLocator = $container->get('file_locator');
+        $this->encryptor   = $container->get('nzo_url_encryptor'); 
         $this->config      = $container->getParameter('mailer');
+        $this->rootDir     = $container->getParameter('kernel.root_dir');
     }
 
     /**
@@ -72,10 +80,10 @@ class Mailer implements MailerInterface
     public function flushSpool()
     {
         $transport = $this->mailer->getTransport();
-        //Por si usaramos otro mailer u otra configuración de SwiftMailer diferente a la que da Symfony
+        //If we use another mailer or other configuration of SwiftMailer different from the one given by Symfony
         if ($transport instanceof \Swift_Transport_SpoolTransport) {
             $spool = $transport->getSpool();
-            //Por si usamos un spool de correo persistido en ficheros
+            //In case we use a mail spool persisted in files
             if ($spool instanceof \Swift_FileSpool) {
                 $spool->recover();
             }
@@ -224,12 +232,13 @@ class Mailer implements MailerInterface
         }
 
         $images = array();
-        foreach($this->config['embedded_images'] as $filename) {
-            if (0 === strpos($filename, '@')) {
-                $path = $this->container->get('file_locator')->locate($filename);
-            } else {
-                $path = $this->container->get('kernel')->getRootDir() . "/Resources/public/images/{$filename}";
-            }
+        foreach($this->config['embedded_images'] as $file) {
+            $path = $this->fileLocator->locate($file, $this->rootDir."/Resources/public/images");
+            //if (0 === strpos($filename, '@')) {
+            //    $path = $this->container->get('file_locator')->locate($filename);
+            //} else {
+            //    $path = $this->container->get('kernel')->getRootDir() . "/Resources/public/images/{$filename}";
+            //}
 
             // Embed images into message and collect references
             $images[basename($path)] = $message->embed(\Swift_Image::fromPath($path)->setDisposition('inline'));
