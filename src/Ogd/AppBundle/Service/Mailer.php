@@ -27,6 +27,7 @@ class Mailer implements MailerInterface
     /** @var \Symfony\Bundle\FrameworkBundle\Routing\Router */
     protected $router;
     
+    /** @var \Symfony\Component\Config\FileLocatorInterface */
     protected $fileLocator;
 
     /** @var ContainerInterface */
@@ -38,6 +39,7 @@ class Mailer implements MailerInterface
     /** @var array */
     protected $config;
     
+    /** @var string */
     protected $rootDir;
     
     /**
@@ -78,10 +80,10 @@ class Mailer implements MailerInterface
     public function flushSpool()
     {
         $transport = $this->mailer->getTransport();
-        //Por si usaramos otro mailer u otra configuración de SwiftMailer diferente a la que da Symfony
+        //If we use another mailer or other configuration of SwiftMailer different from the one given by Symfony
         if ($transport instanceof \Swift_Transport_SpoolTransport) {
             $spool = $transport->getSpool();
-            //Por si usamos un spool de correo persistido en ficheros
+            //In case we use a mail spool persisted in files
             if ($spool instanceof \Swift_FileSpool) {
                 $spool->recover();
             }
