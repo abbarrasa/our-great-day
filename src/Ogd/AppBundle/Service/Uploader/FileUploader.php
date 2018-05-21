@@ -13,7 +13,7 @@ class FileUploader implements FileUploaderInterface
         $this->targetDirectory = $targetDirectory;
     }
 
-    public function upload(UploadedFile $file)
+    public function upload(UploadedFile $file, $basename = true)
     {
         $targetDirectory = $this->getTargetDirectory();        
         $fileName        = $this->generateFilename() . '.' . $file->guessExtension();
@@ -23,6 +23,10 @@ class FileUploader implements FileUploaderInterface
         }
 
         $file->move($targetDirectory, $fileName);
+        
+        if (!$basename) {
+            return $targetDirectory . DIRECTORY_SEPARATOR . $fileName;
+        }
 
         return $fileName;
     }
