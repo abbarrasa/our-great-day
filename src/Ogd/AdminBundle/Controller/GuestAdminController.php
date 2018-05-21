@@ -27,7 +27,7 @@ class GuestAdminController extends Controller
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $file     = $form->get('file')->getData();
-                $fileName = $this->path($fileUploader->getTargetDirectory()) . $fileUploader->upload($file);
+                $fileName = $fileUploader->upload($file, false);
                 try {
                     /* Identify the type of $fileName  */
                     $fileType = IOFactory::identify($fileName);
@@ -67,16 +67,5 @@ class GuestAdminController extends Controller
             'action' => 'import',
             'form' => $form->createView()
         ]);
-    }
-
-    private function path($path)
-    {
-        if (is_dir($path)) {
-            if (substr($path, -1) !== DIRECTORY_SEPARATOR) {
-                return $path . DIRECTORY_SEPARATOR;
-            }
-        }
-
-        return $path;
     }
 }
