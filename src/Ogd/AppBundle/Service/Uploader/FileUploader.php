@@ -32,7 +32,7 @@ class FileUploader implements FileUploaderInterface
         return $this->targetDirectory;
     }
     
-    public function generateFilename()
+    protected function generateFilename()
     {
         return md5(uniqid());
     }
