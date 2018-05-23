@@ -21,6 +21,7 @@ class GuestController extends Controller
     /**
      * @Route("/guest", name="guest")
      * @param Request $request
+     * @param UrlEncryptor $encryptor
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function guestAction(Request $request, UrlEncryptor $encryptor)

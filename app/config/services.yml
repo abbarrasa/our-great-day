@@ -57,10 +57,10 @@ services:
 
     AppBundle\Service\Mailer:
         arguments:
-            - $mailer: '@mailer'
-            - $twig: '@twig'
-            - $router: '@router'
-            - $fileLocator: '@file_locator'
-            - $encryptor: '@nzo_url_encryptor'
-            - $config: '%mailer%'
+            $mailer: '@mailer'
+            $twig: '@twig'
+            $router: '@router'
+            $fileLocator: '@file_locator'
+            $encryptor: '@nzo_url_encryptor'
+            $config: '%mailer_config%'
         public: true

@@ -16,7 +16,7 @@ parameters:
     mailer_password: ~
     mailer_port: ~
     mailer_auth_mode: ~
-    mailer_encryptation: ~
+    mailer_encryption: ~
 
     # Emails settings
     mailer_email_admin: admin@domain.com

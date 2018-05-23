@@ -39,7 +39,12 @@ class Mailer implements MailerInterface
     
     /**
      * Mailer constructor.
-     * @param ContainerInterface $container
+     * @param \Swift_Mailer $mailer
+     * @param \Twig_Environment $twig
+     * @param Router $router
+     * @param FileLocatorInterface $fileLocator
+     * @param UrlEncryptor $encryptor
+     * @param $config
      */
     public function __construct(
             \Swift_Mailer $mailer,
