@@ -63,5 +63,4 @@ services:
             - $fileLocator: '@file_locator'
             - $encryptor: '@nzo_url_encryptor'
             - $config: '%mailer%'
-            - $rootDirectory: '%kernel.root_dir%'
         public: true
