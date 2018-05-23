@@ -37,9 +37,6 @@ class Mailer implements MailerInterface
     /** @var array */
     protected $config;
     
-    /** @var string */
-    protected $rootDirectory;
-    
     /**
      * Mailer constructor.
      * @param ContainerInterface $container
