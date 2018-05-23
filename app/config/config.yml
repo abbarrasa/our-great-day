@@ -12,6 +12,7 @@ parameters:
         email_admin: '%mailer_email_admin%'
         email_manager: '%mailer_email_manager%'
         from_name: '%mailer_from_name%'
+        images_directory: '%kernel.root_dir%/Resources/public/images'
         embedded_images:
             - header-small.jpg
             - font-awesome_4-7-0_facebook.png
