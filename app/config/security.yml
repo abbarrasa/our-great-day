@@ -41,6 +41,10 @@ security:
                 path: /admin/logout
                 target: /admin/login
             anonymous: true
+            remember_me:
+                secret: "%secret%"
+                path: ^/admin
+                lifetime: 2592000 # 30 days in seconds
 
         # This firewall is used to handle the public_backup login area
         # This part is handled by the FOS User Bundle
