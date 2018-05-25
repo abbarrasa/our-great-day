@@ -64,7 +64,9 @@ class ResettingController extends BaseController
         $this->retryTtl        = $retryTtl;
     }
 
-
+    /**
+     * {@inheritdoc}
+     */
     public function sendEmailAction(Request $request)
     {
         $username = $request->request->get('username');
@@ -112,14 +114,9 @@ class ResettingController extends BaseController
         return new RedirectResponse($this->generateUrl('fos_user_resetting_check_email', array('token' => $token)));
     }
 
-
     /**
-     * Tell the user to check his email provider.
-     *
-     * @param Request $request
-     *
-     * @return Response
-     */
+     * {@inheritdoc}
+     */    
     public function checkEmailAction(Request $request)
     {
         $token    = $request->get('token');
