@@ -68,14 +68,9 @@ class SecurityController extends BaseController
 
         return $response;
     }
-
+    
     /**
-     * Renders the login template with the given parameters. Overwrite this function in
-     * an extended controller to provide additional data for the login template.
-     *
-     * @param array $data
-     *
-     * @return Response
+     * {@inheritdoc}
      */
     protected function renderLogin(array $data)
     {
