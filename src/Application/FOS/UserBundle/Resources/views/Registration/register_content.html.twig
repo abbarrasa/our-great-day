@@ -11,6 +11,8 @@
     </div>
 {% endif %}
 
+{#<p class="lead text-center description">O con tu cuenta de Nuestro Gran Dia</p>#}
+
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register')}) }}
     <div class="row">
         <div class="col-md-6 col-xs-12 form-group{% if not form.email.vars.valid %} has-danger{% endif %}">
