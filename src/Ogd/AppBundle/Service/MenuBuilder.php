@@ -76,7 +76,8 @@ class MenuBuilder
                 ->setLinkAttributes([
                     'class' =>'nav-link',
                     'data-toggle' => 'dropdown',
-                    'aria-expanded' => 'false'
+                    'aria-expanded' => 'false',
+		    'aria-haspopup' => 'true'
                 ])
 //              ->setExtra('translation_domain', 'AppBundle')
         ;
@@ -89,7 +90,7 @@ class MenuBuilder
             $menu[$username]
                 ->addChild('layout.logout', array('route' => 'fos_user_security_logout'))
                 ->setLinkAttribute('class', 'dropdown-item')
-              ->setExtra('translation_domain', 'FOSUserBundle')
+                ->setExtra('translation_domain', 'FOSUserBundle')
             ;
         } else {
             $menu
