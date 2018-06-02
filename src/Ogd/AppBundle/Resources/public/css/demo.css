@@ -913,7 +913,7 @@ body {
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
-    padding: 0 15px;
+    padding: 0 2vw;
     color: #FFFFFF;
     width: 100%;
     max-width: 880px;
@@ -2453,6 +2453,15 @@ body {
 
 .footer .copyright {
     text-align: right;
+}
+
+.footer .version {
+    position: fixed;
+    font-size: .6em;
+    bottom: 0;
+    color: #ffffff;
+    text-align: left;
+    margin-bottom: 10px;
 }
 
 .footer .heart {

@@ -52,7 +52,7 @@ class MenuBuilder
             ->addChild('frontend.menu.home', ['route' => 'homepage'])
             ->setAttribute('class', 'nav-item')
             ->setLinkAttribute('class', 'nav-link')
-	    ->setExtra('icon', 'home')		
+	        ->setExtra('icon', 'home')
             ->setExtra('translation_domain', 'AppBundle')
         ;
 
@@ -60,7 +60,7 @@ class MenuBuilder
             ->addChild('frontend.menu.confirm_attendance', ['route' => 'guest'])
             ->setAttribute('class', 'nav-item')
             ->setLinkAttribute('class', 'nav-link')
-	    ->setExtra('icon', 'assignment_turned_in')		
+	        ->setExtra('icon', 'assignment_turned_in')
             ->setExtra('translation_domain', 'AppBundle')
         ;
 
@@ -68,7 +68,7 @@ class MenuBuilder
             ->addChild('frontend.menu.guestbook', ['route' => 'guestbook'])
             ->setAttribute('class', 'nav-item')
             ->setLinkAttribute('class', 'nav-link')
-	    ->setExtra('icon', 'import_contacts')		
+	        ->setExtra('icon', 'import_contacts')
             ->setExtra('translation_domain', 'AppBundle')
         ;
 
@@ -80,16 +80,16 @@ class MenuBuilder
                     'class' =>'nav-link',
                     'data-toggle' => 'dropdown',
                     'aria-expanded' => 'false',
-		    'aria-haspopup' => 'true'
+		            'aria-haspopup' => 'true'
                 ])
-	    	->setExtra('icon', 'account_circle')			    
-        ;
-        $menu[$username]
-            ->addChild('layout.profile', array('route' => 'fos_user_profile_edit'))
-            ->setAttribute('divider_append', true)
-            ->setLinkAttribute('class', 'dropdown-item')
-            ->setExtra('translation_domain', 'FOSUserBundle')
-        ;
+	    	    ->setExtra('icon', 'account_circle')
+            ;
+            $menu[$username]
+                ->addChild('layout.profile', array('route' => 'fos_user_profile_edit'))
+                ->setAttribute('divider_append', true)
+                ->setLinkAttribute('class', 'dropdown-item')
+                ->setExtra('translation_domain', 'FOSUserBundle')
+            ;
             $menu[$username]
                 ->addChild('layout.logout', array('route' => 'fos_user_security_logout'))
                 ->setLinkAttribute('class', 'dropdown-item')
@@ -100,24 +100,22 @@ class MenuBuilder
                 ->addChild('layout.login', ['route' => 'fos_user_security_login'])
                 ->setAttribute('class', 'nav-item')
                 ->setLinkAttribute('class', 'nav-link')
-	    	->setExtra('icon', 'fingerprint')		    
-                ->setExtra('translation_domain', 'FOSUserBundle')
-            ;
+                ->setExtra('icon', 'fingerprint')
+                ->setExtra('translation_domain', 'FOSUserBundle');
             $menu
                 ->addChild('layout.register', ['route' => 'fos_user_registration_register'])
                 ->setAttribute('class', 'nav-item')
                 ->setLinkAttribute('class', 'nav-link')
-	    	->setExtra('icon', 'person_add')		    
-                ->setExtra('translation_domain', 'FOSUserBundle')
+                ->setExtra('icon', 'person_add')
+                ->setExtra('translation_domain', 'FOSUserBundle');
+            $menu
+                ->addChild('frontend.menu.contact_us', ['uri' => '#'])
+                ->setAttribute('class', 'nav-item')
+                ->setLinkAttribute('class', 'nav-link contact-us')
+                ->setExtra('icon', 'email')
+                ->setExtra('translation_domain', 'AppBundle')
             ;
-			    
-        $menu
-            ->addChild('frontend.menu.contact_us', ['uri' => '#'])
-            ->setAttribute('class', 'nav-item')
-            ->setLinkAttribute('class', 'nav-link contact-us')
-	    ->setExtra('icon', 'email')		
-            ->setExtra('translation_domain', 'AppBundle')
-        ;
+        }
 	
         return $menu;
     }

@@ -102,6 +102,7 @@
         {% set children = item.children %}
         {% for item in children %}
             {%- set attributes = item.attributes %}
+            {%- set icon = item.getExtra('icon') %}
             {%- set divider_prepend = attributes.divider_prepend|default(false) %}
             {%- set divider_append = attributes.divider_append|default(false) %}
 
@@ -123,21 +124,21 @@
     {#{% if item.attribute('icon') is not empty  %}#}
         {% if icon starts with 'fa' %}
     	    <i class="{{ icon }}"></i>
-	{% else %}
+	    {% else %}
             <i class="material-icons">{{ icon }}</i>
-	{% endif %}
-	
-	{% if item.extras.icon_image %}
-	   {% if app.user.picture is not null %}
-        	{% set filepath = user_directory ~ '/' ~ app.user.picture %}
-        	<img src="{{ filepath|data_uri }}" alt="{{ app.user.username }}" class="image-menu">
-    	   {% else %}
-        	{% image 'bundles/app/images/user-default.jpg' %}
-        	<img src="{{ asset_url }}" alt="{{ user.username }}" class="image-menu">
-	       {% endimage %}
-	   {% endif %}
-	{% endif %}
+	    {% endif %}
     {% endif %}
+
+	{#{% if item.extras.icon_image %}#}
+	   {#{% if app.user.picture is not null %}#}
+        	{#{% set filepath = user_directory ~ '/' ~ app.user.picture %}#}
+        	{#<img src="{{ filepath|data_uri }}" alt="{{ app.user.username }}" class="image-menu">#}
+       {#{% else %}#}
+        	{#{% image 'bundles/app/images/user-default.jpg' %}#}
+        	{#<img src="{{ asset_url }}" alt="{{ user.username }}" class="image-menu">#}
+	       {#{% endimage %}#}
+	   {#{% endif %}#}
+	{#{% endif %}#}
 {% endblock %}
 
 {% block label %}

@@ -434,7 +434,7 @@
     opacity: 0; } }
 
 @media only screen and (max-width: 360px) {
-  /*  .clock { margin: 0 auto; display: block; width: 100%; }
+    .clock { margin: 0 auto; display: block; width: 100%; }
 
     .flip-clock-wrapper ul { height: 35px; line-height: 35px; margin:2px; width: 24px !important;}
     .flip-clock-wrapper ul li a div.up:after { top: 16px; }
@@ -451,17 +451,7 @@
     .flip-clock-divider.seconds .flip-clock-label { right: -50px !important; }
     .flip-clock-wrapper ul li { line-height: 35px; }
     .flip-clock-wrapper ul { width: 24px !important; }
-    .flip-clock-wrapper ul li a div div.inn { font-size: 21px; }*/
-    .flip-clock-wrapper {
-        transform: scale(.6) !important;
-        -ms-transform: scale(.6) !important; 
-        -webkit-transform: scale(.6) !important; 
-        -o-transform: scale(.6) !important; 
-        -moz-transform: scale(.6) !important;
-        transform-origin: 40% 50%;  /* for position */
-        position: relative;  /* for position */
-        margin: auto !important; /* for ignor jssor css */
-        width: 50%;   /* for inline digits - set on biger size */}`}
+    .flip-clock-wrapper ul li a div div.inn { font-size: 21px; } }
 
 @media only screen and (min-width: 361px) and (max-width: 480px) {
     .clock { margin: 0 auto; display: block; width: 100%; }
