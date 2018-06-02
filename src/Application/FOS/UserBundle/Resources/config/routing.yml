@@ -44,7 +44,7 @@ fos_user_resetting_send_email:
     methods: [POST]
     
 fos_user_resetting_check_email:
-    path: /resetting/check-email/{username}
+    path: /resetting/check-email/{token}
     defaults: { _controller: user.resetting.controller:checkEmailAction }
     methods: [GET]
 

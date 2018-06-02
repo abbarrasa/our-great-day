@@ -7,8 +7,9 @@ use AdminBundle\Entity\Joined;
 use FOS\UserBundle\Mailer\MailerInterface;
 use FOS\UserBundle\Model\UserInterface;
 use Nzo\UrlEncryptorBundle\UrlEncryptor\UrlEncryptor;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\Config\FileLocatorInterface;
 
 class Mailer implements MailerInterface
 {
@@ -24,14 +25,11 @@ class Mailer implements MailerInterface
     /** @var \Twig_Environment */
     protected $environment;
 
-    /** @var \Symfony\Bundle\FrameworkBundle\Routing\Router */
+    /** @var Router */
     protected $router;
     
-    /** @var \Symfony\Component\Config\FileLocatorInterface */
+    /** @var FileLocatorInterface */
     protected $fileLocator;
-
-    /** @var ContainerInterface */
-    protected $container;
 
     /** @var UrlEncryptor */
     protected $encryptor;
@@ -39,23 +37,29 @@ class Mailer implements MailerInterface
     /** @var array */
     protected $config;
     
-    /** @var string */
-    protected $rootDir;
-    
     /**
      * Mailer constructor.
-     * @param ContainerInterface $container
+     * @param \Swift_Mailer $mailer
+     * @param \Twig_Environment $twig
+     * @param Router $router
+     * @param FileLocatorInterface $fileLocator
+     * @param UrlEncryptor $encryptor
+     * @param $config
      */
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container   = $container;
-        $this->mailer      = $container->get('mailer');
-        $this->environment = $container->get('twig');
-        $this->router      = $container->get('router');
-        $this->fileLocator = $container->get('file_locator');
-        $this->encryptor   = $container->get('nzo_url_encryptor'); 
-        $this->config      = $container->getParameter('mailer');
-        $this->rootDir     = $container->getParameter('kernel.root_dir');
+    public function __construct(
+            \Swift_Mailer $mailer,
+            \Twig_Environment $twig,
+            Router $router,
+            FileLocatorInterface $fileLocator,
+            UrlEncryptor $encryptor,
+            $config
+    ) {
+        $this->mailer      = $mailer;
+        $this->environment = $twig;
+        $this->router      = $router;
+        $this->fileLocator = $fileLocator;
+        $this->encryptor   = $encryptor; 
+        $this->config      = $config;
     }
 
     /**
@@ -233,13 +237,7 @@ class Mailer implements MailerInterface
 
         $images = array();
         foreach($this->config['embedded_images'] as $file) {
-            $path = $this->fileLocator->locate($file, $this->rootDir."/Resources/public/images");
-            //if (0 === strpos($filename, '@')) {
-            //    $path = $this->container->get('file_locator')->locate($filename);
-            //} else {
-            //    $path = $this->container->get('kernel')->getRootDir() . "/Resources/public/images/{$filename}";
-            //}
-
+            $path = $this->fileLocator->locate($file, $this->config['images_directory']);
             // Embed images into message and collect references
             $images[basename($path)] = $message->embed(\Swift_Image::fromPath($path)->setDisposition('inline'));
         }

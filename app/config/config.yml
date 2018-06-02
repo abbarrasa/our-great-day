@@ -7,11 +7,12 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: es
-    mailer:
+    mailer_config:
         default_sleep: 1
         email_admin: '%mailer_email_admin%'
         email_manager: '%mailer_email_manager%'
         from_name: '%mailer_from_name%'
+        images_directory: '%kernel.root_dir%/Resources/public/images'
         embedded_images:
             - header-small.jpg
             - font-awesome_4-7-0_facebook.png
@@ -53,7 +54,7 @@ twig:
         email_admin: '%mailer_email_admin%'
         api_key: '%google.api_key%'
         wedding_date: '%wedding.date%'
-        version: 2.3.1
+        version: 2.3.2
         user_directory: '%kernel.project_dir%/web/uploads/user'
     form_themes:
         - 'form/fields.html.twig'
@@ -85,10 +86,13 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: '%mailer_transport%'
-    host: '%mailer_host%'
-    username: '%mailer_user%'
-    password: '%mailer_password%'
+    transport:  '%mailer_transport%'
+    host:       '%mailer_host%'
+    username:   '%mailer_user%'
+    password:   '%mailer_password%'
+    port:       '%mailer_port%'
+    auth_mode:  '%mailer_auth_mode%'
+    encryption: '%mailer_encryption%'
     spool: { type: memory }
 
 # Assetic Configuration

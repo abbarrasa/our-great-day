@@ -29,16 +29,15 @@
     <!-- End Navbar -->
 
     <div class="wrapper">
-        <!-- Page -->
-        <div class="page-header clear-filter" filter-color="black">
-            {% image 'bundles/app/images/header.jpg' %}
-            <div class="page-header-image" data-parallax="true" style="background-image: url('/images/e5726d9.jpg');"></div>
-            {% endimage %}
-            <div class="container">
-                {% block fos_user_content %}{% endblock %}
+        <!-- Content Page -->
+        {% image 'bundles/app/images/header.jpg' %}
+        <div class="parallax" style="background-image: url('{{ asset_url }}');">
+            <div class="filter filter-color-black">
+                <div class="container">{% block fos_user_content %}{% endblock %}</div>
             </div>
         </div>
-        <!-- End Page -->
+        {% endimage %}
+        <!-- End Content Page -->
 
         <!-- Footer -->
         <footer class="footer footer-black">
@@ -55,4 +54,18 @@
         <!-- End Modal -->
     </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var height = $('.parallax .container').height();
+            if (height > 480) {
+                height = (height + 175) + 'px';
+                $('.login-page .parallax').css('height', height);
+                $('.login-page .parallax .filter').css('height', height);
+            }
+        });
+    </script>
 {% endblock %}

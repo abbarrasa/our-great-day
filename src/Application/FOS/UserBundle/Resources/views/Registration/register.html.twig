@@ -7,9 +7,21 @@
     <div class="content">
         <div class="row">
             <div class="col-md-8 col-xs-12 ml-auto mr-auto">
-                <div class="card">
-                    <div class="card-header card-header-primary">
-                        <h4 class="card-title text-center">{{ 'registration.title'|trans({}, 'FOSUserBundle') }}</h4>
+                <div class="card card-signup">
+                    <div class="card-header card-header-primary text-center">
+                        <h4 class="card-title">{{ 'registration.title'|trans({}, 'FOSUserBundle') }}</h4>
+                        {#<div class="social-line">#}
+                            {#<a href="#pablo" class="btn btn-just-icon btn-link">#}
+                                {#<i class="fa fa-facebook-square"></i>#}
+                            {#</a>#}
+                            {#<a href="#pablo" class="btn btn-just-icon btn-link">#}
+                                {#<i class="fa fa-twitter-square"></i>#}
+                            {#</a>#}
+                            {#<a href="#pablo" class="btn btn-just-icon btn-link">#}
+                                {#<i class="fa fa-google-plus-official"></i>#}
+                                {#<div class="ripple-container"></div>#}
+                            {#</a>#}
+                        {#</div>#}
                     </div>
                     <div class="card-body">
                         {% include "@FOSUser/Registration/register_content.html.twig" %}

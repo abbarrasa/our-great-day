@@ -13,6 +13,7 @@ use AdminBundle\Entity\Guest;
 use AdminBundle\Entity\Greeting;
 use AppBundle\Form\Type\GreetingType;
 use AppBundle\Form\Type\GuestConfirmationType;
+use Nzo\UrlEncryptorBundle\UrlEncryptor\UrlEncryptor;
 use Nzo\UrlEncryptorBundle\Annotations\ParamDecryptor;
 
 class GuestController extends Controller
@@ -20,11 +21,11 @@ class GuestController extends Controller
     /**
      * @Route("/guest", name="guest")
      * @param Request $request
+     * @param UrlEncryptor $encryptor
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function guestAction(Request $request)
+    public function guestAction(Request $request, UrlEncryptor $encryptor)
     {
-        $encryptor = $this->get('nzo_url_encryptor');
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED') &&
             ($guest = $this->getUser()->getGuest()) !== null
         ) {
@@ -70,14 +71,7 @@ class GuestController extends Controller
 
         $form = $this->createForm(GuestConfirmationType::class, $guest);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            //Set authenticated user to guest
-//            if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED') &&
-//                null === $guest->getUser()
-//            ) {
-//                $guest->setUser($this->getUser());
-//            }
-            
+        if ($form->isSubmitted() && $form->isValid()) {            
             $em->persist($guest);
             $em->flush();
             
@@ -85,13 +79,9 @@ class GuestController extends Controller
             $this->addFlash('success', $helper->getFlashMessage(
                 'success', 'frontend.success', 'frontend.guest.success', [], 'AppBundle'
             ));
-
-//            $encryptor = $this->get('nzo_url_encryptor');
-            //if (null !== $guest->getUser()) {
             $request->getSession()->set('ogd.guest.id', $guest->getId());
 
-                return $this->redirectToRoute('guest_set_user');
-            //}            
+            return $this->redirectToRoute('guest_set_user');
         }
 
         return $this->render('@App/guest/confirmation.html.twig', [

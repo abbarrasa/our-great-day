@@ -34,9 +34,7 @@ class RegistrationController extends BaseController
     }
 
     /**
-     * @param Request $request
-     *
-     * @return Response
+     * {@inheritdoc}
      */
     public function registerAction(Request $request)
     {

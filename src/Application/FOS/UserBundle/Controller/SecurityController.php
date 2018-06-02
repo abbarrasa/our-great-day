@@ -44,11 +44,11 @@ class SecurityController extends BaseController
 
     /**
      * @param Request $request
-     * @param $token
      * @return null|\Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function autologinAction(Request $request, $token)
+    public function autologinAction(Request $request)
     {
+        $token    = $request->get('token');
         $username = $this->encryptor->decrypt(base64_decode(strtr($token, '-_', '+/')));
         $user     = $this->userManager->findUserByUsername($username);
         $event    = new GetResponseNullableUserEvent($user, $request);
@@ -68,14 +68,9 @@ class SecurityController extends BaseController
 
         return $response;
     }
-
+    
     /**
-     * Renders the login template with the given parameters. Overwrite this function in
-     * an extended controller to provide additional data for the login template.
-     *
-     * @param array $data
-     *
-     * @return Response
+     * {@inheritdoc}
      */
     protected function renderLogin(array $data)
     {

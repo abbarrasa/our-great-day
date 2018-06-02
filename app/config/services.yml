@@ -56,5 +56,11 @@ services:
             - { name: doctrine.event_listener, event: preUpdate }
 
     AppBundle\Service\Mailer:
-        arguments: ["@service_container"]
+        arguments:
+            $mailer: '@mailer'
+            $twig: '@twig'
+            $router: '@router'
+            $fileLocator: '@file_locator'
+            $encryptor: '@nzo_url_encryptor'
+            $config: '%mailer_config%'
         public: true
