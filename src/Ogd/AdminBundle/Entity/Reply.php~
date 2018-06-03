@@ -59,4 +59,110 @@ class Reply
     {
         $this->setCreatedAt(new \DateTime());
     }
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set content.
+     *
+     * @param string $content
+     *
+     * @return Reply
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content.
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set createdAt.
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Reply
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt.
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set greeting.
+     *
+     * @param \AdminBundle\Entity\Enquiry $greeting
+     *
+     * @return Reply
+     */
+    public function setGreeting(\AdminBundle\Entity\Enquiry $greeting)
+    {
+        $this->greeting = $greeting;
+
+        return $this;
+    }
+
+    /**
+     * Get greeting.
+     *
+     * @return \AdminBundle\Entity\Enquiry
+     */
+    public function getGreeting()
+    {
+        return $this->greeting;
+    }
+
+    /**
+     * Set user.
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $user
+     *
+     * @return Reply
+     */
+    public function setUser(\Application\Sonata\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user.
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace AdminBundle\Controller;
 
-use AdminBundle\Form\ImportType;
+use AdminBundle\Form\Type\ImportType;
 use AdminBundle\Import\Importer;
 use AppBundle\Service\Uploader\FileUploader;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;

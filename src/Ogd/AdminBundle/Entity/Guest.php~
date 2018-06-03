@@ -16,7 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @UniqueEntity(
  *     fields={"firstname", "lastname"},
  *     errorPath="firstname",
- *     message="guest.name"
+ *     message="guest.fullname.error"
  * )
  */
 class Guest
@@ -326,4 +326,28 @@ class Guest
     }
 
 
+
+    /**
+     * Set user.
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User|null $user
+     *
+     * @return Guest
+     */
+    public function setUser(\Application\Sonata\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user.
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User|null
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

@@ -315,5 +315,4 @@ class Greeting
     {
         $this->setCreatedAt(new \DateTime());
     }
-
 }

@@ -34,3 +34,15 @@ services:
         calls:
             - [ setTranslationDomain, [AdminBundle]]
         public: true
+
+    admin.post:
+        class: AdminBundle\Admin\PostAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin.group.settings, label: admin.model.list }
+        arguments:
+            - ~
+            - AdminBundle\Entity\Post
+            - ~
+        calls:
+            - [ setTranslationDomain, [AdminBundle]]
+        public: true

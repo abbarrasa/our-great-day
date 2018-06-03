@@ -3,7 +3,7 @@
 parameters:
     #parameter_name: value
     tmp_directory: '%kernel.project_dir%/web/uploads/tmp'
-    user_directory: '%kernel.project_dir%/web/uploads/user'    
+    user_directory: '%kernel.project_dir%/web/uploads/user'
 
 services:
     # default configuration for services in *this* file
@@ -64,3 +64,7 @@ services:
             $encryptor: '@nzo_url_encryptor'
             $config: '%mailer_config%'
         public: true
+
+    AppBundle\Form\Extension\TextTypeExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }

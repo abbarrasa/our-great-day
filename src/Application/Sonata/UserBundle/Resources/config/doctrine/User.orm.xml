@@ -15,6 +15,7 @@
         <one-to-one field="guest" target-entity="AdminBundle\Entity\Guest" mapped-by="user" />
         <one-to-many field="greetings" target-entity="AdminBundle\Entity\Greeting" mapped-by="user" />
         <one-to-many field="greetingComments" target-entity="AdminBundle\Entity\GreetingComment" mapped-by="user" />
+        <one-to-many field="postComments" target-entity="AdminBundle\Entity\PostComment" mapped-by="user" />
 
     </entity>
 

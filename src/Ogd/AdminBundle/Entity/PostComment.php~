@@ -1,0 +1,20 @@
+<?php
+
+namespace AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Greeting
+ *
+ * @ORM\Table(name="ogd_post_comment")
+ * @ORM\Entity(repositoryClass="AdminBundle\Repository\PostCommentRepository")
+ */
+class PostComment extends AbstractComment
+{
+    /**
+     * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Post", inversedBy="comments")
+     * @ORM\JoinColumn(name="id_post", referencedColumnName="id", nullable=false)
+     */
+    private $post;
+}

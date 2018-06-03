@@ -50,6 +50,7 @@ class MenuBuilder
 
         $menu
             ->addChild('frontend.menu.home', ['route' => 'homepage'])
+            ->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setAttribute('class', 'nav-item')
             ->setLinkAttribute('class', 'nav-link')
 	        ->setExtra('icon', 'home')
@@ -57,7 +58,17 @@ class MenuBuilder
         ;
 
         $menu
+            ->addChild('frontend.menu.news', ['route' => 'post_list'])
+            ->setLabelAttribute('class', 'd-lg-none d-xl-none')
+            ->setAttribute('class', 'nav-item')
+            ->setLinkAttribute('class', 'nav-link')
+            ->setExtra('icon', 'event_note')
+            ->setExtra('translation_domain', 'AppBundle')
+        ;
+
+        $menu
             ->addChild('frontend.menu.confirm_attendance', ['route' => 'guest'])
+            ->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setAttribute('class', 'nav-item')
             ->setLinkAttribute('class', 'nav-link')
 	        ->setExtra('icon', 'assignment_turned_in')
@@ -66,6 +77,7 @@ class MenuBuilder
 
         $menu
             ->addChild('frontend.menu.guestbook', ['route' => 'guestbook'])
+            ->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setAttribute('class', 'nav-item')
             ->setLinkAttribute('class', 'nav-link')
 	        ->setExtra('icon', 'import_contacts')
@@ -75,6 +87,7 @@ class MenuBuilder
         if ($this->authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $username = $this->tokenStorage->getToken()->getUser()->getUsername();
             $menu->addChild($username)
+                ->setLabelAttribute('class', 'd-lg-none d-xl-none')
                 ->setAttributes(['dropdown' => true, 'class' => 'nav-item'])
                 ->setLinkAttributes([
                     'class' =>'nav-link',
@@ -98,25 +111,29 @@ class MenuBuilder
         } else {
             $menu
                 ->addChild('layout.login', ['route' => 'fos_user_security_login'])
+                ->setLabelAttribute('class', 'd-lg-none d-xl-none')
                 ->setAttribute('class', 'nav-item')
                 ->setLinkAttribute('class', 'nav-link')
                 ->setExtra('icon', 'fingerprint')
                 ->setExtra('translation_domain', 'FOSUserBundle');
             $menu
                 ->addChild('layout.register', ['route' => 'fos_user_registration_register'])
+                ->setLabelAttribute('class', 'd-lg-none d-xl-none')
                 ->setAttribute('class', 'nav-item')
                 ->setLinkAttribute('class', 'nav-link')
                 ->setExtra('icon', 'person_add')
                 ->setExtra('translation_domain', 'FOSUserBundle');
-            $menu
-                ->addChild('frontend.menu.contact_us', ['uri' => '#'])
-                ->setAttribute('class', 'nav-item')
-                ->setLinkAttribute('class', 'nav-link contact-us')
-                ->setExtra('icon', 'email')
-                ->setExtra('translation_domain', 'AppBundle')
-            ;
         }
-	
+
+        $menu
+            ->addChild('frontend.menu.contact_us', ['uri' => '#'])
+            ->setLabelAttribute('class', 'd-lg-none d-xl-none')
+            ->setAttribute('class', 'nav-item')
+            ->setLinkAttribute('class', 'nav-link contact-us')
+            ->setExtra('icon', 'email')
+            ->setExtra('translation_domain', 'AppBundle')
+        ;
+
         return $menu;
     }
 
