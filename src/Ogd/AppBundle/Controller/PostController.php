@@ -35,18 +35,29 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/post/{id}", requirements={"id" = "\d+"}, name="post")
+     * @Route("/post/{id}/{page}", requirements={"id" = "\d+", "page" = "\d+"}, name="post")
      * @param Request $request
      * @param int $id
+     * @param int $page     
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function postAction(Request $request, $id)
+    public function postAction(Request $request, $id, $page = 1)
     {
         $em = $this->getDoctrine()->getManager();
         if (($post = $em->getRepository(Post::class)->find($id)) === null) {
             throw $this->createNotFoundException(sprintf('No found any post with ID %d', $id));
         }
-
+        
+        //Comments
+        $query      = $em->getRepository(Post::class)->getQueryAllCommentsPost($post);
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $page /*page number*/,
+            10 /*limit per page*/
+        );        
+        
+        //Comment form
         $comment = new PostComment();
         $comment->setPost($post);
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
@@ -67,14 +78,15 @@ class PostController extends Controller
                 'success', 'frontend.success', 'frontend.post.comment.success', [], 'AppBundle'
             ));
 
-            return $this->redirectToRoute('post', ['id' => $id]);
+            return $this->redirectToRoute('post', ['id' => $id, 'page' => $page]);
         }
 
         $template = $post->getTemplateFile();
 
         return $this->render("@App/post/{$template}", array(
             'post' => $post,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'pagination' => $pagination
         ));
     }
 
