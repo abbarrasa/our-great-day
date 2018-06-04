@@ -133,6 +133,13 @@
                     sr.reveal('.sr', {duration: 800, reset: false, viewOffset: { top: 64 }});
                     sr.reveal('.card-sr', {duration: 800, reset: true, viewOffset: { top: 64 }});
 
+                    {# Menu bar #}
+                    $("a.nav-link").hover(function(){
+                        $(this).children('.d-lg-none').css('display', 'inline-block');
+                    }, function() {
+                        $(this).children('.d-lg-none').css('display', 'none');
+                    });
+
                     {# Data scroll #}
                     $('a[data-scroll="true"]').click(function(e){
                         var scroll_target = $(this).data('id');
