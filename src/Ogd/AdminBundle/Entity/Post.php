@@ -67,7 +67,7 @@ class Post
     private $likes;
 
     /**
-     * @ORM\OneToMany(targetEntity="AdminBundle\Entity\PostComment", mappedBy="post")
+     * @ORM\OneToMany(targetEntity="PostComment", mappedBy="post")
      */
     private $comments;
 

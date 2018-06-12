@@ -2,7 +2,6 @@
 
 namespace AdminBundle\Repository;
 
-use AdminBundle\Entity\Greeting;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -22,16 +21,4 @@ class PostRepository extends EntityRepository
             ->orderBy('p.publishedAt', 'DESC')
         ;
     }
-    
-    public function getQueryAllCommentsPost($post)
-    {
-        return $this
-            ->createQueryBuilder('p')
-            ->select('c')
-            ->innerJoin('p.comments', 'c')
-            ->where('p.id = :post')
-            ->setParameter('post', $post)
-            ->orderBy('p.createdAt', 'DESC')
-        ;
-    }    
 }

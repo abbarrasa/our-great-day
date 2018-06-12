@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * AbstractComment
+ * CommentAbstract
  * Abstract base class to be extended by my entity classes with same fields
  *
  * @ORM\MappedSuperclass
  * @ORM\HasLifecycleCallbacks()
  */
-abstract class AbstractComment
+abstract class CommentAbstract
 {
     /**
      * @var int

@@ -9,13 +9,13 @@
         <div class="row">
             <div class="col-md-12 ml-auto mr-auto">
                 <div class="section-description text-center sr">
-                    <h2 class="title">{{ 'frontend.post.title'|trans|raw }}</h2>
+                    <h2 class="title">{{ post.title }}</h2>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-xs-12 col-md-8 mr-auto ml-auto">
+            <div class="col-xs-12 col-md-8 mr-auto ml-auto text-center">
                 {% image 'bundles/app/images/bodorriol.jpg' %}
                 <img src="{{ asset_url }}" alt="Bodorriol" class="img-raised rounded img-fluid">
                 {% endimage %}
@@ -23,7 +23,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
+            <div class="col-md-8 ml-auto mr-auto text-center">
                 <p class="description">This is the paragraph where you can write more details about your product. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn't scroll to get here. Add a button if you want the user to see more. We are here to make life better.
                     <br>
                     <br> And now I look and look around and there’s so many Kanyes I've been trying to figure out the bed design for the master bedroom at our Hidden Hills compound... and thank you for turning my personal jean jacket into a couture piece.</p>
@@ -40,77 +40,21 @@
 
         <div class="row">
             <div class="col-md-8 ml-auto mr-auto">
-                <div class="media-area">
-                    <h3 class="title text-center">3 Comments</h3>
-                    <div class="media">
-                        <a class="float-left" href="#pablo">
-                            <div class="avatar">
-                                <img class="media-object" src="../assets/img/faces/card-profile4-square.jpg" alt="...">
-                            </div>
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">Tina Andrew
-                                <small>· 7 minutes ago</small>
-                            </h4>
-                            <h6 class="text-muted"></h6>
-                            <p>Chance too good. God level bars. I'm so proud of @LifeOfDesiigner #1 song in the country. Panda! Don't be scared of the truth because we need to restart the human foundation in truth I stand with the most humility. We are so blessed!</p>
-                            <div class="media-footer">
-                                <a href="#pablo" class="btn btn-primary btn-link float-right" rel="tooltip" title="" data-original-title="Reply to Comment">
-                                    <i class="material-icons">reply</i> Reply
-                                </a>
-                                <a href="#pablo" class="btn btn-danger btn-link float-right">
-                                    <i class="material-icons">favorite</i> 243
-                                </a>
-                            </div>
-                        </div>
+                {% if pagination|length > 0 %}
+                    <div class="media-area">
+                        <h3 class="title text-center">{{ 'frontend.post.comments.title'|transchoice(pagination|length, {}, 'AppBundle') }}</h3>
                     </div>
-                    <div class="media">
-                        <a class="float-left" href="#pablo">
-                            <div class="avatar">
-                                <img class="media-object" alt="Tim Picture" src="../assets/img/faces/card-profile1-square.jpg">
-                            </div>
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">John Camber
-                                <small>· Yesterday</small>
-                            </h4>
-                            <p>Hello guys, nice to have you on the platform! There will be a lot of great stuff coming soon. We will keep you posted for the latest news.</p>
-                            <p> Don't forget, You're Awesome!</p>
-                            <div class="media-footer">
-                                <a href="#pablo" class="btn btn-primary btn-link float-right" rel="tooltip" title="" data-original-title="Reply to Comment">
-                                    <i class="material-icons">reply</i> Reply
-                                </a>
-                                <a href="#pablo" class="btn btn-link float-right">
-                                    <i class="material-icons">favorite</i> 25
-                                </a>
-                            </div>
-                            <div class="media">
-                                <a class="float-left" href="#pablo">
-                                    <div class="avatar">
-                                        <img class="media-object" alt="64x64" src="../assets/img/faces/card-profile4-square.jpg">
-                                    </div>
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Tina Andrew
-                                        <small>· 12 Hours Ago</small>
-                                    </h4>
-                                    <p>Hello guys, nice to have you on the platform! There will be a lot of great stuff coming soon. We will keep you posted for the latest news.</p>
-                                    <p> Don't forget, You're Awesome!</p>
-                                    <div class="media-footer">
-                                        <a href="#pablo" class="btn btn-primary btn-link float-right" rel="tooltip" title="" data-original-title="Reply to Comment">
-                                            <i class="material-icons">reply</i> Reply
-                                        </a>
-                                        <a href="#pablo" class="btn btn-link btn-secondary float-right">
-                                            <i class="material-icons">favorite</i> 2
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <h3 class="title text-center">Post your comment</h3>
 
+                    {% for comment in pagination %}
+                        {{ include('@App/post/partials/comment.html.twig', { 'comment': comment }) }}
+                    {% endfor %}
+
+                    <div class="col-8 ml-auto sr">
+                        {{ knp_pagination_render(pagination, '@App/partials/knp_pagination.html.twig') }}
+                    </div>
+                {% endif %}
+
+                <h3 class="title text-center">{{ 'frontend.post.your_comment'|transchoice(pagination|length, {}, 'AppBundle') }}</h3>
                 <div class="media media-post">
                     <a class="author float-left">
                         <div class="avatar">

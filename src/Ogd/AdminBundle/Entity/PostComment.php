@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="ogd_post_comment")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\PostCommentRepository")
  */
-class PostComment extends AbstractComment
+class PostComment extends CommentAbstract
 {
     /**
      * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Post", inversedBy="comments")

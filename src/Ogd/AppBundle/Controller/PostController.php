@@ -49,7 +49,7 @@ class PostController extends Controller
         }
         
         //Comments
-        $query      = $em->getRepository(Post::class)->getQueryAllCommentsPost($post);
+        $query      = $em->getRepository(PostComment::class)->getQueryAllByPost($post);
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $query, /* query NOT result */

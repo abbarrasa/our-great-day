@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\GreetingCommentRepository")
  */
 
-class GreetingComment extends AbstractComment
+class GreetingComment extends CommentAbstract
 {
     /**
      * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Greeting", inversedBy="comments")
