@@ -210,12 +210,25 @@ class User extends BaseUser
     }
     
     /**
-     * Get web picture path
+     * Get absolute directory path for picture
      *
      * @return string
      */
-    public function getWebPath()
+    static public function getUploadRootDir()
     {
-        return __DIR__.'/../../../../web/'.self::PICTURE_WEB_DIR;
+        return __DIR__.'/../../../../web/'.self::PICTURE_WEB_DIR;        
+    }
+    
+    /**
+     * Get absolute picture path
+     *
+     * @return string
+     */
+    public function getAbsolutePath()
+    {
+        return null === $this->picture
+            ? null
+            : $this->getUploadRootDir().'/'.$this->picture
+        ;        
     }    
 }
