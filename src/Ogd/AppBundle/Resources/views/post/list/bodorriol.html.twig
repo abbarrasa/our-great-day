@@ -11,9 +11,10 @@
                 <a href="{{ path('post', { 'id': post.id }) }}" class="card-title">
                     <h2 class="text-center">¡Reserva tu bodorriol! Confirma tu asistencia</h2>
                 </a>
-
+                {% if post.content %}
                 <p class="description">That dreams will actualize. Dreams will manifest. We still love Kanye We will find freedom in truth as opposed to ridicule. All respect prayers and love to Phife’s family Thank you for so much inspiration...</p>
-
+                {% endif %}
+                
                 {#<a href="#gaia" class="btn btn-danger btn-fill">Read More</a>#}
 
             </div>
