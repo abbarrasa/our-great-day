@@ -61,7 +61,7 @@ class PostAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('title')
-            ->add('templateFile')
+            ->add('coverFile', 'string', ['template' => 'SonataMediaBundle:MediaAdmin:list_image.html.twig'])            
             ->add('published')
             ->add('createdAt')
             ->add('publishedAt');
