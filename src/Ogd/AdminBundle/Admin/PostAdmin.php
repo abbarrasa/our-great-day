@@ -7,8 +7,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
+use Sonata\FormatterBundle\Form\Type\SimpleFormatterType;
 
 class PostAdmin extends AbstractAdmin
 {
@@ -22,7 +21,6 @@ class PostAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('title')
-            ->add('templateFile')
             ->add('published')
             ->add('createdAt')
             ->add('publishedAt')
@@ -35,20 +33,13 @@ class PostAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('title', 'text', ['label' => 'Title'])
+            ->add('coverPicture', 'file', 'label' => 'Cover picture', 'image_property' => 'absoutePath'))
+            ->add('content', SimpleFormatterType::class, [
+                'label' => '',
+                'format' => 'richhtml',
+                'ckeditor_context' => 'default', // optional
+            ])
             ->add('published', null, ['label' => 'Is published?'])
-            ->getFormBuilder()->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event) {
-                /** @var Post $post */
-                $post = $event->getData();
-                $form = $event->getForm();
-                $form
-                    ->add('templateFile', 'text', [
-                            'label' => 'Template file',
-                            'append' => Post::TEMPLATE_FILE_EXTENSION,
-                            'data'  => null !== null ? basename($post->getTemplateFile, Post::TEMPLATE_FILE_EXTENSION) : null
-                        ]
-                    )
-                ;
-            })
         ;
 
     }
@@ -61,7 +52,7 @@ class PostAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('title')
-            ->add('coverFile', 'string', ['template' => 'SonataMediaBundle:MediaAdmin:list_image.html.twig'])            
+            ->add('coverPicture', 'string', ['template' => 'SonataMediaBundle:MediaAdmin:list_image.html.twig'])            
             ->add('published')
             ->add('createdAt')
             ->add('publishedAt');
@@ -81,7 +72,7 @@ class PostAdmin extends AbstractAdmin
             $post->setPublishedAt(null);
         }
 
-        $post->setTemplateFileExtension();
+        //$post->setTemplateFileExtension();
     }
 }
 
