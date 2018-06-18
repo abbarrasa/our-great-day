@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-6">
             <a href="{{ path('post', { 'id': post.id }) }}" class="header">
-                {% set filepath = user_directory ~ '/' ~ post.coverPicture %}
+                {% set filepath = post_directory ~ '/' ~ post.coverPicture %}
                 <img src="{{ filepath|data_uri }}" class="{{ ['img-raised rounded img-fluid']|join(' ') }}">                
             </a>
         </div>
