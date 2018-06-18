@@ -23,14 +23,14 @@
 
         {% if post.content %}
         <div class="row">
-            <div class="col-md-8 ml-auto mr-auto text-center">
+            <div class="col-xs-12 col-md-8 ml-auto mr-auto text-center">
                 <p class="description">{{ post.content|raw }}<p>
             </div>
         </div>
         {% endif %}
 
         <div class="row">
-            <div class="col-md-8 ml-auto mr-auto">
+            <div class="col-xs-12 col-md-8 ml-auto mr-auto">
                 {% if pagination|length > 0 %}
                     <div class="media-area">
                         <h3 class="title text-center">{{ 'frontend.post.comments.title'|transchoice(pagination|length, {}, 'AppBundle') }}</h3>
