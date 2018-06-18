@@ -4,6 +4,13 @@ namespace AppBundle\Twig;
 
 class ModulesExtension extends \Twig_Extension
 {
+    private $em;
+    
+    public function __construct(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+    
     /**
      * {@inheritdoc}
      */
@@ -26,8 +33,11 @@ class ModulesExtension extends \Twig_Extension
 
     public function carouselFunction(\Twig_Environment $environment)
     {
+        $posts = $this->em->getRepository(Post::class)->findLastPublished();
+        
         return $environment->render('@App/partials/carousel.html.twig', [
-            'id' => uniqid()
+            'id' => uniqid(),
+            'posts' => $posts
         ]);
     }
 }
