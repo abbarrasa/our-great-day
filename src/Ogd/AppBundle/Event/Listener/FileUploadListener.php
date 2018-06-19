@@ -44,7 +44,12 @@ class FileUploadListener
                 $entity->setPicture($fileName);
             }
         } else if ($entity instanceof Post) {
-            $file = $entity->getTemplateFile();
+            $file = $entity->getCoverPicture();
+            // only upload new files
+            if ($file instanceof UploadedFile) {
+                $fileName = $this->uploader->upload($file);
+                $entity->setCoverPicture($fileName);
+            }
         }
 
         return;

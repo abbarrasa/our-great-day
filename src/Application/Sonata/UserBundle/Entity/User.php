@@ -20,15 +20,10 @@ class User extends BaseUser
      * @var int $id
      */
     protected $id;
-    
     protected $guest;
-
     protected $greetings;
-
     protected $greetingComments;
-
     protected $postComments;
-
     protected $picture;
 
     /**

@@ -79,7 +79,7 @@ class Greeting
     private $likes;
 
     /**
-     * @ORM\OneToMany(targetEntity="AdminBundle\Entity\GreetingComment", mappedBy="greeting")
+     * @ORM\OneToMany(targetEntity="GreetingComment", mappedBy="greeting")
      */
     private $comments;
 

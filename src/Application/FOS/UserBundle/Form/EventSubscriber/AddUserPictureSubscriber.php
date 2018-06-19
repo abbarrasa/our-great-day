@@ -2,6 +2,7 @@
 
 namespace Application\FOS\UserBundle\Form\EventSubscriber;
 
+use Application\Sonata\UserBundle\Entity\User;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -12,14 +13,6 @@ use Symfony\Component\Validator\Constraints\Image;
 
 class AddUserPictureSubscriber implements EventSubscriberInterface
 {
-    /** @var string */
-    private $directory;
-
-    public function __construct($directory)
-    {
-        $this->directory = $directory;
-    }
-
     public static function getSubscribedEvents()
     {
         return [
@@ -29,7 +22,7 @@ class AddUserPictureSubscriber implements EventSubscriberInterface
 
     public function onPreSetData(FormEvent $event)
     {
-
+        /** @var User $data */
         $data    = $event->getData();
         $form    = $event->getForm();
 
@@ -37,7 +30,7 @@ class AddUserPictureSubscriber implements EventSubscriberInterface
             ->add('picture', FileType::class, [
                 'label'              => 'form.picture',
                 'required'           => false,
-                'data'               => $data !== null && $data->getPicture() !== null ? new File($this->directory.DIRECTORY_SEPARATOR.$data->getPicture()) : null,
+                'data'               => $data !== null && $data->getPicture() !== null ? new File($data->getAbsolutePath()) : null,
                 'translation_domain' => 'FOSUserBundle',
                 'constraints'        => [
                     new Image([

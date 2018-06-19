@@ -33,7 +33,10 @@ class PostAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('title', 'text', ['label' => 'Title'])
-            ->add('coverPicture', 'file', 'label' => 'Cover picture', 'image_property' => 'absoutePath'))
+            ->add('coverPicture', 'file', [
+                'label' => 'Cover picture',
+                'image_property' => 'absoutePath'
+            ])
             ->add('content', SimpleFormatterType::class, [
                 'label' => '',
                 'format' => 'richhtml',

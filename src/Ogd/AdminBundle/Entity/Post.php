@@ -15,7 +15,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Post
 {
     const COVER_PICTURE_WEB_DIR = 'uploads/post';    
-    const TEMPLATE_FILE_EXTENSION = '.html.twig';
 
     /**
      * @var int
@@ -37,8 +36,8 @@ class Post
      * @var string
      *
      * @ORM\Column(name="cover_picture", type="string", length=255)
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
-     * @Assert\Image(mimeTypes={ "application/pdf" })
+     * @Assert\NotBlank()
+     * @Assert\Image(maxWidth=180, maxHeight=180, maxSize="2M")
      */
     private $coverPicture;
 
@@ -125,27 +124,51 @@ class Post
     }
 
     /**
-     * Set templateFile.
+     * Set coverPicture.
      *
-     * @param string $templateFile
+     * @param string $coverPicture
      *
      * @return Post
      */
-    public function setTemplateFile($templateFile)
+    public function setCoverPicture($coverPicture)
     {
-        $this->templateFile = $templateFile;
+        $this->coverPicture = $coverPicture;
 
         return $this;
     }
 
     /**
-     * Get templateFile.
+     * Get coverPicture.
      *
      * @return string
      */
-    public function getTemplateFile()
+    public function getCoverPicture()
     {
-        return $this->templateFile;
+        return $this->coverPicture;
+    }
+
+    /**
+     * Set content.
+     *
+     * @param string|null $content
+     *
+     * @return Post
+     */
+    public function setContent($content = null)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content.
+     *
+     * @return string|null
+     */
+    public function getContent()
+    {
+        return $this->content;
     }
 
     /**
@@ -301,18 +324,6 @@ class Post
     }
 
     /**
-     * Append extension to template file.
-     *
-     * @return $this
-     */
-    public function setTemplateFileExtension()
-    {
-        $this->templateFile .= self::TEMPLATE_FILE_EXTENSION;
-
-        return $this;
-    }
-    
-    /**
      * Get absolute directory path for picture
      *
      * @return string
@@ -333,5 +344,5 @@ class Post
             ? null
             : $this->getUploadRootDir().'/'.$this->coverPicture
         ;        
-    }        
+    }
 }

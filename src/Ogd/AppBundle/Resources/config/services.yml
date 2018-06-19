@@ -37,6 +37,16 @@ services:
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main } # The alias is what is used to retrieve the menu
 
+    app.uploader.avatar:
+        class: AppBundle\Service\Uploader\AvatarUploader
+
+    app.listener.fileupload:
+        class: AppBundle\Event\Listener\FileUploadListener
+        arguments: ["@app.uploader.avatar"]
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
     app.listener.maintenance:
         class: AppBundle\Event\Listener\MaintenanceListener
         arguments: ["@service_container"]

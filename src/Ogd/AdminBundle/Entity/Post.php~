@@ -3,16 +3,19 @@
 namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
  *
  * @ORM\Table(name="ogd_post")
- * @ORM\Entity(repositoryClass="Backend\UserBundle\Entity\PostRepository")
+ * @ORM\Entity(repositoryClass="AdminBundle\Repository\PostRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Post
 {
+    const COVER_PICTURE_WEB_DIR = 'uploads/post';    
+
     /**
      * @var int
      *
@@ -32,9 +35,17 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="template_file", type="string", length=255)
+     * @ORM\Column(name="cover_picture", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Image(maxWidth=180, maxHeight=180, maxSize="2M")
      */
-    private $templateFile;
+    private $coverPicture;
+
+    /**
+     * @var string
+     * @ORM\Column(name="content", type="text", nullable=true)
+     */
+    private $content;
 
     /**
      * @var \DateTime
@@ -65,7 +76,7 @@ class Post
     private $likes;
 
     /**
-     * @ORM\OneToMany(targetEntity="AdminBundle\Entity\PostComment", mappedBy="post")
+     * @ORM\OneToMany(targetEntity="PostComment", mappedBy="post")
      */
     private $comments;
 
@@ -79,6 +90,182 @@ class Post
     }
 
     /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title.
+     *
+     * @param string $title
+     *
+     * @return Post
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title.
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set createdAt.
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Post
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt.
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set publishedAt.
+     *
+     * @param \DateTime|null $publishedAt
+     *
+     * @return Post
+     */
+    public function setPublishedAt($publishedAt = null)
+    {
+        $this->publishedAt = $publishedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get publishedAt.
+     *
+     * @return \DateTime|null
+     */
+    public function getPublishedAt()
+    {
+        return $this->publishedAt;
+    }
+
+    /**
+     * Set published.
+     *
+     * @param bool|null $published
+     *
+     * @return Post
+     */
+    public function setPublished($published = null)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published.
+     *
+     * @return bool|null
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * Check if is published.
+     *
+     * @return bool|null
+     */
+    public function isPublished()
+    {
+        return $this->getPublished();
+    }
+
+    /**
+     * Set likes.
+     *
+     * @param int|null $likes
+     *
+     * @return Post
+     */
+    public function setLikes($likes = null)
+    {
+        $this->likes = $likes;
+
+        return $this;
+    }
+
+    /**
+     * Get likes.
+     *
+     * @return int|null
+     */
+    public function getLikes()
+    {
+        return $this->likes;
+    }
+
+    /**
+     * Add comment.
+     *
+     * @param \AdminBundle\Entity\PostComment $comment
+     *
+     * @return Post
+     */
+    public function addComment(\AdminBundle\Entity\PostComment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment.
+     *
+     * @param \AdminBundle\Entity\PostComment $comment
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeComment(\AdminBundle\Entity\PostComment $comment)
+    {
+        return $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
      * Set createdAt value before persist
      *
      * @ORM\PrePersist
@@ -88,4 +275,26 @@ class Post
         $this->setCreatedAt(new \DateTime());
     }
 
+    /**
+     * Get absolute directory path for picture
+     *
+     * @return string
+     */
+    static public function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.self::COVER_PICTURE_WEB_DIR;        
+    }
+    
+    /**
+     * Get absolute picture path
+     *
+     * @return string
+     */
+    public function getAbsolutePath()
+    {
+        return null === $this->coverPicture
+            ? null
+            : $this->getUploadRootDir().'/'.$this->coverPicture
+        ;        
+    }        
 }

@@ -21,17 +21,11 @@ class ProfileType extends AbstractType
     private $class;
 
     /**
-     * @var string
-     */
-    private $directory;
-
-    /**
      * @param string $class The User class name
      */
-    public function __construct($class, $directory)
+    public function __construct($class)
     {
         $this->class     = $class;
-        $this->directory = $directory;
     }
         
     /**
@@ -69,7 +63,7 @@ class ProfileType extends AbstractType
                 'translation_domain' => 'FOSUserBundle',
                 'choice_translation_domain' => 'FOSUserBundle'
             ])
-            ->addEventSubscriber(new AddUserPictureSubscriber($this->directory))
+            ->addEventSubscriber(new AddUserPictureSubscriber())
         ;
     }
 

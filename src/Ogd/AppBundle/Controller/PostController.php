@@ -83,7 +83,7 @@ class PostController extends Controller
 
         return $this->render("@App/post/post.html.twig", array(
             'post' => $post,
-            'pagination' => $pagination            
+            'pagination' => $pagination,
             'form' => $form->createView()
         ));
     }

@@ -43,17 +43,6 @@ services:
         arguments:
             $targetDirectory: '%tmp_directory%'
         public: true
-        
-    AppBundle\Service\Uploader\AvatarUploader:
-        public: true
-        
-    AppBundle\Service\Uploader\PostPictureUploader:
-        public: true        
-
-    AppBundle\Event\Listener\PictureUploadListener:
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
 
     AppBundle\Service\Mailer:
         arguments:

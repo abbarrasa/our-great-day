@@ -2,11 +2,14 @@
 
 namespace AppBundle\Twig;
 
+use Doctrine\ORM\EntityManagerInterface;
+
 class ModulesExtension extends \Twig_Extension
 {
+    /** @var EntityManagerInterface */
     private $em;
     
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
