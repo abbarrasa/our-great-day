@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Post
 {
+    const COVER_PICTURE_WEB_DIR = 'uploads/post';    
     const TEMPLATE_FILE_EXTENSION = '.html.twig';
 
     /**
@@ -310,4 +311,27 @@ class Post
 
         return $this;
     }
+    
+    /**
+     * Get absolute directory path for picture
+     *
+     * @return string
+     */
+    static public function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.self::COVER_PICTURE_WEB_DIR;        
+    }
+    
+    /**
+     * Get absolute picture path
+     *
+     * @return string
+     */
+    public function getAbsolutePath()
+    {
+        return null === $this->coverPicture
+            ? null
+            : $this->getUploadRootDir().'/'.$this->coverPicture
+        ;        
+    }        
 }

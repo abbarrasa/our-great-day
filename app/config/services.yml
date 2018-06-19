@@ -3,7 +3,6 @@
 parameters:
     #parameter_name: value
     tmp_directory: '%kernel.project_dir%/web/uploads/tmp'
-    user_directory: '%kernel.project_dir%/web/uploads/user'
 
 services:
     # default configuration for services in *this* file
@@ -46,11 +45,12 @@ services:
         public: true
         
     AppBundle\Service\Uploader\AvatarUploader:
-        arguments:
-            $targetDirectory: '%user_directory%'
         public: true
+        
+    AppBundle\Service\Uploader\PostPictureUploader:
+        public: true        
 
-    AppBundle\Event\Listener\AvatarUploadListener:
+    AppBundle\Event\Listener\PictureUploadListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
@@ -68,3 +68,7 @@ services:
     AppBundle\Form\Extension\TextTypeExtension:
         tags:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
+            
+    AppBundle\Form\Extension\ImageTypeExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FileType }

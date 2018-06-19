@@ -21,4 +21,13 @@ class PostRepository extends EntityRepository
             ->orderBy('p.publishedAt', 'DESC')
         ;
     }
+    
+    public function findLastPublished($limit = 5)
+    {
+        return = $this->getQueryAllPublished()
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()            
+        ;
+    }
 }

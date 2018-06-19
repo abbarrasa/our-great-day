@@ -14,6 +14,8 @@ use Sonata\UserBundle\Entity\BaseUser as BaseUser;
  */
 class User extends BaseUser
 {
+    const PICTURE_WEB_DIR = 'uploads/user';
+    
     /**
      * @var int $id
      */
@@ -206,4 +208,27 @@ class User extends BaseUser
     {
         return $this->postComments;
     }
+    
+    /**
+     * Get absolute directory path for picture
+     *
+     * @return string
+     */
+    static public function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.self::PICTURE_WEB_DIR;        
+    }
+    
+    /**
+     * Get absolute picture path
+     *
+     * @return string
+     */
+    public function getAbsolutePath()
+    {
+        return null === $this->picture
+            ? null
+            : $this->getUploadRootDir().'/'.$this->picture
+        ;        
+    }    
 }

@@ -81,12 +81,10 @@ class PostController extends Controller
             return $this->redirectToRoute('post', ['id' => $id, 'page' => $page]);
         }
 
-        $template = $post->getTemplateFile();
-
-        return $this->render("@App/post/{$template}", array(
+        return $this->render("@App/post/post.html.twig", array(
             'post' => $post,
-            'form' => $form->createView(),
-            'pagination' => $pagination
+            'pagination' => $pagination            
+            'form' => $form->createView()
         ));
     }
 
