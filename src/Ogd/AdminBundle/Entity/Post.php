@@ -3,6 +3,7 @@
 namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -34,9 +35,17 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="template_file", type="string", length=255)
+     * @ORM\Column(name="cover_picture", type="string", length=255)
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\Image(mimeTypes={ "application/pdf" })
      */
-    private $templateFile;
+    private $coverPicture;
+
+    /**
+     * @var string
+     * @ORM\Column(name="content", type="text", nullable=true)
+     */
+    private $content;
 
     /**
      * @var \DateTime
