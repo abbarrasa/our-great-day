@@ -4,6 +4,7 @@ namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use AdminBundle\Model\FileUploadInterface;
 
 /**
  * Post
@@ -12,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\PostRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Post
+class Post implements FileUploadInterface
 {
     const COVER_PICTURE_WEB_DIR = 'uploads/post';    
 
@@ -324,19 +325,15 @@ class Post
     }
 
     /**
-     * Get absolute directory path for picture
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    static public function getUploadRootDir()
+    public function getUploadRootDir()
     {
         return __DIR__.'/../../../../web/'.self::COVER_PICTURE_WEB_DIR;        
     }
     
     /**
-     * Get absolute picture path
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getAbsolutePath()
     {
@@ -346,6 +343,9 @@ class Post
         ;        
     }
     
+    /**
+     * {@inheritdoc}
+     */    
     public function getWebPath()
     {
         return null === $this->coverPicture
