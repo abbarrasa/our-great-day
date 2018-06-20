@@ -3,6 +3,7 @@
 namespace AppBundle\Event\Listener;
 
 use AdminBundle\Entity\Post;
+use AdminBundle\Model\FileUploadInterface;
 use Application\Sonata\UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -73,12 +74,12 @@ class FileUploadListener
         if ($file instanceof UploadedFile) {
             $uploader = new FileUploader($entity->getUploadRootDir());
             $fileName = $uploader->upload($file);
-        }
-        
-        if ($entity instanceof User) {
-            $entity->setPicture($fileName);            
-        } else if ($entity instanceof Post) {
-            $entity->setCoverPicture($fileName);
+            
+            if ($entity instanceof User) {
+                $entity->setPicture($fileName);            
+            } else if ($entity instanceof Post) {
+                $entity->setCoverPicture($fileName);
+            }            
         }
     }
 }
