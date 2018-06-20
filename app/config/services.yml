@@ -39,9 +39,15 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
-    AppBundle\Service\Uploader\FileUploader:
+    AppBundle\Service\FileUploader:
         arguments:
             $targetDirectory: '%tmp_directory%'
+        public: true
+        
+    AppBundle\Event\Listener\FileUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
         public: true
 
     AppBundle\Service\Mailer:
