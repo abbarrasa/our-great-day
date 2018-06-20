@@ -37,7 +37,7 @@ class Post
      *
      * @ORM\Column(name="cover_picture", type="string", length=255)
      * @Assert\NotBlank()
-     * @Assert\Image(maxWidth=180, maxHeight=180, maxSize="2M")
+     * @Assert\Image(maxWidth=640, maxHeight=380, maxSize="1M")
      */
     private $coverPicture;
 
@@ -345,4 +345,11 @@ class Post
             : $this->getUploadRootDir().'/'.$this->coverPicture
         ;        
     }
+    
+    public function getWebPath()
+    {
+        return null === $this->coverPicture
+            ? null
+            : self::COVER_PICTURE_WEB_DIR.'/'.$this->coverPicture;
+    }    
 }
