@@ -350,6 +350,7 @@ class Post implements FileUploadInterface
     {
         return null === $this->coverPicture
             ? null
-            : self::COVER_PICTURE_WEB_DIR.'/'.$this->coverPicture;
+            : self::COVER_PICTURE_WEB_DIR.'/'.$this->coverPicture
+        ;
     }    
 }
