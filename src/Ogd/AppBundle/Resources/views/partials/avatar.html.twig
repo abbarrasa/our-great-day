@@ -1,8 +1,7 @@
 {% set classes = classes|default([])|merge(['img-raised']) %}
 {% if user %}
     {% if user.picture is not null %}
-        {% set filepath = user_directory ~ '/' ~ user.picture %}
-        <img src="{{  filepath|data_uri }}" alt="{{ user.username }}" class="{{ classes|join(' ') }}">
+        <img src="{{  user.getAbsolutePath()|data_uri }}" alt="{{ user.username }}" class="{{ classes|join(' ') }}">
     {% else %}
         {% image 'bundles/app/images/user-default.jpg' %}
         <img src="{{ asset_url }}" alt="{{ user.username }}" class="{{ classes|join(' ') }}">
