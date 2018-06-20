@@ -1,10 +1,10 @@
 <?php
 
-namespace AppBundle\Service\Uploader;
+namespace AppBundle\Service;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class FileUploader implements FileUploaderInterface
+class FileUploader
 {
     protected $targetDirectory;
 
@@ -13,6 +13,12 @@ class FileUploader implements FileUploaderInterface
         $this->targetDirectory = $targetDirectory;
     }
 
+    /**
+     * Uploads a file
+     * @param UploadedFile $file
+     * @param bool $basename If true, returns basename of path. Else returns full path.
+     * @return mixed
+     */ 
     public function upload(UploadedFile $file, $basename = true)
     {
         $targetDirectory = $this->getTargetDirectory();        
@@ -31,6 +37,10 @@ class FileUploader implements FileUploaderInterface
         return $fileName;
     }
 
+    /**
+     * Gets target directory for uploads
+     * @return mixed
+     */    
     public function getTargetDirectory()
     {
         return $this->targetDirectory;
