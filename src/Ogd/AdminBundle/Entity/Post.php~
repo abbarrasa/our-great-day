@@ -4,6 +4,7 @@ namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use AdminBundle\Model\FileUploadInterface;
 
 /**
  * Post
@@ -12,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\PostRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Post
+class Post implements FileUploadInterface
 {
     const COVER_PICTURE_WEB_DIR = 'uploads/post';    
 
@@ -37,7 +38,7 @@ class Post
      *
      * @ORM\Column(name="cover_picture", type="string", length=255)
      * @Assert\NotBlank()
-     * @Assert\Image(maxWidth=180, maxHeight=180, maxSize="2M")
+     * @Assert\Image(maxWidth=615, maxHeight=369, maxSize="1M")
      */
     private $coverPicture;
 
@@ -121,6 +122,54 @@ class Post
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set coverPicture.
+     *
+     * @param string $coverPicture
+     *
+     * @return Post
+     */
+    public function setCoverPicture($coverPicture)
+    {
+        $this->coverPicture = $coverPicture;
+
+        return $this;
+    }
+
+    /**
+     * Get coverPicture.
+     *
+     * @return string
+     */
+    public function getCoverPicture()
+    {
+        return $this->coverPicture;
+    }
+
+    /**
+     * Set content.
+     *
+     * @param string|null $content
+     *
+     * @return Post
+     */
+    public function setContent($content = null)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content.
+     *
+     * @return string|null
+     */
+    public function getContent()
+    {
+        return $this->content;
     }
 
     /**
@@ -276,19 +325,15 @@ class Post
     }
 
     /**
-     * Get absolute directory path for picture
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    static public function getUploadRootDir()
+    public function getUploadRootDir()
     {
         return __DIR__.'/../../../../web/'.self::COVER_PICTURE_WEB_DIR;        
     }
     
     /**
-     * Get absolute picture path
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getAbsolutePath()
     {
@@ -296,5 +341,16 @@ class Post
             ? null
             : $this->getUploadRootDir().'/'.$this->coverPicture
         ;        
-    }        
+    }
+    
+    /**
+     * {@inheritdoc}
+     */    
+    public function getWebPath()
+    {
+        return null === $this->coverPicture
+            ? null
+            : self::COVER_PICTURE_WEB_DIR.'/'.$this->coverPicture
+        ;
+    }    
 }

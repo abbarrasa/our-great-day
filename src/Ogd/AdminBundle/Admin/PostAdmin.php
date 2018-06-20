@@ -2,7 +2,6 @@
 
 namespace AdminBundle\Admin;
 
-use AdminBundle\Entity\Post;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -74,8 +73,6 @@ class PostAdmin extends AbstractAdmin
         } else {
             $post->setPublishedAt(null);
         }
-
-        //$post->setTemplateFileExtension();
     }
 }
 

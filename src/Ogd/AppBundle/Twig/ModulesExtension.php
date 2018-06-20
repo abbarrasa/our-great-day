@@ -2,6 +2,7 @@
 
 namespace AppBundle\Twig;
 
+use AdminBundle\Entity\Post;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ModulesExtension extends \Twig_Extension

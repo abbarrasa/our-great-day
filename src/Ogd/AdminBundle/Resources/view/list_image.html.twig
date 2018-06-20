@@ -1,0 +1,7 @@
+{% extends '@SonataAdmin/CRUD/base_list_field.html.twig' %}
+
+{% block field %}
+    <a href="{{ admin.generateUrl('edit', {'id' : object|sonata_urlsafeid }) }}">
+        <img src="{{ attribute(object, field_description.name )|data_uri }}" width="75" height="45" />
+    </a>
+{% endblock %}

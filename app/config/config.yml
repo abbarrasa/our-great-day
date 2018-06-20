@@ -56,6 +56,7 @@ twig:
         wedding_date: '%wedding.date%'
         version: 2.5.0
     form_themes:
+        - '@SonataFormatter/Form/formatter.html.twig'
         - 'form/fields.html.twig'
     paths:
         '%kernel.project_dir%/src/Ogd/AdminBundle/Resources/view': Admin
@@ -166,6 +167,37 @@ sonata_admin:
                 label: admin.group.settings
                 label_catalogue: AdminBundle
                 icon: '<i class="fa fa-sliders"></i>'
+
+sonata_formatter:
+    default_formatter: text
+    formatters:
+        markdown:
+            service: sonata.formatter.text.markdown
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig #keep this commented unless you are using media bundle.
+        text:
+            service: sonata.formatter.text.text
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+        rawhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+        richhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+        twig:
+            service: sonata.formatter.text.twigengine
+            extensions: [] # Twig formatter cannot have extensions
 
 nzo_url_encryptor:
     secret_key: "%secret%"      # optional, max length of 100 characters.

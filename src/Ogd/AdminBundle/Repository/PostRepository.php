@@ -24,7 +24,7 @@ class PostRepository extends EntityRepository
     
     public function findLastPublished($limit = 5)
     {
-        return = $this->getQueryAllPublished()
+        return $this->getQueryAllPublished()
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult()            

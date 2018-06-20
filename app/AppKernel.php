@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Sonata\FormatterBundle\SonataFormatterBundle(),
 
             // The storage and SonataAdminBundle
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),

@@ -3,8 +3,10 @@
 <div class="card card-raised card-carousel">
     <div id="{{ id }}" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            {% for index in 0..10 if loop.index <= posts|length %}              
-            <li data-target="#{{ id }}" data-slide-to="{{ index }}" {% if loop.first %}class="active"{% endif %}></li>
+            {% for index in 0..10 %}
+                {% if loop.index <= posts|length %}
+                    <li data-target="#{{ id }}" data-slide-to="{{ index }}" {% if loop.first %}class="active"{% endif %}></li>
+                {% endif %}
             {% endfor %}
         </ol>
         <div class="carousel-inner">

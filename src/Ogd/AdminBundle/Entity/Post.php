@@ -38,7 +38,7 @@ class Post implements FileUploadInterface
      *
      * @ORM\Column(name="cover_picture", type="string", length=255)
      * @Assert\NotBlank()
-     * @Assert\Image(maxWidth=640, maxHeight=380, maxSize="1M")
+     * @Assert\Image(maxWidth=615, maxHeight=369, maxSize="1M")
      */
     private $coverPicture;
 

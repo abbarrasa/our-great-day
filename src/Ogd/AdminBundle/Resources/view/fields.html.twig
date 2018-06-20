@@ -1,0 +1,13 @@
+{# templates/form/fields.html.twig #}
+{% extends 'form_div_layout.html.twig' %}
+
+{% block file_widget %}
+    {% spaceless %}
+
+        {{ block('form_widget') }}
+        {% if image_url is not null %}
+            <img src="{{ image_url|data_uri }}" alt="image_photo"/>
+        {% endif %}
+
+    {% endspaceless %}
+{% endblock %}
