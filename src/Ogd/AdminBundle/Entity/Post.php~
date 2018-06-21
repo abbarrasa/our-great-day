@@ -81,6 +81,8 @@ class Post implements FileUploadInterface
      */
     private $comments;
 
+    private $absoutePath;
+
     /**
      * Post constructor.
      */

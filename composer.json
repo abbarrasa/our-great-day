@@ -35,7 +35,6 @@
         "sonata-project/admin-bundle": "^3.30",
         "sonata-project/doctrine-orm-admin-bundle": "^3.3",
         "sonata-project/easy-extends-bundle": "^2.3",
-        "sonata-project/formatter-bundle": "^3.5",
         "sonata-project/user-bundle": "^4.0",
         "suncat/mobile-detect-bundle": "^1.1",
         "symfony/assetic-bundle": "^2.8",

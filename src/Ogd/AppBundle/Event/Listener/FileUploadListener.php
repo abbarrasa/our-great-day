@@ -4,6 +4,7 @@ namespace AppBundle\Event\Listener;
 
 use AdminBundle\Entity\Post;
 use AdminBundle\Model\FileUploadInterface;
+use AppBundle\Service\FileUploader;
 use Application\Sonata\UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -39,7 +40,7 @@ class FileUploadListener
         if ($entity instanceof User) {
             if (array_key_exists('picture', $changes)) {
                 $previousFileName = $changes['picture'][0];
-                $pathPreviousFile = $entity->getUploadRootDir().'/'. $previousFilename;
+                $pathPreviousFile = $entity->getUploadRootDir().'/'. $previousFileName;
                 
                 // Remove it
                 if(file_exists($pathPreviousFile)){
@@ -49,7 +50,7 @@ class FileUploadListener
         } else if ($entity instanceof Post) {
             if (array_key_exists('pictureCover', $changes)) {
                 $previousFileName = $changes['pictureCover'][0];
-                $pathPreviousFile = $entity->getUploadRootDir().'/'. $previousFilename;
+                $pathPreviousFile = $entity->getUploadRootDir().'/'. $previousFileName;
                 
                 // Remove it
                 if(file_exists($pathPreviousFile)){

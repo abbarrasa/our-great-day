@@ -2,11 +2,12 @@
 
 namespace AdminBundle\Admin;
 
+use AdminBundle\Entity\Post;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\FormatterBundle\Form\Type\SimpleFormatterType;
+use Symfony\Component\HttpFoundation\File\File;
 
 class PostAdmin extends AbstractAdmin
 {
@@ -30,13 +31,19 @@ class PostAdmin extends AbstractAdmin
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
+        /** @var Post $subject */
+        $post = $this->getSubject();
         $formMapper
             ->add('title', 'text', ['label' => 'Title'])
             ->add('coverPicture', 'file', [
                 'label' => 'Cover picture',
-                'image_property' => 'absoutePath'
+                'data' => $post !== null && $post->getCoverPicture() !== null ? new File($post->getAbsolutePath()) : null,
+                'image_path_method' => 'getAbsolutePath'
             ])
-            ->add('content', 'textarea', ['label' => 'Text'])
+            ->add('content', 'textarea', [
+                'label' => 'Text',
+                'required' => false
+            ])
             ->add('published', null, ['label' => 'Is published?'])
         ;
 

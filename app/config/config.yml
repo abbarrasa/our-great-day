@@ -56,7 +56,6 @@ twig:
         wedding_date: '%wedding.date%'
         version: 2.5.0
     form_themes:
-        - '@SonataFormatter/Form/formatter.html.twig'
         - 'form/fields.html.twig'
     paths:
         '%kernel.project_dir%/src/Ogd/AdminBundle/Resources/view': Admin

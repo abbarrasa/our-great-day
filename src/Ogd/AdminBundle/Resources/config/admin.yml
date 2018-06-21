@@ -23,6 +23,18 @@ services:
             - [ setTranslationDomain, [AdminBundle]]
         public: true
 
+    admin.post:
+        class: AdminBundle\Admin\PostAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin.group.administration, label: admin.model.posts }
+        arguments:
+            - ~
+            - AdminBundle\Entity\Post
+            - ~
+        calls:
+            - [ setTranslationDomain, [AdminBundle]]
+        public: true
+
     admin.location:
         class: AdminBundle\Admin\LocationAdmin
         tags:
@@ -30,18 +42,6 @@ services:
         arguments:
             - ~
             - AdminBundle\Entity\Location
-            - ~
-        calls:
-            - [ setTranslationDomain, [AdminBundle]]
-        public: true
-
-    admin.post:
-        class: AdminBundle\Admin\PostAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: admin.group.settings, label: admin.model.posts }
-        arguments:
-            - ~
-            - AdminBundle\Entity\Post
             - ~
         calls:
             - [ setTranslationDomain, [AdminBundle]]
