@@ -6,6 +6,7 @@ admin:
         guests: Guests
         greetings: Greetings
         locations: Locations
+        posts: Posts
     guest:
         import: Import
         import_file: File
