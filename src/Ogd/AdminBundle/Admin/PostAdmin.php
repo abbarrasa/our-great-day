@@ -36,11 +36,7 @@ class PostAdmin extends AbstractAdmin
                 'label' => 'Cover picture',
                 'image_property' => 'absoutePath'
             ])
-            ->add('content', SimpleFormatterType::class, [
-                'label' => '',
-                'format' => 'richhtml',
-                'ckeditor_context' => 'default', // optional
-            ])
+            ->add('content', 'textarea', ['label' => 'Text'])
             ->add('published', null, ['label' => 'Is published?'])
         ;
 
