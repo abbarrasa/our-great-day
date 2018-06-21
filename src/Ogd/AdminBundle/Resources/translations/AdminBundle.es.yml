@@ -6,6 +6,7 @@ admin:
         guests: Invitados
         greetings: Felicitaciones
         locations: Localizaciones
+        posts: Novedades
     guest:
         import: Importar
         import_file: Archivo
