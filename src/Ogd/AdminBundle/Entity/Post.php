@@ -30,6 +30,7 @@ class Post implements FileUploadInterface
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank()     
      */
     private $title;
 
@@ -37,7 +38,6 @@ class Post implements FileUploadInterface
      * @var string
      *
      * @ORM\Column(name="cover_picture", type="string", length=255)
-     * @Assert\NotBlank()
      * @Assert\Image(maxWidth=615, maxHeight=369, maxSize="1M")
      */
     private $coverPicture;
