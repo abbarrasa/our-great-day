@@ -135,9 +135,11 @@
 
                     {# Menu bar #}
                     $("a.nav-link").hover(function(){
-                        $(this).children('.d-lg-none').css('display', 'inline-block');
+                        $(this).children('.d-lg-none').removeClass('d-lg-none').addClass('d-lg-inline');
+                        $(this).children('.d-xl-none').removeClass('d-xl-none').addClass('d-xl-inline');                        
                     }, function() {
-                        $(this).children('.d-lg-none').css('display', 'none');
+                        $(this).children('.d-lg-inline').removeClass('d-lg-inline').addClass('d-lg-none');
+                        $(this).children('.d-xl-inline').removeClass('d-xl-inline').addClass('d-xl-none');
                     });
 
                     {# Data scroll #}
