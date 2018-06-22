@@ -37,6 +37,7 @@ class PostAdmin extends AbstractAdmin
             ->add('title', 'text', ['label' => 'Title'])
             ->add('coverPicture', 'file', [
                 'label' => 'Cover picture',
+                'required' => $post === null || $post->getCoverPicture() === null
                 'data' => $post !== null && $post->getCoverPicture() !== null ? new File($post->getAbsolutePath()) : null,
                 'image_path_method' => 'getAbsolutePath'
             ])
