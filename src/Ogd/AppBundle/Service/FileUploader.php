@@ -27,7 +27,7 @@ class FileUploader
     {
         $targetDirectory = $this->getTargetDirectory();        
         $fileName        = $this->generateFilename() . '.' . $file->guessExtension();
-        
+
         if (!file_exists($targetDirectory)) {
             mkdir($targetDirectory, 0775);
         }

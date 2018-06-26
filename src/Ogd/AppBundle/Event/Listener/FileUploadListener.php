@@ -6,6 +6,7 @@ use AdminBundle\Entity\Post;
 use AdminBundle\Model\FileUploadInterface;
 use AppBundle\Service\FileUploader;
 use Application\Sonata\UserBundle\Entity\User;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
@@ -46,19 +47,19 @@ class FileUploadListener
                 if(file_exists($pathPreviousFile)){
                     unlink($pathPreviousFile);
                 }
-            }                
+            }
         } else if ($entity instanceof Post) {
-            if (array_key_exists('pictureCover', $changes)) {
-                $previousFileName = $changes['pictureCover'][0];
+            if (array_key_exists('coverPicture', $changes)) {
+                $previousFileName = $changes['coverPicture'][0];
                 $pathPreviousFile = $entity->getUploadRootDir().'/'. $previousFileName;
                 
                 // Remove it
                 if(file_exists($pathPreviousFile)){
                     unlink($pathPreviousFile);
                 }
-            }            
+            }
         }
-                    
+
         // Upload new file
         $this->uploadFile($entity);
     }
@@ -70,17 +71,20 @@ class FileUploadListener
         } else if ($entity instanceof Post) {
             $file = $entity->getCoverPicture();
         }
-        
-        // only upload new files
-        if ($file instanceof UploadedFile) {
-            $uploader = new FileUploader($entity->getUploadRootDir());
-            $fileName = $uploader->upload($file);
-            
+
+        if ($file instanceof File) {
+            if ($file instanceof UploadedFile) {
+                $uploader = new FileUploader($entity->getUploadRootDir());
+                $fileName = $uploader->upload($file);
+            } else {
+                $fileName = $file->getFilename();
+            }
+
             if ($entity instanceof User) {
-                $entity->setPicture($fileName);            
+                $entity->setPicture($fileName);
             } else if ($entity instanceof Post) {
                 $entity->setCoverPicture($fileName);
-            }            
+            }
         }
     }
 }
