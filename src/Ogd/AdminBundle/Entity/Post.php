@@ -337,8 +337,12 @@ class Post implements FileUploadInterface
      */
     public function getAbsolutePath()
     {
-        return null === $this->coverPicture
-            ? null
+        if (null === $this->coverPicture) {
+            return null;
+        }
+        
+        return $this->coverPicture instaceof File
+            ? $this->coverPicture->getPath()
             : $this->getUploadRootDir().'/'.$this->coverPicture
         ;        
     }
@@ -348,9 +352,13 @@ class Post implements FileUploadInterface
      */    
     public function getWebPath()
     {
-        return null === $this->coverPicture
-            ? null
+        if (null === $this->coverPicture) {
+            return null;
+        }
+        
+        return $this->coverPicture instaceof File
+            ? self::COVER_PICTURE_WEB_DIR.'/'. $this->coverPicture->getFilename()
             : self::COVER_PICTURE_WEB_DIR.'/'.$this->coverPicture
-        ;
+        ;        
     }    
 }
