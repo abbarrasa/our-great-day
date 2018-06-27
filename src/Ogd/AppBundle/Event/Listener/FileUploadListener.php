@@ -11,9 +11,18 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
+use AppBundle\Service\FileUploaderFactory;
 
 class FileUploadListener
 {
+    /** @var FileUploaderFactory */
+    $fileUploaderFactory;
+    
+    public function __construct(FileUploaderFactory $fileUploaderFactory)
+    {
+        $this->fileUploaderFactory = $fileUploderFactory;
+    }
+    
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
@@ -96,8 +105,9 @@ class FileUploadListener
         }
 
         if ($file instanceof UploadedFile) {
-            $uploader = new FileUploader($entity->getUploadRootDir());
-            $fileName = $uploader->upload($file);
+            $fileName = $this->fileUploaderFactory->create($entity)->upload($file);
+            //$uploader = new FileUploader($entity->getUploadRootDir());
+            //$fileName = $uploader->upload($file);
             
             if ($entity instanceof User) {
                 $entity->setPicture($fileName);
