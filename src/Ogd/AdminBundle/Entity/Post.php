@@ -15,7 +15,8 @@ use AdminBundle\Model\FileUploadInterface;
  */
 class Post implements FileUploadInterface
 {
-    const COVER_PICTURE_WEB_DIR = 'uploads/post';    
+    const COVER_PICTURE_WEB_DIR = 'uploads/post';
+    const UPLOADABLE_FIELDS     = [ 'coverPicture' ];
 
     /**
      * @var int
@@ -337,7 +338,7 @@ class Post implements FileUploadInterface
      */    
     public function getUploadableFields()
     {
-        return ['coverPicture'];
+        return self::UPLOADABLE_FIELDS;
     }
     
     /**
