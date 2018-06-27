@@ -6,7 +6,7 @@
 
         {{ block('form_widget') }}
         {% if image_url is not null %}
-            <img src="{{ image_url|data_uri }}" alt="image_photo"/>
+            <img src="{{ image_url|data_uri }}" class="img-thumbnail" alt="image_photo"/>
         {% endif %}
 
     {% endspaceless %}
