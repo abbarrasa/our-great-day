@@ -15,7 +15,8 @@ use AdminBundle\Model\FileUploadInterface;
  */
 class User extends BaseUser implements FileUploadInterface
 {
-    const PICTURE_WEB_DIR = 'uploads/profile';
+    const PICTURE_WEB_DIR   = 'uploads/profile';
+    const UPLOADABLE_FIELDS = [ 'picture' ];
     
     /**
      * @var int $id
@@ -216,22 +217,64 @@ class User extends BaseUser implements FileUploadInterface
     /**
      * {@inheritdoc}
      */    
-    public function getAbsolutePath()
+    public function getUploadableFields()
     {
-        return null === $this->picture
-            ? null
-            : $this->getUploadRootDir().'/'.$this->picture
+        return self::UPLOADABLE_FIELDS;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getAbsolutePath($field = null)
+    {
+        $uploadableFields = $this->getUploadableFields();
+        if (empty($uploadableFields)) {
+            return null;
+        }
+        
+        if (null !== $field && !isset($uploadableFields[$field]) {
+            return null;
+        }
+        
+        if (null === $field) {
+            $field = $uploadableFields[0];
+        }
+            
+        if (null === $this->$field) {
+            return null;
+        }
+        
+        return $this->$field instaceof File
+            ? $this->$field->getPath()
+            : $this->getUploadRootDir().'/'.$this->$field
         ;        
     }
     
     /**
      * {@inheritdoc}
      */    
-    public function getWebPath()
-    {
-        return null === $this->picture
-            ? null
-            : self::PICTURE_WEB_DIR.'/'.$this->picture
-        ;
+    public function getWebPath($field = null)
+    {                
+        $uploadableFields = $this->getUploadableFields();
+        if (empty($uploadableFields)) {
+            return null;
+        }
+        
+        if (null !== $field && !isset($uploadableFields[$field]) {
+            return null;
+        }
+        
+        if (null === $field) {
+            $field = $uploadableFields[0];
+        }
+            
+        if (null === $this->$field) {
+            return null;
+        }
+        
+        return $this->$field instaceof File
+            ? self::PICTURE_WEB_DIR.'/'. $this->$field->getFilename()
+            : self::PICTURE_WEB_DIR.'/'.$this->$field
+        ;        
     }     
 }
