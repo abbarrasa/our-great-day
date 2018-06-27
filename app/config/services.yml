@@ -43,6 +43,9 @@ services:
         arguments:
             $targetDirectory: '%tmp_directory%'
         public: true
+
+    AppBundle\Service\FileUploaderFactory:
+        public: true
         
     AppBundle\Event\Listener\FileUploadListener:
         tags:
