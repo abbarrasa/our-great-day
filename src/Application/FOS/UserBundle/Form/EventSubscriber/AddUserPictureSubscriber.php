@@ -23,14 +23,14 @@ class AddUserPictureSubscriber implements EventSubscriberInterface
     public function onPreSetData(FormEvent $event)
     {
         /** @var User $data */
-        $data    = $event->getData();
+        //$data    = $event->getData();
         $form    = $event->getForm();
 
         $form
             ->add('picture', FileType::class, [
                 'label'              => 'form.picture',
                 'required'           => false,
-                'data'               => $data !== null && $data->getPicture() !== null ? new File($data->getAbsolutePath()) : null,
+                //'data'               => $data !== null && $data->getPicture() !== null ? new File($data->getAbsolutePath()) : null,
                 'image_path_method'  => 'getAbsolutePath'                
                 'translation_domain' => 'FOSUserBundle',
                 'constraints'        => [
