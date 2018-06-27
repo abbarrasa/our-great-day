@@ -31,13 +31,13 @@ class PostAdmin extends AbstractAdmin
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $subject = $this->getSubject();
+        //$subject = $this->getSubject();
         $formMapper
             ->add('title', 'text', ['label' => 'Title'])
             ->add('coverPicture', 'file', [
                 'label' => 'Cover picture',
                 'required' => $this->isCurrentRoute('create'),
-                'empty_data' => $subject !== null && $subject->getCoverPicture() !== null ? new File($subject->getAbsolutePath()) : null,
+//                'empty_data' => $subject !== null && $subject->getCoverPicture() !== null ? new File($subject->getAbsolutePath()) : null,
                 'image_path_method' => 'getAbsolutePath'
             ])
             ->add('content', 'textarea', [
@@ -47,10 +47,10 @@ class PostAdmin extends AbstractAdmin
             ->add('published', null, ['label' => 'Is published?'])
         ;
 
-        $formMapper
+/*        $formMapper
             ->get('coverPicture')
             ->addModelTransformer(new NameToFileTransformer($subject->getUploadRootDir()))
-        ;
+        ;*/
     }
 
     /**
