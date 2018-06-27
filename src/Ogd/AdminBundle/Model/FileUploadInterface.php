@@ -10,6 +10,13 @@ interface FileUploadInterface
      * @return string
      */
     public function getUploadRootDir();
+    
+    /**
+     * Get uploadable field list of entity
+     *
+     * @return array|null
+     */
+    public function getUploadableFields();
 
     /**
      * Get absolute upload path
