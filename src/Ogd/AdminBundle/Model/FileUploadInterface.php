@@ -19,16 +19,16 @@ interface FileUploadInterface
     public function getUploadableFields();
 
     /**
-     * Get absolute upload path
+     * Get absolute upload path of uploadable field of entity
      *
      * @return string
      */
-    public function getAbsolutePath();
+    public function getAbsolutePath($field = null);
 
     /**
-     * Get asset file path
+     * Get asset file path of uploadable field of entity
      *
      * @return string
      */
-    public function getWebPath();
+    public function getWebPath($field = null);
 }
