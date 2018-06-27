@@ -16,9 +16,7 @@
         <div class="col-md-12 fileinput fileinput-new text-center" data-provides="fileinput">
             <div class="fileinput-new thumbnail img-circle img-raised">
                 {% if form.picture.vars.data %}
-                {% set filename = form.picture.vars.data.filename %}
-                {% set filepath = user_directory ~ '/' ~ filename %}
-                <img src="{{ filepath|data_uri }}" alt="{{ filename }}">
+                <img src="{{ form.picture.vars.data.getAbsolutePath()|data_uri }}" alt="{{ form.picture.vars.data.getFileName() }}">
                 {% else %}
                 {% image 'bundles/app/images/user-default.jpg' %}
                 <img src="{{ asset_url }}" alt="user-default.jpg">
