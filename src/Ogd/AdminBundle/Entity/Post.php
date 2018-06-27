@@ -334,31 +334,65 @@ class Post implements FileUploadInterface
     
     /**
      * {@inheritdoc}
-     */
-    public function getAbsolutePath()
+     */    
+    public function getUploadableFields()
     {
-        if (null === $this->coverPicture) {
+        return ['coverPicture'];
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getAbsolutePath($field = null)
+    {
+        $uploadableFields = $this->getUploadableFields();
+        if (empty($uploadableFields)) {
             return null;
         }
         
-        return $this->coverPicture instaceof File
-            ? $this->coverPicture->getPath()
-            : $this->getUploadRootDir().'/'.$this->coverPicture
+        if (null !== $field && !isset($uploadableFields[$field]) {
+            return null;
+        }
+        
+        if (null === $field) {
+            $field = $uploadableFields[0];
+        }
+            
+        if (null === $this->$field) {
+            return null;
+        }
+        
+        return $this->$field instaceof File
+            ? $this->$field->getPath()
+            : $this->getUploadRootDir().'/'.$this->$field
         ;        
     }
     
     /**
      * {@inheritdoc}
      */    
-    public function getWebPath()
-    {
-        if (null === $this->coverPicture) {
+    public function getWebPath($field = null)
+    {                
+        $uploadableFields = $this->getUploadableFields();
+        if (empty($uploadableFields)) {
             return null;
         }
         
-        return $this->coverPicture instaceof File
-            ? self::COVER_PICTURE_WEB_DIR.'/'. $this->coverPicture->getFilename()
-            : self::COVER_PICTURE_WEB_DIR.'/'.$this->coverPicture
+        if (null !== $field && !isset($uploadableFields[$field]) {
+            return null;
+        }
+        
+        if (null === $field) {
+            $field = $uploadableFields[0];
+        }
+            
+        if (null === $this->$field) {
+            return null;
+        }
+        
+        return $this->$field instaceof File
+            ? self::COVER_PICTURE_WEB_DIR.'/'. $this->$field->getFilename()
+            : self::COVER_PICTURE_WEB_DIR.'/'.$this->$field
         ;        
     }    
 }
