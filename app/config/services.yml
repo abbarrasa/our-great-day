@@ -44,16 +44,6 @@ services:
             $targetDirectory: '%tmp_directory%'
         public: true
 
-    AppBundle\Service\FileUploaderFactory:
-        public: true
-        
-    AppBundle\Event\Listener\FileUploadListener:
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
-            - { name: doctrine.event_listener, event: postLoad }            
-        public: true
-
     AppBundle\Service\Mailer:
         arguments:
             $mailer: '@mailer'
@@ -63,11 +53,3 @@ services:
             $encryptor: '@nzo_url_encryptor'
             $config: '%mailer_config%'
         public: true
-
-    AppBundle\Form\Extension\TextTypeExtension:
-        tags:
-            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
-            
-    AppBundle\Form\Extension\ImageTypeExtension:
-        tags:
-            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FileType }

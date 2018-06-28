@@ -3,8 +3,9 @@
 namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
-use AdminBundle\Model\FileUploadInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Post
@@ -12,12 +13,10 @@ use AdminBundle\Model\FileUploadInterface;
  * @ORM\Table(name="ogd_post")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\PostRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @Vich\Uploadable
  */
-class Post implements FileUploadInterface
+class Post
 {
-    const COVER_PICTURE_WEB_DIR = 'uploads/post';
-    const UPLOADABLE_FIELDS     = [ 'coverPicture' ];
-
     /**
      * @var int
      *
@@ -39,7 +38,6 @@ class Post implements FileUploadInterface
      * @var string
      *
      * @ORM\Column(name="cover_picture", type="string", length=255)
-     * @Assert\Image(maxWidth=615, maxHeight=369, maxSize="1M")
      */
     private $coverPicture;
 
@@ -81,6 +79,14 @@ class Post implements FileUploadInterface
      * @ORM\OneToMany(targetEntity="PostComment", mappedBy="post")
      */
     private $comments;
+
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="post_picture", fileNameProperty="coverPicture")
+     * @Assert\Image(maxWidth=615, maxHeight=369, maxSize="1M")
+     */
+    private $coverPictureFile;
 
     /**
      * Post constructor.
@@ -316,6 +322,32 @@ class Post implements FileUploadInterface
     }
 
     /**
+     * Set coverPictureFile
+     *
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|null $file
+     */
+    public function setCoverPictureFile(File $file = null)
+    {
+        $this->coverPictureFile = $file;
+    }
+
+    /**
+     * Get coverPictureFile
+     *
+     * @return null|File
+     */
+    public function getCoverPictureFile()
+    {
+        return $this->coverPictureFile;
+    }
+
+    /**
      * Set createdAt value before persist
      *
      * @ORM\PrePersist
@@ -324,76 +356,4 @@ class Post implements FileUploadInterface
     {
         $this->setCreatedAt(new \DateTime());
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUploadRootDir()
-    {
-        return __DIR__.'/../../../../web/'.self::COVER_PICTURE_WEB_DIR;        
-    }
-    
-    /**
-     * {@inheritdoc}
-     */    
-    public function getUploadableFields()
-    {
-        return self::UPLOADABLE_FIELDS;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getAbsolutePath($field = null)
-    {
-        $uploadableFields = $this->getUploadableFields();
-        if (empty($uploadableFields)) {
-            return null;
-        }
-        
-        if (null !== $field && !isset($uploadableFields[$field]) {
-            return null;
-        }
-        
-        if (null === $field) {
-            $field = $uploadableFields[0];
-        }
-            
-        if (null === $this->$field) {
-            return null;
-        }
-        
-        return $this->$field instaceof File
-            ? $this->$field->getPath()
-            : $this->getUploadRootDir().'/'.$this->$field
-        ;        
-    }
-    
-    /**
-     * {@inheritdoc}
-     */    
-    public function getWebPath($field = null)
-    {                
-        $uploadableFields = $this->getUploadableFields();
-        if (empty($uploadableFields)) {
-            return null;
-        }
-        
-        if (null !== $field && !isset($uploadableFields[$field]) {
-            return null;
-        }
-        
-        if (null === $field) {
-            $field = $uploadableFields[0];
-        }
-            
-        if (null === $this->$field) {
-            return null;
-        }
-        
-        return $this->$field instaceof File
-            ? self::COVER_PICTURE_WEB_DIR.'/'. $this->$field->getFilename()
-            : self::COVER_PICTURE_WEB_DIR.'/'.$this->$field
-        ;        
-    }    
 }

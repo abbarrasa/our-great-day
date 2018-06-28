@@ -2,12 +2,11 @@
 
 namespace AdminBundle\Admin;
 
-use AppBundle\Form\DataTransformer\NameToFileTransformer;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class PostAdmin extends AbstractAdmin
 {
@@ -31,14 +30,15 @@ class PostAdmin extends AbstractAdmin
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
-        //$subject = $this->getSubject();
+
         $formMapper
             ->add('title', 'text', ['label' => 'Title'])
-            ->add('coverPicture', 'file', [
+            ->add('coverPictureFile', VichImageType::class, [
                 'label' => 'Cover picture',
                 'required' => $this->isCurrentRoute('create'),
-//                'empty_data' => $subject !== null && $subject->getCoverPicture() !== null ? new File($subject->getAbsolutePath()) : null,
-                'image_path_method' => 'getAbsolutePath'
+                'allow_delete' => false,
+                'download_uri' => false,
+                'image_uri' => true
             ])
             ->add('content', 'textarea', [
                 'label' => 'Text',
@@ -46,11 +46,6 @@ class PostAdmin extends AbstractAdmin
             ])
             ->add('published', null, ['label' => 'Is published?'])
         ;
-
-/*        $formMapper
-            ->get('coverPicture')
-            ->addModelTransformer(new NameToFileTransformer($subject->getUploadRootDir()))
-        ;*/
     }
 
     /**

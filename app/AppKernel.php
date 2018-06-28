@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Nzo\UrlEncryptorBundle\NzoUrlEncryptorBundle(),
             new SunCat\MobileDetectBundle\MobileDetectBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
 
             // These are the other bundles the SonataAdminBundle relies on
             new Sonata\CoreBundle\SonataCoreBundle(),

@@ -1,17 +1,5 @@
 {% use "form_div_layout.html.twig" %}
 
-{# File widget #}
-{% block file_widget %}
-    {% spaceless %}
-
-        {{ block('form_widget') }}
-        {% if image_url is not null %}
-            <img src="{{ image_url|data_uri }}" class="img-thumbnail" alt="image_photo"/>
-        {% endif %}
-
-    {% endspaceless %}
-{% endblock %}
-
 {# Errors #}
 {% block form_errors -%}
     {% if errors|length > 0 -%}
