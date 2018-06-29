@@ -13,25 +13,8 @@
 
 {{ form_start(form, { 'action': path('fos_user_profile_edit') }) }}
     <div class="row">
-        <div class="col-md-12 fileinput fileinput-new text-center" data-provides="fileinput">
-            <div class="fileinput-new thumbnail img-circle img-raised">
-                {% if form.picture.vars.data %}
-                <img src="{{ form.picture.vars.data.path|data_uri }}" alt="{{ form.picture.vars.data.filename }}">
-                {% else %}
-                {% image 'bundles/app/images/user-default.jpg' %}
-                <img src="{{ asset_url }}" alt="user-default.jpg">
-                {% endimage %}
-                {% endif %}
-            </div>
-            <div class="fileinput-preview fileinput-exists thumbnail img-circle img-raised"></div>
-            <div>
-                <span class="btn btn-raised btn-round btn-default btn-file">
-                    <span class="fileinput-new">{{ 'form.picture.select_image'|trans }}</span>
-                    <span class="fileinput-exists">{{ 'form.picture.change'|trans }}</span>
-                    {{ form_widget(form.picture) }}
-                </span>
-                <a href="#remove" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="material-icons">clear</i> {{ 'form.picture.remove'|trans }}</a>
-            </div>
+        <div class="col-md-12 text-center">
+            {{ form_row(form.picture) }}
         </div>
     </div>
 
