@@ -107,7 +107,11 @@ class PostController extends Controller
 
         $helper = $this->get('app.helper.flash_message');
         $this->addFlash('success', $helper->getFlashMessage(
-            'success', 'frontend.success', 'frontend.post.likes.success', 'AppBundle'
+            'success',
+            'frontend.success',
+            'frontend.post.likes.success',
+            ['%title%' => $post->getTitle()],
+            'AppBundle'
         ));
 
         return $this->redirect($request->headers->get('referer'));

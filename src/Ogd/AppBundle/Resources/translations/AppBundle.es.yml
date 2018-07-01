@@ -30,6 +30,7 @@ frontend:
         home: Inicio
         confirm_attendance: Confirmar asistencia
         guestbook: Libro de invitados
+        news: Novedades
     enquiry:
         name: Tu nombre
         placeholder_name: Tu nombre aquí...
@@ -98,5 +99,14 @@ frontend:
     profile:
         title: Tu gran <em>Perfil de usuario</em>
         description: Has entrado en tu zona privada. En esta zona puedes cambiar tus datos de usuario y actualizar tu contraseña.
-    news:
+    post:
         title: Nuestras grandes <em>Novedades</em>
+        no_posts: No hay novedades publicadas
+        published: Publicado
+        comment:
+            title: '{1} 1 Comentario|]1,Inf[ %count% Comentarios'
+            post_your_comment: Envía tu comentario
+            success: Tu comentario se ha enviado correctamente.
+        likes:
+            tooltip: Pulsa para dar un "Me gusta" a la novedad
+            success: Has dado a "Me gusta" a la novedad %title%.

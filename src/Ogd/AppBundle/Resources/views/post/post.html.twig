@@ -16,7 +16,7 @@
 
         <div class="row">
             <div class="col-xs-12 col-md-8 mr-auto ml-auto text-center">
-                <img src="{{ vich_uploader_path(post, 'coverPictureFile')|data_uri }}" class="img-raised rounded img-fluid">
+                <img src="{{ app_uploader_path(post, 'coverPictureFile')|data_uri }}" class="img-raised rounded img-fluid">
             </div>
         </div>
 
@@ -30,9 +30,22 @@
 
         <div class="row">
             <div class="col-xs-12 col-md-8 ml-auto mr-auto">
+                <div class="left">
+                    <span class="text-muted">{{ 'frontend.post.published'|trans }}: {{ post.publishedAt|elapsed_time('AppBundle') }}</span>
+                </div>
+                <div class="right">
+                    <a href="{{ path('post_like', {'id': post.id}) }}" class="badge badge-danger" title="{{'frontend.news.likes.tooltip'|trans({}, 'AppBundle')}}">
+                        <i class="fa fa-heart"></i>  {{ post.likes }}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-8 ml-auto mr-auto">
                 {% if pagination|length > 0 %}
                     <div class="media-area">
-                        <h3 class="title text-center">{{ 'frontend.post.comments.title'|transchoice(pagination|length, {}, 'AppBundle') }}</h3>
+                        <h3 class="title text-center">{{ 'frontend.post.comment.title'|transchoice(pagination|length, {}, 'AppBundle') }}</h3>
                     </div>
 
                     {% for comment in pagination %}
@@ -44,7 +57,7 @@
                     </div>
                 {% endif %}
 
-                <h3 class="title text-center">{{ 'frontend.post.your_comment'|transchoice(pagination|length, {}, 'AppBundle') }}</h3>
+                <h3 class="title text-center">{{ 'frontend.post.comment.post_your_comment'|transchoice(pagination|length, {}, 'AppBundle') }}</h3>
                 <div class="media media-post">
                     <a class="author float-left">
                         <div class="avatar">

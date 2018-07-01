@@ -30,6 +30,7 @@ frontend:
         home: Home
         confirm_attendance: Confirm attencance
         guestbook: Guestbook
+        news: News
     enquiry:
         name: Your name
         placeholder_name: Your name here...

@@ -53,3 +53,9 @@ services:
             $encryptor: '@nzo_url_encryptor'
             $config: '%mailer_config%'
         public: true
+
+    AppBundle\Form\Extension\VichImageTypeExtension:
+        arguments:
+            $storage: '@vich_uploader.storage'
+        tags:
+            - { name: form.type_extension, extended_type: Vich\UploaderBundle\Form\Type\VichImageType }
