@@ -40,8 +40,8 @@
 
             <div>
                 <span class="btn btn-raised btn-round btn-default btn-file">
-                    <span class="fileinput-new">{{ 'form.picture.select_image'|trans }}</span>
-                    <span class="fileinput-exists">{{ 'form.picture.change'|trans }}</span>
+                    <span class="fileinput-new">{{ 'form.picture.select_image'|trans({}, translation_domain) }}</span>
+                    <span class="fileinput-exists">{{ 'form.picture.change'|trans({}, translation_domain) }}</span>
                     {{ form_widget(form.file) }}
                 </span>
 

@@ -2797,9 +2797,8 @@ h6 {
     display: inline-block !important;
 }
 
-.card-blog .row a.header {
-    opacity: .9;
-    background: #fff;
+.card-blog .card-header a.header {
+    opacity: .8;
     -webkit-transition: all 370ms cubic-bezier(0.34, 1.61, 0.7, 1);
     -moz-transition: all 370ms cubic-bezier(0.34, 1.61, 0.7, 1);
     -o-transition: all 370ms cubic-bezier(0.34, 1.61, 0.7, 1);
@@ -2807,11 +2806,11 @@ h6 {
     transition: all 370ms cubic-bezier(0.34, 1.61, 0.7, 1);
 }
 
-.card-blog .row a.header:hover {
+.card-blog .card-header a.header:hover {
     opacity: 1;
 }
 
-.card-blog .row a.header:hover > img {
+.card-blog .card-header a.header:hover > img {
     -webkit-transform: scale(1.03);
     -moz-transform: scale(1.03);
     -o-transform: scale(1.03);
@@ -2819,8 +2818,16 @@ h6 {
     transform: scale(1.03);
 }
 
-.card-blog .row a.card-title:hover {
+.card-blog a.card-title:hover {
     color: #2c2c2c;
+}
+
+.card-blog a.badge {
+    margin-left: 8px;
+}
+
+.card-sr a.badge {
+    margin-left: 4px;
 }
 
 #top-buttom {

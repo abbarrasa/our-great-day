@@ -29,11 +29,11 @@ class AddUserPictureSubscriber implements EventSubscriberInterface
 
         $form
             ->add('pictureFile', VichImageType::class, [
-                'label' => 'form.picture',
+                'label' => false,
                 'required' => false,
-                'allow_delete' => false,
+                'allow_delete' => true,
                 'download_uri' => false,
-                'image_uri' => false,
+                'image_uri' => true,
                 'translation_domain' => 'FOSUserBundle',
             ])
 //

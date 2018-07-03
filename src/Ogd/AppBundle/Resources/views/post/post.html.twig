@@ -21,22 +21,32 @@
         </div>
 
         {% if post.content %}
-        <div class="row">
-            <div class="col-xs-12 col-md-8 ml-auto mr-auto text-center">
-                <p class="description">{{ post.content|raw }}<p>
+            <div class="section section-text">
+                <div class="row">
+                    <div class="col-xs-12 col-md-8 ml-auto mr-auto text-center">
+                        <p class="description">{{ post.content|raw }}<p>
+                    </div>
+                </div>
             </div>
-        </div>
         {% endif %}
 
-        <div class="row">
-            <div class="col-xs-12 col-md-8 ml-auto mr-auto">
-                <div class="left">
-                    <span class="text-muted">{{ 'frontend.post.published'|trans }}: {{ post.publishedAt|elapsed_time('AppBundle') }}</span>
-                </div>
-                <div class="right">
-                    <a href="{{ path('post_like', {'id': post.id}) }}" class="badge badge-danger" title="{{'frontend.news.likes.tooltip'|trans({}, 'AppBundle')}}">
-                        <i class="fa fa-heart"></i>  {{ post.likes }}
-                    </a>
+        <div class="section section-blog-info">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="text-muted"><i class="material-icons">schedule</i> {{ 'frontend.post.published'|trans }}: {{ post.publishedAt|elapsed_time('AppBundle') }}</span>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{ app.request.headers.get('referer')|default(path('post_list')) }}" class="btn btn-sm btn-primary btn-round float-right">
+                                {{ 'frontend.post.back'|trans({}, 'AppBundle') }}
+                            </a>
+                            <a href="{{ path('post_like', {'id': post.id}) }}" class="btn btn-sm btn-youtube btn-round float-right" title="{{'frontend.post.likes.tooltip'|trans({}, 'AppBundle')}}">
+                                <i class="fa fa-heart"></i>  {{ post.likes }}
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
                 </div>
             </div>
         </div>

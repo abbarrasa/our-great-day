@@ -1,34 +1,36 @@
 {% trans_default_domain 'AppBundle' %}
-<div class="card card-plain card-blog sr">
+<div class="card card-plain card-blog">
     <div class="row">
-        <div class="col-sm-6">
-            <a href="{{ path('post', { 'id': post.id }) }}" class="header">
-                <img src="{{ app_uploader_path(post, 'coverPictureFile')|data_uri }}" class="{{ ['img-raised rounded img-fluid']|join(' ') }}">
-            </a>
-        </div>
-        <div class="col-sm-5 col-md-offset-1">
-            <div class="content">
-                <a href="{{ path('post', { 'id': post.id }) }}" class="card-title">
-                    <h2 class="text-center">{{ post.title }}</h2>
+        <div class="col-md-6">
+            <div class="card-header card-header-image">
+                <a href="{{ path('post', { 'id': post.id }) }}" class="header">
+                    <img src="{{ app_uploader_path(post, 'coverPictureFile')|data_uri }}" class="{{ ['img-raised rounded img-fluid']|join(' ') }}">
                 </a>
-                <div class="card-blog-bar">
-                    <div class="left">
-                        <span class="text-muted">{{ 'frontend.post.published'|trans }}: {{ post.publishedAt|elapsed_time('AppBundle') }}</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-category text-muted">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span><i class="material-icons">schedule</i> {{ 'frontend.post.published'|trans }}: {{ post.publishedAt|elapsed_time('AppBundle') }}</span>
                     </div>
-                    <div class="right">
-                        <span class="text-muted"><i class="fa fa-comment"></i>  {{ post.comments|length }}</span>
-                        <a href="{{ path('post_like', {'id': post.id}) }}" class="badge badge-danger" title="{{'frontend.news.likes.tooltip'|trans({}, 'AppBundle')}}">
+                    <div class="col-md-6 text-right">
+                        <span><i class="fa fa-comment"></i>  {{ post.comments|length }}</span>
+                        <span><a href="{{ path('post_like', {'id': post.id}) }}" class="badge badge-danger" title="{{'frontend.post.likes.tooltip'|trans({}, 'AppBundle')}}">
                             <i class="fa fa-heart"></i>  {{ post.likes }}
-                        </a>
+                        </a></span>
                     </div>
                 </div>
-                {% if post.content %}
-                    <p class="description">{{ post.content }}</p>
-                {% endif %}
-
-                {# <a href="gaia" class="btn btn-danger btn-fill">Read More</a> #}
-
             </div>
+
+            <h2 class="card-title text-center">
+                <a href="{{ path('post', { 'id': post.id }) }}">{{ post.title }}</a>
+            </h2>
+
+            {% if post.content %}
+                <p class="card-description">{{ post.content }}</p>
+                {#<a href="{{ path('post', { 'id': post.id }) }}"> Read More </a>#}
+            {% endif %}
         </div>
     </div>
 </div>

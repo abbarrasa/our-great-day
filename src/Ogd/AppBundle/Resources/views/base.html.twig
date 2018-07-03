@@ -73,8 +73,13 @@
                 
                 <!-- Main -->
                 <div class="main">
+                    {% if form is defined %}
+                        {% form_theme form "@App/form/fields.html.twig" %}
+                    {% endif %}
+
                     {% block main %}{% endblock %}
-                    <button data-scroll="true" id="top-buttom" title="Go to top"><i class="fa fa-angle-up"></i></button>                     
+
+                    <button data-scroll="true" id="top-buttom" title="Go to top"><i class="fa fa-angle-up"></i></button>
                 </div>
                 <!-- End Main -->
 
