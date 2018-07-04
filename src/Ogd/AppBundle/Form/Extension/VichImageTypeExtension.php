@@ -35,7 +35,6 @@ class VichImageTypeExtension extends AbstractTypeExtension
     {
         $resolver
             ->setDefaults([
-                'delete_label' => 'form.label.delete',
                 'select_label' => 'form.label.select',
                 'change_label' => 'form.label.change'
         ]);
