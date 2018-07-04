@@ -52,8 +52,8 @@ services:
             $fileLocator: '@file_locator'
             $encryptor: '@nzo_url_encryptor'
             $config: '%mailer_config%'
-        public: true
-
+        public: false
+            
     AppBundle\Form\Extension\VichImageTypeExtension:
         arguments:
             $storage: '@vich_uploader.storage'
