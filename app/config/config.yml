@@ -167,11 +167,13 @@ sonata_admin:
                 label_catalogue: AdminBundle
                 icon: '<i class="fa fa-sliders"></i>'
 
+# Url encryptor
 nzo_url_encryptor:
     secret_key: "%secret%"      # optional, max length of 100 characters.
     secret_iv:  "%secret_iv%"   # optional, max length of 100 characters.
     cipher_algorithm: 'aes-256-ctr'
 
+# ORM Uploader
 vich_uploader:
     db_driver: orm
 
