@@ -45,3 +45,4 @@ services:
 
     app.mailer:
         alias: AppBundle\Service\Mailer
+        public: true
