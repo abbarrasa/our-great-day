@@ -57,9 +57,16 @@ class PostAdmin extends AbstractAdmin
         $listMapper
             ->addIdentifier('title')
             ->add('coverPictureFile', null, ['template' => '@Admin/partials/list_image.html.twig'])
-            ->add('published')
+            ->add('published', 'choice', [
+                'editable' => true,
+                'choices' => [
+                    false => 'No',
+                    true => 'Yes'
+                ],
+            ])
+            ->add('publishedAt')            
             ->add('createdAt')
-            ->add('publishedAt');
+        ;
     }
 
     /**
