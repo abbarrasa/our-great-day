@@ -99,5 +99,15 @@ frontend:
     profile:
         title: Your great <em>Profile</em>
         description: You have entered your private area. In this area you can change your user data and update your password.
-    news:
+    post:
         title: Our great <em>News</em>
+        no_posts: There is no published news
+        published: Published
+        back: Back
+        comment:
+            title: '{1} 1 Comment|]1,Inf[ %count% Comments'
+            post_your_comment: Post your comment
+            success: Your comment has been posted successfully.
+        likes:
+            tooltip: Click here to "Like" the news
+            success: You have clicked "Like" on news "%title%".
