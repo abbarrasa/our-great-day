@@ -68,3 +68,22 @@ email:
                     <p>Esperamos haberte ayudado y si tienes alguna sugerencia o pregunta, no dudes en contactar con nosotros tanto desde el propio sitio web como por correo electrónico en <a href="mailto:%email%">%email%</a>.</p>
                     <p><a class="btn btn-primary" href="%confirmationUrl%">Reestablece tu contraseña</a></p>
                     <p>Un enorme saludo de Vero y Carlos. ¡Te esperamos!</p>
+    greeting_notification:
+        subject: 'Se ha recibido una felicitación de %name%'
+        body_plain: |
+                    Hola,
+
+                    %name% ha enviado la siguiente felicitación:
+
+                    "%greeting%"
+
+                    Para que la felicitación se visible hay que publicarla. Puedes hacerlo desde el administrador pulsando aquí %url%
+
+                    Atentemente,
+                    el equipo técnico de Nuestro gran día.
+        body_html: |
+                    <p>Hola,</p>
+                    <p><b>%name%</b> ha enviado la siguiente felicitación:</p>
+                    <p><b>"%greeting%"</b></p>
+                    <p>Para que la felicitación se visible hay que publicarla. Puedes hacerlo desde el administrador pulsando <a href="%url%">aquí</a>.
+                    <p>Atentemente,<br />el equipo técnico de Nuestro gran día.</p>
