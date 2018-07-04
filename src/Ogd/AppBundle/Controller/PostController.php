@@ -25,7 +25,7 @@ class PostController extends Controller
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
             $page /*page number*/,
-            10 /*limit per page*/
+            5 /*limit per page*/
         );
 
         // parameters to template
