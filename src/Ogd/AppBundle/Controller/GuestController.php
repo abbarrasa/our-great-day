@@ -144,7 +144,7 @@ class GuestController extends Controller
             $em->flush();
 
             //Send notification
-            //$this->get('app.manager.mailer')->sendGuestbookNotificationMessage($guestbook);
+            //$this->get('app.mailer')->sendGreetingNotificationMessage($greeting);
 
             //Flash success message
             $helper = $this->get('app.helper.flash_message');
