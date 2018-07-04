@@ -40,14 +40,15 @@
 
             <div>
                 <span class="btn btn-raised btn-round btn-default btn-file">
-                    <span class="fileinput-new">{{ 'form.picture.select_image'|trans({}, translation_domain) }}</span>
-                    <span class="fileinput-exists">{{ 'form.picture.change'|trans({}, translation_domain) }}</span>
+                    <span class="fileinput-new">{{ translation_domain is same as(false) ? select_label : select_label|trans({}, translation_domain) }}</span>
+                    <span class="fileinput-exists">{{ translation_domain is same as(false) ? change_label : change_label|trans({}, translation_domain) }}</span>
                     {{ form_widget(form.file) }}
                 </span>
 
                 {% if form.delete is defined %}
-                    <a href="#remove" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="material-icons">clear</i> {{ 'form.picture.remove'|trans }}</a>
-                    {{ form_row(form.delete) }}
+                    <a href="#remove" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
+                        <i class="material-icons">clear</i> {{ translation_domain is same as(false) ? delete_label : delete_label|trans({}, translation_domain) }}
+                    </a>
                 {% endif %}
 
                 {% if download_uri %}
