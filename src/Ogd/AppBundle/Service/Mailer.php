@@ -14,7 +14,7 @@ use Symfony\Component\Config\FileLocatorInterface;
 class Mailer implements MailerInterface
 {
     const TEMPLATE_ENQUIRY_NOTIFICATION   = 'email/enquiry-notification.txt.twig';
-    const TEMPLATE_GUESTBOOK_NOTIFICATION = 'email/guestbook-notification.txt.twig';
+    const TEMPLATE_GREETING_NOTIFICATION  = 'email/greeting-notification.txt.twig';
     const TEMPLATE_WEBSITE_ANNOUNCEMENT   = 'email/website-announcement.txt.twig';
     const TEMPLATE_REGISTER_NOTIFICATION  = 'email/register-notification.txt.twig';
     const TEMPLATE_RESETTING_REQUEST      = 'email/resetting-request.txt.twig';
@@ -133,12 +133,12 @@ class Mailer implements MailerInterface
 
     /**
      * Sends a notification email order to moderate a guestbook message.
-     * @param Guessbook $guestbook
+     * @param Greeting $greeting
      * @return int
      */
-    public function sendGuestbookNotificationMessage(Guessbook $guestbook)
+    public function sendGreetingNotificationMessage(Greeting $greeting)
     {
-        $message = $this->getMessage(self::TEMPLATE_GUESTBOOK_NOTIFICATION, ['guestbook' => $guestbook]);
+        $message = $this->getMessage(self::TEMPLATE_GREETING_NOTIFICATION, ['greeting' => $greeting]);
 
         return $this->sendEmailMessage($this->config['email_admin'], $this->config['email_manager'], $message);
     }
