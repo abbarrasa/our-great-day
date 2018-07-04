@@ -77,7 +77,7 @@ email:
 
                     "%greeting%"
 
-                    Para que la felicitación se visible hay que publicarla. Puedes hacerlo desde el administrador pulsando aquí %url%
+                    Para que la felicitación se visible hay que publicarla. Puedes hacerlo desde el área de administrador pulsando aquí %url%
 
                     Atentemente,
                     el equipo técnico de Nuestro gran día.
@@ -85,5 +85,5 @@ email:
                     <p>Hola,</p>
                     <p><b>%name%</b> ha enviado la siguiente felicitación:</p>
                     <p><b>"%greeting%"</b></p>
-                    <p>Para que la felicitación se visible hay que publicarla. Puedes hacerlo desde el administrador pulsando <a href="%url%">aquí</a>.
+                    <p>Para que la felicitación se visible hay que publicarla. Puedes hacerlo desde el área de administrador pulsando <a href="%url%">aquí</a>.
                     <p>Atentemente,<br />el equipo técnico de Nuestro gran día.</p>
