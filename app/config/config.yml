@@ -100,6 +100,7 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
+    read_from: '%kernel.project_dir%/../web'
 
 # User configuration
 fos_user:
