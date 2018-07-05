@@ -2784,6 +2784,11 @@ h6 {
     max-height: 120px;
 }
 
+.fileinput-new img {
+    max-width: 120px;
+    max-height: 120px;
+}
+
 .presentation-page .footer .copyright,
 .presentation-page .footer a {
     color: #fff;

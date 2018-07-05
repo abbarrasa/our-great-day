@@ -57,6 +57,13 @@ class Post
     /**
      * @var \DateTime
      *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @var \DateTime
+     *
      * @ORM\Column(name="published_at", type="datetime", nullable=true)
      */
     private $publishedAt;
@@ -204,6 +211,30 @@ class Post
     }
 
     /**
+     * Set updatedAt.
+     *
+     * @param \DateTime|null $updatedAt
+     *
+     * @return Post
+     */
+    public function setUpdatedAt($updatedAt = null)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt.
+     *
+     * @return \DateTime|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
      * Set publishedAt.
      *
      * @param \DateTime|null $publishedAt
@@ -335,6 +366,12 @@ class Post
     public function setCoverPictureFile(File $file = null)
     {
         $this->coverPictureFile = $file;
+
+        if ($file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
     /**
@@ -354,6 +391,16 @@ class Post
      */
     public function prePersist()
     {
-        $this->setCreatedAt(new \DateTime());
+        $this->setCreatedAt(new \DateTime('now'));
+    }
+
+    /**
+     * Set updatedAt value before persist
+     *
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate()
+    {
+        $this->setUpdatedAt(new \DateTime('now'));
     }
 }
