@@ -12,7 +12,7 @@
         <div class="carousel-inner">
             {% for post in posts %}
                 <div class="carousel-item {% if loop.first %}active"{% endif %}>
-                    <img src="{{ app_uploader_path(post, 'coverPictureFile')|data_uri }}" class="d-block w-100">
+                    <img src="{{ app_uploader_asset(post, 'coverPictureFile') }}" class="d-block w-100">
                     <div class="carousel-caption d-none d-md-block">
                         <a href="{{ path('post', { 'id': post.id }) }}"><h4>{{ post.title }}</h4></a>
                     </div>
