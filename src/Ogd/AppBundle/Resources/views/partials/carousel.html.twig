@@ -11,8 +11,13 @@
         </ol>
         <div class="carousel-inner">
             {% for post in posts %}
+<<<<<<< HEAD
                 <div class="carousel-item {% if loop.first %}active{% endif %}">
                     <img class="d-block w-100" src="{{ post.coverPictureFile.pathname|data_uri }}" alt="Slide {{ loop.index }}">
+=======
+                <div class="carousel-item {% if loop.first %}active"{% endif %}>
+                    <img src="{{ app_uploader_asset(post, 'coverPictureFile') }}" class="d-block w-100">
+>>>>>>> 6e13961bd8b0e7a111398da2463a9db5b5c7b4c6
                     <div class="carousel-caption d-none d-md-block">
                         <a href="{{ path('post', { 'id': post.id }) }}">
                             <h4>{{ post.title }}</h4>
