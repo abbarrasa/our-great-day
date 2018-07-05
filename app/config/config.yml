@@ -100,8 +100,7 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
-    read_from: '%kernel.project_dir%/../web'
-
+        
 # User configuration
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
@@ -181,7 +180,7 @@ vich_uploader:
     mappings:
         user_picture:
             uri_prefix: /uploads/profile
-            upload_destination: '%kernel.project_dir%/web/uploads/profile'
+            upload_destination: '%kernel.project_dir%/uploads/profile'
 
             inject_on_load: false
             delete_on_update: true
@@ -189,7 +188,7 @@ vich_uploader:
 
         post_picture:
             uri_prefix: /uploads/post
-            upload_destination: '%kernel.project_dir%/web/uploads/post'
+            upload_destination: '%kernel.project_dir%/uploads/post'
 
             inject_on_load: false
             delete_on_update: true
