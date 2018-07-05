@@ -16,7 +16,7 @@
 
         <div class="row">
             <div class="col-xs-12 col-md-8 mr-auto ml-auto text-center">
-                <img src="{{ app_uploader_path(post, 'coverPictureFile')|data_uri }}" class="img-raised rounded img-fluid">
+                <img src="{{ post.coverPictureFile.pathname|data_uri }}" class="img-raised rounded img-fluid">
             </div>
         </div>
 
@@ -38,7 +38,7 @@
                             <span class="text-muted"><i class="material-icons">schedule</i> {{ 'frontend.post.published'|trans }}: {{ post.publishedAt|elapsed_time('AppBundle') }}</span>
                         </div>
                         <div class="col-md-6">
-                            <a href="{{ app.request.headers.get('referer')|default(path('post_list')) }}" class="btn btn-sm btn-primary btn-round float-right">
+                            <a href="{{ path('post_list') }}" class="btn btn-sm btn-primary btn-round float-right">
                                 {{ 'frontend.post.back'|trans({}, 'AppBundle') }}
                             </a>
                             <a href="{{ path('post_like', {'id': post.id}) }}" class="btn btn-sm btn-youtube btn-round float-right" title="{{'frontend.post.likes.tooltip'|trans({}, 'AppBundle')}}">

@@ -1,10 +1,10 @@
 {% trans_default_domain 'AppBundle' %}
-<div class="card card-plain card-blog">
+<div class="card card-plain card-blog sr">
     <div class="row">
         <div class="col-md-6">
             <div class="card-header card-header-image">
                 <a href="{{ path('post', { 'id': post.id }) }}" class="header">
-                    <img src="{{ app_uploader_path(post, 'coverPictureFile')|data_uri }}" class="{{ ['img-raised rounded img-fluid']|join(' ') }}">
+                    <img src="{{ post.coverPictureFile.pathname|data_uri }}" class="{{ ['img-raised rounded img-fluid']|join(' ') }}">
                 </a>
             </div>
         </div>
@@ -29,7 +29,7 @@
 
             {% if post.content %}
                 <p class="card-description">{{ post.content }}</p>
-                {#<a href="{{ path('post', { 'id': post.id }) }}"> Read More </a>#}
+                <a href="{{ path('post', { 'id': post.id }) }}" class="btn btn-sm btn-primary"> Read More </a>
             {% endif %}
         </div>
     </div>

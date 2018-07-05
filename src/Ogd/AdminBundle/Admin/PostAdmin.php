@@ -69,11 +69,21 @@ class PostAdmin extends AbstractAdmin
         ;
     }
 
+    public function prePersist($post)
+    {
+        $this->updatePublishedAt($post);
+    }
+
     /**
      * Set publishedAt and templateFile values on updates
      * @param object $post
      */
     public function preUpdate($post)
+    {
+        $this->updatePublishedAt($post);
+    }
+
+    private function updatePublishedAt($post)
     {
         if ($post->isPublished()) {
             if ($post->getPublishedAt() === null) {
@@ -84,59 +94,3 @@ class PostAdmin extends AbstractAdmin
         }
     }
 }
-
-//admin.post:
-//        class: AdminBundle\Admin\PostAdmin
-//        tags:
-//            - { name: sonata.admin, manager_type: orm, group: admin.group.settings, label: admin.model.list }
-//        arguments:
-//            - ~
-//            - AdminBundle\Entity\Post
-//            - ~
-//            calls:
-//            - [ setTranslationDomain, [AdminBundle]]
-//        public: true
-
-
-//twig:
-//    form_themes:
-//        - 'form/fields.html.twig'
-//    paths: '%kernel.project_dir%/src/Ogd/AdminBundle/Resources/view': Admin
-
-
-
-
-//public function load(array $configs, ContainerBuilder $container)
-//{
-//    $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-//    //Config
-//    $loader->load('config.yml');
-//    //Services for Admin classes
-//    $loader->load('admin.yml');
-//}
-
-
-
-//services:
-//
-//    AppBundle\Form\Extension\TextTypeExtension:
-//        tags:
-//            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
-
-
-//<div class="col-xs-12 col-md-8 ml-auto">
-//    <img src="assets/img/faces/avatar.jpg" alt="Raised Image" class="img-raised rounded img-fluid">
-//</div>
-
-
-//<div class="col-12">
-//    <div class="row">
-//        {% for post in pagination %}
-//            {{ include('@App/post/list/' ~ post.templateFile )}}
-//        {% endfor %}
-//    </div>
-//</div>
-//
-//<div class="col-8 ml-auto sr">
-//    {{ knp_pagination_render(pagination, '@App/partials/knp_pagination.html.twig') }}
-//</div>

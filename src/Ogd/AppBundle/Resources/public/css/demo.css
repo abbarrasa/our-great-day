@@ -2781,6 +2781,7 @@ h6 {
 }
 .fileinput .thumbnail.img-circle {
     max-width: 120px;
+    max-height: 120px;
 }
 
 .presentation-page .footer .copyright,
