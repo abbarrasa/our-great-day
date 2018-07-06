@@ -6,7 +6,6 @@ use AppBundle\Templating\Helper\SocialUrlHelper;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 class MenuBuilder
 {
