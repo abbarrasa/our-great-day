@@ -2005,12 +2005,9 @@ body {
 }
 
 .footer .version {
-    position: fixed;
     font-size: .6em;
-    bottom: 0;
     color: #ffffff;
-    text-align: left;
-    margin-bottom: 10px;
+    text-align: right;
 }
 
 .footer .heart {
