@@ -27,7 +27,7 @@ class MenuBuilder
         $this->translator = $translator;
     }
 
-    public function createMainMenu(RequestStack $requestStack, AuthorizationCheckerInterface $authorizationChecker, TokenStorageInterface $tokenStorage)
+    public function createMainMenu(AuthorizationCheckerInterface $authorizationChecker, TokenStorageInterface $tokenStorage)
     {
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'navbar-nav');
@@ -121,7 +121,7 @@ class MenuBuilder
         return $menu;
     }
 
-    public function createSocialMenu(RequestStack $requestStack, SocialUrlHelper $socialUrlHelper)
+    public function createSocialMenu(SocialUrlHelper $socialUrlHelper)
     {
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'navbar-nav');
