@@ -15,7 +15,7 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-12 col-md-8 mr-auto ml-auto text-center">
+            <div class="col-xs-12 col-md-8 mr-auto ml-auto text-center sr">
                 <img src="{{ post.coverPictureFile.pathname|data_uri }}" class="img-raised rounded img-fluid">
             </div>
         </div>
@@ -23,14 +23,14 @@
         {% if post.content %}
             <div class="section section-text">
                 <div class="row">
-                    <div class="col-xs-12 col-md-8 ml-auto mr-auto text-center">
+                    <div class="col-xs-12 col-md-8 ml-auto mr-auto text-center sr">
                         <p class="description">{{ post.content|raw }}<p>
                     </div>
                 </div>
             </div>
         {% endif %}
 
-        <div class="section section-blog-info">
+        <div class="section section-blog-info sr">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">
                     <div class="row">
@@ -52,7 +52,7 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-12 col-md-8 ml-auto mr-auto">
+            <div class="col-xs-12 col-md-8 ml-auto mr-auto sr">
                 {% if pagination|length > 0 %}
                     <div class="media-area">
                         <h3 class="title text-center">{{ 'frontend.post.comment.title'|transchoice(pagination|length, {}, 'AppBundle') }}</h3>
