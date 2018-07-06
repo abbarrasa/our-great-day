@@ -14,28 +14,24 @@ services:
         public: true
         tags:
             - { name: templating.helper }
+            
+    app.menu.builder:
+        class: AppBundle\Service\MenuBuilder
+        arguments: ["@knp_menu.factory", "@translator"]
 
-    app.menu.social:
-        class: AppBundle\Service\MenuBuilder
-        arguments:
-            - "@knp_menu.factory"
-            - "@app.helper.social_url"
-            - "@translator"
-            - "@security.authorization_checker"
-            - "@security.token_storage"
-        tags:
-            - { name: knp_menu.menu_builder, method: createSocialMenu, alias: social } # The alias is what is used to retrieve the menu    
-        
     app.menu.main:
-        class: AppBundle\Service\MenuBuilder
-        arguments:
-            - "@knp_menu.factory"
-            - "@app.helper.social_url"
-            - "@translator"
-            - "@security.authorization_checker"
-            - "@security.token_storage"        
+        class:  Knp\Menu\MenuItem # the service definition requires setting the class
+        factory: ["@app.menu.builder", createMainMenu]
+        arguments: ["@request_stack", "@security.authorization_checker", "@security.token_storage"]
         tags:
-            - { name: knp_menu.menu_builder, method: createMainMenu, alias: main } # The alias is what is used to retrieve the menu
+            - { name: knp_menu.menu, alias: main } # The alias is what is used to retrieve the menu
+            
+    app.menu.social:
+        class:  Knp\Menu\MenuItem # the service definition requires setting the class
+        factory: ["@app.menu.builder", createSocialMenu]
+        arguments: ["@request_stack", "@app.helper.social_url"]
+        tags:
+            - { name: knp_menu.menu, alias: social } # The alias is what is used to retrieve the menu
 
     app.listener.maintenance:
         class: AppBundle\Event\Listener\MaintenanceListener
