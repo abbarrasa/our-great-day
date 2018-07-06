@@ -2799,8 +2799,8 @@ h6 {
     margin-left: 15px;
 }
 
-.nav-bar .nav-item a.nav-link:hover > p.d-lg-none {
-    display: inline-block !important;
+ul.navbar-nav > li.active > p {
+    display: inline !important;
 }
 
 .card-blog .card-header a.header {
