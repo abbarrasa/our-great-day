@@ -6,44 +6,28 @@ use AppBundle\Templating\Helper\SocialUrlHelper;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class MenuBuilder
 {
     /** @var FactoryInterface */
     private $factory;
-    /** @var SocialUrlHelper */
-    private $socialUrlHelper;
     /** @var TranslatorInterface */
-    private $translator;
-    /** @var AuthorizationCheckerInterface */
-    private $authorizationChecker;
-    /** @var TokenStorageInterface */	
-    private $tokenStorage;
-
+    private $translator;	
+	
     /**
      * MenuBuilder constructor.
      *
      * @param FactoryInterface $factory
-     * @param SocialUrlHelper $socialUrlHelper
      * @param TranslatorInterface $translator
-     * @param AuthorizationCheckerInterface $authorizationChecker
-     * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(
-	    FactoryInterface $factory,
-	    SocialUrlHelper $socialUrlHelper,
-	    TranslatorInterface $translator,
-	    AuthorizationCheckerInterface $authorizationChecker,
-	    TokenStorageInterface $tokenStorage
-    ) {
-        $this->factory    	    = $factory;
-        $this->socialUrlHelper 	    = $socialUrlHelper;
-        $this->translator 	    = $translator;
-        $this->authorizationChecker = $authorizationChecker;
-        $this->tokenStorage 	    = $tokenStorage;	    
+    public function __construct(FactoryInterface $factory, TranslatorInterface $translator)
+    {
+        $this->factory    = $factory;
+        $this->translator = $translator;
     }
 
-    public function createMainMenu()
+    public function createMainMenu(RequestStack $requestStack, AuthorizationCheckerInterface $authorizationChecker, TokenStorageInterface $tokenStorage)
     {
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'navbar-nav');
@@ -53,7 +37,7 @@ class MenuBuilder
             ->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setAttribute('class', 'nav-item')
             ->setLinkAttribute('class', 'nav-link')
-	        ->setExtra('icon', 'home')
+	    ->setExtra('icon', 'home')
             ->setExtra('translation_domain', 'AppBundle')
         ;
 
@@ -80,12 +64,12 @@ class MenuBuilder
             ->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setAttribute('class', 'nav-item')
             ->setLinkAttribute('class', 'nav-link')
-	        ->setExtra('icon', 'import_contacts')
+	    ->setExtra('icon', 'import_contacts')
             ->setExtra('translation_domain', 'AppBundle')
         ;
 
-        if ($this->authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            $username = $this->tokenStorage->getToken()->getUser()->getUsername();
+        if ($authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $username = $tokenStorage->getToken()->getUser()->getUsername();
             $menu->addChild($username)
                 ->setLabelAttribute('class', 'd-lg-none d-xl-none')
                 ->setAttributes(['dropdown' => true, 'class' => 'nav-item'])
@@ -137,12 +121,12 @@ class MenuBuilder
         return $menu;
     }
 
-    public function createSocialMenu()
+    public function createSocialMenu(RequestStack $requestStack, SocialUrlHelper $socialUrlHelper)
     {
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'navbar-nav');
         $menu
-            ->addChild('facebook', ['uri' => $this->socialUrlHelper->generateFacebookUrl()])
+            ->addChild('facebook', ['uri' => $socialUrlHelper->generateFacebookUrl()])
             ->setLabel('Facebook')
             ->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setAttribute('class', 'nav-item')
@@ -157,7 +141,7 @@ class MenuBuilder
             ->setExtra('translation_domain', 'AppBundle')
         ;
         $menu
-            ->addChild('twitter', ['uri' => $this->socialUrlHelper->generateTwitterUrl()])
+            ->addChild('twitter', ['uri' => $socialUrlHelper->generateTwitterUrl()])
             ->setLabel('Twitter')
             ->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setAttribute('class', 'nav-item')
@@ -172,7 +156,7 @@ class MenuBuilder
             ->setExtra('translation_domain', 'AppBundle')
         ;
         $menu
-            ->addChild('googleplus', ['uri' => $this->socialUrlHelper->generateGoogleplusUrl()])
+            ->addChild('googleplus', ['uri' => $socialUrlHelper->generateGoogleplusUrl()])
             ->setLabel('Google+')
             ->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setAttribute('class', 'nav-item')
