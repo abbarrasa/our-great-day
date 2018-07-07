@@ -2,6 +2,7 @@
 
 {% block field %}
     <a href="{{ admin.generateUrl('edit', {'id' : object|sonata_urlsafeid }) }}">
-        <img src="{{ app_uploader_path(object, field_description.name)|data_uri }}" width="70" height="45" />
+        {% set file =  attribute(object, field_description.name) %}
+        <img src="{{ file.pathname|data_uri }}" width="70" height="45" />
     </a>
 {% endblock %}

@@ -211,6 +211,30 @@ class Post
     }
 
     /**
+     * Set updatedAt.
+     *
+     * @param \DateTime|null $updatedAt
+     *
+     * @return Post
+     */
+    public function setUpdatedAt($updatedAt = null)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt.
+     *
+     * @return \DateTime|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
      * Set publishedAt.
      *
      * @param \DateTime|null $publishedAt
@@ -367,6 +391,16 @@ class Post
      */
     public function prePersist()
     {
-        $this->setCreatedAt(new \DateTime());
+        $this->setCreatedAt(new \DateTime('now'));
+    }
+
+    /**
+     * Set updatedAt value before persist
+     *
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate()
+    {
+        $this->setUpdatedAt(new \DateTime('now'));
     }
 }

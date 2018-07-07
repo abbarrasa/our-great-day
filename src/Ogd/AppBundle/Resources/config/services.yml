@@ -22,7 +22,10 @@ services:
     app.menu.main:
         class:  Knp\Menu\MenuItem # the service definition requires setting the class
         factory: ["@app.menu.builder", createMainMenu]
-        arguments: ["@security.authorization_checker", "@security.token_storage"]
+        arguments:
+            - "@request_stack"
+            - "@security.authorization_checker"
+            - "@security.token_storage"
         tags:
             - { name: knp_menu.menu, alias: main } # The alias is what is used to retrieve the menu
             

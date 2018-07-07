@@ -14,7 +14,7 @@ class PostComment extends CommentAbstract
 {
     /**
      * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Post", inversedBy="comments")
-     * @ORM\JoinColumn(name="id_post", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="id_post", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     private $post;
 

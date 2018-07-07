@@ -3,10 +3,16 @@ namespace AppBundle\Service;
 
 use Knp\Menu\FactoryInterface;
 use AppBundle\Templating\Helper\SocialUrlHelper;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
+/**
+ * Class MenuBuilder
+ * @package AppBundle\Service
+ */
 class MenuBuilder
 {
     /** @var FactoryInterface */
@@ -26,24 +32,36 @@ class MenuBuilder
         $this->translator = $translator;
     }
 
-    public function createMainMenu(AuthorizationCheckerInterface $authorizationChecker, TokenStorageInterface $tokenStorage)
-    {
-        $menu = $this->factory->createItem('root');
+    public function createMainMenu(
+        RequestStack $requestStack,
+        AuthorizationCheckerInterface $authorizationChecker,
+        TokenStorageInterface $tokenStorage
+    ) {
+        $request = $requestStack->getCurrentRequest();
+        $menu    = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'navbar-nav');
 
         $menu
             ->addChild('frontend.menu.home', ['route' => 'homepage'])
-            ->setLabelAttribute('class', 'd-lg-none d-xl-none')
-            ->setAttribute('class', 'nav-item')
+            ->setLabelAttribute(
+                'class', $this->getClassIfRoute('homepage', $request, 'd-lg-inline d-xl-inline', 'd-lg-none d-xl-none')
+            )
+            ->setAttribute('class', $this->getClassIfRoute('homepage', $request, 'nav-item current', 'nav-item'))
             ->setLinkAttribute('class', 'nav-link')
-	    ->setExtra('icon', 'home')
+	        ->setExtra('icon', 'home')
             ->setExtra('translation_domain', 'AppBundle')
         ;
 
         $menu
             ->addChild('frontend.menu.news', ['route' => 'post_list'])
-            ->setLabelAttribute('class', 'd-lg-none d-xl-none')
-            ->setAttribute('class', 'nav-item')
+            ->setLabelAttribute(
+                'class', $this->getClassIfRoute(['post_list', 'post'], $request, 'd-lg-inline d-xl-inline', 'd-lg-none d-xl-none')
+            )
+            ->setAttribute(
+                'class', $this->getClassIfRoute(
+                    ['post_list', 'post'], $request, 'nav-item current', 'nav-item'
+                )
+            )
             ->setLinkAttribute('class', 'nav-link')
             ->setExtra('icon', 'event_note')
             ->setExtra('translation_domain', 'AppBundle')
@@ -51,8 +69,16 @@ class MenuBuilder
 
         $menu
             ->addChild('frontend.menu.confirm_attendance', ['route' => 'guest'])
-            ->setLabelAttribute('class', 'd-lg-none d-xl-none')
-            ->setAttribute('class', 'nav-item')
+            ->setLabelAttribute(
+                'class', $this->getClassIfRoute(
+                    ['guest', 'guest_confirm', 'guest_set_user', 'fos_user_landing'], $request, 'd-lg-inline d-xl-inline', 'd-lg-none d-xl-none'
+                )
+            )
+            ->setAttribute(
+                'class', $this->getClassIfRoute(
+                    ['guest', 'guest_confirm', 'guest_set_user', 'fos_user_landing'], $request, 'nav-item current', 'nav-item'
+                )
+            )
             ->setLinkAttribute('class', 'nav-link')
 	        ->setExtra('icon', 'assignment_turned_in')
             ->setExtra('translation_domain', 'AppBundle')
@@ -60,18 +86,27 @@ class MenuBuilder
 
         $menu
             ->addChild('frontend.menu.guestbook', ['route' => 'guestbook'])
-            ->setLabelAttribute('class', 'd-lg-none d-xl-none')
-            ->setAttribute('class', 'nav-item')
+            ->setLabelAttribute(
+                'class', $this->getClassIfRoute('guestbook', $request, 'd-lg-inline d-xl-inline', 'd-lg-none d-xl-none')
+            )
+            ->setAttribute('class', $this->getClassIfRoute('guestbook', $request, 'nav-item current', 'nav-item'))
             ->setLinkAttribute('class', 'nav-link')
-	    ->setExtra('icon', 'import_contacts')
+	        ->setExtra('icon', 'import_contacts')
             ->setExtra('translation_domain', 'AppBundle')
         ;
 
         if ($authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $username = $tokenStorage->getToken()->getUser()->getUsername();
             $menu->addChild($username)
-                ->setLabelAttribute('class', 'd-lg-none d-xl-none')
-                ->setAttributes(['dropdown' => true, 'class' => 'nav-item'])
+                ->setLabelAttribute(
+                    'class', $this->getClassIfRoute(
+                        'fos_user_profile_edit', $request, 'd-lg-inline d-xl-inline', 'd-lg-none d-xl-none'
+                    )
+                )
+                ->setAttributes(['dropdown' => true, 'class' => $this->getClassIfRoute(
+                    'fos_user_profile_edit', $request, 'nav-item current', 'nav-item'
+                            )
+                ])
                 ->setLinkAttributes([
                     'class' =>'nav-link',
                     'data-toggle' => 'dropdown',
@@ -94,15 +129,34 @@ class MenuBuilder
         } else {
             $menu
                 ->addChild('layout.login', ['route' => 'fos_user_security_login'])
-                ->setLabelAttribute('class', 'd-lg-none d-xl-none')
-                ->setAttribute('class', 'nav-item')
+                ->setLabelAttribute(
+                    'class', $this->getClassIfRoute([
+                        'fos_user_security_login', 'fos_user_resetting_request', 'fos_user_resetting_check_email', 'fos_user_resetting_reset'],
+                        $request,
+                        'd-lg-inline d-xl-inline',
+                        'd-lg-none d-xl-none'
+                    )
+                )
+                ->setAttribute(
+                    'class', $this->getClassIfRoute([
+                    'fos_user_security_login', 'fos_user_resetting_request', 'fos_user_resetting_check_email', 'fos_user_resetting_reset'],
+                    $request,
+                    'nav-item current',
+                    'nav-item'
+                    )
+                )
                 ->setLinkAttribute('class', 'nav-link')
                 ->setExtra('icon', 'fingerprint')
                 ->setExtra('translation_domain', 'FOSUserBundle');
             $menu
                 ->addChild('layout.register', ['route' => 'fos_user_registration_register'])
-                ->setLabelAttribute('class', 'd-lg-none d-xl-none')
-                ->setAttribute('class', 'nav-item')
+                ->setLabelAttribute(
+                    'class', $this->getClassIfRoute('fos_user_registration_register', $request, 'd-lg-inline d-xl-inline', 'd-lg-none d-xl-none')
+                )
+
+                ->setAttribute(
+                    'class', $this->getClassIfRoute('fos_user_registration_register', $request, 'nav-item current', 'nav-item')
+                )
                 ->setLinkAttribute('class', 'nav-link')
                 ->setExtra('icon', 'person_add')
                 ->setExtra('translation_domain', 'FOSUserBundle');
@@ -171,5 +225,22 @@ class MenuBuilder
         ;
 
         return $menu;
+    }
+
+    private function getClassIfRoute($routeName, Request $request, $class, $defaultClass = '')
+    {
+        if (is_array($routeName)) {
+            if (in_array($request->get('_route'), $routeName)) {
+                return $class;
+            }
+
+            return $defaultClass;
+        }
+
+        if ($routeName == $request->get('_route')) {
+            return $class;
+        }
+
+        return $defaultClass;
     }
 }
