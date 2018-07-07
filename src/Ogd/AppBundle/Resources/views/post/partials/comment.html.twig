@@ -1,0 +1,20 @@
+<div class="media">
+    <div class="float-left">
+        <div class="avatar">
+            {{ include('@App/partials/avatar.html.twig', { 'user': comment.user, 'classes': ['media-object', 'img-raised'], 'alt': 'anonymous' }) }}
+        </div>
+    </div>
+    <div class="media-body">
+        <h4 class="media-heading">{{ comment.user.username|default('frontend.anonymous'|trans({}, 'AppBundle')) }} <small class="text-muted">· {{ comment.createdAt|elapsed_time('AppBundle') }}</small></h4>
+        {#<h6 class="text-muted"></h6>#}
+        <p>{{ comment.content }}</p>
+        {#<div class="media-footer">#}
+            {#<a href="#pablo" class="btn btn-primary btn-link float-right" rel="tooltip" title="" data-original-title="Reply to Comment">#}
+                {#<i class="material-icons">reply</i> Reply#}
+            {#</a>#}
+            {#<a href="#pablo" class="btn btn-danger btn-link float-right">#}
+                {#<i class="material-icons">favorite</i> 243#}
+            {#</a>#}
+        {#</div>#}
+    </div>
+</div>

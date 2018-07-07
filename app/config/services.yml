@@ -3,7 +3,6 @@
 parameters:
     #parameter_name: value
     tmp_directory: '%kernel.project_dir%/web/uploads/tmp'
-    user_directory: '%kernel.project_dir%/web/uploads/user'    
 
 services:
     # default configuration for services in *this* file
@@ -40,20 +39,10 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
-    AppBundle\Service\Uploader\FileUploader:
+    AppBundle\Service\FileUploader:
         arguments:
             $targetDirectory: '%tmp_directory%'
         public: true
-        
-    AppBundle\Service\Uploader\AvatarUploader:
-        arguments:
-            $targetDirectory: '%user_directory%'
-        public: true
-
-    AppBundle\Event\Listener\AvatarUploadListener:
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
 
     AppBundle\Service\Mailer:
         arguments:
@@ -63,4 +52,10 @@ services:
             $fileLocator: '@file_locator'
             $encryptor: '@nzo_url_encryptor'
             $config: '%mailer_config%'
-        public: true
+        public: false
+            
+    AppBundle\Form\Extension\VichImageTypeExtension:
+        arguments:
+            $storage: '@vich_uploader.storage'
+        tags:
+            - { name: form.type_extension, extended_type: Vich\UploaderBundle\Form\Type\VichImageType }

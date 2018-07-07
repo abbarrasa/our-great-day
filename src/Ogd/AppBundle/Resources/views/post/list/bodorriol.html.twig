@@ -1,0 +1,23 @@
+<div class="card card-plain card-blog sr">
+    <div class="row">
+        <div class="col-sm-6">
+            <a href="{{ path('post', { 'id': post.id }) }}" class="header">
+                {% set filepath = post_directory ~ '/' ~ post.coverPicture %}
+                <img src="{{ filepath|data_uri }}" class="{{ ['img-raised rounded img-fluid']|join(' ') }}">                
+            </a>
+        </div>
+        <div class="col-sm-5 col-md-offset-1">
+            <div class="content">
+                <a href="{{ path('post', { 'id': post.id }) }}" class="card-title">
+                    <h2 class="text-center">{{ post.title }}</h2>
+                </a>
+                {% if post.content %}
+                <p class="description">{{ post.content }}</p>
+                {% endif %}
+                
+                {#<a href="#gaia" class="btn btn-danger btn-fill">Read More</a>#}
+
+            </div>
+        </div>
+    </div>
+</div>

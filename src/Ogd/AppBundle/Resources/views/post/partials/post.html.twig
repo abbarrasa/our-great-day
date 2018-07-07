@@ -1,0 +1,36 @@
+{% trans_default_domain 'AppBundle' %}
+<div class="card card-plain card-blog sr">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card-header card-header-image">
+                <a href="{{ path('post', { 'id': post.id }) }}" class="header">
+                    <img src="{{ post.coverPictureFile.pathname|data_uri }}" class="{{ ['img-raised rounded img-fluid']|join(' ') }}">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card-category text-muted">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span><i class="material-icons">schedule</i> {{ 'frontend.post.published'|trans }}: {{ post.publishedAt|elapsed_time('AppBundle') }}</span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <span><i class="fa fa-comment"></i>  {{ post.comments|length }}</span>
+                        <span><a href="{{ path('post_like', {'id': post.id}) }}" class="badge badge-danger" title="{{'frontend.post.likes.tooltip'|trans({}, 'AppBundle')}}">
+                            <i class="fa fa-heart"></i>  {{ post.likes }}
+                        </a></span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="card-title text-center">
+                <a href="{{ path('post', { 'id': post.id }) }}">{{ post.title }}</a>
+            </h2>
+
+            {% if post.content %}
+                <p class="card-description">{{ post.content }}</p>
+                <a href="{{ path('post', { 'id': post.id }) }}" class="btn btn-sm btn-primary"> Read More </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

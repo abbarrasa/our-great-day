@@ -3,53 +3,21 @@
 namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * GreetingComment
  *
  * @ORM\Table(name="ogd_greeting_comment")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\GreetingCommentRepository")
- * @ORM\HasLifecycleCallbacks()
  */
 
-class GreetingComment
+class GreetingComment extends CommentAbstract
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
     /**
      * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Greeting", inversedBy="comments")
      * @ORM\JoinColumn(name="id_greeting", referencedColumnName="id", nullable=false)
      */
     private $greeting;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User", inversedBy="greetingComments")
-     * @ORM\JoinColumn(name="id_user", referencedColumnName="id", nullable=true)
-     */
-    private $user;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="content", type="text")
-     * @Assert\NotBlank()
-     */
-    private $content;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_at", type="datetime")
-     */
-    private $createdAt;
 
     /**
      * Get id.
@@ -157,13 +125,4 @@ class GreetingComment
         return $this->greeting;
     }
 
-    /**
-     * Set createdAt value before persist
-     *
-     * @ORM\PrePersist
-     */
-    public function setCreatedAtValue()
-    {
-        $this->setCreatedAt(new \DateTime());
-    }
 }

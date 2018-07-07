@@ -2,9 +2,9 @@
 
 namespace AdminBundle\Controller;
 
-use AdminBundle\Form\ImportType;
+use AdminBundle\Form\Type\ImportType;
 use AdminBundle\Import\Importer;
-use AppBundle\Service\Uploader\FileUploader;
+use AppBundle\Service\FileUploader;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

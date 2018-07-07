@@ -26,10 +26,9 @@ class DefaultController extends Controller
      * @Route("/enquiry", name="enquiry")
      * @Method("POST")
      * @param Request $request
-     * @param Mailer $mailer
      * @return JsonResponse|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function enquiryAction(Request $request, Mailer $mailer)
+    public function enquiryAction(Request $request)
     {
         if (!$request->isXmlHttpRequest()) {
             return $this->redirectToRoute('homepage');
@@ -46,7 +45,7 @@ class DefaultController extends Controller
                 $em->flush();
 
                 //Send notification
-                $mailer->sendEnquiryNotificationMessage($enquiry);
+                $this->get('app.mailer')->sendEnquiryNotificationMessage($enquiry);
 
                 return new JsonResponse(null, $status);
             } else {

@@ -45,8 +45,8 @@
                     </div>
                     {% image 'bundles/app/images/blurred-image-1.jpg' %}
                     <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="{{ asset_url }}">
-                    {{ knp_menu_render('main', {'template': '@App/partials/knp_menu.html.twig'}) }}
-                    {{ knp_menu_render('social', {'template': '@App/partials/knp_menu.html.twig'}) }}
+                    {{ knp_menu_render('main', { 'template': '@App/partials/knp_menu.html.twig' }) }}
+                    {{ knp_menu_render('social', { 'template': '@App/partials/knp_menu.html.twig' }) }}
                     </div>
                     {% endimage %}
                 </div>
@@ -73,20 +73,26 @@
                 
                 <!-- Main -->
                 <div class="main">
+                    {% if form is defined %}
+                        {% form_theme form "@App/form/fields.html.twig" %}
+                    {% endif %}
+
                     {% block main %}{% endblock %}
+
+                    <button data-scroll="true" id="top-buttom" title="Go to top"><i class="fa fa-angle-up"></i></button>
                 </div>
                 <!-- End Main -->
 
                 <!-- Footer -->
                 <footer class="footer footer-black">
                     <div class="container">
-                        <div class="version">v{{ version }}</div>
                         <div class="copyright">
                             <p>&copy; 2018, made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/abbarrasa/our-great-day">Alberto Buitrago</a> for a better web. Thanks to <a href="http://www.creative-tim.com">Creative Tim</a>.</p>
                         </div>
+                        <div class="version">v{{ version }}</div>                        
                     </div>
                 </footer>
-                {#<!-- End footer -->#}
+                <!-- End footer -->
 
                 <!-- Modal -->
                 {{ include('@App/partials/modal.html.twig') }}
@@ -115,6 +121,14 @@
             {% endjavascripts %}
 
             <script type="text/javascript">
+//                function scrollFunction() {
+//                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+//                        document.getElementById("myBtn").style.display = "block";
+//                    } else {
+//                        document.getElementById("myBtn").style.display = "none";
+//                    }
+//                }
+                        
                 $(document).ready(function() {
                     {# Flash messages #}
                     {% for flashMessages in app.flashes %}
@@ -132,6 +146,21 @@
                     window.sr = ScrollReveal();
                     sr.reveal('.sr', {duration: 800, reset: false, viewOffset: { top: 64 }});
                     sr.reveal('.card-sr', {duration: 800, reset: true, viewOffset: { top: 64 }});
+                    
+//                    window.onscroll = function() {scrollFunction()};
+                    
+                    {# Menu bar #}
+//                    $(".navbar-nav li.current").find('.d-lg-none').removeClass('d-lg-none').addClass('d-lg-inline');
+//                    $(".navbar-nav li.current").find('.d-xl-none').removeClass('d-xl-none').addClass('d-xl-inline');
+                    $("a.nav-link").hover(function(){
+                        $(this).children('.d-lg-none').removeClass('d-lg-none').addClass('d-lg-inline');
+                        $(this).children('.d-xl-none').removeClass('d-xl-none').addClass('d-xl-inline');
+                    }, function() {
+                        if (!$(this).parent().hasClass('current')) {
+                            $(this).children('.d-lg-inline').removeClass('d-lg-inline').addClass('d-lg-none');
+                            $(this).children('.d-xl-inline').removeClass('d-xl-inline').addClass('d-xl-none');
+                        }
+                    });
 
                     {# Data scroll #}
                     $('a[data-scroll="true"]').click(function(e){
@@ -146,6 +175,11 @@
                             }, 1000);
                         }
                     });
+                    
+//                    $('button[data-scroll="true"]').click(function(e){
+//                        document.body.scrollTop = 0; // For Safari
+//                        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+//                    });
 
                     {# Load enquiry form #}
                     $('a.contact-us').click(function(e) {

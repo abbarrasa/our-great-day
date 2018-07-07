@@ -15,7 +15,7 @@ email:
                     <p>You can visit it in <a href="%url%">%url%</a>.
                     <p>A huge greeting from Vero and Carlos. We are waiting you!</p>
     enquiry_notification:
-        subject: A enquiry has been received from %name%
+        subject: 'A enquiry has been received from %name%'
         body_plain: |
                     Hello,
 
@@ -68,3 +68,22 @@ email:
                     <p>We hope we have helped you. If you have any suggestions or questions, do not hesitate to contact us both from the website itself and by email:</p>                    
                     <p><a class="btn btn-primary" href="%confirmationUrl%">Reset your password</a></p>
                     <p>A huge greeting from Vero and Carlos. We are waiting you!</p>
+    greeting_notification:
+        subject: 'A greeting has been received from %name%'
+        body_plain: |
+                    Hello,
+
+                    %name% has sent the follow greeting for you:
+
+                    "%greeting%"
+
+                    So that the greeting is visible, it must be published. You can do it from the administrator area by clicking here %url%
+
+                    Sincerely,
+                    the technical team of Our great day.
+        body_html: |
+                    <p>Hello,</p>
+                    <p><b>%name%</b> has sent the follow greeting for you:</p>
+                    <p><b>"%greeting%"</b></p>
+                    <p>So that the greeting is visible, it must be published. You can do it from the administrator area by clicking <a href="%url%">here</a>.
+                    <p>Sincerely,<br />the technical team of Our great day.</p>

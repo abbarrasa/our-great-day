@@ -33,7 +33,13 @@
         {% image 'bundles/app/images/header.jpg' %}
         <div class="parallax" style="background-image: url('{{ asset_url }}');">
             <div class="filter filter-color-black">
-                <div class="container">{% block fos_user_content %}{% endblock %}</div>
+                <div class="container">
+                    {% if form is defined %}
+                        {% form_theme form "@App/form/fields.html.twig" %}
+                    {% endif %}
+
+                    {% block fos_user_content %}{% endblock %}
+                </div>
             </div>
         </div>
         {% endimage %}

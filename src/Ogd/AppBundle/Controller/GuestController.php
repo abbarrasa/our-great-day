@@ -144,7 +144,7 @@ class GuestController extends Controller
             $em->flush();
 
             //Send notification
-            //$this->get('app.manager.mailer')->sendGuestbookNotificationMessage($guestbook);
+            //$this->get('app.mailer')->sendGreetingNotificationMessage($greeting);
 
             //Flash success message
             $helper = $this->get('app.helper.flash_message');
@@ -213,20 +213,20 @@ class GuestController extends Controller
             throw $this->createNotFoundException(sprintf('No found any greeting with ID %d', $id));
         }
 
-        $status          = JsonResponse::HTTP_OK;
-        $greetingComment = new GreetingComment();
-        $greetingComment->setGreeting($greeting);
+        $status  = JsonResponse::HTTP_OK;
+        $comment = new GreetingComment();
+        $comment->setGreeting($greeting);
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            $greetingComment->setUser($this->getUser());
+            $comment->setUser($this->getUser());
         }
 
-        $form = $this->createForm(GreetingCommentType::class, $greetingComment);
+        $form = $this->createForm(GreetingCommentType::class, $comment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                $greeting->addComment($greetingComment);
-                $em->persist($greetingComment);
+                $greeting->addComment($comment);
+                $em->persist($comment);
                 $em->persist($greeting);
                 $em->flush();
 

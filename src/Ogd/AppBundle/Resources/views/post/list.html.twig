@@ -1,0 +1,43 @@
+{% extends '@App/base.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
+
+{% block title %}{{ 'frontend.title'|trans }}{% endblock %}
+
+{% block main %}
+    <div id="first-section" class="section section-basic">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ml-auto mr-auto">
+                    <div class="section-description text-center sr">
+                        <h2 class="title">{{ 'frontend.post.title'|trans|raw }}</h2>
+                    </div>
+
+                    {% if pagination|length > 0 %}
+                        <div class="col-12">
+                            <div class="row">
+                                {% for post in pagination %}
+                                    {{ include('@App/post/partials/post.html.twig', { 'post': post }) }}
+                                {% endfor %}
+                            </div>
+
+                            <div class="row">
+                                <div class="col-8 ml-auto sr">
+                                    {{ knp_pagination_render(pagination, '@App/partials/knp_pagination.html.twig') }}
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info">
+                            <div class="container">
+                                <div class="alert-icon">
+                                    <i class="material-icons">info_outline</i>
+                                </div>
+                                <b>{{ 'frontend.info'|trans }}</b>: {{ 'frontend.post.no_posts'|trans }}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -54,7 +54,7 @@ services:
 
     fos_user.listener.email_confirmation:
         class:        "%user.listener.registration.class%"
-        arguments:    ["@AppBundle\\Service\\Mailer", "@router", "@twig", "@doctrine.orm.entity_manager"]
+        arguments:    ["@app.mailer", "@router", "@twig", "@doctrine.orm.entity_manager"]
         tags:
             - { name: kernel.event_subscriber }
     
@@ -84,6 +84,6 @@ services:
 
     user.profile.form.type:
         class: Application\FOS\UserBundle\Form\Type\ProfileType
-        arguments: ["%fos_user.model.user.class%", "%user_directory%"]
+        arguments: ["%fos_user.model.user.class%"]
         tags:
             - { name: form.type, alias: app_user_profile }

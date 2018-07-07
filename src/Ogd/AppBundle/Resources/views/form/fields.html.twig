@@ -1,0 +1,62 @@
+{% use "form_div_layout.html.twig" %}
+
+{# Errors #}
+{% block form_errors -%}
+    {% if errors|length > 0 -%}
+        {% if form is not rootform %}
+            <span class="bmd-error"><ul class="list-unstyled">
+            {%- for error in errors -%}
+                <li><i class="material-icons">error_outline</i> {{ error.message|trans }}</li>
+            {%- endfor -%}
+            </ul></span>
+        {% else %}
+            <div class="alert alert-danger"><div class="container">
+                    {%- for error in errors -%}
+                        <div class="alert-icon">
+                            <i class="material-icons">error_outline</i>
+                        </div><strong>{{ 'frontend.error'|trans({}, 'AppBundle') }}</strong> {{ error.message|trans({}, 'validators') }}
+                    {%- endfor -%}
+                </div></div>
+        {% endif %}
+    {%- endif %}
+{%- endblock form_errors %}
+
+{% block vich_image_widget %}
+    {% spaceless %}
+        <div class="vich-image fileinput fileinput-new" data-provides="fileinput">
+            {% if image_uri is defined %}
+                <div class="fileinput-new thumbnail img-circle img-raised">
+                    {% if image_uri is not null %}
+                        <a href="{{ image_uri|data_uri }}"><img src="{{ image_uri|data_uri }}" alt="image" /></a>
+                    {% else %}
+                        {% image 'bundles/app/images/user-default.jpg' %}
+                        <img src="{{ asset_url }}" alt="user-default.jpg" />
+                        {% endimage %}
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            <div class="fileinput-preview fileinput-exists thumbnail img-circle img-raised"></div>
+
+            <div>
+                <span class="btn btn-raised btn-round btn-default btn-file">
+                    <span class="fileinput-new">{{ translation_domain is same as(false) ? select_label : select_label|trans({}, translation_domain) }}</span>
+                    <span class="fileinput-exists">{{ translation_domain is same as(false) ? change_label : change_label|trans({}, translation_domain) }}</span>
+                    {{ form_widget(form.file) }}
+                </span>
+
+                {% if form.delete is defined %}
+                    <a href="#remove" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput">
+                        <i class="material-icons">clear</i> {{ translation_domain is same as(false) ? delete_label : delete_label|trans({}, translation_domain) }}
+                    </a>
+                {% endif %}
+
+                {% if download_uri %}
+                    <a href="{{ download_uri }}">{{ translation_domain is same as(false) ? download_label : download_label|trans({}, translation_domain) }}</a>
+                {% endif %}
+            </div>
+
+            <div>{{ form_errors(form) }}</div>
+        </div>
+    {% endspaceless %}
+{% endblock %}

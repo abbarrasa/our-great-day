@@ -54,8 +54,7 @@ twig:
         email_admin: '%mailer_email_admin%'
         api_key: '%google.api_key%'
         wedding_date: '%wedding.date%'
-        version: 2.3.2
-        user_directory: '%kernel.project_dir%/web/uploads/user'
+        version: 2.5.0
     form_themes:
         - 'form/fields.html.twig'
     paths:
@@ -168,7 +167,29 @@ sonata_admin:
                 label_catalogue: AdminBundle
                 icon: '<i class="fa fa-sliders"></i>'
 
+# Url encryptor
 nzo_url_encryptor:
     secret_key: "%secret%"      # optional, max length of 100 characters.
     secret_iv:  "%secret_iv%"   # optional, max length of 100 characters.
     cipher_algorithm: 'aes-256-ctr'
+
+# ORM Uploader
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        user_picture:
+            uri_prefix: /uploads/profile
+            upload_destination: '%kernel.project_dir%/web/uploads/profile'
+
+            inject_on_load: true
+            delete_on_update: true
+            delete_on_remove: true
+
+        post_picture:
+            uri_prefix: /uploads/post
+            upload_destination: '%kernel.project_dir%/web/uploads/post'
+
+            inject_on_load: true
+            delete_on_update: true
+            delete_on_remove: true

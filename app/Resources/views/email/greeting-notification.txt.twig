@@ -1,0 +1,17 @@
+{% extends 'base-email.html.twig' %}
+
+{% block subject %}
+{%- autoescape false -%}
+{{ 'email.greeting_notification.subject'|trans({'%name%': greeting.name}, 'email') }}
+{%- endautoescape -%}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+{{ 'email.greeting_notification.body_plain'|trans({'%name%': greeting.name, '%greeting%': greeting.message, '%url%': absolute_url(path('sonata_user_admin_security_login'))}, 'email') }}
+{% endautoescape %}
+{% endblock %}
+
+{% block content_html %}
+{{ 'email.greeting_notification.body_html'|trans({'%name%': greeting.name, '%greeting%': gretting.message, '%url%': absolute_url(path('sonata_user_admin_security_login'))}, 'email')|raw }}
+{% endblock %}
