@@ -28,8 +28,10 @@
             </h2>
 
             {% if post.content %}
-                <p class="card-description">{{ post.content|raw }}</p>
-                <a href="{{ path('post', { 'id': post.id }) }}" class="btn btn-sm btn-primary"> Read More </a>
+                <div class="text-center">
+                    <p class="card-description">{{ post.content|raw }}</p>
+                    <a href="{{ path('post', { 'id': post.id }) }}" class="btn btn-sm btn-primary"> {{ 'frontend.post.read_more'|trans }} </a>
+                </div>
             {% endif %}
         </div>
     </div>
