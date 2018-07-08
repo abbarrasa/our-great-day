@@ -78,7 +78,7 @@ frontend:
             content: Your comment
             placeholder_content: Write some nice stuff here...
             post: Post
-            title: '{1} 1 Comment|]1,Inf[ %count% Comments'
+            title: '{1} 1 AbstractComment|]1,Inf[ %count% Comments'
             post_your_comment: Post your comment
             tooltip: Click here to send and see all comments
         likes:
@@ -105,7 +105,7 @@ frontend:
         published: Published
         back: Back
         comment:
-            title: '{1} 1 Comment|]1,Inf[ %count% Comments'
+            title: '{1} 1 AbstractComment|]1,Inf[ %count% Comments'
             post_your_comment: Post your comment
             success: Your comment has been posted successfully.
         likes:

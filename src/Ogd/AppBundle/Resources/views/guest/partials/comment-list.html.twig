@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="media-body">
-            <h5 class="media-heading">{{ comment.user.username|default('frontend.anonymous'|trans({}, 'AppBundle')) }} <small class="text-muted">· {{ comment.createdAt|elapsed_time('AppBundle') }}</small></h5>
+            <h5 class="media-heading">{{ comment.name|default('frontend.anonymous'|trans({}, 'AppBundle')) }} <small class="text-muted">· {{ comment.createdAt|elapsed_time('AppBundle') }}</small></h5>
             <p>{{ comment.content }}</p>
         </div>
     </div>

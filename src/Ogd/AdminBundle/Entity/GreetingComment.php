@@ -5,100 +5,25 @@ namespace AdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * GreetingComment
+ * Class GreetingComment
+ * @package AdminBundle\Entity
  *
- * @ORM\Table(name="ogd_greeting_comment")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\GreetingCommentRepository")
  */
-
-class GreetingComment extends CommentAbstract
+class GreetingComment extends AbstractComment
 {
     /**
      * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Greeting", inversedBy="comments")
-     * @ORM\JoinColumn(name="id_greeting", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="id_greeting", referencedColumnName="id", nullable=true)
      */
     private $greeting;
 
     /**
-     * Get id.
-     *
-     * @return int
+     * {@inheritdoc}
      */
-    public function getId()
+    static function getDtype()
     {
-        return $this->id;
-    }
-
-    /**
-     * Set content.
-     *
-     * @param string $content
-     *
-     * @return GreetingComment
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    /**
-     * Get content.
-     *
-     * @return string
-     */
-    public function getContent()
-    {
-        return $this->content;
-    }
-
-    /**
-     * Set createdAt.
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return GreetingComment
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt.
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set user.
-     *
-     * @param \Application\Sonata\UserBundle\Entity\User|null $user
-     *
-     * @return GreetingComment
-     */
-    public function setUser(\Application\Sonata\UserBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user.
-     *
-     * @return \Application\Sonata\UserBundle\Entity\User|null
-     */
-    public function getUser()
-    {
-        return $this->user;
+        return 'post';
     }
 
     /**
@@ -125,4 +50,27 @@ class GreetingComment extends CommentAbstract
         return $this->greeting;
     }
 
+    /**
+     * Set name.
+     *
+     * @param string $name
+     *
+     * @return GreetingComment
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 }

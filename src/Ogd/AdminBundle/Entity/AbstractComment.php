@@ -156,4 +156,28 @@ abstract class AbstractComment
     {
         $this->setCreatedAt(new \DateTime('now'));
     }
+
+    /**
+     * Set name.
+     *
+     * @param string $name
+     *
+     * @return AbstractComment
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 }

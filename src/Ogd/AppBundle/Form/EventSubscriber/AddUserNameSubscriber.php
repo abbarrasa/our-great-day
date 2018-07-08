@@ -2,7 +2,6 @@
 
 namespace AppBundle\Form\EventSubscriber;
 
-
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormEvent;

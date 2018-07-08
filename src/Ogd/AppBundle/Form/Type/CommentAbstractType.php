@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Form\EventSubscriber\AddUserNameSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -30,6 +31,7 @@ class CommentAbstractType extends AbstractType
                 'required' => true
             ])
             ->add('submit', SubmitType::class, ['label' => 'frontend.guestbook.comments.post'])
+            ->addEventSubscriber(new AddUserNameSubscriber())
         ;
     }
 

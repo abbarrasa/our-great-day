@@ -35,6 +35,19 @@ services:
             - [ setTranslationDomain, [AdminBundle]]
         public: true
 
+    admin.comment:
+        class: AdminBundle\Admin\CommentAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin.group.administration, label: admin.model.comments }
+        arguments:
+            - ~
+            - AdminBundle\Entity\AbstractComment
+            - ~
+        calls:
+            - [ setSubClasses, [{greeting: AdminBundle\Entity\GreetingComment, post: AdminBundle\Entity\PostComment}]]
+            - [ setTranslationDomain, [AdminBundle]]
+        public: true
+
     admin.location:
         class: AdminBundle\Admin\LocationAdmin
         tags:

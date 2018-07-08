@@ -57,7 +57,7 @@ class PostController extends Controller
             10 /*limit per page*/
         );        
         
-        //Comment form
+        //AbstractComment form
         $comment = new PostComment();
         $comment->setPost($post);
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
