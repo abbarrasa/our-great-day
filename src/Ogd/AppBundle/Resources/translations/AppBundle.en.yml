@@ -103,6 +103,7 @@ frontend:
         title: Our great <em>News</em>
         no_posts: There is no published news
         published: Published
+        read_more: Read more
         back: Back
         comment:
             title: '{1} 1 AbstractComment|]1,Inf[ %count% Comments'

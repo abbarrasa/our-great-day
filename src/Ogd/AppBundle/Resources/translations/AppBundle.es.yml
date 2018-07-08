@@ -103,6 +103,7 @@ frontend:
         title: Nuestras grandes <em>Novedades</em>
         no_posts: No hay novedades publicadas
         published: Publicado
+        read_more: Leer más
         back: Volver
         comment:
             title: '{1} 1 Comentario|]1,Inf[ %count% Comentarios'
