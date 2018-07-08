@@ -17,7 +17,7 @@ class GuestAdmin extends AbstractAdmin
     {
         $collection->add('import');
     }
-        
+
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {

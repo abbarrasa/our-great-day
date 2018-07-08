@@ -28,7 +28,7 @@
             </h2>
 
             {% if post.content %}
-                <p class="card-description">{{ post.content }}</p>
+                <p class="card-description">{{ post.content|raw }}</p>
                 <a href="{{ path('post', { 'id': post.id }) }}" class="btn btn-sm btn-primary"> Read More </a>
             {% endif %}
         </div>
