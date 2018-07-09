@@ -72,6 +72,9 @@ class PostController extends Controller
             $em->persist($comment);
             $em->persist($post);
             $em->flush();
+            
+            //Send notification
+            //$this->get('app.mailer')->sendCommentNotificationMessage($comment);             
 
             $helper = $this->get('app.helper.flash_message');
             $this->addFlash('success', $helper->getFlashMessage(
