@@ -87,3 +87,23 @@ email:
                     <p><b>"%greeting%"</b></p>
                     <p>So that the greeting is visible, it must be published. You can do it from the administrator area by clicking <a href="%url%">here</a>.
                     <p>Sincerely,<br />the technical team of Our great day.</p>
+    comment_notification:
+        subject: 'A comment has been received from %name%'
+        body_plain: |
+                    Hello,
+
+                    %name% has sent the follow comment:
+
+                    "%comment%"
+
+                    If you think that the comment is not appropriate you can delete it from the admin area by clicking here %url%
+
+
+                    Sincerely,
+                    the technical team of Our great day.
+        body_html: |
+                    <p>Hello,</p>
+                    <p><b>%name%</b> has sent the follow comment:</p>
+                    <p><b>"%comment%"</b></p>
+                    <p>If you think that the comment is not appropriate you can delete it from the admin area by clicking <a href="%url%">aquí</a>.
+                    <p>Sincerely,<br />the technical team of Our great day.</p>
