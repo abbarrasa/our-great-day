@@ -3,6 +3,8 @@
 namespace AppBundle\Service;
 
 use AdminBundle\Entity\Enquiry;
+use AdminBundle\Entity\Greeting;
+use AdminBundle\Entity\AbstractComment;
 use AdminBundle\Entity\Joined;
 use FOS\UserBundle\Mailer\MailerInterface;
 use FOS\UserBundle\Model\UserInterface;
@@ -15,8 +17,9 @@ class Mailer implements MailerInterface
 {
     const TEMPLATE_ENQUIRY_NOTIFICATION   = 'email/enquiry-notification.txt.twig';
     const TEMPLATE_GREETING_NOTIFICATION  = 'email/greeting-notification.txt.twig';
+    const TEMPLATE_COMMENT_NOTIFICATION   = 'email/comment-notification.txt.twig';
+    const TEMPLATE_REGISTER_NOTIFICATION  = 'email/register-notification.txt.twig';    
     const TEMPLATE_WEBSITE_ANNOUNCEMENT   = 'email/website-announcement.txt.twig';
-    const TEMPLATE_REGISTER_NOTIFICATION  = 'email/register-notification.txt.twig';
     const TEMPLATE_RESETTING_REQUEST      = 'email/resetting-request.txt.twig';
 
     /** @var \Swift_Mailer */
@@ -154,6 +157,18 @@ class Mailer implements MailerInterface
 
         return $this->sendEmailMessage($this->config['email_admin'], $this->config['email_manager'], $message);
     }
+    
+    /**
+     * Sends a notification email order to moderate a comment.
+     * @param AbstractComment $comment
+     * @return int
+     */
+    public function sendCommentNotificationMessage(AbstractComment $comment)
+    {
+        $message = $this->getMessage(self::TEMPLATE_COMMENT_NOTIFICATION, ['comment' => $comment]);
+
+        return $this->sendEmailMessage($this->config['email_admin'], $this->config['email_manager'], $message);
+    }    
     
     /**
      * Sends a notification email order to announce the opening of website.
