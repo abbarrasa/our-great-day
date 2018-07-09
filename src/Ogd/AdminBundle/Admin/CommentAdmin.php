@@ -5,6 +5,8 @@ namespace AdminBundle\Admin;
 use AdminBundle\Entity\AbstractComment;
 use AdminBundle\Entity\GreetingComment;
 use AdminBundle\Entity\PostComment;
+use AdminBundle\Entity\Greeting;
+use AdminBundle\Entity\Post;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -68,6 +70,18 @@ class CommentAdmin extends AbstractAdmin
             ->add('name')
             ->add('content')
         ;
+        
+        if ($subject::getDtype() === GreetingComment::getDtype()) {
+            $showMapper->add('greeting', 'entity', array(
+                    'class' => Greeting::class,
+                    'property' => 'message',
+            ));
+        } else if ($subject::getDtype() === PostComment::getDtype()) {
+            $showMapper->add('post', 'entity', array(
+                    'class' => Post::class,
+                    'property' => 'content',
+            ));            
+        }
     }
 
     /**
@@ -77,7 +91,7 @@ class CommentAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
+            ->addIdentifier('id')
             ->add('name')
             ->add('content')
             ->add('createdAt')
