@@ -29,7 +29,7 @@ security:
         # -> custom firewall for the admin area of the URL
         admin:
             pattern: /admin(.*)
-            context: user
+            context: admin
             form_login:
                 provider: fos_userbundle
                 login_path: /admin/login
@@ -50,7 +50,7 @@ security:
         # This part is handled by the FOS User Bundle
         main:
             pattern: .*
-            context: user
+            context: main
             anonymous: ~
             # activate different ways to authenticate
 
