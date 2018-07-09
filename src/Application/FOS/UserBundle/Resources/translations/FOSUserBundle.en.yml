@@ -89,6 +89,7 @@ form:
     gender: 'Gender (opcional)'
     gender.male: Male
     gender.female: Female
+    change_references: 'Change all references to "username" on the website?'    
     picture: Avatar
     picture.select_image: 'Select image'
     picture.change: Change
