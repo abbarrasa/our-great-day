@@ -63,6 +63,11 @@ class ProfileType extends AbstractType
                 'translation_domain' => 'FOSUserBundle',
                 'choice_translation_domain' => 'FOSUserBundle'
             ])
+            ->add('changeReferences', CheckboxType::class, [
+                'label'    => 'form.change_references',
+                'required' => false,
+                'translation_domain' => 'FOSUserBundle',                
+            ])
             ->addEventSubscriber(new AddUserPictureSubscriber())
         ;
     }
