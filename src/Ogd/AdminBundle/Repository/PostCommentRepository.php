@@ -3,6 +3,8 @@
 namespace AdminBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use AdminBundle\Entity\PostComment;
 
 /**
  * PostCommentRepository
@@ -14,11 +16,24 @@ class PostCommentRepository extends EntityRepository
 {
     public function getQueryAllByPost($post)
     {
-        return $this
-            ->createQueryBuilder('c')
-            ->where('c.post = :post')
+        $qb = $this->createQueryBuilder('c');
+        $qb
+            ->addQueryDiscriminator($qb, 'c')
+            ->andWhere('c.post = :post')
             ->setParameter('post', $post)
             ->orderBy('c.createdAt', 'DESC')
         ;
+            
+        return $qb;
+    }
+    
+    protected function addQueryDiscriminator(QueryBuilder $qb, $alias)
+    {
+        $qb
+            ->where($alias . ' INSTANCE OF :dtype')
+            ->setParameter('dtype', PostComment::class)
+        ;
+        
+        return $qb;
     }
 }
