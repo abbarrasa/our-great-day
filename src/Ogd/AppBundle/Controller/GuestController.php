@@ -229,6 +229,9 @@ class GuestController extends Controller
                 $em->persist($comment);
                 $em->persist($greeting);
                 $em->flush();
+                
+                //Send notification
+                //$this->get('app.mailer')->sendCommentNotificationMessage($comment);                
 
                 return new JsonResponse([
                     'view' => $this->renderView('@App/guest/comments.html.twig', [
