@@ -1,0 +1,17 @@
+{% extends 'base-email.html.twig' %}
+
+{% block subject %}
+{%- autoescape false -%}
+{{ 'email.comment_notification.subject'|trans({'%name%': comment.name}, 'email') }}
+{%- endautoescape -%}
+{% endblock %}
+
+{% block body_text %}
+{% autoescape false %}
+{{ 'email.comment_notification.body_plain'|trans({'%name%': comment.name, '%comment%': comment.content, '%url%': absolute_url(path('sonata_user_admin_security_login'))}, 'email') }}
+{% endautoescape %}
+{% endblock %}
+
+{% block content_html %}
+{{ 'email.comment_notification.body_html'|trans({'%name%': comment.name, '%comment%': comment.content, '%url%': absolute_url(path('sonata_user_admin_security_login'))}, 'email')|raw }}
+{% endblock %}
