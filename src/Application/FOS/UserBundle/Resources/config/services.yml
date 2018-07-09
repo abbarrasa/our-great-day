@@ -78,7 +78,7 @@ services:
 
     fos_user.listener.editing_profile:
         class:        "%user.listener.editing_profile.class%"
-        arguments:    ["@router"]
+        arguments:    ["@router", "@doctrine.orm.entity_manager"]
         tags:
             - { name: kernel.event_subscriber }
 
