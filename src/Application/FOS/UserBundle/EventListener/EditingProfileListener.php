@@ -45,7 +45,7 @@ class EditingProfileListener implements EventSubscriberInterface
     public function onProfileEditSuccess(FormEvent $event)
     {
         $form = $event->getForm();
-        if ($form->has('changeReferences') && $form->get('changeReferences')->getData() === true) {
+        if ($form->has('changeReferences') && (bool)$form->get('changeReferences')->getData() === true) {
             $user = $form->getData();
             $this->changeAllUsernameReferences();
         }
