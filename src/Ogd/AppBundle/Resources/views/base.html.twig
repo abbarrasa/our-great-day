@@ -151,12 +151,12 @@
                     
                     {# Menu bar #}
                     $("a.nav-link").hover(function(){
-                        $(this).children('.d-lg-none').removeClass('d-lg-none').addClass('d-lg-inline');
-                        $(this).children('.d-xl-none').removeClass('d-xl-none').addClass('d-xl-inline');
+                        $(this).children('.d-lg-none').removeClass('d-lg-none').addClass('d-lg-inline').addClass('nav-item-animation');
+                        $(this).children('.d-xl-none').removeClass('d-xl-none').addClass('d-xl-inline').addClass('nav-item-animation');
                     }, function() {
                         if (!$(this).parent().hasClass('current')) {
-                            $(this).children('.d-lg-inline').removeClass('d-lg-inline').addClass('d-lg-none');
-                            $(this).children('.d-xl-inline').removeClass('d-xl-inline').addClass('d-xl-none');
+                            $(this).children('.d-lg-inline').removeClass('d-lg-inline').removeClass('nav-item-animation').addClass('d-lg-none');
+                            $(this).children('.d-xl-inline').removeClass('d-xl-inline').removeClass('nav-item-animation').addClass('d-xl-none');
                         }
                     });
 
