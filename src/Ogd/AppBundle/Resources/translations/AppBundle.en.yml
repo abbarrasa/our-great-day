@@ -101,6 +101,7 @@ frontend:
         description: You have entered your private area. In this area you can change your user data and update your password.
     post:
         title: Our great <em>News</em>
+        description: We present all the news that are emerging about <strong>Our Great Day</strong>. You can see them all by clicking on <a href="{{ path('post') }}">here</a>.
         no_posts: There is no published news
         published: Published
         read_more: Read more
