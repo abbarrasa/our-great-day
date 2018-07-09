@@ -87,3 +87,22 @@ email:
                     <p><b>"%greeting%"</b></p>
                     <p>Para que la felicitación se visible hay que publicarla. Puedes hacerlo desde el área de administrador pulsando <a href="%url%">aquí</a>.
                     <p>Atentemente,<br />el equipo técnico de Nuestro gran día.</p>
+    comment_notification:
+        subject: 'Se ha recibido un comentario de %name%'
+        body_plain: |
+                    Hola,
+
+                    %name% ha enviado el siguiente comentario:
+
+                    "%comment%"
+
+                    Si piensas que el comentario no es apropiado puedes eliminarlo desde el área de administrador pulsando aquí %url%
+
+                    Atentemente,
+                    el equipo técnico de Nuestro gran día.
+        body_html: |
+                    <p>Hola,</p>
+                    <p><b>%name%</b> ha enviado el siguiente comentario:</p>
+                    <p><b>"%comment%"</b></p>
+                    <p>Si piensas que el comentario no es apropiado puedes eliminarlo desde el área de administrador pulsando <a href="%url%">aquí</a>.
+                    <p>Atentemente,<br />el equipo técnico de Nuestro gran día.</p>
