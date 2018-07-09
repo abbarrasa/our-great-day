@@ -74,7 +74,20 @@
                 {% endfor %}
             </div>
         </div>
-    </div>    
+    </div>
+    
+    <div class="row">
+        <div class="col form-group bmd-form-group">    
+            <div class="form-check">
+                <label class="form-check-label">
+                    {{ form_widget(form.changeReferences, {'attr': {'class': 'form-check-input'}}) }} {{ form.changeReferences.vars.label|trans }}
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+        </div>
+    </div>
 
     <div class="col form-group bmd-form-group">
         <input type="submit" class="btn btn-primary pull-right" value="{{ 'profile.edit.submit'|trans }}" />
