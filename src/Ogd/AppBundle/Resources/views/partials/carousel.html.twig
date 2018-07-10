@@ -9,10 +9,10 @@
                 {% endif %}
             {% endfor %}
         </ol>
-        <div class="carousel-inner">
+        <div class="carousel-inner rounded">
             {% for post in posts %}
                 <div class="carousel-item {% if loop.first %}active{% endif %}">
-                    <img class="d-block w-100 rounded" src="{{ post.coverPictureFile.pathname|data_uri }}" alt="Slide {{ loop.index }}">
+                    <img class="d-block w-100" src="{{ post.coverPictureFile.pathname|data_uri }}" alt="Slide {{ loop.index }}">
                     <div class="carousel-caption d-none d-md-block">
                         <a href="{{ path('post', { 'id': post.id }) }}">
                             <h4>{{ post.title }}</h4>
