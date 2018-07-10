@@ -2398,6 +2398,38 @@ h6 {
     background-color: #555; /* Add a dark-grey background on hover */
 }
 
+/* Pop */
+@-webkit-keyframes hvr-pop {
+    50% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+}
+@keyframes hvr-pop {
+    50% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+}
+.hvr-pop {
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+}
+.hvr-pop:hover, .hvr-pop:focus, .hvr-pop:active {
+    display: inline-block;
+    -webkit-animation-name: hvr-pop;
+    animation-name: hvr-pop;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}
+
+
+
 .nav-item-animation {
     /* for chrome and safari*/
     -webkit-animation-duration: 1s;
@@ -2421,7 +2453,7 @@ h6 {
         margin-left: 100%;
         width: 300%;
     }
-    
+
     to {
         margin-left: 0%;
         width: 100%;
@@ -2433,7 +2465,7 @@ h6 {
         margin-left: 100%;
         width: 300%;
     }
-    
+
     to {
         margin-left: 0%;
         width: 100%;
@@ -2445,7 +2477,7 @@ h6 {
         margin-left: 100%;
         width: 300%;
     }
-    
+
     to {
         margin-left: 0%;
         width: 100%;
@@ -2457,7 +2489,7 @@ h6 {
         margin-left: 100%;
         width: 300%;
     }
-    
+
     to {
         margin-left: 0%;
         width: 100%;

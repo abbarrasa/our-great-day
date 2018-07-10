@@ -74,13 +74,13 @@ class CommentAdmin extends AbstractAdmin
         if ($subject::getDtype() === GreetingComment::getDtype()) {
             $showMapper->add('greeting', 'entity', array(
                     'class' => Greeting::class,
-                    'property' => 'message',
+                    'associated_property' => 'message',
             ));
         } else if ($subject::getDtype() === PostComment::getDtype()) {
             $showMapper->add('post', 'entity', array(
                     'class' => Post::class,
-                    'property' => 'content',
-            ));            
+                    'associated_property' => 'content',
+            ));
         }
     }
 

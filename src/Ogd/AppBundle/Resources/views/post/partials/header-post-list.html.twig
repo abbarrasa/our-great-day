@@ -1,0 +1,8 @@
+{% trans_default_domain 'AppBundle' %}
+<div class="col-md-6">
+    <div class="card-header card-header-image">
+        <a href="{{ path('post', { 'id': post.id }) }}" class="header">
+            <img src="{{ post.coverPictureFile.pathname|data_uri }}" class="{{ ['img-raised rounded img-fluid']|join(' ') }}">
+        </a>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="card card-plain card-blog sr">
+    <div class="row">
+    {% if position == 'left' %}
+        {{ include('@App/post/partials/header-post-list.html.twig', { 'post': post }) }}
+        {{ include('@App/post/partials/body-post-list.html.twig', { 'post': post }) }}
+    {% elseif position == 'right' %}
+        {{ include('@App/post/partials/body-post-list.html.twig', { 'post': post }) }}
+        {{ include('@App/post/partials/header-post-list.html.twig', { 'post': post }) }}        
+    {% endif %}
+    </div>
+</div>

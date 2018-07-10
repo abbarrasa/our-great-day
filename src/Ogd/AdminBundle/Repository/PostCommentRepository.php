@@ -17,7 +17,7 @@ class PostCommentRepository extends EntityRepository
     public function getQueryAllByPost($post)
     {
         $qb = $this->createQueryBuilder('c');
-        $qb
+        $qb = $this
             ->addQueryDiscriminator($qb, 'c')
             ->andWhere('c.post = :post')
             ->setParameter('post', $post)

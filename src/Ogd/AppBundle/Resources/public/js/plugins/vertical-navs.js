@@ -1,4 +1,5 @@
-jQuery(document).ready(function($){
+jQuery(document).ready(function($)
+{
 	var contentSections = $('.cd-section'),
 		navigationItems = $('#cd-vertical-nav a');
 		headerNavigationItems = $('#headerNavigationItems a');
@@ -36,7 +37,8 @@ jQuery(document).ready(function($){
     	$('.touch #cd-vertical-nav').removeClass('open');
     });
 
-	function updateNavigation() {
+	function updateNavigation()
+	{
 		contentSections.each(function(){
 			$this = $(this);
 			var activeSection = $('#cd-vertical-nav a[href="#'+$this.attr('id')+'"]').data('number') - 1;
@@ -48,7 +50,8 @@ jQuery(document).ready(function($){
 		});
 	}
 
-	function smoothScroll(target) {
+	function smoothScroll(target)
+	{
         $('body,html').animate(
         	{'scrollTop':target.offset().top - 90},
         	900
