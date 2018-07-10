@@ -16,7 +16,8 @@
                         <div class="col-12">
                             <div class="row">
                                 {% for post in pagination %}
-                                    {{ include('@App/post/partials/post.html.twig', { 'post': post }) }}
+                                    {% set position = cycle(['left', 'right'], loop.index0) %}
+                                    {{ include('@App/post/partials/post-list.html.twig', { 'post': post, 'position': position }) }}
                                 {% endfor %}
                             </div>
 
