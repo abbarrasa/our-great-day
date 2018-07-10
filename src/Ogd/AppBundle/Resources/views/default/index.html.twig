@@ -36,7 +36,7 @@
 
     <!-- Bio cards -->
     {% image 'bundles/app/images/wedding-rings.jpg' %}
-    <div id="#bio" class="section section-line-image" style="background-image: url('{{ asset_url }}');">
+    <div id="#bio-section" class="section section-line-image" style="background-image: url('{{ asset_url }}');">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-center ml-auto mr-auto">
@@ -57,7 +57,7 @@
     <!-- End Bio cards -->
 
     <!-- Timeline -->
-    <div id="#timeline" class="section section-basic section-white-to-gray">
+    <div id="#timeline-section" class="section section-basic section-white-to-gray">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-center ml-auto mr-auto">
@@ -76,7 +76,7 @@
     <!-- End Timeline -->
 
     <!-- News -->
-    <div id="#post" class="section section-basic sr">
+    <div id="#posts-section" class="section section-basic sr">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-xs-12 text-center ml-auto mr-auto">
@@ -96,7 +96,7 @@
     <!-- End News -->
 
     <!-- Maps -->
-    <div id="#location" class="section section-basic section-light-gray">
+    <div id="#location-section" class="section section-basic section-light-gray">
         <div class="sr">
             <div class="container">
                 <div class="row">
@@ -111,6 +111,10 @@
         </div>
     </div>
     <!-- End Maps -->
+    
+    <!-- Vertical navs -->
+    {{ include('@App/default/partials/vertical-navs.html.twig') }}
+    
 {% endblock %}
 
 {% block javascripts %}
