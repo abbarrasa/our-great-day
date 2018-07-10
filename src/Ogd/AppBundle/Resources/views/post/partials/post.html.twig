@@ -1,6 +1,16 @@
 {% trans_default_domain 'AppBundle' %}
 <div class="card card-plain card-blog sr">
     <div class="row">
+    {% if postion == 'left' %}
+        {{ include('@App/post/partials/header-post-list.html.twig', { 'post': post }) }}
+        {{ include('@App/post/partials/body-post-list.html.twig', { 'post': post }) }}
+    {% else if position == 'right' %}    
+        {{ include('@App/post/partials/body-post-list.html.twig', { 'post': post }) }}
+        {{ include('@App/post/partials/header-post-list.html.twig', { 'post': post }) }}        
+    {% endif
+    </div>
+</div>
+
         <div class="col-md-6">
             <div class="card-header card-header-image">
                 <a href="{{ path('post', { 'id': post.id }) }}" class="header">
@@ -8,6 +18,9 @@
                 </a>
             </div>
         </div>
+
+
+
         <div class="col-md-6">
             <div class="card-category text-muted">
                 <div class="row">
@@ -34,5 +47,3 @@
                 </div>
             {% endif %}
         </div>
-    </div>
-</div>
