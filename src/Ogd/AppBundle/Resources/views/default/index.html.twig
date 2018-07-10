@@ -36,7 +36,7 @@
 
     <!-- Bio cards -->
     {% image 'bundles/app/images/wedding-rings.jpg' %}
-    <div class="section section-line-image" style="background-image: url('{{ asset_url }}');">
+    <div id="#bio" class="section section-line-image" style="background-image: url('{{ asset_url }}');">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-center ml-auto mr-auto">
@@ -57,7 +57,7 @@
     <!-- End Bio cards -->
 
     <!-- Timeline -->
-    <div class="section section-basic section-white-to-gray">
+    <div id="#timeline" class="section section-basic section-white-to-gray">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-center ml-auto mr-auto">
@@ -76,7 +76,7 @@
     <!-- End Timeline -->
 
     <!-- News -->
-    <div class="section section-basic sr">
+    <div id="#post" class="section section-basic sr">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-xs-12 text-center ml-auto mr-auto">
@@ -96,7 +96,7 @@
     <!-- End News -->
 
     <!-- Maps -->
-    <div class="section section-basic section-light-gray">
+    <div id="#location" class="section section-basic section-light-gray">
         <div class="sr">
             <div class="container">
                 <div class="row">
@@ -111,7 +111,6 @@
         </div>
     </div>
     <!-- End Maps -->
-
 {% endblock %}
 
 {% block javascripts %}
