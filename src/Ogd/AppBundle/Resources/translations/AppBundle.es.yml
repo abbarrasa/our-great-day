@@ -75,7 +75,8 @@ frontend:
         no_greetings: Se el/la primero/a en mandarnos un saludo!
         no_comments: Se el/la primero/a en comentar!
         comments:
-            content: Tu comentario
+            placeholder_name: Tu nombre
+            content: Tu gran comentario
             placeholder_content: Escribe algo bonito aquí...
             post: Enviar
             title: '{1} 1 Comentario|]1,Inf[ %count% Comentarios'
