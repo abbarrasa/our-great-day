@@ -5,8 +5,7 @@
     {{ parent() }}
     {% stylesheets
     'bundles/app/css/timeline.css'
-    'bundles/app/css/flipclock.css'
-    'bundles/app/css/vertical-navs.css' filter='cssrewrite' %}
+    'bundles/app/css/flipclock.css' filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet" type='text/css'>
     {% endstylesheets %}
@@ -16,7 +15,7 @@
 
 {% block main %}
     <!-- Countdown -->
-    <div id="first-section" class="section section-basic cd-section sr">
+    <div id="first-section" class="section section-basic sr">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-center ml-auto mr-auto">
@@ -37,7 +36,7 @@
 
     <!-- Bio cards -->
     {% image 'bundles/app/images/wedding-rings.jpg' %}
-    <div id="#bio-section" class="section section-line-image cd-section" style="background-image: url('{{ asset_url }}');">
+    <div id="#bio-section" class="section section-line-image" style="background-image: url('{{ asset_url }}');">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-center ml-auto mr-auto">
@@ -58,7 +57,7 @@
     <!-- End Bio cards -->
 
     <!-- Timeline -->
-    <div id="#timeline-section" class="section section-basic cd-section section-white-to-gray">
+    <div id="#timeline-section" class="section section-basic section-white-to-gray">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 text-center ml-auto mr-auto">
@@ -77,13 +76,13 @@
     <!-- End Timeline -->
 
     <!-- News -->
-    <div id="#posts-section" class="section section-basic cd-section sr">
+    <div id="#posts-section" class="section section-basic sr">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-xs-12 text-center ml-auto mr-auto">
                     <div class="section-description">
                         <h2 class="title">{{ 'frontend.post.title'|trans|raw }}</h2>
-                        <p class="description">{{ 'frontend.post.description'|trans|raw }}</p>                        
+                        <p class="description">{{ 'frontend.post.description'|trans({'%url%': path('post_list')})|raw }}</p>
                     </div>
                 </div>
             </div>
@@ -97,7 +96,7 @@
     <!-- End News -->
 
     <!-- Maps -->
-    <div id="#location-section" class="section section-basic cd-section section-purple-gradient">
+    <div id="#location-section" class="section section-basic section-purple-gradient">
         <div class="sr">
             <div class="container">
                 <div class="row">
@@ -112,17 +111,13 @@
         </div>
     </div>
     <!-- End Maps -->
-    
-    <!-- Vertical navs -->
-    {{ include('@App/default/partials/vertical-navs.html.twig') }}
-    
+
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     {% javascripts
-    'bundles/app/js/plugins/flipclock.min.js'
-    'bundles/app/js/plugins/vertical-navs.js' %}
+    'bundles/app/js/plugins/flipclock.min.js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 

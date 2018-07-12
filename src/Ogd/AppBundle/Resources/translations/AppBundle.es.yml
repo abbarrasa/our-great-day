@@ -102,7 +102,7 @@ frontend:
         description: Has entrado en tu zona privada. En esta zona puedes cambiar tus datos de usuario y actualizar tu contraseña.
     post:
         title: Nuestras grandes <em>Novedades</em>
-        description: Os presentamos todas la novedades que vayan surgiendo acerca de <strong>Nuestro Gran Día</strong>. Puedes verlas todas pulsando <a href="{{ path('post') }}">aquí</a>.
+        description: Os presentamos todas la novedades que vayan surgiendo acerca de <strong>Nuestro Gran Día</strong>. Puedes verlas todas pulsando <a href="%url%">aquí</a>.
         no_posts: No hay novedades publicadas
         published: Publicado
         read_more: Leer más
