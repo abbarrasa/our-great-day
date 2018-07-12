@@ -64,7 +64,7 @@
                             <h1 class="h1-seo">Vero y Carlos</h1>
                             <h3>{{ 'frontend.title'|trans({}, 'AppBundle') }}</h3>
                         </div>
-                        <a href="" data-scroll="true" data-id="#first-section" class="scroll-arrow hidden-xs hidden-sm text-center">
+                        <a data-scroll="true" data-id="#first-section" class="scroll-arrow hidden-xs hidden-sm text-center">
                             <i class="fa fa-angle-down"></i>
                         </a>
                     </div>
@@ -78,8 +78,6 @@
                     {% endif %}
 
                     {% block main %}{% endblock %}
-
-                    <button data-scroll="true" id="top-buttom" title="Go to top"><i class="fa fa-angle-up"></i></button>
                 </div>
                 <!-- End Main -->
 
@@ -121,14 +119,6 @@
             {% endjavascripts %}
 
             <script type="text/javascript">
-//                function scrollFunction() {
-//                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-//                        document.getElementById("myBtn").style.display = "block";
-//                    } else {
-//                        document.getElementById("myBtn").style.display = "none";
-//                    }
-//                }
-                        
                 $(document).ready(function() {
                     {# Flash messages #}
                     {% for flashMessages in app.flashes %}
@@ -147,12 +137,10 @@
                     sr.reveal('.sr', {duration: 800, reset: false, viewOffset: { top: 64 }});
                     sr.reveal('.card-sr', {duration: 800, reset: true, viewOffset: { top: 64 }});
                     
-//                    window.onscroll = function() {scrollFunction()};
-                    
                     {# Menu bar #}
                     $("a.nav-link").hover(function(){
-                        $(this).children('.d-lg-none').removeClass('d-lg-none').addClass('d-lg-inline').addClass('hvr-pop');
-                        $(this).children('.d-xl-none').removeClass('d-xl-none').addClass('d-xl-inline').addClass('hvr-pop');
+                        $(this).children('.d-lg-none').removeClass('d-lg-none').addClass('hvr-pop').addClass('d-lg-inline');
+                        $(this).children('.d-xl-none').removeClass('d-xl-none').addClass('hvr-pop').addClass('d-xl-inline');
                     }, function() {
                         if (!$(this).parent().hasClass('current')) {
                             $(this).children('.d-lg-inline').removeClass('d-lg-inline').removeClass('hvr-pop').addClass('d-lg-none');
@@ -174,11 +162,6 @@
                         }
                     });
                     
-//                    $('button[data-scroll="true"]').click(function(e){
-//                        document.body.scrollTop = 0; // For Safari
-//                        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-//                    });
-
                     {# Load enquiry form #}
                     $('a.contact-us').click(function(e) {
                         e.preventDefault();
