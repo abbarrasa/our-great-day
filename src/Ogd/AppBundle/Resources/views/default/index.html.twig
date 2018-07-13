@@ -5,7 +5,8 @@
     {{ parent() }}
     {% stylesheets
     'bundles/app/css/timeline.css'
-    'bundles/app/css/flipclock.css' filter='cssrewrite' %}
+    'bundles/app/css/flipclock.css'
+    'bundles/app/css/vertical-navs.css' filter='cssrewrite' %}    
     <link rel="stylesheet" href="{{ asset_url }}" />
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet" type='text/css'>
     {% endstylesheets %}
@@ -121,7 +122,8 @@
 {% block javascripts %}
     {{ parent() }}
     {% javascripts
-    'bundles/app/js/plugins/flipclock.min.js' %}
+    'bundles/app/js/plugins/flipclock.min.js'
+    'bundles/app/js/plugins/vertical-navs.js' %}    
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
