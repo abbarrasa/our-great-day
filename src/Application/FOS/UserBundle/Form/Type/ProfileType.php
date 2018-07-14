@@ -6,6 +6,7 @@ use AppBundle\Validator\Constraints\FullName;
 use Application\FOS\UserBundle\Form\EventSubscriber\AddUserPictureSubscriber;
 use Application\Sonata\UserBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -65,6 +66,7 @@ class ProfileType extends AbstractType
             ])
             ->add('changeReferences', CheckboxType::class, [
                 'label'    => 'form.change_references',
+                'mapped'   => false,
                 'required' => false,
                 'translation_domain' => 'FOSUserBundle',                
             ])

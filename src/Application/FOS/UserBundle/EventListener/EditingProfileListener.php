@@ -2,6 +2,9 @@
 
 namespace Application\FOS\UserBundle\EventListener;
 
+use AdminBundle\Entity\AbstractComment;
+use AdminBundle\Entity\Greeting;
+use Application\Sonata\UserBundle\Entity\User;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -47,25 +50,34 @@ class EditingProfileListener implements EventSubscriberInterface
         $form = $event->getForm();
         if ($form->has('changeReferences') && (bool)$form->get('changeReferences')->getData() === true) {
             $user = $form->getData();
-            $this->changeAllUsernameReferences();
+            $this->changeAllUsernameReferences($user);
         }
         
         $url = $this->router->generate('fos_user_profile_edit');
         $event->setResponse(new RedirectResponse($url));
     }
     
-    public function changeAllUsernameReferences($user)
+    public function changeAllUsernameReferences(User $user)
     {
-        $uow     = $this->em->getUnitOfWork();
-        $changes = $uow->getEntityChangeSet($user);
-        if (array_key_exists('username', $changes)) {
-            $comments = $this->em->getRepository(AbstractComment::class)->findBy(['user' => $user]);            
+        $originalData = $this->em->getUnitOfWork()->getOriginalEntityData($user);
+        if ($originalData['username'] !== $user->getUsername()) {
+            $greetings = $this->em->getRepository(Greeting::class)->findBy(['user' => $user]);
+            foreach($greetings as $greeting) {
+                if ($greeting->getName() !== $user->getUsername()) {
+                    $greeting->setName($user->getUsername());
+                    $this->em->persist($greeting);
+                }
+            }
+
+            $comments = $this->em->getRepository(AbstractComment::class)->findBy(['user' => $user]);
             foreach($comments as $comment) {
-                if ($comment->getName() !== $changes['username'][1]) {
-                    $comment->setName($changes['username'][1]);
+                if ($comment->getName() !== $user->getUsername()) {
+                    $comment->setName($user->getUsername());
                     $this->em->persist($comment);
                 }
             }
+
+            $this->em->flush();
         }
     }
 }
