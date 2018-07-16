@@ -39,7 +39,7 @@ abstract class AbstractComment
     protected $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User", inversedBy="greetingComments")
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User", inversedBy="comments")
      * @ORM\JoinColumn(name="id_user", referencedColumnName="id", nullable=true)
      */
     protected $user;

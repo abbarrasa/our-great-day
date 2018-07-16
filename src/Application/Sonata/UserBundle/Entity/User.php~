@@ -25,8 +25,7 @@ class User extends BaseUser
     protected $id;
     protected $guest;
     protected $greetings;
-    protected $greetingComments;
-    protected $postComments;
+    protected $comments;
     protected $picture;
     /**
      * @var File
@@ -67,46 +66,6 @@ class User extends BaseUser
     }
 
     /**
-     * Set greetings.
-     *
-     * @param $greetings
-     */
-    public function setGreetings($greetings)
-    {
-        $this->greetings = $greetings;
-    }
-
-    /**
-     * Get greetings.
-     *
-     * @return mixed
-     */
-    public function getGreetings()
-    {
-        return $this->greetings;
-    }
-
-    /**
-     * Set greetingComments.
-     *
-     * @param $greetingComments
-     */
-    public function setGreetingComments($greetingComments)
-    {
-        $this->greetingComments = $greetingComments;
-    }
-
-    /**
-     * Get greetingComments.
-     *
-     * @return mixed
-     */
-    public function getGreetingComments()
-    {
-        return $this->greetingComments;
-    }
-
-    /**
      * Set picture.
      *
      * @param $picture
@@ -124,6 +83,26 @@ class User extends BaseUser
     public function getPicture()
     {
         return $this->picture;
+    }
+
+    /**
+     * Set greetings.
+     *
+     * @param $greetings
+     */
+    public function setGreetings($greetings)
+    {
+        $this->greetings = $greetings;
+    }
+
+    /**
+     * Get greetings.
+     *
+     * @return mixed
+     */
+    public function getGreetings()
+    {
+        return $this->greetings;
     }
 
     /**
@@ -153,6 +132,94 @@ class User extends BaseUser
     }
 
     /**
+     * Set comments.
+     *
+     * @param $comments
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+    }
+
+    /**
+     * Get comments.
+     *
+     * @return mixed
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Add comment.
+     *
+     * @param \AdminBundle\Entity\AbstractComment $comment
+     *
+     * @return User
+     */
+    public function addComment(\AdminBundle\Entity\AbstractComment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment.
+     *
+     * @param \AdminBundle\Entity\AbstractComment $comment
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeComment(\AdminBundle\Entity\AbstractComment $comment)
+    {
+        return $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Set pictureFile
+     *
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|null $file
+     */
+    public function setPictureFile(File $file = null)
+    {
+        $this->pictureFile = $file;
+
+        if ($file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    /**
+     * Get pictureFile
+     *
+     * @return null|File
+     */
+    public function getPictureFile()
+    {
+        return $this->pictureFile;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $greetingComments;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $postComments;
+
+
+    /**
      * Add greetingComment.
      *
      * @param \AdminBundle\Entity\GreetingComment $greetingComment
@@ -176,6 +243,16 @@ class User extends BaseUser
     public function removeGreetingComment(\AdminBundle\Entity\GreetingComment $greetingComment)
     {
         return $this->greetingComments->removeElement($greetingComment);
+    }
+
+    /**
+     * Get greetingComments.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGreetingComments()
+    {
+        return $this->greetingComments;
     }
 
     /**
@@ -212,37 +289,5 @@ class User extends BaseUser
     public function getPostComments()
     {
         return $this->postComments;
-    }
-
-    /**
-     * Set pictureFile
-     *
-     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
-     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-     * must be able to accept an instance of 'File' as the bundle will inject one here
-     * during Doctrine hydration.
-     *
-     * @param File|null $file
-     */
-    public function setPictureFile(File $file = null)
-    {
-        $this->pictureFile = $file;
-
-        if ($file) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTime('now');
-        }
-    }
-
-    /**
-     * Get pictureFile
-     *
-     * @return null|File
-     */
-    public function getPictureFile()
-    {
-        return $this->pictureFile;
     }
 }
