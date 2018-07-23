@@ -8,6 +8,8 @@ admin:
         locations: Localizaciones
         posts: Novedades
         comments: Comentarios
+        tables: Mesas
+        Seats: Asientos
     guest:
         import: Importar
         import_file: Archivo

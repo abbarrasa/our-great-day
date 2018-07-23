@@ -8,6 +8,8 @@ admin:
         locations: Locations
         posts: Posts
         comments: Comments
+        tables: Tables
+        seats: Seats
     guest:
         import: Import
         import_file: File

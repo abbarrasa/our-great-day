@@ -59,3 +59,27 @@ services:
         calls:
             - [ setTranslationDomain, [AdminBundle]]
         public: true
+
+    admin.table:
+        class: AdminBundle\Admin\TableAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin.group.administration, label: admin.model.tables }
+        arguments:
+            - ~
+            - AdminBundle\Entity\Table
+            - ~
+        calls:
+            - [ setTranslationDomain, [AdminBundle]]
+        public: true
+
+    admin.seat:
+        class: AdminBundle\Admin\SeatAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin.group.administration, label: admin.model.seats }
+        arguments:
+            - ~
+            - AdminBundle\Entity\Seat
+            - ~
+        calls:
+            - [ setTranslationDomain, [AdminBundle]]
+        public: true

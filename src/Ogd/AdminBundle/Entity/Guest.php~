@@ -97,7 +97,12 @@ class Guest
      * @ORM\OneToOne(targetEntity="Application\Sonata\UserBundle\Entity\User", inversedBy="guest")
      * @ORM\JoinColumn(name="id_user", referencedColumnName="id", nullable=true)
      */
-    private $user;    
+    private $user;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AdminBundle\Entity\Seat", mappedBy="guest")
+     */
+    private $seat;
 
     /**
      * Guest constructor.
@@ -349,5 +354,29 @@ class Guest
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set seat.
+     *
+     * @param \AdminBundle\Entity\Seat|null $seat
+     *
+     * @return Guest
+     */
+    public function setSeat(\AdminBundle\Entity\Seat $seat = null)
+    {
+        $this->seat = $seat;
+
+        return $this;
+    }
+
+    /**
+     * Get seat.
+     *
+     * @return \AdminBundle\Entity\Seat|null
+     */
+    public function getSeat()
+    {
+        return $this->seat;
     }
 }

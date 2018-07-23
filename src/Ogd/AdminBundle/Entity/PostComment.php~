@@ -49,4 +49,28 @@ class PostComment extends AbstractComment
     {
         return $this->post;
     }
+
+    /**
+     * Set name.
+     *
+     * @param string $name
+     *
+     * @return PostComment
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 }
