@@ -82,4 +82,5 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [AdminBundle]]
+            - [ setTemplate, [edit, @Admin/guest/partials/edit.html.twig]]
         public: true
