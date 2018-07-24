@@ -1,0 +1,30 @@
+{% extends 'SonataAdminBundle:CRUD:base_edit.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="application/javascript">
+        $(document).ready(function() {
+            $('form [id$="_guest"]').on('change', function() {
+                {# ... retrieve the corresponding form. #}
+                var $form = $(this).closest('form');
+                {# Submit data via AJAX to the form's action path. #}
+                $.ajax({
+                    url : $form.attr('action'),
+                    type: $form.attr('method'),
+                    data : $form.serialize(),
+                    success: function(html) {
+                        {# Replace fields with the returned ones from the AJAX response #}
+                        $('form [id$="_firstname"]').replaceWith(
+                                $(html).find('form [id$="_firstname"]')
+                        );
+
+                        $('form [id$="_lastname"]').replaceWith(
+                                $(html).find('form [id$="_lastname"]')
+                        );
+                    }
+                });
+
+            });
+        });
+    </script>
+{% endblock %}
