@@ -1,5 +1,24 @@
 {% extends '@SonataAdmin/standard_layout.html.twig' %}
 
+{% block title %}
+   {{ 'admin.import.title'|trans({}, 'AdminBundle')  }}
+{% endblock %}
+
+{% block navbar_title %}
+    {{ block('title') }}
+{% endblock %}
+
+{%- block actions -%}
+    {% include '@SonataAdmin/CRUD/action_buttons.html.twig' %}
+{%- endblock -%}
+
+{%- block tab_menu -%}
+    {{ knp_menu_render(admin.sidemenu(action), {
+        'currentClass': 'active',
+        'template': get_global_template('tab_menu_template')
+    }, 'twig') }}
+{%- endblock -%}
+
 {% block sonata_admin_content %}
 
     {% include '@SonataCore/FlashMessage/render.html.twig' %}
@@ -32,10 +51,9 @@
         </div>
         <div class="sonata-ba-form-actions well well-small form-actions stuck">
             <button class="btn btn-success" type="submit" name="btn_import">
-                <i class="fa fa-level-up" aria-hidden="true"></i> {{ 'admin.guest.import_submit'|trans({}, 'AdminBundle') }}
+                <i class="fa fa-level-up" aria-hidden="true"></i> {{ 'admin.import.submit'|trans({}, 'AdminBundle') }}
             </button>
         </div>
+        {{ form_end(form) }}        
     </div>
-
-    {{ form_end(form) }}
 {% endblock %}
