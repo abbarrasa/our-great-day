@@ -81,6 +81,6 @@ services:
             - AdminBundle\Entity\Seat
             - ~
         calls:
-            - [ setTemplate, [edit, "@Admin/seat/edit.html.twig"]]
             - [ setTranslationDomain, [AdminBundle]]
+            - [ setTemplate, [edit, "@Admin/SeatAdmin/edit.html.twig"]]            
         public: true
