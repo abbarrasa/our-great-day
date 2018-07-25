@@ -186,7 +186,7 @@ class Table
     }
     
     /**
-     * Set createdAt value before persist
+     * Set createdAt and freeSeats values before persist
      *
      * @ORM\PrePersist
      */
@@ -197,7 +197,7 @@ class Table
     }
     
     /**
-     * Set createdAt value before persist
+     * Set freeSeats values before update
      *
      * @ORM\PrePersist
      */
