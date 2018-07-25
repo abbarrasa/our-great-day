@@ -13,7 +13,7 @@ use AdminBundle\Validator\Constraints as AdminAsserts;
  * @ORM\Table(name="ogd_table")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\TableRepository")
  * @UniqueEntity("name")
- * @AdminAsserts\NumberSeats()
+ * @AdminAsserts\TableGuests()
  * @ORM\HasLifecycleCallbacks()
  */
 class Table
