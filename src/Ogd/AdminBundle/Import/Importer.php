@@ -7,6 +7,15 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 
 class Importer
 {
+    private $reader;
+    private $storage;
+    
+    public function __construct(ImportReaderInterface $reader, ImportStorageInterface $storage)
+    {
+        $this->reader  = $reader;
+        $this->storage = $storage;
+    }
+    
     public static function import(AbstractAdmin $admin, array $rows, array $headers = array())
     {
         $storage = self::getStorage($admin);
