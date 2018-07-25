@@ -14,7 +14,7 @@ class GuestImportStorage implements ImportStorage
         $this->admin = $admin;
     }
 
-    public function store($data, array &$errors = null)
+    public function store($data, array &$errors = null, array $options = array())
     {
         $count = 0;
         $data  = $this->filter($data, $errors);
