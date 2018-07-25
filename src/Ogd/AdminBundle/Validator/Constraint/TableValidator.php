@@ -24,6 +24,15 @@ class TableValidator extends ConstraintValidator
                 ->atPath('numberSeats')
                 ->addViolation();
         }
+        
+        if (
+            $value->getFreeSeats() > $value->getNumberSeats() ||
+            $value->getFreeSeats() !== ($value->getNumberSeats() - $value->getSeats()->count())
+        ) {
+            $this->context->buildViolation($constraint->message)
+                ->atPath('freeSeats')
+                ->addViolation();            
+        }
     }
 
 }
