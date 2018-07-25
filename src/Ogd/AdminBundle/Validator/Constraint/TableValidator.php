@@ -20,7 +20,7 @@ class TableValidator extends ConstraintValidator
         }
 
         if ($value->getNumberSeats() > $value->getSeats()->count()) {
-            $this->context->buildViolation($constraint->maxSeats)
+            $this->context->buildViolation($constraint->numberSeats)
                 ->atPath('numberSeats')
                 ->addViolation();
         }
@@ -29,7 +29,7 @@ class TableValidator extends ConstraintValidator
             $value->getFreeSeats() > $value->getNumberSeats() ||
             $value->getFreeSeats() !== ($value->getNumberSeats() - $value->getSeats()->count())
         ) {
-            $this->context->buildViolation($constraint->invalidFreeSeats)
+            $this->context->buildViolation($constraint->freeSeats)
                 ->atPath('freeSeats')
                 ->addViolation();            
         }
