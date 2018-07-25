@@ -23,15 +23,13 @@ class Importer
         $data        = $this->reader->read($spreadsheet);
         $count       = $this->storage->store($data, $errors);
 
-        return new ImportResult($count, $errors);
-        
-        $storage = self::getStorage($admin);
+        /*$storage = self::getStorage($admin);
         $matrix  = $storage->filter(self::buildMatrix($headers, $rows), $errors);
         $count   = 0;
         foreach($matrix as $row) {
             $storage->update($row);
             $count++;
-        }
+        }*/
 //        foreach($rows as $row) {
 //            $reflectionClass = new \ReflectionClass($admin->getClass());
 //            $object          = $reflectionClass->newInstanceArgs();
