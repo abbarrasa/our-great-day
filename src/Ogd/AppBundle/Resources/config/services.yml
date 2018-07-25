@@ -1,25 +1,25 @@
 # Learn more about services, parameters and containers at
 # https://symfony.com/doc/current/service_container.html
 services:
-    app.helper.flash_message:
+    ogd.app.helper.flash_message:
         class: AppBundle\Templating\Helper\FlashMessageHelper
         arguments: ["@translator"]
         public: true
         tags:
             - { name: templating.helper }
             
-    app.helper.social_url:
+    ogd.app.helper.social_url:
         class: AppBundle\Templating\Helper\SocialUrlHelper
         arguments: ["@router"]
         public: true
         tags:
             - { name: templating.helper }
             
-    app.menu.builder:
+    ogd.app.menu.builder:
         class: AppBundle\Service\MenuBuilder
         arguments: ["@knp_menu.factory", "@translator"]
 
-    app.menu.main:
+    ogd.app.menu.main:
         class:  Knp\Menu\MenuItem # the service definition requires setting the class
         factory: ["@app.menu.builder", createMainMenu]
         arguments:
@@ -29,19 +29,19 @@ services:
         tags:
             - { name: knp_menu.menu, alias: main } # The alias is what is used to retrieve the menu
             
-    app.menu.social:
+    ogd.app.menu.social:
         class:  Knp\Menu\MenuItem # the service definition requires setting the class
-        factory: ["@app.menu.builder", createSocialMenu]
-        arguments: ["@app.helper.social_url"]
+        factory: ["@ogd.app.menu.builder", createSocialMenu]
+        arguments: ["@ogd.app.helper.social_url"]
         tags:
             - { name: knp_menu.menu, alias: social } # The alias is what is used to retrieve the menu
 
-    app.listener.maintenance:
+    ogd.app.listener.maintenance:
         class: AppBundle\Event\Listener\MaintenanceListener
         arguments: ["@service_container"]
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
-    app.mailer:
+    ogd.app.mailer:
         alias: AppBundle\Service\Mailer
         public: true
