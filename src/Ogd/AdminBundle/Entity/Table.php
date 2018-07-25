@@ -38,7 +38,13 @@ class Table
      * @Assert\NotNull()
      */
     private $numberSeats;
-
+    
+    /**
+     * @var integer
+     * @ORM\Column(name="free_seats", type="integer", nullable=true)
+     */
+    private $freeSeats;
+    
     /**
      * @var \DateTime
      *
@@ -52,20 +58,13 @@ class Table
     private $seats;
 
     /**
-     * Set createdAt value before persist
-     *
-     * @ORM\PrePersist
-     */
-    public function prePersist()
-    {
-        $this->setCreatedAt(new \DateTime());
-    }
-    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->seats = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->numberSeats = 1;
+        $this->freeSeats   = 1;        
+        $this->seats       = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -185,4 +184,25 @@ class Table
     {
         return $this->seats;
     }
+    
+    /**
+     * Set createdAt value before persist
+     *
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setCreatedAt(new \DateTime());
+        $this->preUpdate();
+    }
+    
+    /**
+     * Set createdAt value before persist
+     *
+     * @ORM\PrePersist
+     */
+    public function preUpdate()
+    {
+        $this->freeSeats = $this->numberSeats - $this->seats->count();
+    }        
 }
