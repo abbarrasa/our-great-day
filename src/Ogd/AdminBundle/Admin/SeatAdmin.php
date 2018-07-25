@@ -74,6 +74,16 @@ class SeatAdmin extends AbstractAdmin
 //        ;
     }
 
+//    public function getTemplate($name)
+//    {
+//        if ($name == 'edit') {
+//            return "@Admin/seat/edit.html.twig";
+//        }
+//
+//        return $this->getTemplateRegistry()->getTemplate($name);
+//    }
+
+
 //    public function prePersist($table)
 //    {
 //        foreach ($table->getSeats() as $seat) {

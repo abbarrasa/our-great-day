@@ -4,8 +4,6 @@ namespace AdminBundle\Import;
 
 class ImportResult
 {
-    const DEFAULT_TEMPLATE = '@Admin/guest/partials/import-errors.html.twig';
-
     /** @var  integer */
     private $count;
 
@@ -67,10 +65,13 @@ class ImportResult
     /**
      * Gets formatted errors.
      * @param \Twig_Environment $environment
-     * @param string $view
+     * @param $view
      * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
-    public function formattedErrors(\Twig_Environment $environment, $view = self::DEFAULT_TEMPLATE)
+    public function formattedErrors(\Twig_Environment $environment, $view)
     {
         return $environment->render($view, ['errors' => $this->getErrors()]);
     }

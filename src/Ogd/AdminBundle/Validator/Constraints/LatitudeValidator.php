@@ -1,20 +1,20 @@
 <?php
 
-namespace AppBundle\Validator\Constraints;
+namespace AdminBundle\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 
-class LongitudeValidator extends ConstraintValidator
+class LatitudeValidator extends ConstraintValidator
 {
-    const REGEX = '/^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$/';
+    const REGEX = '/^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/';
 
     public function validate($value, Constraint $constraint)
     {
-        if (!$constraint instanceof Longitude) {
-            throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\Longitude');
+        if (!$constraint instanceof Latitude) {
+            throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\Latitude');
         }
 
 

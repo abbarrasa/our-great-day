@@ -1,6 +1,6 @@
 <?php
 
-namespace AdminBundle\Import;
+namespace AdminBundle\Import\Storage;
 
 
 interface ImportStorageInterface

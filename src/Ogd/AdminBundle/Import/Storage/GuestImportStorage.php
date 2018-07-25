@@ -5,7 +5,7 @@ namespace AdminBundle\Import\Storage;
 use AdminBundle\Entity\Guest;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 
-class GuestImportStorage implements ImportStorage
+class GuestImportStorage implements ImportStorageInterface
 {
     private $admin;
     

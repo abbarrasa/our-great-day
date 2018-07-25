@@ -21,7 +21,7 @@ services:
 
     ogd.app.menu.main:
         class:  Knp\Menu\MenuItem # the service definition requires setting the class
-        factory: ["@app.menu.builder", createMainMenu]
+        factory: ["@ogd.app.menu.builder", createMainMenu]
         arguments:
             - "@request_stack"
             - "@security.authorization_checker"

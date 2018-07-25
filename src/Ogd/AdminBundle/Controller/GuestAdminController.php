@@ -4,6 +4,8 @@ namespace AdminBundle\Controller;
 
 use AdminBundle\Form\Type\ImportType;
 use AdminBundle\Import\Importer;
+use AdminBundle\Import\Reader\GuestImportReader;
+use AdminBundle\Import\Storage\GuestImportStorage;
 use AppBundle\Service\FileUploader;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -52,7 +54,8 @@ class GuestAdminController extends Controller
                     $this->addFlash('sonata_flash_success', sprintf('(%s) Registros importados', $result->getCount()));
                     if ($result->hasErrors()) {
                         $this->addFlash('sonata_flash_error', sprintf(
-                            'No se ha podido importar: %s', $result->formattedErrors($this->get('twig'))
+                            'No se ha podido importar: %s',
+                            $result->formattedErrors($this->get('twig'), '@Admin/guest/partials/import-errors.html.twig')
                         ));
                         
                         return new RedirectResponse($this->admin->generateUrl('import'));

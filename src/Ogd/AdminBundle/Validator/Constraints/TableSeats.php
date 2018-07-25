@@ -10,8 +10,13 @@ use Symfony\Component\Validator\Constraint;
  * @Annotation
  * @Target({"CLASS", "ANNOTATION"})
  */
-class Table extends Constraint
+class TableSeats extends Constraint
 {
     public $numberSeats = 'table.number_seats.error';
-    public $freeSeats   = 'table.free_seats.error';    
+    public $freeSeats   = 'table.free_seats.error';
+
+    public function getTargets()
+    {
+        return self::CLASS_CONSTRAINT;
+    }
 }

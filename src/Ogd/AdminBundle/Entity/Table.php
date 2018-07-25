@@ -13,7 +13,7 @@ use AdminBundle\Validator\Constraints as AdminAsserts;
  * @ORM\Table(name="ogd_table")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\TableRepository")
  * @UniqueEntity("name")
- * @AdminAsserts\TableGuests()
+ * @AdminAsserts\TableSeats()
  * @ORM\HasLifecycleCallbacks()
  */
 class Table
@@ -209,4 +209,28 @@ class Table
     {
         $this->freeSeats = $this->numberSeats - $this->seats->count();
     }        
+
+    /**
+     * Set freeSeats.
+     *
+     * @param int|null $freeSeats
+     *
+     * @return Table
+     */
+    public function setFreeSeats($freeSeats = null)
+    {
+        $this->freeSeats = $freeSeats;
+
+        return $this;
+    }
+
+    /**
+     * Get freeSeats.
+     *
+     * @return int|null
+     */
+    public function getFreeSeats()
+    {
+        return $this->freeSeats;
+    }
 }

@@ -7,12 +7,12 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
-class TableValidator extends ConstraintValidator
+class TableSeatsValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        if (!$constraint instanceof Table) {
-            throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\Table');
+        if (!$constraint instanceof TableSeats) {
+            throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\TableSeats');
         }
 
         if (!$value instanceof Table) {
@@ -34,6 +34,4 @@ class TableValidator extends ConstraintValidator
                 ->addViolation();            
         }
     }
-
 }
-
