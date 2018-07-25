@@ -17,11 +17,10 @@ class Importer
     }
     
     //public function import(AbstractAdmin $admin, array $rows, array $headers = array())
-    public function import($fileName, $onlyRead = true)
+    public function import($fileName)
     {
-        $spreadsheet = $this->reader->open($fileName, $onlyRead);
+        $spreadsheet = $this->open($fileName);
         $data        = $this->reader->read($spreadsheet);
-        $data        = $this->storage->filter($data, $errors);
         $count       = $this->storage->store($data, $errors);
 
         return new ImportResult($count, $errors);
@@ -48,6 +47,20 @@ class Importer
         
         return new ImportResult($count, $errors);
     }
+    
+    public function open($fileName)
+    {
+        /* Identify the type of $fileName  */
+        $fileType = IOFactory::identify($fileName);
+        /* Create a new Reader of the type that has been identified  */
+        $reader = IOFactory::createReader($fileType);
+        /* Advise the Reader that we only want to load cell data  */
+        $reader->setReadDataOnly(true);
+        /* Load $fileName to a Spreadsheet Object  */
+        $spreadsheet = $reader->load($fileName);
+
+        return $spreadsheet;
+    }    
 
     /**
      * Get import storage class by an admin.
