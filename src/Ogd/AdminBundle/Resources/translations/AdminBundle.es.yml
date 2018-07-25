@@ -11,6 +11,7 @@ admin:
         tables: Mesas
         seats: Asientos
     import:
-        label: Importar
-        import_file: Archivo
-        import_submit: Importar
+        title: Importar
+        form:
+            file: Archivo
+            submit: Importar
