@@ -30,20 +30,24 @@ class GuestAdminController extends Controller
                 $fileName = $fileUploader->upload($file, false);
                 try {
                     /* Identify the type of $fileName  */
-                    $fileType = IOFactory::identify($fileName);
+                    //$fileType = IOFactory::identify($fileName);
                     /* Create a new Reader of the type that has been identified  */
-                    $reader = IOFactory::createReader($fileType);
+                    //$reader = IOFactory::createReader($fileType);
                     /* Advise the Reader that we only want to load cell data  */
-                    $reader->setReadDataOnly(true);
+                    //$reader->setReadDataOnly(true);
                     /* Load $fileName to a Spreadsheet Object  */
-                    $spreadsheet = $reader->load($fileName);
-                    $worksheet   = $spreadsheet->getActiveSheet();
-                    $rows        = $worksheet->toArray();
-                    $headers     = reset($rows);
-                    $rows        = array_slice($rows, 1, null, true);
+                    //$spreadsheet = $reader->load($fileName);
+                    //$worksheet   = $spreadsheet->getActiveSheet();
+                    //$rows        = $worksheet->toArray();
+                    //$headers     = reset($rows);
+                    //$rows        = array_slice($rows, 1, null, true);
                     //Filter repeated data                    
-                    $rows        = array_unique($rows, SORT_REGULAR);
-                    $result      = Importer::import($this->admin, $rows, $headers);
+                    //$rows        = array_unique($rows, SORT_REGULAR);
+                    //$result      = Importer::import($this->admin, $rows, $headers);
+                    $importReader  = new GuestImportReader();
+                    $importStorage = new GuestImportStorage($this->admin);
+                    $importer      = new Importer($importReader, $importStorage);
+                    $result        = $importer->import($fileName);
 
                     $this->addFlash('sonata_flash_success', sprintf('(%s) Registros importados', $result->getCount()));
                     if ($result->hasErrors()) {
