@@ -12,6 +12,7 @@ admin:
         seats: Asientos
     import:
         title: Importar
+        label: Importar
         form:
             file: Archivo
             submit: Importar
