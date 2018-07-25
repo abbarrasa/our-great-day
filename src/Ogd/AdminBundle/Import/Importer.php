@@ -16,8 +16,16 @@ class Importer
         $this->storage = $storage;
     }
     
-    public static function import(AbstractAdmin $admin, array $rows, array $headers = array())
+    //public function import(AbstractAdmin $admin, array $rows, array $headers = array())
+    public function import($fileName, $onlyRead = true)
     {
+        $spreadsheet = $this->reader->open($fileName, $onlyRead);
+        $data        = $this->reader->read($spreadsheet);
+        $data        = $this->storage->filter($data, $errors);
+        $count       = $this->storage->store($data, $errors);
+
+        return new ImportResult($count, $errors);
+        
         $storage = self::getStorage($admin);
         $matrix  = $storage->filter(self::buildMatrix($headers, $rows), $errors);
         $count   = 0;
