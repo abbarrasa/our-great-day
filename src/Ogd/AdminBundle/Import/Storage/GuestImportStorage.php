@@ -13,8 +13,20 @@ class GuestImportStorage implements ImportStorage
     {
         $this->admin = $admin;
     }
-    
-    public function filter(array $rows, array &$errors = null)
+
+    public function store($data, array &$errors = null)
+    {
+        $count = 0;
+        $data  = $this->filter($data, $errors);
+        foreach($data as $row) {
+            $this->updateRow($row);
+            $count++;
+        }
+        
+        return $count;
+    }
+        
+    protected function filter(array $rows, array &$errors = null)
     {
         $visited = array();
         foreach($rows as $number => $row) {
@@ -43,17 +55,8 @@ class GuestImportStorage implements ImportStorage
         
         return $visited;        
     }
-
-    public function store($data, array &$errors = null)
-    {
-        $count   = 0;
-        foreach($data as $row) {
-            $this->updateRow($row);
-            $count++;
-        }        
-    }
     
-    public function updatRow($row)
+    protected function updatRow($row)
     {
         $object = $this->getObject($row['firstname'], $row['lastname'], $row['email']);
         foreach($row as $property => $value) {
