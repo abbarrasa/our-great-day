@@ -44,7 +44,16 @@ class GuestImportStorage implements ImportStorage
         return $visited;        
     }
 
-    public function update(array $row)
+    public function store($data, array &$errors = null)
+    {
+        $count   = 0;
+        foreach($data as $row) {
+            $this->updateRow($row);
+            $count++;
+        }        
+    }
+    
+    public function updatRow($row)
     {
         $object = $this->getObject($row['firstname'], $row['lastname'], $row['email']);
         foreach($row as $property => $value) {
