@@ -45,7 +45,7 @@ class DefaultController extends Controller
                 $em->flush();
 
                 //Send notification
-                $this->get('app.mailer')->sendEnquiryNotificationMessage($enquiry);
+                $this->get('ogd.app.mailer')->sendEnquiryNotificationMessage($enquiry);
 
                 return new JsonResponse(null, $status);
             } else {
