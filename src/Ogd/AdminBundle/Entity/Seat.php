@@ -4,12 +4,15 @@ namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Seat
  *
  * @ORM\Table(name="ogd_seat")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\SeatRepository")
+ * @UniqueEntity("id_guest")
+ * @UniqueEntity(fields={"firstname", "lastname"}) 
  * @ORM\HasLifecycleCallbacks()
  */
 class Seat
