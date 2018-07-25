@@ -10,7 +10,7 @@ admin:
         comments: Comentarios
         tables: Mesas
         seats: Asientos
-    guest:
-        import: Importar
+    import:
+        label: Importar
         import_file: Archivo
         import_submit: Importar
