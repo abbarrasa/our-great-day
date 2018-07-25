@@ -1,12 +1,14 @@
 <?php
 
-namespace AdminBundle\Import\Storage;
+namespace AdminBundle\Import;
 
 
-interface ImportStorage
+interface ImportStorageInterface
 {
-    public function filter(array $rows, array &$errors = null);
+    public function filter($data, array &$errors = null);
     
-    public function update(array $row);    
+    public function store($data, array &$errors = null);
+    
+    public function updateRow(array $row);
     
 }
