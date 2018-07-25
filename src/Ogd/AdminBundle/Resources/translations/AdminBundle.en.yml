@@ -12,6 +12,6 @@ admin:
         seats: Seats
     import:
         title: Import
-        form
+        form:
             file: File
             submit: Import
