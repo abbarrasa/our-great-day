@@ -9,7 +9,7 @@ admin:
         posts: Novedades
         comments: Comentarios
         tables: Mesas
-        Seats: Asientos
+        seats: Asientos
     guest:
         import: Importar
         import_file: Archivo
