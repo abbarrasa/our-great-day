@@ -75,7 +75,7 @@ class GuestController extends Controller
             $em->persist($guest);
             $em->flush();
             
-            $helper = $this->get('app.helper.flash_message');
+            $helper = $this->get('ogd.app.helper.flash_message');
             $this->addFlash('success', $helper->getFlashMessage(
                 'success', 'frontend.success', 'frontend.guest.success', [], 'AppBundle'
             ));
@@ -112,7 +112,7 @@ class GuestController extends Controller
             $em->persist($guest);
             $em->flush();
 
-            $helper = $this->get('app.helper.flash_message');
+            $helper = $this->get('ogd.app.helper.flash_message');
             $this->addFlash('success', $helper->getFlashMessage(
                 'success', 'frontend.success', 'frontend.guest.set_user.success', [], 'AppBundle'
             ));
@@ -144,10 +144,10 @@ class GuestController extends Controller
             $em->flush();
 
             //Send notification
-            //$this->get('app.mailer')->sendGreetingNotificationMessage($greeting);
+            //$this->get('ogd.app.mailer')->sendGreetingNotificationMessage($greeting);
 
             //Flash success message
-            $helper = $this->get('app.helper.flash_message');
+            $helper = $this->get('ogd.app.helper.flash_message');
             $this->addFlash('success', $helper->getFlashMessage(
                 'success', 'frontend.success', 'frontend.guestbook.success', [], 'AppBundle'
             ));
@@ -188,7 +188,7 @@ class GuestController extends Controller
         $em->persist($greeting);
         $em->flush();
         
-        $helper = $this->get('app.helper.flash_message');
+        $helper = $this->get('ogd.app.helper.flash_message');
         $this->addFlash('success', $helper->getFlashMessage(
             'success', 'frontend.success', 'frontend.guestbook.likes.success', ['%author%' => $greeting->getName()], 'AppBundle'
         ));
@@ -231,7 +231,7 @@ class GuestController extends Controller
                 $em->flush();
                 
                 //Send notification
-                //$this->get('app.mailer')->sendCommentNotificationMessage($comment);                
+                //$this->get('ogd.app.mailer')->sendCommentNotificationMessage($comment);                
 
                 return new JsonResponse([
                     'view' => $this->renderView('@App/guest/comments.html.twig', [
