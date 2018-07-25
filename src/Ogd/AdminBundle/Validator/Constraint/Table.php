@@ -12,5 +12,6 @@ use Symfony\Component\Validator\Constraint;
  */
 class Table extends Constraint
 {
-    public $message = 'table.number_seats.error';
+    public $numberSeats = 'table.number_seats.error';
+    public $freeSeats   = 'table.free_seats.error';    
 }
