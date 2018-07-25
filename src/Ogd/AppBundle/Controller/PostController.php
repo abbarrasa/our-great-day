@@ -74,9 +74,9 @@ class PostController extends Controller
             $em->flush();
             
             //Send notification
-            //$this->get('app.mailer')->sendCommentNotificationMessage($comment);             
+            //$this->get('ogd.app.mailer')->sendCommentNotificationMessage($comment);             
 
-            $helper = $this->get('app.helper.flash_message');
+            $helper = $this->get('ogd.app.helper.flash_message');
             $this->addFlash('success', $helper->getFlashMessage(
                 'success', 'frontend.success', 'frontend.post.comment.success', [], 'AppBundle'
             ));
@@ -108,7 +108,7 @@ class PostController extends Controller
         $em->persist($post);
         $em->flush();
 
-        $helper = $this->get('app.helper.flash_message');
+        $helper = $this->get('ogd.app.helper.flash_message');
         $this->addFlash('success', $helper->getFlashMessage(
             'success',
             'frontend.success',
