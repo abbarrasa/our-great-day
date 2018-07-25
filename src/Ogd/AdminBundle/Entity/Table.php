@@ -4,12 +4,14 @@ namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Table
  *
  * @ORM\Table(name="ogd_table")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\TableRepository")
+ * @UniqueEntity("name") 
  * @ORM\HasLifecycleCallbacks()
  */
 class Table
