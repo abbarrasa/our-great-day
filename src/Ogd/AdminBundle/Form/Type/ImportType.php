@@ -14,7 +14,7 @@ class ImportType extends AbstractType
     {
         $builder
             ->add('file', FileType::class, [
-                'label' => 'admin.guest.import_file',
+                'label' => 'admin.import.form.file',
             ])
         ;
     }
