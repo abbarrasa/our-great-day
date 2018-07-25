@@ -67,7 +67,7 @@ class Importer
      * @param AbstractAdmin $admin
      * @return ImportStorage
      */
-    protected function getStorage(AbstractAdmin $admin)
+  /*  protected function getStorage(AbstractAdmin $admin)
     {
         $namespace = __NAMESPACE__ . '\\Storage';
         $className  = $namespace . '\\' . self::classToTableName($admin->getClass()) . 'ImportStorage';
@@ -96,5 +96,5 @@ class Importer
         }
 
         return $matrix;
-    }
+    }*/
 }
