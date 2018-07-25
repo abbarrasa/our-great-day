@@ -1,5 +1,5 @@
 services:
-    admin.guest:
+    ogd.admin.guest:
         class: AdminBundle\Admin\GuestAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin.group.administration, label: admin.model.guests }
@@ -11,7 +11,7 @@ services:
             - [ setTranslationDomain, [AdminBundle]]
         public: true
 
-    admin.greetings:
+    ogd.admin.greetings:
         class: AdminBundle\Admin\GreetingAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin.group.administration, label: admin.model.greetings }
@@ -23,7 +23,7 @@ services:
             - [ setTranslationDomain, [AdminBundle]]
         public: true
 
-    admin.post:
+    ogd.admin.post:
         class: AdminBundle\Admin\PostAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin.group.administration, label: admin.model.posts }
@@ -35,7 +35,7 @@ services:
             - [ setTranslationDomain, [AdminBundle]]
         public: true
 
-    admin.comment:
+    ogd.admin.comment:
         class: AdminBundle\Admin\CommentAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin.group.administration, label: admin.model.comments }
@@ -48,7 +48,7 @@ services:
             - [ setTranslationDomain, [AdminBundle]]
         public: true
 
-    admin.location:
+    ogd.admin.location:
         class: AdminBundle\Admin\LocationAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin.group.settings, label: admin.model.locations }
@@ -60,7 +60,7 @@ services:
             - [ setTranslationDomain, [AdminBundle]]
         public: true
 
-    admin.table:
+    ogd.admin.table:
         class: AdminBundle\Admin\TableAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin.group.administration, label: admin.model.tables }
@@ -72,7 +72,7 @@ services:
             - [ setTranslationDomain, [AdminBundle]]
         public: true
 
-    admin.seat:
+    ogd.admin.seat:
         class: AdminBundle\Admin\SeatAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin.group.administration, label: admin.model.seats }
