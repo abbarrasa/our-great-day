@@ -11,6 +11,7 @@ admin:
         tables: Tables
         seats: Seats
     import:
-        label: Import
-        import_file: File
-        import_submit: Import
+        title: Import
+        form
+            file: File
+            submit: Import
