@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="ogd_seat")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\SeatRepository")
- * @UniqueEntity("id_guest")
+ * @UniqueEntity("guest")
  * @UniqueEntity(fields={"firstname", "lastname"}) 
  * @ORM\HasLifecycleCallbacks()
  */

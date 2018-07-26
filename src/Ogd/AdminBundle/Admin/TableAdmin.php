@@ -31,12 +31,6 @@ class TableAdmin extends AbstractAdmin
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $builder = $formMapper
-            ->getFormBuilder()
-            ->getFormFactory()
-            ->createBuilder(SeatType::class)
-        ;
-
         $formMapper
             ->with('Table')
             ->add('name', 'text', ['label' => 'Name'])
@@ -50,16 +44,16 @@ class TableAdmin extends AbstractAdmin
                 'label' => false,
                 'type_options' => [
                     // Prevents the "Delete" option from being displayed
-                    'delete' => false,
-                    'delete_options' => [
-                        // You may otherwise choose to put the field but hide it
-                        'type'         => HiddenType::class,
-                        // In that case, you need to fill in the options as well
-                        'type_options' => [
-                            'mapped'   => false,
-                            'required' => false,
-                        ]
-                    ]
+                    'delete' => true,
+//                    'delete_options' => [
+//                        // You may otherwise choose to put the field but hide it
+//                        'type'         => HiddenType::class,
+//                        // In that case, you need to fill in the options as well
+//                        'type_options' => [
+//                            'mapped'   => false,
+//                            'required' => false,
+//                        ]
+//                    ]
                 ]
             ], [
 //                'by_reference' => false, // Use this because of reasons
@@ -68,10 +62,9 @@ class TableAdmin extends AbstractAdmin
 //                'prototype' => true, // True if you want to use a custom form type
 //                'entry_type' => ScoreType::class, // Form type for the Entity that is being attached to the object
 
-                'edit' => 'standard',
+                'edit' => 'inline',
                 'inline' => 'table',
-                'sortable' => 'position',
-                'template' => '@Admin/table/form_field_seats.html.twig',
+                'sortable' => 'position'
             ])
             ->end()
         ;

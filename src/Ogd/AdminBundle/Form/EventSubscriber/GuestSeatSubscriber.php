@@ -29,23 +29,13 @@ class GuestSeatSubscriber implements EventSubscriberInterface
     public function onPreSubmit(FormEvent $event)
     {
         $data = $event->getData();
-        $form = $event->getForm();
-
-        $firstname = isset($data['firstname']) ? $data['firstname'] : null;
-        $lastname  = isset($data['lastname']) ? $data['lastname'] : null;
         if (isset($data['guest'])) {
-            $guest = $this->modelManager->find(Guest::class, $data['guest']);
+            if (($guest = $this->modelManager->find(Guest::class, $data['guest'])) !== null) {
+                $data['firstname'] = $guest->getFirstname();
+                $data['lastname'] = $guest->getLastname();
+            }
         }
 
-        $form
-            ->add('firstname', 'text', [
-                'label' => 'Name',
-                'data'  => isset($guest) ? $guest->getFirstname() : $firstname
-            ])
-            ->add('lastname', 'text', [
-                'label' => 'Last name',
-                'data'  => isset($guest) ? $guest->getLastname() : $lastname
-            ])
-        ;
+        $event->setData($data);
     }
 }

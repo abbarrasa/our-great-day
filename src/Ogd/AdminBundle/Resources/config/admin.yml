@@ -1,3 +1,6 @@
+parameters:
+    ogd.admin.seat.edit.template: "@@SonataAdmin/CRUD/edit.html.twig"
+
 services:
     ogd.admin.guest:
         class: AdminBundle\Admin\GuestAdmin
@@ -70,6 +73,7 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [AdminBundle]]
+            - [ setTemplate, [edit, "@@Admin/seat/edit.html.twig"]]
         public: true
 
     ogd.admin.seat:
@@ -82,5 +86,4 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [AdminBundle]]
-#            - [ setTemplate, [edit, '@Admin/seat/edit.html.twig']]
         public: true
