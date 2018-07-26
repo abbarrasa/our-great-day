@@ -71,6 +71,7 @@ class TableAdmin extends AbstractAdmin
                 'edit' => 'standard',
                 'inline' => 'table',
                 'sortable' => 'position',
+                'template' => '@Admin/table/form_field_seats.html.twig',
             ])
             ->end()
         ;
@@ -88,6 +89,15 @@ class TableAdmin extends AbstractAdmin
             ->add('createdAt')
         ;
     }
+    
+//    public function getFormTheme()
+//    {
+//        return array_merge(
+//            parent::getFormTheme(),
+//            array('@Admin/table/form_field_seats.html.twig')
+//        );
+//    }
+
 
 //    public function prePersist($table)
 //    {
