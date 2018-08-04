@@ -8,7 +8,6 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\CoreBundle\Form\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class TableAdmin extends AbstractAdmin
 {
@@ -36,7 +35,7 @@ class TableAdmin extends AbstractAdmin
             ->add('name', 'text', ['label' => 'Name'])
             ->add('numberSeats', 'choice', [
                 'label' => 'Number of seats',
-                'choices' => array_combine(range(1, 15), range(1, 15))
+                'choices' => array_combine(range(0, 15), range(0, 15))
             ])
             ->end()
             ->with('Guests')
@@ -91,30 +90,20 @@ class TableAdmin extends AbstractAdmin
 //        );
 //    }
 
-
 //    public function prePersist($table)
 //    {
-//        foreach ($table->getSeats() as $seat) {
-//            $seat->setTable($table);
-//        }
+//        $this->setSeatRelationships($table);
 //    }
 //
 //    public function preUpdate($table)
+//    {
+//        $this->setSeatRelationships($table);
+//    }
+//
+//    private function setSeatRelationships($table)
 //    {
 //        foreach ($table->getSeats() as $seat) {
 //            $seat->setTable($table);
 //        }
 //    }
 }
-
-//admin.table:
-//        class: AdminBundle\Admin\TableAdmin
-//        tags:
-//            - { name: sonata.admin, manager_type: orm, group: admin.group.administration, label: admin.model.tables }
-//        arguments:
-//            - ~
-//            - AdminBundle\Entity\Table
-//            - ~
-//            calls:
-//            - [ setTranslationDomain, [AdminBundle]]
-//        public: true

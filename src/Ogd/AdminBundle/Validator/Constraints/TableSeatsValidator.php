@@ -19,19 +19,10 @@ class TableSeatsValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, Table::class);
         }
 
-        if ($value->getNumberSeats() > $value->getSeats()->count()) {
-            $this->context->buildViolation($constraint->numberSeats)
+        if ($value->getSeats()->count() > $value->getNumberSeats()) {
+            $this->context->buildViolation($constraint->message)
                 ->atPath('numberSeats')
                 ->addViolation();
-        }
-        
-        if (
-            $value->getFreeSeats() > $value->getNumberSeats() ||
-            $value->getFreeSeats() !== ($value->getNumberSeats() - $value->getSeats()->count())
-        ) {
-            $this->context->buildViolation($constraint->freeSeats)
-                ->atPath('freeSeats')
-                ->addViolation();            
         }
     }
 }

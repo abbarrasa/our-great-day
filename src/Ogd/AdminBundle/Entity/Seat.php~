@@ -5,14 +5,16 @@ namespace AdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use AdminBundle\Validator\Constraints as AdminAsserts;
 
 /**
  * Seat
  *
  * @ORM\Table(name="ogd_seat")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\SeatRepository")
- * @UniqueEntity("id_guest")
- * @UniqueEntity(fields={"firstname", "lastname"}) 
+ * @UniqueEntity("guest")
+ * @UniqueEntity(fields={"firstname", "lastname"})
+ * @AdminAsserts\SeatGuest()
  * @ORM\HasLifecycleCallbacks()
  */
 class Seat
@@ -31,7 +33,6 @@ class Seat
      *
      * @ORM\Column(name="firstname", type="string", length=255)
      * @Assert\Length(min=2, max=255)
-     * @Assert\NotBlank()
      */
     private $firstname;
 
@@ -40,7 +41,6 @@ class Seat
      *
      * @ORM\Column(name="lastname", type="string", length=255)
      * @Assert\Length(min=2, max=255)
-     * @Assert\NotBlank()
      */
     private $lastname;
 
@@ -51,7 +51,7 @@ class Seat
     private $guest;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Table", inversedBy="seats")
+     * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Table", inversedBy="seats", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="id_table", referencedColumnName="id")
      */
     private $table;

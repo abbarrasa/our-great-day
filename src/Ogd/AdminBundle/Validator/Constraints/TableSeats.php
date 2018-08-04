@@ -5,15 +5,14 @@ namespace AdminBundle\Validator\Constraints;
 use Symfony\Component\Validator\Constraint;
 
 /**
- * Class Table
+ * Class TableSeats
  *
  * @Annotation
  * @Target({"CLASS", "ANNOTATION"})
  */
 class TableSeats extends Constraint
 {
-    public $numberSeats = 'table.number_seats.error';
-    public $freeSeats   = 'table.free_seats.error';
+    public $message = 'table.number_seats.error';
 
     public function getTargets()
     {

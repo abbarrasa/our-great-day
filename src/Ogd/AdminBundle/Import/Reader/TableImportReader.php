@@ -4,7 +4,7 @@ namespace AdminBundle\Import\Reader;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
-class GuestImportReader implements ImportReaderInterface
+class TableImportReader implements ImportReaderInterface
 {
     public function read(Spreadsheet $spreadsheet, array $options = array())
     {

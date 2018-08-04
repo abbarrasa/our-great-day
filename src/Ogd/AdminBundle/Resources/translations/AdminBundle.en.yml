@@ -12,7 +12,7 @@ admin:
         seats: Seats
     import:
         title: Import
-        label: Import
+        action: Import
         form:
             file: File
             submit: Import

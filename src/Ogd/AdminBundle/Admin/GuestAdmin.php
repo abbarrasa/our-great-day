@@ -108,7 +108,7 @@ class GuestAdmin extends AbstractAdmin
     {
         $list = parent::configureActionButtons($action, $object);
 
-        $list['import']['template'] =  '@Admin/guest/partials/import-button.html.twig';
+        $list['import']['template'] =  '@Admin/partials/import-button.html.twig';
 
         return $list;
     }
@@ -118,7 +118,7 @@ class GuestAdmin extends AbstractAdmin
         $actions = parent::getDashboardActions();
 
         $actions['import'] = [
-            'label' => 'admin.guest.import',
+            'label' => 'admin.import.action',
             'translation_domain' => 'AdminBundle',
             'url' => $this->generateUrl('import'),
             'icon' => 'level-up',
