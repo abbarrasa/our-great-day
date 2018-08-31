@@ -6,16 +6,41 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class TableImportReader implements ImportReaderInterface
 {
+    const TABLE_SHEET_NAMES = ['MESAS', 'TABLES'];
+    const SEAT_SHEET_NAMES = ['ASIENTOS', 'INVITADOS', 'SEATS', 'GUESTS'];
+    
     public function read(Spreadsheet $spreadsheet, array $options = array())
     {
-        $worksheet   = $spreadsheet->getActiveSheet();
-        $rows        = $worksheet->toArray();
+        $tablesSheet = $this->getSheetByName(self::TABLE_SHEET_NAMES, $spreadsheet);
+        $seatsSheet  = $this->getSheetByName(self::SEAT_SHEET_NAMES, $spreadsheet);
+        
+        return [
+            $tablesSheet !== null ? $this->readSheet($tablesSheet) : [],
+            $seatsSheet !== null ? $this->readSheet($seatsSheet) : []
+        ];
+    }
+    
+    private function getSheetByName(array $needle, Spreadsheet $spreadsheet)
+    {
+        $sheetNames = array_map(function($name) { return strtoupper($name); }, $spreadsheet->getSheetNames());
+        foreach($needle as $name) {
+            if (($index = array_search($name, $sheetNames)) !== false) {
+                return $spreadsheet->getSheet($index);
+            }
+        }
+        
+        return null;
+    }
+    
+    private function readSheet($sheet)
+    {
+        $rows        = $sheet->toArray();
         $headers     = reset($rows);
         $rows        = array_slice($rows, 1, null, true);
         //Filter repeated data
         $rows        = array_unique($rows, SORT_REGULAR);
 
-        return $this->buildMatrix($headers, $rows);
+        return $this->buildMatrix($headers, $rows);        
     }
 
     private function buildMatrix($headers, $rows)
@@ -30,5 +55,5 @@ class TableImportReader implements ImportReaderInterface
         }
 
         return $matrix;
-    }
+    }    
 }
