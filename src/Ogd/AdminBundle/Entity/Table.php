@@ -15,6 +15,7 @@ use AdminBundle\Validator\Constraints as AdminAsserts;
  * @UniqueEntity("name")
  * @AdminAsserts\TableSeats()
  * @ORM\HasLifecycleCallbacks()
+ * @Vich\Uploadable 
  */
 class Table
 {
@@ -43,6 +44,13 @@ class Table
      * @Assert\Length(max=255)
      */
     private $subtitle;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=255)
+     */
+    private $picture;    
 
     /**
      * @var integer
@@ -62,6 +70,14 @@ class Table
      * @ORM\OneToMany(targetEntity="AdminBundle\Entity\Seat", mappedBy="table", cascade={"persist"})
      */
     private $seats;
+    
+    /**
+     * @var File
+     *
+     * @Vich\UploadableField(mapping="table_picture", fileNameProperty="picture")
+     * @Assert\Image(maxWidth=615, maxHeight=369, maxSize="1M")
+     */
+    private $pictureFile;    
 
     /**
      * Constructor
@@ -208,5 +224,37 @@ class Table
     public function getFreeSeats()
     {
         return $this->numberSeats - $this->seats->count();
+    }
+    
+    /**
+     * Set pictureFile
+     *
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|null $file
+     */
+    public function setPictureFile(File $file = null)
+    {
+        $this->pictureFile = $file;
+
+        if ($file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    /**
+     * Get coverPictureFile
+     *
+     * @return null|File
+     */
+    public function getPictureFile()
+    {
+        return $this->pictureFile;
     }
 }
