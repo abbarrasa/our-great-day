@@ -22,7 +22,7 @@ class SeatGuestValidator extends ConstraintValidator
         $name = $value->getName();
 
         if ($value->getGuest() === null && empty($name)) {
-            $this->context->buildViolation($constraint->requiredMessage)
+            $this->context->buildViolation($constraint->message)
                 ->atPath('guest')
                 ->addViolation();
         }
