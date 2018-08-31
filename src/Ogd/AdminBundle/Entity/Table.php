@@ -51,7 +51,7 @@ class Table
     private $createdAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="AdminBundle\Entity\Seat", mappedBy="table")
+     * @ORM\OneToMany(targetEntity="AdminBundle\Entity\Seat", mappedBy="table", cascade={"persist"})
      */
     private $seats;
 
