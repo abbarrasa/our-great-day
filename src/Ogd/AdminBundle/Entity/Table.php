@@ -30,11 +30,19 @@ class Table
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(max=255)
      */
-    private $name;
+    private $title;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="subtitle", type="string", length=255, nullable=true)
+     * @Assert\Length(max=255)
+     */
+    private $subtitle;
 
     /**
      * @var integer
