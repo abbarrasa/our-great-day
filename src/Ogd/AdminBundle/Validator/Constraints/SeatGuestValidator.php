@@ -19,24 +19,11 @@ class SeatGuestValidator extends ConstraintValidator
             throw new UnexpectedTypeException($value, Seat::class);
         }
 
-        $firstname = $value->getFirstname();
-        $lastname  = $value->getLastname();
+        $name = $value->getName();
 
-        if ($value->getGuest() === null && empty($firstname) && empty($lastname)) {
+        if ($value->getGuest() === null && empty($name)) {
             $this->context->buildViolation($constraint->requiredMessage)
                 ->atPath('guest')
-                ->addViolation();
-        }
-
-        if (!empty($firstname) && empty($lastname)) {
-            $this->context->buildViolation($constraint->lastnameMessage)
-                ->atPath('lastname')
-                ->addViolation();
-        }
-
-        if (empty($firstname) && !empty($lastname)) {
-            $this->context->buildViolation($constraint->firstnameMessage)
-                ->atPath('firstname')
                 ->addViolation();
         }
     }
