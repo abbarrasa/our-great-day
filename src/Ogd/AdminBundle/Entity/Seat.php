@@ -31,18 +31,10 @@ class Seat
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      * @Assert\Length(min=2, max=255)
      */
-    private $firstname;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="lastname", type="string", length=255)
-     * @Assert\Length(min=2, max=255)
-     */
-    private $lastname;
+    private $name;
 
     /**
      * @ORM\OneToOne(targetEntity="AdminBundle\Entity\Guest", inversedBy="seat")
