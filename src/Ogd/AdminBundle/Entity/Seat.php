@@ -51,7 +51,7 @@ class Seat
     private $guest;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Table", inversedBy="seats", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Table", inversedBy="seats")
      * @ORM\JoinColumn(name="id_table", referencedColumnName="id")
      */
     private $table;
