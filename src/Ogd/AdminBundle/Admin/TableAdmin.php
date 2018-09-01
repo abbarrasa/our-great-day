@@ -90,20 +90,20 @@ class TableAdmin extends AbstractAdmin
 //        );
 //    }
 
-//    public function prePersist($table)
-//    {
-//        $this->setSeatRelationships($table);
-//    }
-//
-//    public function preUpdate($table)
-//    {
-//        $this->setSeatRelationships($table);
-//    }
-//
-//    private function setSeatRelationships($table)
-//    {
-//        foreach ($table->getSeats() as $seat) {
-//            $seat->setTable($table);
-//        }
-//    }
+    public function prePersist($table)
+    {
+        $this->setSeatRelationships($table);
+    }
+
+    public function preUpdate($table)
+    {
+        $this->setSeatRelationships($table);
+    }
+
+    private function setSeatRelationships($table)
+    {
+        foreach ($table->getSeats() as $seat) {
+            $seat->setTable($table);
+        }
+    }
 }
