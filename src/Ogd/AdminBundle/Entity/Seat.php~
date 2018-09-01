@@ -13,7 +13,6 @@ use AdminBundle\Validator\Constraints as AdminAsserts;
  * @ORM\Table(name="ogd_seat")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\SeatRepository")
  * @UniqueEntity("guest")
- * @UniqueEntity(fields={"firstname", "lastname"})
  * @AdminAsserts\SeatGuest()
  * @ORM\HasLifecycleCallbacks()
  */
@@ -31,18 +30,10 @@ class Seat
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      * @Assert\Length(min=2, max=255)
      */
-    private $firstname;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="lastname", type="string", length=255)
-     * @Assert\Length(min=2, max=255)
-     */
-    private $lastname;
+    private $name;
 
     /**
      * @ORM\OneToOne(targetEntity="AdminBundle\Entity\Guest", inversedBy="seat")
@@ -51,11 +42,10 @@ class Seat
     private $guest;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Table", inversedBy="seats", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Table", inversedBy="seats")
      * @ORM\JoinColumn(name="id_table", referencedColumnName="id")
      */
     private $table;
-    
 
     /**
      * Get id.
@@ -68,51 +58,27 @@ class Seat
     }
 
     /**
-     * Set firstname.
+     * Set name.
      *
-     * @param string $firstname
+     * @param string $name
      *
      * @return Seat
      */
-    public function setFirstname($firstname)
+    public function setName($name)
     {
-        $this->firstname = $firstname;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get firstname.
+     * Get name.
      *
      * @return string
      */
-    public function getFirstname()
+    public function getName()
     {
-        return $this->firstname;
-    }
-
-    /**
-     * Set lastname.
-     *
-     * @param string $lastname
-     *
-     * @return Seat
-     */
-    public function setLastname($lastname)
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    /**
-     * Get lastname.
-     *
-     * @return string
-     */
-    public function getLastname()
-    {
-        return $this->lastname;
+        return $this->name;
     }
 
     /**

@@ -6,13 +6,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use AdminBundle\Validator\Constraints as AdminAsserts;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Table
  *
  * @ORM\Table(name="ogd_table")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\TableRepository")
- * @UniqueEntity("name")
+ * @UniqueEntity("title")
+ * @UniqueEntity("subtitle")
  * @AdminAsserts\TableSeats()
  * @ORM\HasLifecycleCallbacks()
  * @Vich\Uploadable 
@@ -48,7 +51,7 @@ class Table
     /**
      * @var string
      *
-     * @ORM\Column(name="picture", type="string", length=255)
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
      */
     private $picture;    
 
@@ -67,6 +70,13 @@ class Table
     private $createdAt;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
      * @ORM\OneToMany(targetEntity="AdminBundle\Entity\Seat", mappedBy="table", cascade={"persist"})
      */
     private $seats;
@@ -75,7 +85,7 @@ class Table
      * @var File
      *
      * @Vich\UploadableField(mapping="table_picture", fileNameProperty="picture")
-     * @Assert\Image(maxWidth=615, maxHeight=369, maxSize="1M")
+     * @Assert\Image(maxWidth=600, maxHeight=600, maxSize="1M")
      */
     private $pictureFile;    
 
@@ -96,30 +106,6 @@ class Table
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name.
-     *
-     * @param string $name
-     *
-     * @return Table
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**
@@ -171,6 +157,30 @@ class Table
     }
 
     /**
+     * Set updatedAt.
+     *
+     * @param \DateTime|null $updatedAt
+     *
+     * @return Table
+     */
+    public function setUpdatedAt($updatedAt = null)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt.
+     *
+     * @return \DateTime|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
      * Add seat.
      *
      * @param \AdminBundle\Entity\Seat $seat
@@ -206,16 +216,6 @@ class Table
         return $this->seats;
     }
     
-    /**
-     * Set createdAt and freeSeats values before persist
-     *
-     * @ORM\PrePersist
-     */
-    public function prePersist()
-    {
-        $this->setCreatedAt(new \DateTime());
-    }
-
     /**
      * Get freeSeats.
      *
@@ -256,5 +256,97 @@ class Table
     public function getPictureFile()
     {
         return $this->pictureFile;
+    }
+
+    /**
+     * Set title.
+     *
+     * @param string $title
+     *
+     * @return Table
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title.
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set subtitle.
+     *
+     * @param string|null $subtitle
+     *
+     * @return Table
+     */
+    public function setSubtitle($subtitle = null)
+    {
+        $this->subtitle = $subtitle;
+
+        return $this;
+    }
+
+    /**
+     * Get subtitle.
+     *
+     * @return string|null
+     */
+    public function getSubtitle()
+    {
+        return $this->subtitle;
+    }
+
+    /**
+     * Set picture.
+     *
+     * @param string $picture
+     *
+     * @return Table
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture.
+     *
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set createdAt value before persist
+     *
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setCreatedAt(new \DateTime('now'));
+    }
+
+    /**
+     * Set updatedAt value before persist
+     *
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate()
+    {
+        $this->setUpdatedAt(new \DateTime('now'));
     }
 }

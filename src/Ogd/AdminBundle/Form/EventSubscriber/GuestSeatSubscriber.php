@@ -31,8 +31,7 @@ class GuestSeatSubscriber implements EventSubscriberInterface
         $data = $event->getData();
         if (isset($data['guest'])) {
             if (($guest = $this->modelManager->find(Guest::class, $data['guest'])) !== null) {
-                $data['firstname'] = $guest->getFirstname();
-                $data['lastname'] = $guest->getLastname();
+                $data['name'] = $guest->getFirstname() . ' ' . $guest->getLastname();
             }
         }
 

@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\CoreBundle\Form\Type\CollectionType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class TableAdmin extends AbstractAdmin
 {
@@ -20,9 +21,10 @@ class TableAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
+            ->add('title')
+            ->add('subtitle')
             ->add('numberSeats')
-            ->add('seats')
+//            ->add('seats')
             ->add('createdAt')
         ;
     }
@@ -32,7 +34,15 @@ class TableAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Table')
-            ->add('name', 'text', ['label' => 'Name'])
+            ->add('title', 'text', ['label' => 'Title'])
+            ->add('subtitle', 'text', ['label' => 'Subtitle'])
+            ->add('pictureFile', VichImageType::class, [
+                'label' => 'Picture',
+                'required' => false,
+                'allow_delete' => true,
+                'download_uri' => false,
+                'image_uri' => true
+            ])
             ->add('numberSeats', 'choice', [
                 'label' => 'Number of seats',
                 'choices' => array_combine(range(0, 15), range(0, 15))
@@ -76,20 +86,15 @@ class TableAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name')
+            ->addIdentifier('title')
+            ->addIdentifier('subtitle')
+            ->add('pictureFile', null, ['template' => '@Admin/partials/list_image.html.twig'])
             ->add('numberSeats')
             ->add('createdAt')
+            ->add('updatedAt')
         ;
     }
     
-//    public function getFormTheme()
-//    {
-//        return array_merge(
-//            parent::getFormTheme(),
-//            array('@Admin/table/form_field_seats.html.twig')
-//        );
-//    }
-
     public function prePersist($table)
     {
         $this->setSeatRelationships($table);

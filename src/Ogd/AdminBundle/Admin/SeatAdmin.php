@@ -21,10 +21,9 @@ class SeatAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('firstname')
-            ->add('lastname')
-            ->add('guest')
-            ->add('table')
+            ->add('name')
+            //->add('guest')
+            //->add('table')
         ;
     }
 
@@ -55,8 +54,7 @@ class SeatAdmin extends AbstractAdmin
             ], [
                 'help' => 'Seleccione un invitado o introduzca su nombre y apellidos'
             ])
-            ->add('firstname', 'text', ['label' => 'Name', 'required' => false])
-            ->add('lastname', 'text', ['label' => 'Last name', 'required' => false])
+            ->add('name', 'text', ['label' => 'Name', 'required' => false])
             ->getFormBuilder()->addEventSubscriber(new GuestSeatSubscriber($this->modelManager))
         ;
     }
@@ -67,11 +65,11 @@ class SeatAdmin extends AbstractAdmin
      */
     protected function configureListFields(ListMapper $listMapper)
     {
-//        $listMapper
-//            ->addIdentifier('name')
-//            ->add('numberSeats')
-//            ->add('createdAt')
-//        ;
+        $listMapper
+            ->addIdentifier('name')
+            //->add('table')
+            ->add('createdAt')
+        ;
     }
 
 //    public function getTemplate($name)

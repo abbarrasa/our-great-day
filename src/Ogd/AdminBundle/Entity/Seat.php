@@ -13,7 +13,6 @@ use AdminBundle\Validator\Constraints as AdminAsserts;
  * @ORM\Table(name="ogd_seat")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\SeatRepository")
  * @UniqueEntity("guest")
- * @UniqueEntity(fields={"firstname", "lastname"})
  * @AdminAsserts\SeatGuest()
  * @ORM\HasLifecycleCallbacks()
  */
@@ -47,7 +46,6 @@ class Seat
      * @ORM\JoinColumn(name="id_table", referencedColumnName="id")
      */
     private $table;
-    
 
     /**
      * Get id.
@@ -60,51 +58,27 @@ class Seat
     }
 
     /**
-     * Set firstname.
+     * Set name.
      *
-     * @param string $firstname
+     * @param string $name
      *
      * @return Seat
      */
-    public function setFirstname($firstname)
+    public function setName($name)
     {
-        $this->firstname = $firstname;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get firstname.
+     * Get name.
      *
      * @return string
      */
-    public function getFirstname()
+    public function getName()
     {
-        return $this->firstname;
-    }
-
-    /**
-     * Set lastname.
-     *
-     * @param string $lastname
-     *
-     * @return Seat
-     */
-    public function setLastname($lastname)
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    /**
-     * Get lastname.
-     *
-     * @return string
-     */
-    public function getLastname()
-    {
-        return $this->lastname;
+        return $this->name;
     }
 
     /**
