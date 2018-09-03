@@ -7,12 +7,18 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\CoreBundle\Form\Type\CollectionType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class TableAdmin extends AbstractAdmin
 {
     protected $baseRoutePattern = 'table';
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('import');
+    }
 
     /**
      * Fields to be shown on filter forms
@@ -98,7 +104,7 @@ class TableAdmin extends AbstractAdmin
             ->add('updatedAt')
         ;
     }
-    
+
     public function prePersist($table)
     {
         $this->setSeatRelationships($table);
@@ -107,6 +113,29 @@ class TableAdmin extends AbstractAdmin
     public function preUpdate($table)
     {
         $this->setSeatRelationships($table);
+    }
+
+    public function configureActionButtons($action, $object = null)
+    {
+        $list = parent::configureActionButtons($action, $object);
+
+        $list['import']['template'] =  '@Admin/partials/import-button.html.twig';
+
+        return $list;
+    }
+
+    public function getDashboardActions()
+    {
+        $actions = parent::getDashboardActions();
+
+        $actions['import'] = [
+            'label' => 'admin.import.action',
+            'translation_domain' => 'AdminBundle',
+            'url' => $this->generateUrl('import'),
+            'icon' => 'level-up',
+        ];
+
+        return $actions;
     }
 
     private function setSeatRelationships($table)
