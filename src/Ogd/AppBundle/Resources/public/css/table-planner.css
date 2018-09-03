@@ -1,0 +1,42 @@
+.table-planner div {
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+    background-color: #9c27b0;
+}
+.rounded-table {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 50px;
+    text-align: center;
+    display: table;
+    color: #ffffff;
+}
+.rounded-seat {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.rounded-table span {
+    display: table-cell;
+    vertical-align: middle;
+}
+.rounded-table img {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    -webkit-transition: .4s all;
+    -moz-transform: .4s all;
+    -o-transform: .4s all;
+    transform: .4s all;
+    box-shadow: 0 5px 15px -8px rgba(0,0,0,0.24),0 8px 10px -5px rgba(0,0,0,0.2);
+}
+.img-transition {
+    -webkit-transform: scale(3);
+    -moz-transform: scale(3);
+    -o-transform: scale(3);
+    transform: scale(3);
+    z-index: 400;
+    box-shadow: 0 16px 38px -12px rgba(0,0,0,0.56),0 4px 25px 0 rgba(0,0,0,0.12),0 8px 10px -5px rgba(0,0,0,0.2);
+}

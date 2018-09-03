@@ -6,13 +6,15 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 class TableImportReader implements ImportReaderInterface
 {
-    const TABLE_SHEET_NAMES = ['MESAS', 'TABLES'];
-    const SEAT_SHEET_NAMES = ['ASIENTOS', 'INVITADOS', 'SEATS', 'GUESTS'];
+    static private $_TABLE_SHEET_NAMES = ['MESAS', 'TABLES'];
+    static private $_SEAT_SHEET_NAMES = ['ASIENTOS', 'INVITADOS', 'SEATS', 'GUESTS'];
     
     public function read(Spreadsheet $spreadsheet, array $options = array())
     {
-        $tablesSheet = $this->getSheetByName(self::TABLE_SHEET_NAMES, $spreadsheet);
-        $seatsSheet  = $this->getSheetByName(self::SEAT_SHEET_NAMES, $spreadsheet);
+        $tablesSheet = $this->getSheetByName(self::$_TABLE_SHEET_NAMES, $spreadsheet);
+        $seatsSheet  = $this->arrayGroupBy(
+            $this->getSheetByName(self::$_SEAT_SHEET_NAMES, $spreadsheet), function($i){  return $i['table']; }
+        );
         
         return [
             $tablesSheet !== null ? $this->readSheet($tablesSheet) : [],
@@ -55,5 +57,16 @@ class TableImportReader implements ImportReaderInterface
         }
 
         return $matrix;
-    }    
+    }
+
+    function arrayGroupBy(array $arr, callable $keySelector)
+    {
+        $result = array();
+        foreach ($arr as $i) {
+            $key = call_user_func($keySelector, $i);
+            $result[$key][] = $i;
+        }
+
+        return $result;
+    }
 }

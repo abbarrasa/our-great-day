@@ -25,7 +25,7 @@ class TableImportStorage implements ImportStorageInterface
         
         return $count;
     }
-        
+
     protected function filter(array $rows, array &$errors = null)
     {
         $visited = array();

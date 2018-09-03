@@ -1,0 +1,81 @@
+{% extends '@App/base.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets
+        'bundles/app/css/table-planner.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+
+{% block title %}{{ 'frontend.title'|trans }} - {{ 'frontend.guest.confirm_attendence'|trans }}{% endblock %}
+
+{% block main %}
+    <div id="first-section" class="section section-basic">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ml-auto mr-auto sr">
+                    <div class="section-description text-center sr">
+                        <h2 class="title">{{ 'frontend.guestbook.title'|trans|raw }}</h2>
+                    </div>
+                    <div class="col-md-4 col-sm-12 ml-auto mr-auto sr">
+                        <div class="table-planner">
+                            <div id="parentdiv" class="rounded-table">
+		                    <span>
+			                    <p>Presidencia</p>
+			                    <p>Grease</p>
+			                    <img src="./GrsSnd.jpg" />
+		                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 ml-auto mr-auto sr">
+                    </div>
+
+                    {#{% else %}#}
+                        {#<div class="alert alert-info">#}
+                            {#<div class="container">#}
+                                {#<div class="alert-icon">#}
+                                    {#<i class="material-icons">info_outline</i>#}
+                                {#</div>#}
+                                {#<b>{{ 'frontend.info'|trans }}</b>: {{ 'frontend.guestbook.no_greetings'|trans({}, 'AppBundle') }}#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#{% endif %}#}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var seats = 10;
+            var div = 360 / seats;
+            var radius = 105;
+            var parentdiv = document.getElementById('parentdiv');
+            var offsetToParentCenter = parseInt(parentdiv.offsetWidth / 2); //assumes parent is square
+            var offsetToChildCenter = 20;
+            var totalOffset = offsetToParentCenter - offsetToChildCenter;
+            for (var i = 1; i <= seats; ++i) {
+                var childdiv = document.createElement('div');
+                childdiv.className = 'rounded-seat';
+                childdiv.style.position = 'absolute';
+                var y = Math.sin((div * i) * (Math.PI / 180)) * radius;
+                var x = Math.cos((div * i) * (Math.PI / 180)) * radius;
+                childdiv.style.top = (y + totalOffset).toString() + "px";
+                childdiv.style.left = (x + totalOffset).toString() + "px";
+                parentdiv.appendChild(childdiv);
+            }
+
+            $('.rounded-table img').hover(function(){
+                $(this).addClass('img-transition');
+            },function(){
+                $(this).removeClass('img-transition');
+            });
+        });
+    </script>
+{% endblock %}

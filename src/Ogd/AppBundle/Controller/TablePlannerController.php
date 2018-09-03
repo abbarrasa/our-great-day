@@ -16,10 +16,11 @@ class TablePlannerController extends Controller
      */
     public function listAction(Request $request)
     {
-        $em     = $this->getDoctrine()->getManager();
-        $tables = $em->getRepository(Table::class)->findAll();
+//        $em     = $this->getDoctrine()->getManager();
+//        $tables = $em->getRepository(Table::class)->findAll();
+        $tables = [];
 
-        return $this->render('@App/table/list.html.twig', [
+        return $this->render('@App/tables/list.html.twig', [
             'tables' => $tables]
         );
     }
