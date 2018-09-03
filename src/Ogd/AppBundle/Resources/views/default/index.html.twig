@@ -107,7 +107,7 @@
                     </div>
                 </div>
             </div>
-            <div id="map" class="big-map"></div>
+            <div id="big-map" class="map big-map"></div>
         </div>
     </div>
     <!-- End Maps -->
@@ -122,11 +122,24 @@
     {% endjavascripts %}
 
     <!--  Google Maps Plugin    -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMaps"></script>
     <script type="text/javascript">
-        function initMap()
+        function map(id, lat, lng, title, options)
+        {        
+            var myLatlng = new google.maps.LatLng(lat, lng);            
+            var map = new google.maps.Map(document.getElementById(id), mapOptions);
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                title: title
+            });
+
+            // To add the marker to the map, call setMap();
+            marker.setMap(map);
+            
+        }
+        
+        function initMaps()
         {
-            var myLatlng = new google.maps.LatLng(40.3488876, -3.7242733);
             var mapOptions = {
                 zoom: 16,
                 center: myLatlng,
@@ -216,17 +229,9 @@
                         "visibility": "simplified"
                     }]
                 }]
-
             };
-
-            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-            var marker = new google.maps.Marker({
-                position: myLatlng,
-                title: "{{ 'frontend.location.title'|trans|striptags }}"
-            });
-
-            // To add the marker to the map, call setMap();
-            marker.setMap(map);
+            
+            map('big-map', 40.3488876, -3.7242733, "{{ 'frontend.location.title'|trans|striptags }}", mapOptions);
         }
 
         $(document).ready(function() {
