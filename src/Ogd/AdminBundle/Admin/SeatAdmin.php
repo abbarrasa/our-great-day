@@ -22,6 +22,47 @@ class SeatAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('name')
+            ->add('guest', 'doctrine_orm_model_autocomplete', array(), null, array(
+                // in related CategoryAdmin there must be datagrid filter on `title` field to make the autocompletion work
+                'property' => ['firstname', 'lastname'],
+                'callback' => function ($admin, $property, $value) {
+                    /** @var QueryBuilder $qb */
+                    $qb    = $admin->getDatagrid()->getQuery();
+                    $alias = $qb->getRootAlias();
+                    $qb
+                        ->andWhere(
+                            $qb->expr()->orX(
+                                $qb->expr()->like($alias . '.firstname', $qb->expr()->literal('%' . $value . '%')),
+                                $qb->expr()->like($alias . '.lastname', $qb->expr()->literal('%' . $value . '%'))
+                            )
+                        )
+                        ->andWhere($alias . '.attending=1')
+                    ;
+                },
+                'to_string_callback' => function($entity, $property) {
+                    return $entity->getLastname() . ', ' . $entity->getFirstname();
+                },                
+            ))
+            ->add('table', 'doctrine_orm_model_autocomplete', array(), null, array(
+                // in related CategoryAdmin there must be datagrid filter on `title` field to make the autocompletion work
+                'property' => ['title', 'subtitle'],
+                'callback' => function ($admin, $property, $value) {
+                    /** @var QueryBuilder $qb */
+                    $qb    = $admin->getDatagrid()->getQuery();
+                    $alias = $qb->getRootAlias();
+                    $qb
+                        ->andWhere(
+                            $qb->expr()->orX(
+                                $qb->expr()->like($alias . '.title', $qb->expr()->literal('%' . $value . '%')),
+                                $qb->expr()->like($alias . '.subtitle', $qb->expr()->literal('%' . $value . '%'))
+                            )
+                        )
+                    ;
+                },
+                'to_string_callback' => function($entity, $property) {
+                    return $entity->getTitle . ($entity->getSubtitle !== null ? ' (' . $entity->getSubtitle() . ')' : '');
+                },                
+            ))            
             //->add('guest')
             //->add('table')
         ;
@@ -67,6 +108,9 @@ class SeatAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('name')
+            ->add('table', null, [
+                'associated_property' => 'title'
+            ])            
             //->add('table')
             ->add('createdAt')
         ;
