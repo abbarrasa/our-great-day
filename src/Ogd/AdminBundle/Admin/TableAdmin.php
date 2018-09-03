@@ -24,6 +24,10 @@ class TableAdmin extends AbstractAdmin
             ->add('title')
             ->add('subtitle')
             ->add('numberSeats')
+            ->add('seats', 'doctrine_orm_model_autocomplete', array(), null, array(
+                // in related CategoryAdmin there must be datagrid filter on `title` field to make the autocompletion work
+                'property' => 'name',
+            ))            
 //            ->add('seats')
             ->add('createdAt')
         ;
