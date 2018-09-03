@@ -22,6 +22,14 @@ class SeatAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('name')
+            ->add('guest', 'doctrine_orm_model_autocomplete', array(), null, array(
+                // in related CategoryAdmin there must be datagrid filter on `title` field to make the autocompletion work
+                'property' => ['firstname', 'lastname'],
+            ))
+            ->add('table', 'doctrine_orm_model_autocomplete', array(), null, array(
+                // in related CategoryAdmin there must be datagrid filter on `title` field to make the autocompletion work
+                'property' => ['title', 'subtitle'],
+            ))            
             //->add('guest')
             //->add('table')
         ;
@@ -67,6 +75,9 @@ class SeatAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('name')
+            ->add('table', null, [
+                'associated_property' => 'title'
+            ])            
             //->add('table')
             ->add('createdAt')
         ;
