@@ -2098,11 +2098,15 @@ a.scroll-arrow:hover {
     font-style: normal;
 }
 
-.big-map {
-    height: 70vh;
+.map {
+    height: 40vh;
     width: 100%;
     display: block;
     position: relative;
+}
+
+.big-map {
+    height: 70vh;
 }
 
 .section-line-image {
