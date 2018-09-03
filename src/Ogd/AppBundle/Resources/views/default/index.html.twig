@@ -108,7 +108,7 @@
                 </div>
             </div>
             <div id="big-map" class="map big-map"></div>
-        </div>
+        </div>              
     </div>
     <!-- End Maps -->
 
@@ -231,7 +231,9 @@
                 }]
             };
             
-            map('big-map', 40.3488876, -3.7242733, "{{ 'frontend.location.title'|trans|striptags }}", mapOptions);
+            //map('left-map', 40.3443297, -3.8359347, "Calle Cáceres 32, Alcorcón (enfrente Bar Avenida)", mapOptions);
+            //map('right-map', 40.2879782, -3.7854997, "Calle Venezuela, 3, Fuenlabrada", mapOptions);            
+            map('big-map', 40.3488876, -3.7242733, "Restaurante Finca Solimpar Bodas", mapOptions);
         }
 
         $(document).ready(function() {
