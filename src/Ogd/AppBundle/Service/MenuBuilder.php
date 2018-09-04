@@ -43,9 +43,6 @@ class MenuBuilder
 
         $menu
             ->addChild('frontend.menu.home', ['route' => 'homepage'])
-            /*->setLabelAttribute(
-                'class', $this->getClassIfRoute('homepage', $request, 'd-lg-inline d-xl-inline', 'd-lg-none d-xl-none')
-            )*/
             ->setLabelAttribute(
                 'class', $this->getClassIfRoute('homepage', $request, 'nav-item-label show', 'nav-item-label')
             )		
@@ -57,9 +54,6 @@ class MenuBuilder
 
         $menu
             ->addChild('frontend.menu.news', ['route' => 'post_list'])
-            /*->setLabelAttribute(
-                'class', $this->getClassIfRoute(['post_list', 'post'], $request, 'd-lg-inline d-xl-inline', 'd-lg-none d-xl-none')
-            )*/
             ->setLabelAttribute(
                 'class', $this->getClassIfRoute(['post_list', 'post'], $request, 'nav-item-label show', 'nav-item-label')
             )				
@@ -75,11 +69,6 @@ class MenuBuilder
 
         $menu
             ->addChild('frontend.menu.confirm_attendance', ['route' => 'guest'])
-            /*->setLabelAttribute(
-                'class', $this->getClassIfRoute(
-                    ['guest', 'guest_confirm', 'guest_set_user', 'fos_user_landing'], $request, 'd-lg-inline d-xl-inline', 'd-lg-none d-xl-none'
-                )
-            )*/
             ->setLabelAttribute(
                 'class', $this->getClassIfRoute(['guest', 'guest_confirm', 'guest_set_user', 'fos_user_landing'], $request, 'nav-item-label show', 'nav-item-label')
             )			
@@ -92,12 +81,22 @@ class MenuBuilder
 	        ->setExtra('icon', 'assignment_turned_in')
             ->setExtra('translation_domain', 'AppBundle')
         ;
-
+	    
+        $menu
+            ->addChild('Mesas', ['route' => 'tables'])
+            ->setLabelAttribute(
+                'class', $this->getClassIfRoute('tables', $request, 'nav-item-label show', 'nav-item-label')
+            )			
+            ->setAttribute(
+                'class', $this->getClassIfRoute('tables', $request, 'nav-item current', 'nav-item')
+            )
+            ->setLinkAttribute('class', 'nav-link')
+	    ->setExtra('icon', 'restaurant')
+            ->setExtra('translation_domain', 'AppBundle')
+        ;
+	    
         $menu
             ->addChild('frontend.menu.guestbook', ['route' => 'guestbook'])
-            /*->setLabelAttribute(
-                'class', $this->getClassIfRoute('guestbook', $request, 'd-lg-inline d-xl-inline', 'd-lg-none d-xl-none')
-            )*/
             ->setLabelAttribute(
                 'class', $this->getClassIfRoute('guestbook', $request, 'nav-item-label show', 'nav-item-label')
             )				
@@ -110,12 +109,7 @@ class MenuBuilder
         if ($authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             $username = $tokenStorage->getToken()->getUser()->getUsername();
             $menu->addChild($username)
-                /*->setLabelAttribute(
-                    'class', $this->getClassIfRoute(
-                        'fos_user_profile_edit', $request, 'd-lg-inline d-xl-inline', 'd-lg-none d-xl-none'
-                    )
-                )*/
-		    ->setLabelAttribute(
+		->setLabelAttribute(
 			'class', $this->getClassIfRoute('fos_user_profile_edit', $request, 'nav-item-label show', 'nav-item-label')
 		    )		    
                 ->setAttributes(['dropdown' => true, 'class' => $this->getClassIfRoute(
@@ -128,7 +122,7 @@ class MenuBuilder
                     'aria-expanded' => 'false',
 		            'aria-haspopup' => 'true'
                 ])
-	    	    ->setExtra('icon', 'account_circle')
+	    	->setExtra('icon', 'account_circle')
             ;
             $menu[$username]
                 ->addChild('layout.profile', array('route' => 'fos_user_profile_edit'))
@@ -144,14 +138,6 @@ class MenuBuilder
         } else {
             $menu
                 ->addChild('layout.login', ['route' => 'fos_user_security_login'])
-                /*->setLabelAttribute(
-                    'class', $this->getClassIfRoute([
-                        'fos_user_security_login', 'fos_user_resetting_request', 'fos_user_resetting_check_email', 'fos_user_resetting_reset'],
-                        $request,
-                        'd-lg-inline d-xl-inline',
-                        'd-lg-none d-xl-none'
-                    )
-                )*/
 		    ->setLabelAttribute(
 			'class', $this->getClassIfRoute([
                         	'fos_user_security_login', 'fos_user_resetting_request', 'fos_user_resetting_check_email', 'fos_user_resetting_reset'
@@ -170,9 +156,6 @@ class MenuBuilder
                 ->setExtra('translation_domain', 'FOSUserBundle');
             $menu
                 ->addChild('layout.register', ['route' => 'fos_user_registration_register'])
-                /*->setLabelAttribute(
-                    'class', $this->getClassIfRoute('fos_user_registration_register', $request, 'd-lg-inline d-xl-inline', 'd-lg-none d-xl-none')
-                )*/
 		    ->setLabelAttribute(
 			'class', $this->getClassIfRoute('fos_user_registration_register', $request, 'nav-item-label show', 'nav-item-label')
 		    )		    		    
@@ -186,7 +169,6 @@ class MenuBuilder
 
         $menu
             ->addChild('frontend.menu.contact_us', ['uri' => '#'])
-            /*->setLabelAttribute('class', 'd-lg-none d-xl-none')*/
             ->setLabelAttribute('class', 'nav-item-label')
             ->setAttribute('class', 'nav-item')
             ->setLinkAttribute('class', 'nav-link contact-us')
@@ -204,7 +186,6 @@ class MenuBuilder
         $menu
             ->addChild('facebook', ['uri' => $socialUrlHelper->generateFacebookUrl()])
             ->setLabel('Facebook')
-            //->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setLabelAttribute('class', 'nav-item-label')		
             ->setAttribute('class', 'nav-item')
             ->setLinkAttributes([
@@ -220,7 +201,6 @@ class MenuBuilder
         $menu
             ->addChild('twitter', ['uri' => $socialUrlHelper->generateTwitterUrl()])
             ->setLabel('Twitter')
-            //->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setLabelAttribute('class', 'nav-item-label')		
             ->setAttribute('class', 'nav-item')
             ->setLinkAttributes([
@@ -236,7 +216,6 @@ class MenuBuilder
         $menu
             ->addChild('googleplus', ['uri' => $socialUrlHelper->generateGoogleplusUrl()])
             ->setLabel('Google+')
-            //->setLabelAttribute('class', 'd-lg-none d-xl-none')
             ->setLabelAttribute('class', 'nav-item-label')		
             ->setAttribute('class', 'nav-item')
             ->setLinkAttributes([
