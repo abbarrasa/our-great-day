@@ -16,12 +16,18 @@ class TablePlannerController extends Controller
      */
     public function listAction(Request $request)
     {
-//        $em     = $this->getDoctrine()->getManager();
 //        $tables = $em->getRepository(Table::class)->findAll();
-        $tables = [];
-
-        return $this->render('@App/tables/list.html.twig', [
-            'tables' => $tables]
+        $em         = $this->getDoctrine()->getManager();
+        $query      = $em->getRepository(Table::class)->createQueryBuilder('t');
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $page /*page number*/,
+            3 /*limit per page*/
         );
+        
+        return $this->render('@App/tables/list.html.twig', [
+            'pagination' => $pagination
+        ]);
     }
 }
