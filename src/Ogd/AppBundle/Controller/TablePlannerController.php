@@ -16,7 +16,6 @@ class TablePlannerController extends Controller
      */
     public function listAction(Request $request)
     {
-//        $tables = $em->getRepository(Table::class)->findAll();
         $em         = $this->getDoctrine()->getManager();
         $query      = $em->getRepository(Table::class)->createQueryBuilder('t');
         $paginator  = $this->get('knp_paginator');
