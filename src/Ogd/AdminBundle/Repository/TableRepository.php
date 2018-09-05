@@ -10,4 +10,16 @@ namespace AdminBundle\Repository;
  */
 class TableRepository extends \Doctrine\ORM\EntityRepository
 {
+  public function getQueryBySeatName($name = null)
+  {
+    $qb = $this->createQueryBuilder('t');
+    if (!empty($name)) {
+      $qb
+        ->leftJoin('t.seats', 's')
+        ->where($qb->expr()->like('s.name', $qb->expr()->literal("%{$name}%"))
+      ;
+    }
+                
+    return $qb;
+  }
 }
