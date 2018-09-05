@@ -92,10 +92,10 @@ class SeatAdmin extends AbstractAdmin
                     return $entity->getLastname() . ', ' . $entity->getFirstname();
                 },
                 'required' => false
-            ], [
-                'help' => 'Seleccione un invitado o introduzca su nombre y apellidos'
             ])
-            ->add('name', 'text', ['label' => 'Name', 'required' => false])
+            ->add('name', 'text', ['label' => 'Name', 'required' => false],  [
+                'help' => 'El nombre que aparecerá en el listado de asientos'
+            ])
             ->getFormBuilder()->addEventSubscriber(new GuestSeatSubscriber($this->modelManager))
         ;
     }
