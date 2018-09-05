@@ -16,8 +16,17 @@ class TablePlannerController extends Controller
      */
     public function listAction(Request $request)
     {
+        $name       = null;        
+        $form       = $this->createForm(SearchTableType::class);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data   = $form->getData();
+            $name   = $data['name'];
+        }
+        
         $em         = $this->getDoctrine()->getManager();
-        $query      = $em->getRepository(Table::class)->createQueryBuilder('t');
+        $query      = $em->getRepository(Table::class)->getQueryBySeatName($name);
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
@@ -26,6 +35,7 @@ class TablePlannerController extends Controller
         );
         
         return $this->render('@App/tables/list.html.twig', [
+            'form'       => $form,
             'pagination' => $pagination
         ]);
     }
