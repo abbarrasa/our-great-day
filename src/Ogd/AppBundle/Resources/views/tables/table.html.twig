@@ -1,78 +1,60 @@
 {% block table_planner %}
     {% spaceless %}
 
-    {% set len = seats|lenght %}
-    <div class="row sr">
-	<div class="{{ len > 5 ? 'col-md-4' : 'col-md-6' }} col-xs-12">
-	    <div class="table-planner">
-		<div id="{{ id }}" class="rounded-table">
-			<span>
-				<p>{{ title }}</p>
-				{% if subtitle is defined and subtitle is not null %}
-					<p>{{ subtitle }}</p>
-				{% endif %}
-				{% if picture is defined and picture is not null %}
-					<img src="{{ picture.path|data_uri }}" alt="{{ picture.alt }}" />
-				{% endif %}
-			</span>
-		</div>
-	    </div>
-	</div>
+    {% set len = table.seats|length %}
+    <div class="card card-raised table-planner sr">
+        <div class="card-header card-header-primary text-center">
+            <h5 class="card-title">{{ table.title }}</h5>
+            {% if table.subtitle is not null %}
+                <h3 class="card-title">{{ table.subtitle }}</h3>
+            {% endif %}
+        </div>
+        <div class="card-body ">
+            <div class="row ">
+                <div class="{{ len > 5 ? 'col-md-4' : 'col-md-6' }} col-xs-12">
+                    <div class="table-planner-table">
+                        <div id="table_{{ table.id }}" class="rounded-table">
+				            <span>
+                                <p>{{ table.title }}</p>
+                                {% if table.subtitle is not null %}
+                                    <p>{{ table.subtitle }}</p>
+                                {% endif %}
+                                {% if table.picture is not null %}
+                                    <img src="{{ table.pictureFile.pathName|data_uri }}" alt="table_{{ table.id }}" />
+                                {% endif %}
+				            </span>
+                        </div>
+                    </div>
+                </div>
 
-	<div class="{{ len > 5 ? 'col-md-4' : 'col-md-6' }} col-xs-12">
-		<div class="card card-plain">
-			<div class="card-body">
-				<ul>
-				{% for seat in seats|slice(0, ((len / 2)|round) - 1) %}
-					<li><b>{{ loop.index }}</b> {{ seat.name }}</li>
-				{% endfor %}
-				</ul>
-			</div>
-		</div>
-	</div>
+                <div class="{{ len > 5 ? 'col-md-4' : 'col-md-6' }} col-xs-12">
+                    <div class="card card-plain">
+                        <div class="card-body">
+                            <ul>
+                                {% for seat in table.seats|slice(0, (len / 2)|round) %}
+                                    <li><b>{{ loop.index }}</b> {{ seat.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-	{% if len > 5 %}
-	<div class="col-md-4 col-xs-12">
-		<div class="card card-plain">
-			<div class="card-body">
-				<ul>
-				{% for seat in seats|slice((len / 2)|round) %}
-					<li><b>{{ loop.index0 + ((len / 2)|round) }}</b> {{ seat.name }}</li>
-				{% endfor %}
-				</ul>
-			</div>
-		</div>
-	</div>
-	{% endif %}
+                {% if len > 5 %}
+                    <div class="col-md-4 col-xs-12">
+                        <div class="card card-plain">
+                            <div class="card-body">
+                                <ul>
+                                    {% for seat in table.seats|slice((len / 2)|round) %}
+                                        <li><b>{{ loop.index + ((len / 2)|round) }}</b> {{ seat.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
     </div>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var seats = {{ len }};
-            var div = 360 / seats;
-            var radius = 105;
-            var parentdiv = document.getElementById('{{ id }}');
-            var offsetToParentCenter = parseInt(parentdiv.offsetWidth / 2); //assumes parent is square
-            var offsetToChildCenter = 20;
-            var totalOffset = offsetToParentCenter - offsetToChildCenter;
-            for (var i = 1; i <= seats; ++i) {
-                var childdiv = document.createElement('div');
-                childdiv.className = 'rounded-seat';
-                childdiv.style.position = 'absolute';
-                var y = Math.sin((div * i) * (Math.PI / 180)) * radius;
-                var x = Math.cos((div * i) * (Math.PI / 180)) * radius;
-                childdiv.style.top = (y + totalOffset).toString() + "px";
-                childdiv.style.left = (x + totalOffset).toString() + "px";
-                parentdiv.appendChild(childdiv);
-            }
-
-            $('.rounded-table img').hover(function(){
-                $(this).addClass('img-transition');
-            },function(){
-                $(this).removeClass('img-transition');
-            });
-        });
-    </script>
 
     {% endspaceless %}
 {% endblock table_planner %}

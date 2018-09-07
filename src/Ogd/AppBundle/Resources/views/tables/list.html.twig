@@ -9,7 +9,6 @@
     {% endstylesheets %}
 {% endblock %}
 
-
 {% block title %}{{ 'frontend.title'|trans }} - Mesas{% endblock %}
 
 {% block main %}
@@ -26,25 +25,43 @@
 		<div class="col-12 ml-auto mr-auto">
 		{% if pagination|length > 0 %}
 			{% for table in pagination %}
-				{{ table|render_table }}
+				{{ include('@App/tables/table.html.twig', { 'table': table }) }}
 			{% endfor %}
-                      <div class="row">
-                      	 <div class="col-8 ml-auto sr">
-                             {{ knp_pagination_render(pagination, '@App/partials/knp_pagination.html.twig') }}
-                         </div>
-		      </div>			
-                {% else %}
+              <div class="row">
+                 <div class="col-md-8 col-sm-12 ml-auto sr">
+                     {{ knp_pagination_render(pagination, '@App/partials/knp_pagination.html.twig') }}
+                 </div>
+              </div>
+        {% else %}
 			<div class="alert alert-info">
-                            <div class="container">
-                                <div class="alert-icon">
-                                    <i class="material-icons">info_outline</i>
-                                </div>
-                                <b>{{ 'frontend.info'|trans }}</b>: No hay mesas planificadas
-                            </div>
-                        </div>
+                <div class="container">
+                    <div class="alert-icon">
+                        <i class="material-icons">info_outline</i>
+                    </div>
+                    <b>{{ 'frontend.info'|trans }}</b>: No hay mesas planificadas
+                </div>
+            </div>
                 {% endif %}
 		</div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            {% for table in pagination %}
+                materialKitDemo.renderTable('table_{{ table.id }}', {{ table.seats|length }});
+            {% endfor %}
+
+            $('.rounded-table img').hover(function(){
+                $(this).addClass('img-transition');
+            },function(){
+                $(this).removeClass('img-transition');
+            });
+        });
+    </script>
+
 {% endblock %}

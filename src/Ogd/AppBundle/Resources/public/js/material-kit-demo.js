@@ -120,5 +120,27 @@ materialKitDemo = {
             '<a href="{3}" target="{4}" data-notify="url"></a>' +
             '</div>'
         });
+    },
+
+    renderTable: function(id, seats)
+    {
+        var div = 360 / seats;
+        var radius = 105;
+        var parentdiv = document.getElementById(id);
+        var offsetToParentCenter = parseInt(parentdiv.offsetWidth / 2); //assumes parent is square
+        var offsetToChildCenter = 20;
+        var totalOffset = offsetToParentCenter - offsetToChildCenter;
+        for (var i = 1; i <= seats; ++i) {
+            var childdiv = document.createElement('div');
+            childdiv.className = 'rounded-seat';
+            childdiv.style.position = 'absolute';
+            var y = Math.sin((div * i) * (Math.PI / 180)) * radius;
+            var x = Math.cos((div * i) * (Math.PI / 180)) * radius;
+            childdiv.style.top = (y + totalOffset).toString() + "px";
+            childdiv.style.left = (x + totalOffset).toString() + "px";
+            childdiv.innerHTML = '<span>' + i + '</span>';
+            parentdiv.appendChild(childdiv);
+        }
     }
+
 };

@@ -20,7 +20,8 @@ class ResourceExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('data_uri', [$this, 'dataUriFilter'])
+            new \Twig_SimpleFilter('data_uri', [$this, 'dataUriFilter']),
+            new \Twig_SimpleFilter('basename', [$this, 'basenameFilter'])
         ];
     }
 

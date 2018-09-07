@@ -35,10 +35,11 @@ class TablePlannerController extends Controller
             $page /*page number*/,
             3 /*limit per page*/
         );
-        
-        return $this->render('@App/tables/list.html.twig', [
-            'form'       => $form,
-            'pagination' => $pagination
-        ]);
+
+        // parameters to template
+        return $this->render('@App/tables/list.html.twig', array(
+            'pagination' => $pagination,
+            'form'       => $form->createView()
+        ));
     }
 }

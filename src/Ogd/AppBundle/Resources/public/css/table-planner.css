@@ -1,4 +1,8 @@
-.table-planner div {
+.table-planner {
+    margin-top: 45px;
+}
+
+.table-planner-table div {
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
     background-color: #9c27b0;
 }
@@ -17,15 +21,21 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    display: table;
+    color: #ffffff;
 }
-.rounded-table span {
+.rounded-table span,
+.rounded-seat span {
     display: table-cell;
     vertical-align: middle;
 }
-.rounded-table img {
+.rounded-table img,
+.rounded-seat img {
     width: 40px;
     height: 40px;
     border-radius: 6px;
+}
+.rounded-table img {
     -webkit-transition: .4s all;
     -moz-transform: .4s all;
     -o-transform: .4s all;
