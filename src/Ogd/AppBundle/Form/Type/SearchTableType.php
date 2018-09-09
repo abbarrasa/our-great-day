@@ -17,7 +17,7 @@ class SearchTableType extends AbstractType
                 'label' => 'Nombre',
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Buscar',
+                'label' => 'Búscate',
             ])
         ;
     }

@@ -16,7 +16,9 @@ class TableRepository extends \Doctrine\ORM\EntityRepository
         if (!empty($name)) {
             $qb
                 ->leftJoin('t.seats', 's')
+                ->leftJoin('s.guest', 'g')
                 ->where($qb->expr()->like('s.name', $qb->expr()->literal("%{$name}%")))
+                ->orWhere($qb->expr()->like("CONCAT(g.firstname, ' ', g.lastname)", $qb->expr()->literal("%{$name}%")))
             ;
         }
                 

@@ -2206,10 +2206,6 @@ h6 {
 .form-check .form-check-label {
     margin-right: 20px;
 }
-.is-filled .bmd-label-floating,
-.is-focused .bmd-label-floating {
-    padding-left: 15px;
-}
 .bmd-error {
     position: absolute;
     font-size: .75rem;

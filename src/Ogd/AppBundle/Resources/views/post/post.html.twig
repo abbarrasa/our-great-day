@@ -76,32 +76,36 @@
 
             <div class="col-xs-12 col-md-6 mr-auto ml-auto">
                 <div class="media media-post">
-                    <a class="author float-left">
+                    <div class="author float-left">
                         <div class="avatar">
                             {{ include('@App/partials/avatar.html.twig', { 'user': app.user, 'classes': ['media-object', 'img-raised'], 'alt': 'anonymous' }) }}
                         </div>
-                    </a>
+                    </div>
                     <div class="media-body">
                         {{ form_start(form, {'action': path('post', {'id': post.id})}) }}
                         <div class="row">
-                            <div class="col form-group bmd-form-group{% if not form.name.vars.valid %} has-danger{% endif %}">
-                                {{ form_label(form.name, form.name, {'label_attr': {'class': 'bmd-label-floating'}}) }}
-                                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
-                                {{ form_errors(form.name) }}
-                                {% if not form.name.vars.valid %}
-                                    <span class="material-icons form-control-feedback">clear</span>
-                                {% endif %}
+                            <div class="col">
+                                <div class="form-group bmd-form-group{% if not form.name.vars.valid %} has-danger{% endif %}">
+                                    {{ form_label(form.name, form.name, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(form.name) }}
+                                    {% if not form.name.vars.valid %}
+                                        <span class="material-icons form-control-feedback">clear</span>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col form-group bmd-form-group{% if not form.content.vars.valid %} has-danger{% endif %}">
-                                {{ form_label(form.content, form.content, {'label_attr': {'class': 'bmd-label-floating'}}) }}
-                                {{ form_widget(form.content, {'attr': {'class': 'form-control', 'rows': 5 }}) }}
-                                {{ form_errors(form.content) }}
-                                {% if not form.content.vars.valid %}
-                                    <span class="material-icons form-control-feedback">clear</span>
-                                {% endif %}
+                            <div class="col">
+                                <div class="form-group bmd-form-group{% if not form.content.vars.valid %} has-danger{% endif %}">
+                                    {{ form_label(form.content, form.content, {'label_attr': {'class': 'bmd-label-floating'}}) }}
+                                    {{ form_widget(form.content, {'attr': {'class': 'form-control', 'rows': 5 }}) }}
+                                    {{ form_errors(form.content) }}
+                                    {% if not form.content.vars.valid %}
+                                        <span class="material-icons form-control-feedback">clear</span>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
 

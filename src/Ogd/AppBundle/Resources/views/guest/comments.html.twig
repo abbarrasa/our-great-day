@@ -16,37 +16,48 @@
 <hr>
 <h4 class="title text-center">{{ 'frontend.guestbook.comments.post_your_comment'|trans }}</h4>
 {{ form_start(form, {'action': path('greeting_comments', {'id': greeting.id})}) }}
-    <div class="col-md-12 form-group bmd-form-group{% if not form.name.vars.valid %} has-error{% endif %}">
-        <div class="input-group">
-            <div class="input-group-prepend">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group bmd-form-group{% if not form.name.vars.valid %} has-error{% endif %}">
+                <div class="input-group">
+                    <div class="input-group-prepend">
                     <span class="input-group-text">
                         <i class="material-icons">face</i>
                     </span>
+                    </div>
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'frontend.guestbook.comments.placeholder_name'|trans }}) }}
+                    {{ form_errors(form.name) }}
+                    {% if not form.name.vars.valid %}
+                        <span class="material-icons form-control-feedback">clear</span>
+                    {% endif %}
+                </div>
             </div>
-            {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'frontend.guestbook.comments.placeholder_name'|trans }}) }}
-            {{ form_errors(form.name) }}
-            {% if not form.name.vars.valid %}
-                <span class="material-icons form-control-feedback">clear</span>
-            {% endif %}
         </div>
     </div>
 
-    <div class="col-md-12 form-group bmd-form-group{% if not form.content.vars.valid %} has-error{% endif %}">
-        <div class="input-group">
-            <div class="input-group-prepend">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-12 form-group bmd-form-group{% if not form.content.vars.valid %} has-error{% endif %}">
+                <div class="input-group">
+                    <div class="input-group-prepend">
                 <span class="input-group-text">
                     <i class="material-icons">create</i>
                 </span>
+                    </div>
+                    {{ form_widget(form.content, {'attr': {'class': 'form-control', 'placeholder': 'frontend.guestbook.comments.placeholder_content'|trans, 'rows': 3 }}) }}
+                    {{ form_errors(form.content) }}
+                    {% if not form.content.vars.valid %}
+                        <span class="material-icons form-control-feedback">clear</span>
+                    {% endif %}
+                </div>
             </div>
-            {{ form_widget(form.content, {'attr': {'class': 'form-control', 'placeholder': 'frontend.guestbook.comments.placeholder_content'|trans, 'rows': 3 }}) }}
-            {{ form_errors(form.content) }}
-            {% if not form.content.vars.valid %}
-                <span class="material-icons form-control-feedback">clear</span>
-            {% endif %}
         </div>
     </div>
-    <div class="col-md-12 form-group">
-        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
-        <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">{{ 'frontend.close'|trans }}</button>
+
+    <div class="row">
+        <div class="col-md-12 form-group">
+            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary pull-right'}}) }}
+            <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">{{ 'frontend.close'|trans }}</button>
+        </div>
     </div>
 {{ form_end(form) }}

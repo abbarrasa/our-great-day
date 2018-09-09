@@ -1,6 +1,5 @@
 {% block table_planner %}
     {% spaceless %}
-
     {% set len = table.seats|length %}
     <div class="card card-raised table-planner sr">
         <div class="card-header card-header-primary text-center">
@@ -9,9 +8,9 @@
                 <h3 class="card-title">{{ table.subtitle }}</h3>
             {% endif %}
         </div>
-        <div class="card-body ">
-            <div class="row ">
-                <div class="{{ len > 5 ? 'col-md-4' : 'col-md-6' }} col-xs-12">
+        <div class="card-body section-white-to-gray">
+            <div class="row">
+                <div class="col-md-4 col-xs-12">
                     <div class="table-planner-table">
                         <div id="table_{{ table.id }}" class="rounded-table">
 				            <span>
@@ -27,31 +26,45 @@
                     </div>
                 </div>
 
-                <div class="{{ len > 5 ? 'col-md-4' : 'col-md-6' }} col-xs-12">
-                    <div class="card card-plain">
-                        <div class="card-body">
-                            <ul>
-                                {% for seat in table.seats|slice(0, (len / 2)|round) %}
-                                    <li><b>{{ loop.index }}</b> {{ seat.name }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                {% if len > 5 %}
-                    <div class="col-md-4 col-xs-12">
-                        <div class="card card-plain">
+                <div class="col-md-8 col-xs-12">
+                    {% if is_mobile() or is_mobile_view()  %}
+                        <div class="card card-raised card-pricing bg-rose">
                             <div class="card-body">
                                 <ul>
-                                    {% for seat in table.seats|slice((len / 2)|round) %}
-                                        <li><b>{{ loop.index + ((len / 2)|round) }}</b> {{ seat.name }}</li>
+                                    {% for seat in table.seats %}
+                                        <li><h5 style="font-size: 1.0125rem;"><b>#{{ loop.index }}</b> - {{ seat.name }}</li></h5>
                                     {% endfor %}
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                {% endif %}
+                    {% else %}
+                        <div class="row">
+                            <div class="col-md-6 col-xs-12">
+                                <div class="card card-raised card-pricing bg-rose">
+                                    <div class="card-body">
+                                        <ul>
+                                            {% for seat in table.seats|slice(0, (len / 2)|round) %}
+                                                <li><h5 style="font-size: 1.0125rem;"><b>#{{ loop.index }}</b> - {{ seat.name }}</li></h5>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-xs-12">
+                                <div class="card card-raised card-pricing bg-rose">
+                                    <div class="card-body">
+                                        <ul>
+                                            {% for seat in table.seats|slice((len / 2)|round) %}
+                                                <li><h5 style="font-size: 1.0125rem;"><b>#{{ loop.index + ((len / 2)|round) }}</b> - {{ seat.name }}</li></h5>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>

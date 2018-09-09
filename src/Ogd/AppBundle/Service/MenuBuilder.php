@@ -83,7 +83,7 @@ class MenuBuilder
         ;
 	    
         $menu
-            ->addChild('Mesas', ['route' => 'tables'])
+            ->addChild('Banquete', ['route' => 'tables'])
             ->setLabelAttribute(
                 'class', $this->getClassIfRoute('tables', $request, 'nav-item-label show', 'nav-item-label')
             )			

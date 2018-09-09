@@ -14,35 +14,40 @@
 {% block main %}
     <div id="first-section" class="section section-basic">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12 ml-auto mr-auto sr">
+            <div class="row sr">
+                <div class="col-md-12 ml-auto mr-auto">
                     <div class="section-description text-center sr">
                         <h2 class="title">Nuestro gran <em>Banquete</em></h2>
-			<p class="description">Revisa la planificación de nuestras mesas para encontrar dónde te vas a sentar</p>
+			            <p class="description">Revisa la planificación de nuestras mesas para encontrar dónde te vas a sentar</p>
                     </div>
-		</div>
-		
-		<div class="col-12 ml-auto mr-auto">
-		{% if pagination|length > 0 %}
-			{% for table in pagination %}
-				{{ include('@App/tables/table.html.twig', { 'table': table }) }}
-			{% endfor %}
-              <div class="row">
-                 <div class="col-md-8 col-sm-12 ml-auto sr">
-                     {{ knp_pagination_render(pagination, '@App/partials/knp_pagination.html.twig') }}
-                 </div>
-              </div>
-        {% else %}
-			<div class="alert alert-info">
-                <div class="container">
-                    <div class="alert-icon">
-                        <i class="material-icons">info_outline</i>
-                    </div>
-                    <b>{{ 'frontend.info'|trans }}</b>: No hay mesas planificadas
+		        </div>
+                <div class="col-md-8 col-sm-12 ml-auto mr-auto">
+                    {{ include('@App/tables/form.html.twig', { 'form': form }) }}
                 </div>
             </div>
-                {% endif %}
-		</div>
+
+            <div class="row">
+                <div class="col-12 ml-auto mr-auto">
+                    {% if pagination|length > 0 %}
+                        {% for table in pagination %}
+                            {{ include('@App/tables/table.html.twig', { 'table': table }) }}
+                        {% endfor %}
+                        <div class="row">
+                            <div class="col-md-8 col-sm-12 ml-auto sr">
+                                {{ knp_pagination_render(pagination, '@App/partials/knp_pagination.html.twig') }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info">
+                            <div class="container">
+                                <div class="alert-icon">
+                                    <i class="material-icons">info_outline</i>
+                                </div>
+                                <b>{{ 'frontend.info'|trans }}</b>: No hay mesas planificadas que coincida con tu criterio de búsqueda
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
