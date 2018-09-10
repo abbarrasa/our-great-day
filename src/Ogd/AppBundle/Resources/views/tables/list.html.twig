@@ -20,33 +20,64 @@
                         <h2 class="title">Nuestro gran <em>Banquete</em></h2>
 			            <p class="description">Revisa la planificación de nuestras mesas para encontrar dónde te vas a sentar</p>
                     </div>
-		        </div>
-                <div class="col-md-8 col-sm-12 ml-auto mr-auto">
-                    {{ include('@App/tables/form.html.twig', { 'form': form }) }}
-                </div>
+		</div>
+			
+                        <div class="col-md-6 ml-auto mr-auto">
+				<div class="profile-tabs">
+					<ul class="nav nav-pills nav-pills-icons nav-pills-primary justify-content-center" role="tablist">
+                                                <li class="nav-item">
+                                                        <a class="nav-link active" href="#tables" role="tab" data-toggle="tab">
+								<i class="material-icons">palette</i>Mesas
+                                                        </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                        <a class="nav-link" href="#menus" role="tab" data-toggle="tab">
+                                                                <i class="material-icons">people</i>Menús
+                                                        </a>
+                                                </li>
+                                        </ul>
+                                </div>                                
+                        </div>			
             </div>
 
             <div class="row">
                 <div class="col-12 ml-auto mr-auto">
-                    {% if pagination|length > 0 %}
-                        {% for table in pagination %}
-                            {{ include('@App/tables/table.html.twig', { 'table': table }) }}
-                        {% endfor %}
-                        <div class="row">
-                            <div class="col-md-8 col-sm-12 ml-auto sr">
-                                {{ knp_pagination_render(pagination, '@App/partials/knp_pagination.html.twig') }}
-                            </div>
-                        </div>
-                    {% else %}
-                        <div class="alert alert-info">
-                            <div class="container">
-                                <div class="alert-icon">
-                                    <i class="material-icons">info_outline</i>
-                                </div>
-                                <b>{{ 'frontend.info'|trans }}</b>: No hay mesas planificadas que coincida con tu criterio de búsqueda
-                            </div>
-                        </div>
-                    {% endif %}
+			<div id="tables" class="tab-pane active tables">
+				<div class="row">
+					<div class="col-md-8 col-sm-12 ml-auto mr-auto">
+					    {{ include('@App/tables/form.html.twig', { 'form': form }) }}
+					</div>				
+				</div>
+				
+				{% if pagination|length > 0 %}
+                        		{% for table in pagination %}		
+						<div class="row">
+                            				{{ include('@App/tables/table.html.twig', { 'table': table }) }}
+						</div>
+                        		{% endfor %}
+                        		<div class="row">
+                            			<div class="col-md-8 col-sm-12 ml-auto sr">
+                                			{{ knp_pagination_render(pagination, '@App/partials/knp_pagination.html.twig') }}
+                            			</div>
+                        		</div>
+                    		{% else %}
+				<div class="row">
+                        		<div class="alert alert-info">
+                            			<div class="container">
+                                			<div class="alert-icon">
+                                    				<i class="material-icons">info_outline</i>
+                                			</div>
+                                			<b>{{ 'frontend.info'|trans }}</b>: No hay mesas planificadas que coincida con tu criterio de búsqueda
+                            			</div>
+                        		</div>
+				</div>
+                    		{% endif %}
+
+			</div>
+			
+			<div id="menus" class="tab-pane menus">
+			</div>
+				
                 </div>
             </div>
         </div>
