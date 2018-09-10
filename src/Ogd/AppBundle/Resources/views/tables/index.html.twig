@@ -15,135 +15,55 @@
     <div id="first-section" class="section section-basic">
         <div class="container">
             <div class="row sr">
-                <div class="col-md-12 ml-auto mr-auto">
-                    <div class="section-description text-center sr">
+                <div class="col-md-8 col-sm-12 ml-auto mr-auto">
+                    <div class="section-description text-center">
                         <h2 class="title">Nuestro gran <em>Banquete</em></h2>
-			            <p class="description">Revisa la planificación de nuestras mesas para encontrar dónde te vas a sentar</p>
+			            <p class="description">Revisa la planificación de nuestras mesas para encontrar dónde y con quién te vas a sentar y lo que hemos pedido que os preparen para que tod@s vosotr@s os metais entre pecho y espalda</p>
                     </div>
-		</div>
-			
-                        <div class="col-md-6 ml-auto mr-auto">
-				<div class="profile-tabs">
-					<ul class="nav nav-pills nav-pills-icons nav-pills-primary justify-content-center" role="tablist">
-                                                <li class="nav-item">
-                                                        <a class="nav-link active" href="#tables" role="tab" data-toggle="tab">
-								<i class="material-icons">view_module</i>Mesas
-                                                        </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                        <a class="nav-link" href="#menus" role="tab" data-toggle="tab">
-                                                                <i class="material-icons">restaurant_menu</i>Menús
-                                                        </a>
-                                                </li>
-                                        </ul>
-                                </div>                                
-                        </div>			
+				</div>
             </div>
 
             <div class="row">
-                <div class="col-12 ml-auto mr-auto">
-			<div id="tables" class="tab-pane active tables">
-				<div class="row">
-					<div class="col-md-8 col-sm-12 ml-auto mr-auto">
-					    {{ include('@App/tables/form.html.twig', { 'form': form }) }}
-					</div>				
+                <div class="col-md-6 col-sm-12 ml-auto mr-auto">
+                    <ul class="nav nav-pills nav-pills-icons nav-pills-primary justify-content-center" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#tables" role="tab" data-toggle="tab">
+                                <i class="material-icons">view_module</i>
+                                Mesas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#menus" role="tab" data-toggle="tab">
+                                <i class="material-icons">restaurant_menu</i>
+                                Menús
+                            </a>
+                        </li>
+                    </ul>
 				</div>
-				
-				{% if pagination|length > 0 %}
-                        		{% for table in pagination %}		
-						<div class="row">
-                            				{{ include('@App/tables/table.html.twig', { 'table': table }) }}
-						</div>
-                        		{% endfor %}
-                        		<div class="row">
-                            			<div class="col-md-8 col-sm-12 ml-auto sr">
-                                			{{ knp_pagination_render(pagination, '@App/partials/knp_pagination.html.twig') }}
-                            			</div>
-                        		</div>
-                    		{% else %}
-				<div class="row">
-                        		<div class="alert alert-info">
-                            			<div class="container">
-                                			<div class="alert-icon">
-                                    				<i class="material-icons">info_outline</i>
-                                			</div>
-                                			<b>{{ 'frontend.info'|trans }}</b>: No hay mesas planificadas que coincida con tu criterio de búsqueda
-                            			</div>
-                        		</div>
-				</div>
-                    		{% endif %}
-
 			</div>
-			
-			<div id="menus" class="tab-pane menus">
-				{% image 'bundles/app/images/aioli-background.jpg' %}
-				<div id="bio-section" class="section section-line-image" style="background-image: url('{{ asset_url }}');">
-					<div class="col-md-6 col-sm-12"
-						<div class="card card-pricing card-plain">
-       	 						<div class="card-header card-header-primary text-center">
-            							<h5 class="card-title">Menú adulto</h5>
-							</div>						
-							<div class="card-body">
-								<ul>
-									<li><h6>Gazpacho de cerezas</h6></li>
-									<li><h6>Ensalada de bacalao y pastel</h6></li>
-									<li><h6>Sorbete de mojito</h6></li>
-									<li><h6>Solomillo de ternera a la mostaza</h6></li>
-									<li><h6>Caramelo Royal</h6></li>									
-								</ul>
-							</div>
-						</div>
-						
-						<div class="card card-pricing card-plain">
-       	 						<div class="card-header card-header-primary text-center">
-            							<h5 class="card-title">Menú vegano</h5>
-							</div>						
-							<div class="card-body">
-								<ul>
-									<li><h6>Gazpacho de cerezas</h6></li>
-									<li><h6>Canelones vegetarianos</h6></li>
-									<li><h6>Sorbete de mojito</h6></li>
-									<li><h6>Pastel Farah Diba</h6></li>
-									<li><h6>Macedonia de frutas</h6></li>									
-								</ul>
-							</div>
-						</div>						
+		</div>
+	</div>
 
-						<div class="card card-pricing card-plain">
-       	 						<div class="card-header card-header-primary text-center">
-            							<h5 class="card-title">Menú celiaco sin lactosa</h5>
-							</div>						
-							<div class="card-body">
-								<ul>
-									<li><h6>Gazpacho de cerezas</h6></li>
-									<li><h6>Gambas y langostinos</h6></li>
-									<li><h6>Solomillo de ternera a la mostaza</h6></li>
-									<li><h6>Mousse de chocolate celiacos y frutos secos</h6></li>
-								</ul>
-							</div>
-						</div>						
-
-						<div class="card card-pricing card-plain">
-       	 						<div class="card-header card-header-primary text-center">
-            							<h5 class="card-title">Menú infantil</h5>
-							</div>						
-							<div class="card-body">
-								<ul>
-									<li><h6>Piadina romagnola de jamón y nubes de pollo</h6></li>
-									<li><h6>Solomillo de ternera madrileña con patatas fritas</h6></li>
-									<li><h6>Capricho de nube</h6></li>
-								</ul>
-							</div>
-						</div>						
-					</div>
-				</div>
-				{% endimage %}
-			</div>
-				
+    <div class="tab-content tab-space">
+        <div class="tab-pane active" id="tables">
+            <div class="section section-basic" style="padding-top:0;">
+                <div class="container">
+                    {{ include('@App/tables/table-list.html.twig') }}
                 </div>
             </div>
         </div>
+        <div class="tab-pane" id="menus">
+            {% image 'bundles/app/images/aioli-background.jpg' %}
+            <div class="section section-line-image" style="background-image: url('{{ asset_url }}');">
+                <div class="col-md-6 col-sm-12">
+                    {{ include('@App/tables/menu-list.html.twig') }}
+                </div>
+            </div>
+            {% endimage %}
+        </div>
     </div>
+
+
 {% endblock %}
 
 {% block javascripts %}

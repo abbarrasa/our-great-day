@@ -2467,3 +2467,7 @@ h6 {
             transform: scale(1);
   }
 }
+
+.card-pricing {
+    z-index: 1000;
+}

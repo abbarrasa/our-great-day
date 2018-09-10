@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-8 col-sm-12 ml-auto mr-auto">
+        {{ include('@App/tables/form.html.twig', { 'form': form }) }}
+    </div>
+</div>
+
+{% if pagination|length > 0 %}
+    {% for table in pagination %}
+        <div class="row">
+            <div class="col-md-10 ml-auto mr-auto">
+                {{ include('@App/tables/table.html.twig', { 'table': table }) }}
+            </div>
+        </div>
+    {% endfor %}
+    <div class="row">
+        <div class="col-md-8 col-sm-12 ml-auto sr">
+            {{ knp_pagination_render(pagination, '@App/partials/knp_pagination.html.twig') }}
+        </div>
+    </div>
+{% else %}
+    <div class="row">
+        <div class="col-md-10 col-sm-12 ml-auto mr-auto">
+            <div class="alert alert-info">
+                <div class="container">
+                    <div class="alert-icon">
+                        <i class="material-icons">info_outline</i>
+                    </div>
+                    <b>{{ 'frontend.info'|trans({}, 'AppBundle') }}</b>: No hay mesas planificadas que coincidan con tu criterio de búsqueda
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
