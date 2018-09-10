@@ -16,7 +16,7 @@ class TablePlannerController extends Controller
      * @param int $page
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction(Request $request, $page = 1)
+    public function indexAction(Request $request, $page = 1)
     {
         $name       = null;        
         $form       = $this->createForm(SearchTableType::class);
@@ -37,7 +37,7 @@ class TablePlannerController extends Controller
         );
 
         // parameters to template
-        return $this->render('@App/tables/list.html.twig', array(
+        return $this->render('@App/tables/index.html.twig', array(
             'pagination' => $pagination,
             'form'       => $form->createView()
         ));
