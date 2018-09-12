@@ -2378,94 +2378,96 @@ h6 {
     margin-left: 4px;
 }
 
-.nav-item-label {
-  display: none !important;
-  -webkit-transform: scale(0);
-          transform: scale(0);
-  opacity: 0;
-  transition: opacity .2s ease-in-out, -webkit-transform .2s ease-in-out;
-  transition: transform .2s ease-in-out, opacity .2s ease-in-out;
-  transition: transform .2s ease-in-out, opacity .2s ease-in-out, -webkit-transform .2s ease-in-out;
-}
-.nav-item-label.show {
-  display: inline-block !important;
-  -webkit-transform: scale(1);
-          transform: scale(1);
-  opacity: 1;
-  -webkit-animation: fadein .2s ease-in-out;
-          animation: fadein .2s ease-in-out;
-}
+@media screen and (min-width: 992px) {
+    .nav-item-label {
+      display: none !important;
+      -webkit-transform: scale(0);
+              transform: scale(0);
+      opacity: 0;
+      transition: opacity .2s ease-in-out, -webkit-transform .2s ease-in-out;
+      transition: transform .2s ease-in-out, opacity .2s ease-in-out;
+      transition: transform .2s ease-in-out, opacity .2s ease-in-out, -webkit-transform .2s ease-in-out;
+    }
+    .nav-item-label.show {
+      display: inline-block !important;
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      opacity: 1;
+      -webkit-animation: fadein .2s ease-in-out;
+              animation: fadein .2s ease-in-out;
+    }
 
-@-webkit-keyframes fadein {
-  0% {
-    display: none !important;
-    opacity: 0;
-  }
-  1% {
-    display: inline-block !important;
-    opacity: 0;
-    -webkit-transform: scale(0);
-            transform: scale(0);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-}
+    @-webkit-keyframes fadein {
+      0% {
+        display: none !important;
+        opacity: 0;
+      }
+      1% {
+        display: inline-block !important;
+        opacity: 0;
+        -webkit-transform: scale(0);
+                transform: scale(0);
+      }
+      100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1);
+      }
+    }
 
-@-moz-keyframes fadein {
-  0% {
-    display: none !important;
-    opacity: 0;
-  }
-  1% {
-    display: inline-block !important;
-    opacity: 0;
-    -moz-transform: scale(0);
-            transform: scale(0);
-  }
-  100% {
-    opacity: 1;
-    -moz-transform: scale(1);
-            transform: scale(1);
-  }
-}
+    @-moz-keyframes fadein {
+      0% {
+        display: none !important;
+        opacity: 0;
+      }
+      1% {
+        display: inline-block !important;
+        opacity: 0;
+        -moz-transform: scale(0);
+                transform: scale(0);
+      }
+      100% {
+        opacity: 1;
+        -moz-transform: scale(1);
+                transform: scale(1);
+      }
+    }
 
-@-ms-keyframes fadein {
-  0% {
-    display: none !important;
-    opacity: 0;
-  }
-  1% {
-    display: inline-block !important;
-    opacity: 0;
-    -ms-transform: scale(0);
-            transform: scale(0);
-  }
-  100% {
-    opacity: 1;
-    -ms-transform: scale(1);
-            transform: scale(1);
-  }
-}
+    @-ms-keyframes fadein {
+      0% {
+        display: none !important;
+        opacity: 0;
+      }
+      1% {
+        display: inline-block !important;
+        opacity: 0;
+        -ms-transform: scale(0);
+                transform: scale(0);
+      }
+      100% {
+        opacity: 1;
+        -ms-transform: scale(1);
+                transform: scale(1);
+      }
+    }
 
-@keyframes fadein {
-  0% {
-    display: none !important;
-    opacity: 0;
-  }
-  1% {
-    display: inline-block !important;
-    opacity: 0;
-    -webkit-transform: scale(0);
-            transform: scale(0);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
+    @keyframes fadein {
+      0% {
+        display: none !important;
+        opacity: 0;
+      }
+      1% {
+        display: inline-block !important;
+        opacity: 0;
+        -webkit-transform: scale(0);
+                transform: scale(0);
+      }
+      100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+                transform: scale(1);
+      }
+    }    
 }
 
 .card-pricing {
