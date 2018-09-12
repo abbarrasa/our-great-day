@@ -23,12 +23,13 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/enquiry", name="enquiry")
+     * @Route("/enquiry/{content}", name="enquiry")
      * @Method("POST")
      * @param Request $request
+     * @param null $content
      * @return JsonResponse|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function enquiryAction(Request $request)
+    public function enquiryAction(Request $request, $content = null)
     {
         if (!$request->isXmlHttpRequest()) {
             return $this->redirectToRoute('homepage');
@@ -36,7 +37,10 @@ class DefaultController extends Controller
         
         $status  = JsonResponse::HTTP_OK;
         $enquiry = new Enquiry();
-        $form    = $this->createForm(EnquiryType::class, $enquiry);
+        if ($content !== null) {
+            $enquiry->setContent($this->getEnquiryContent($content));
+        }
+        $form = $this->createForm(EnquiryType::class, $enquiry);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
@@ -58,5 +62,14 @@ class DefaultController extends Controller
                 'form' => $form->createView()
             ])
         ], $status);
+    }
+
+    private function getEnquiryContent($content)
+    {
+        if ($content === 'wedshoots') {
+            return 'Solicitud de instrucciones y acceso como invitado a Wedshoots';
+        }
+
+        return '';
     }
 }

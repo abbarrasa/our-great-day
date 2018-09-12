@@ -168,8 +168,13 @@
                     {# Load enquiry form #}
                     $('a.contact-us').click(function(e) {
                         e.preventDefault();
+                        var content = $(this).data('content');
+                        var url     = '{{ path('enquiry') }}';
+                        if (content) {
+                            url += '/' + content;
+                        }
                         $.ajax({
-                            url: '{{ path('enquiry') }}',
+                            url: url,
                             type: 'POST'
                         }).done(function (responseJSON) {
                             $('#burger-button').trigger('click');
@@ -177,7 +182,6 @@
                             $('#ogd-modal').modal('show');
                         });
                     });
-
                     {# Submit enquiry form #}
                     $('body').on('submit', 'form[name="enquiry"]', function(e) {
                         e.preventDefault();

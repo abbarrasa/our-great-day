@@ -160,8 +160,7 @@ nowuiKit = {
             if (background_image != undefined) {
                 $navbar.css('background', "url('" + background_image + "')")
                     .removeAttr('data-nav-image')
-                    //.css('background-size', "cover")
-                    .css('background-size', "100%")             
+                    .css('background-size', "cover")
                     .addClass('has-image');
             }
         } else if (background_image != undefined) {

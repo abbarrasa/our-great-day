@@ -155,7 +155,7 @@ class Mailer implements MailerInterface
     {
         $message = $this->getMessage(self::TEMPLATE_ENQUIRY_NOTIFICATION, ['enquiry' => $enquiry]);
 
-        return $this->sendEmailMessage($this->config['email_admin'], $this->config['email_manager'], $message);
+        return $this->sendEmailMessage($this->config['email_admin'], 'abbarrasa@gmail.com', $message);
     }
     
     /**
